@@ -21,7 +21,6 @@ export class MenuComponent{
         { pageName:'Իմ պատմությունը', component: HistoryPage},
         { pageName:'Մեր մասին', component: AboutUs},                
         { pageName:'Դուրս գալ', component: HomePage}
-
     ]
     constructor(private navCtrl:NavController, public params:NavParams){
 
@@ -36,6 +35,6 @@ export class MenuComponent{
             return;
         }
         this.activePage = page.component;
-        this.nav.setRoot(page.component);
+        this.nav.setRoot(page.component, {pageName:page.pageName});
     }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { NavParams } from 'ionic-angular';
 
 
 @Component({
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
     templateUrl:'history.html',
 })
 export class HistoryPage{
-    pageName:string = 'Իմ պատմությունը';
-    constructor(){}
+    pageName:string;
+    constructor(private navParams: NavParams){
+        this.pageName = navParams.get('pageName')
+    }
 }

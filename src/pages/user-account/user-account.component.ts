@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-
+import { ModalController } from 'ionic-angular';
+import { OrdersRegister } from "../barrel";
 
 
 /*
@@ -20,7 +21,14 @@ export class UserAccount{
     
     pageName:string = 'Իմ մեքենաները';
 
-    constructor(){
+    constructor(public modalCtrl: ModalController){
         
     }
+
+    createNewOrder() {
+        let profileModal = this.modalCtrl.create(OrdersRegister);
+         profileModal.present();
+    }
+
+
 }

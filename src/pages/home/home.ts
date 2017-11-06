@@ -44,7 +44,7 @@ export class HomePage {
   }
   createAccount(){
     
-    if(this.classOptionsForNumber){
+    if(this.classOptionCtrlForNumber){
       let userInfo = {
         name: this.name,
         phoneNumber:this.phoneNumber

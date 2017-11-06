@@ -12,7 +12,7 @@ import {
     MenuComponent, 
     HistoryPage, 
     HeaderComponent, 
-    AboutUs } from '../pages/barrel';
+    AboutUs, OrdersRegister } from '../pages/barrel';
 
 
 
@@ -24,7 +24,8 @@ import {
     MenuComponent,
     HistoryPage,
     HeaderComponent,
-    AboutUs
+    AboutUs,
+    OrdersRegister
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,9 @@ import {
     MenuComponent,
     HistoryPage,
     HeaderComponent,
-    AboutUs
+    AboutUs,
+    OrdersRegister
+
   ],
   providers: [
     StatusBar,
