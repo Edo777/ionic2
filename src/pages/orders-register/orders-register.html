@@ -1,3 +1,66 @@
 <ion-content>
-    <h1 text-center>Helllo</h1>
+    <button ion-button (click)="dis()">Close</button>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <h2 text-center>Նոր մեքենայի գրանցում</h2>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="cars-brands">
+            <ion-col col-12>
+                <!-- searchbar -->
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
+                    <ion-input [value]="activeCarName" (input)="getBrands($event)"></ion-input>
+                    <button ion-button small item-end (click)="completeInput()">Հաստատել</button>
+                </ion-item>
+                <!-- searchlist -->
+                <ion-grid *ngIf="!isBrandComplete">
+                    <ion-row *ngFor="let brand of brands" (tap)="setCar(brand.value)">
+                        <ion-col class="car-row" col-12>
+                            {{ brand.value }}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="cars-brands" *ngIf="NEWORDER.brand != ''">
+            <ion-col col-12>
+                <!-- searchbar -->
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Ընտրեք մոդել'}}</ion-label>
+                    <ion-input [value]="activeCarName" (input)="getModels($event)"></ion-input>
+                    <button ion-button small item-end (click)="completeInput()">Հաստատել</button>
+                </ion-item>
+                <!-- searchlist -->
+                <ion-grid>
+                    <ion-row *ngFor="let model of models">
+                        <ion-col class="car-row " col-12>
+                            {{ model }}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+
+
+
+        <ion-row *ngFor="let ord of order | filter; let k=i ndex ">
+            <ion-col>
+                <ion-item>
+                    <ion-label color="black " floating>{{ord.input}}</ion-label>
+                    <ion-input></ion-input>
+                    <button ion-button small item-end (tap)="conf(k) ">{{ord.bool?  'Հաստատել' : 'Փոփոխել'}}</button>
+                </ion-item>
+            </ion-col>
+
+        </ion-row>
+
+
+
+
+    </ion-grid>
 </ion-content>

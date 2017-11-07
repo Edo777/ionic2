@@ -13,6 +13,17 @@ import {
     HistoryPage, 
     HeaderComponent, 
     AboutUs, OrdersRegister } from '../pages/barrel';
+//pipes
+
+import { FilterPipe } from "../pipes/loop-pipe";
+
+//modules
+
+import { HttpModule, Http } from "@angular/http";
+
+//services
+import { CompleteTestService } from "../services/cars.service";
+
 
 
 
@@ -25,11 +36,14 @@ import {
     HistoryPage,
     HeaderComponent,
     AboutUs,
-    OrdersRegister
+    OrdersRegister,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
+
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -41,10 +55,11 @@ import {
     HistoryPage,
     HeaderComponent,
     AboutUs,
-    OrdersRegister
-
+    OrdersRegister,
   ],
   providers: [
+
+    CompleteTestService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

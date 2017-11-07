@@ -36,7 +36,7 @@ export class HomePage {
       'color-red': !this.classOptionCtrlForNumber,
       'color-green': this.classOptionCtrlForNumber
     }
-    if(!isNaN(Number(this.phoneNumber)) && this.phoneNumber.length === 1){
+    if(this.phoneNumber.length === 1){
       this.classOptionCtrlForNumber = true;
     }else{
       this.classOptionCtrlForNumber = false;

@@ -6,7 +6,7 @@
         </ion-item>
         <div text-center margin-top>Մուտքագրեք ձեր <br>հեռախոսահամարը</div>
         <ion-item mode="md">
-            <ion-input [disabled]="!classOptionCtrlForName" (input)="isCompletePhone()" [ngClass]="classOptionsForNumber" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
+            <ion-input type="number" [disabled]="!classOptionCtrlForName" (input)="isCompletePhone()" [ngClass]="classOptionsForNumber" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
         <button ion-button [disabled]="!classOptionCtrlForNumber" mode="ios" (click)="createAccount()">Ստեղծել էջ</button>
     </div>

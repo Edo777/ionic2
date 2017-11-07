@@ -1,1 +1,17 @@
-orders-register {}
+orders-register {
+    .cars-brands {
+        padding-left: 22px;
+        padding-right: 22px;
+        ion-grid {
+            padding: 0;
+            .car-row {
+                background: grey;
+                border-bottom: 1px solid black;
+            }
+        }
+        .active-car-brand {
+            background: grey;
+            padding: 16px 50px 16px 5px;
+        }
+    }
+}
