@@ -7,7 +7,7 @@ export interface CarOrder{
     bool:boolean, 
 }
 
-export interface newOrder{
+export interface NewOrder{
     brand:string,
     model:string
 }

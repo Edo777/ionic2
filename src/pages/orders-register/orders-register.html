@@ -13,17 +13,20 @@
                 <!-- searchbar -->
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
-                    <ion-input [value]="activeCarName" (input)="getBrands($event)"></ion-input>
-                    <button ion-button small item-end (click)="completeInput()">Հաստատել</button>
+                    <ion-input [value]="activeCarBrand" [(ngModel)]="activeCarBrand" (input)="getBrands($event)"></ion-input>
+                    <button ion-button small item-end (click)="completeBrand()">Հաստատել</button>
                 </ion-item>
+                <!-- searchbar -->
+
                 <!-- searchlist -->
-                <ion-grid *ngIf="!isBrandComplete">
+                <ion-grid (click)="isBrandComplete = true" *ngIf="!isBrandComplete">
                     <ion-row *ngFor="let brand of brands" (tap)="setCar(brand.value)">
                         <ion-col class="car-row" col-12>
                             {{ brand.value }}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
+                <!-- searchlist -->
             </ion-col>
         </ion-row>
 
@@ -32,9 +35,11 @@
                 <!-- searchbar -->
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մոդել'}}</ion-label>
-                    <ion-input [value]="activeCarName" (input)="getModels($event)"></ion-input>
-                    <button ion-button small item-end (click)="completeInput()">Հաստատել</button>
+                    <ion-input [value]="activeCarBrand" (input)="getModels($event)"></ion-input>
+                    <button ion-button small item-end (click)="completeBrand()">Հաստատել</button>
                 </ion-item>
+                <!-- searchbar -->
+
                 <!-- searchlist -->
                 <ion-grid>
                     <ion-row *ngFor="let model of models">
@@ -43,6 +48,7 @@
                         </ion-col>
                     </ion-row>
                 </ion-grid>
+                <!-- searchlist -->
             </ion-col>
         </ion-row>
 

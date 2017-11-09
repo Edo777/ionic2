@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CarOrder, newOrder } from '../interfaces/interfaces';
+import { CarOrder, NewOrder } from '../interfaces/interfaces';
 import { CompleteTestService } from "../../services/cars.service";
 import { ViewController } from "ionic-angular";
 
@@ -20,11 +20,15 @@ export class OrdersRegister{
     brands: string[];
     models:string[];
     order:CarOrder[] = ORDER;
+    //variable who get the value from data.json
     cars:any; 
-    activeCarName:string;
+    //car params
+    activeCarBrand:string;
+    activeCarModel:string;
+    //variable who close the searchlist after complete brand
     isBrandComplete:boolean = false;
 
-    NEWORDER:newOrder = {brand:'', model:''};
+    NEWORDER:NewOrder = {brand:'', model:''};
 
     constructor(private completeTestService:CompleteTestService, private viewCtrl:ViewController){
 
@@ -48,14 +52,13 @@ export class OrdersRegister{
     }
 
     //set new order brand in  this.NEWORDER.brand
-    completeInput(){
-        this.NEWORDER.brand = this.activeCarName;
+    completeBrand(){
+        this.NEWORDER.brand = this.activeCarBrand;
     }
 
     setCar(val){
-        this.activeCarName = val;
-        this.isBrandComplete = !this.isBrandComplete;
-        this.NEWORDER
+        this.activeCarBrand = val;
+        this.isBrandComplete = true;
     }
     
     //dismiss the modal
