@@ -9,5 +9,19 @@ export interface CarOrder{
 
 export interface NewOrder{
     brand:string,
-    model:string
+    model:string,
+    address:string,
+}
+
+export interface Brand {
+    completeBrand:Function,
+    setBrand:Function,
+    getBrands:Function,
+
+}
+
+export interface Model{
+    completeModel:Function,
+    setModel:Function,
+    getModels:Function,
 }

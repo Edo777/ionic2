@@ -1,4 +1,11 @@
 <absolute-header [pageName]="pageName"></absolute-header>
 <ion-content top>
+    <ion-grid>
+        <ion-row *ngIf="orders.length">
+            <ion-col col-12 *ngFor="let o of orders">
+                {{o.brand}} {{o.model}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <button ion-button full outline (click)="createNewOrder()">Գրանցել հայտ</button>
 </ion-content>

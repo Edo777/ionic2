@@ -1,15 +1,9 @@
 import { Component } from "@angular/core";
 import { ModalController } from 'ionic-angular';
 import { OrdersRegister } from "../barrel";
+import { NewOrder } from "../interfaces/interfaces";
 
 
-/*
-    interface Car{
-        number:string;
-        model:string;
-        sedan:string;
-    }
-*/
 
 @Component({
     selector:'user-account',
@@ -17,7 +11,7 @@ import { OrdersRegister } from "../barrel";
 })
 
 export class UserAccount{   
-    //newCar:Car[];
+    orders:NewOrder[] = [];
     
     pageName:string = 'Իմ մեքենաները';
 
@@ -26,7 +20,10 @@ export class UserAccount{
     }
 
     createNewOrder() {
-        let profileModal = this.modalCtrl.create(OrdersRegister);
+        var profileModal = this.modalCtrl.create(OrdersRegister);
+        profileModal.onDidDismiss((data)=>{
+            this.orders.unshift(data);
+        })
          profileModal.present();
     }
 

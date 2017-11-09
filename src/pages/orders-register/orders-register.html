@@ -1,5 +1,5 @@
 <ion-content>
-    <button ion-button (click)="dis()">Close</button>
+    <button ion-button (click)="closeRegisterPage()">Close</button>
 
     <ion-grid>
         <ion-row>
@@ -8,19 +8,20 @@
             </ion-col>
         </ion-row>
 
+        <!-- BRANDS -->
         <ion-row class="cars-brands">
             <ion-col col-12>
                 <!-- searchbar -->
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
-                    <ion-input [value]="activeCarBrand" [(ngModel)]="activeCarBrand" (input)="getBrands($event)"></ion-input>
-                    <button ion-button small item-end (click)="completeBrand()">Հաստատել</button>
+                    <ion-input [value]="activeCarBrand" [(ngModel)]="activeCarBrand" (input)="BrandFn.getBrands($event)"></ion-input>
+                    <button ion-button small item-end (click)="BrandFn.completeBrand()">Հաստատել</button>
                 </ion-item>
                 <!-- searchbar -->
 
                 <!-- searchlist -->
                 <ion-grid (click)="isBrandComplete = true" *ngIf="!isBrandComplete">
-                    <ion-row *ngFor="let brand of brands" (tap)="setCar(brand.value)">
+                    <ion-row *ngFor="let brand of brands" (tap)="BrandFn.setBrand(brand)">
                         <ion-col class="car-row" col-12>
                             {{ brand.value }}
                         </ion-col>
@@ -30,21 +31,22 @@
             </ion-col>
         </ion-row>
 
+        <!-- MODELS -->
         <ion-row class="cars-brands" *ngIf="NEWORDER.brand != ''">
             <ion-col col-12>
                 <!-- searchbar -->
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մոդել'}}</ion-label>
-                    <ion-input [value]="activeCarBrand" (input)="getModels($event)"></ion-input>
-                    <button ion-button small item-end (click)="completeBrand()">Հաստատել</button>
+                    <ion-input [(ngModel)]="activeCarModel" [value]="activeCarModel" (input)="ModelFn.getModels($event)"></ion-input>
+                    <button ion-button small item-end (click)="ModelFn.completeModel()">Հաստատել</button>
                 </ion-item>
                 <!-- searchbar -->
 
                 <!-- searchlist -->
-                <ion-grid>
-                    <ion-row *ngFor="let model of models">
+                <ion-grid (click)="isModelComplete = true" *ngIf="!isModelComplete">
+                    <ion-row *ngFor="let model of localModels" (tap)="ModelFn.setModel(model)">
                         <ion-col class="car-row " col-12>
-                            {{ model }}
+                            {{ model.value }}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -52,21 +54,30 @@
             </ion-col>
         </ion-row>
 
-
-
-        <ion-row *ngFor="let ord of order | filter; let k=i ndex ">
-            <ion-col>
-                <ion-item>
-                    <ion-label color="black " floating>{{ord.input}}</ion-label>
-                    <ion-input></ion-input>
-                    <button ion-button small item-end (tap)="conf(k) ">{{ord.bool?  'Հաստատել' : 'Փոփոխել'}}</button>
+        <!-- ADDRESS -->
+        <ion-row class="cars-brands" *ngIf="NEWORDER.model != ''">
+            <ion-col col-12>
+                <!-- searchbar 
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
+                    <ion-input [(ngModel)]="activeCarModel" [value]="activeCarModel" (input)="getModels($event)"></ion-input>
+                    <button ion-button small item-end (click)="completeModel()">Հաստատել</button>
                 </ion-item>
+               
+                -->
+                <!-- searchlist 
+                <ion-grid (click)="isModelComplete = true" *ngIf="!isModelComplete">
+                    <ion-row *ngFor="let model of localModels" (tap)="setModel(model)">
+                        <ion-col class="car-row " col-12>
+                            {{ model.value }}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                -->
+                <!-- searchlist -->
+
             </ion-col>
-
         </ion-row>
-
-
-
 
     </ion-grid>
 </ion-content>
