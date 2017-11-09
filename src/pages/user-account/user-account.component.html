@@ -1,11 +1,17 @@
 <absolute-header [pageName]="pageName"></absolute-header>
 <ion-content top>
+    <button ion-button full outline (click)="createNewOrder()">Գրանցել հայտ</button>
     <ion-grid>
         <ion-row *ngIf="orders.length">
-            <ion-col col-12 *ngFor="let o of orders">
-                {{o.brand}} {{o.model}}
-            </ion-col>
+            <ion-card *ngFor="let o of orders; let i = index" (tap)="removeOrder(i)">
+                <ion-card-header>
+                    <h5 text-wrap>Դուք պատվիրել եք {{o.brand}} մակնիշի մեքենայի լվացում</h5>
+                </ion-card-header>
+                <ion-card-content>
+                    մոդել - {{o.model}}
+                </ion-card-content>
+            </ion-card>
         </ion-row>
     </ion-grid>
-    <button ion-button full outline (click)="createNewOrder()">Գրանցել հայտ</button>
+
 </ion-content>

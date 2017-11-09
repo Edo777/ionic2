@@ -18,7 +18,7 @@ export class MenuComponent{
     activePage:any = UserAccount;
     pages:Pages[] = [
         { pageName:'Իմ մեքենաները', component: UserAccount},
-        { pageName:'Իմ պատմությունը', component: HistoryPage},
+        { pageName:'Իմ հասցեները', component: HistoryPage},
         { pageName:'Մեր մասին', component: AboutUs},                
         { pageName:'Դուրս գալ', component: HomePage}
     ]
