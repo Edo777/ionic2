@@ -37,7 +37,7 @@ export class OrdersRegister{
         this.completeTestService.getResults()
         .subscribe(data=>{
             this.cars = data;
-        });;
+        });
      }
 
     

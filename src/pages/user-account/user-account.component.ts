@@ -13,7 +13,7 @@ import { CompleteTestService } from "../../services/cars.service";
 
 export class UserAccount implements OnInit{   
     orders:NewOrder[] = [];
-    
+    datas:string[] = [];
     pageName:string = 'Իմ մեքենաները';
 
     constructor(
@@ -21,15 +21,25 @@ export class UserAccount implements OnInit{
         private completeTestService:CompleteTestService){}
 
     ngOnInit(){
-        this.orders = this.completeTestService.getOrders();
+        //this.orders = this.completeTestService.getOrders();
+        if(localStorage.getItem('orders')){
+            this.datas = JSON.parse(localStorage.getItem('orders'));
+        }
     }
     removeOrder(index){
-        this.completeTestService.removeOrder(index);
+        //this.completeTestService.removeOrder(index);
     }
     createNewOrder() {
         var profileModal = this.modalCtrl.create(OrdersRegister);
         profileModal.onDidDismiss((data)=>{
-            this.completeTestService.setOrders(data);
+            //this.completeTestService.setOrder(data);
+            this.datas.push(data);
+            if(!localStorage.getItem('orders')){
+                localStorage.setItem('orders', JSON.stringify(this.datas));
+            }else{
+                console.log(typeof(localStorage.getItem('orders')));
+                localStorage.setItem('orders', JSON.stringify(this.datas))
+            }         
         })
          profileModal.present();
     }

@@ -15,14 +15,15 @@ export class CompleteTestService {
   removeOrder(i){
     this.orders.splice(i, 1);
   }
-  setOrders(data){
-    this.orders.unshift(data)
+  setOrder(){
+    let orders = localStorage.getItem('orders');
+    
   }
   getOrders(){
     return this.orders;
   }
   getResults() {
     return this.http.get("assets/data.json")
-      .map(result =>result.json())  
+      .map(result => result.json())  
   }
 }

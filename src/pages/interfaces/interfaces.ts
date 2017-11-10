@@ -17,7 +17,6 @@ export interface Brand {
     completeBrand:Function,
     setBrand:Function,
     getBrands:Function,
-
 }
 
 export interface Model{
