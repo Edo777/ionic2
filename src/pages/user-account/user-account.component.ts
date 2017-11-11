@@ -1,8 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from 'ionic-angular';
+//components
 import { OrdersRegister } from "../barrel";
-import { NewOrder } from "../interfaces/interfaces";
-import { CompleteTestService } from "../../services/cars.service";
+//interfaces
+import { NewOrder, LocalGetSet } from "../interfaces/interfaces";
+//services
+import { OrdersController } from "../../services/cars.service";
 
 
 
@@ -12,34 +15,45 @@ import { CompleteTestService } from "../../services/cars.service";
 })
 
 export class UserAccount implements OnInit{   
-    orders:NewOrder[] = [];
-    datas:string[] = [];
-    pageName:string = 'Իմ մեքենաները';
+
+    orders:string[] = [];
+    pageName:string = 'Պատվերի գրանցում';
+    localGetSet:LocalGetSet;
 
     constructor(
         public modalCtrl: ModalController,
-        private completeTestService:CompleteTestService){}
-
-    ngOnInit(){
-        //this.orders = this.completeTestService.getOrders();
-        if(localStorage.getItem('orders')){
-            this.datas = JSON.parse(localStorage.getItem('orders'));
+        private ordersCtrl:OrdersController){
+            
         }
+    ngOnInit(){
+        this.orders = this.ordersCtrl.getOrders();
     }
     removeOrder(index){
-        //this.completeTestService.removeOrder(index);
+        this.ordersCtrl.removeOrder(index);
+        this.orders = this.ordersCtrl.getOrders();
     }
     createNewOrder() {
         var profileModal = this.modalCtrl.create(OrdersRegister);
         profileModal.onDidDismiss((data)=>{
-            //this.completeTestService.setOrder(data);
-            this.datas.push(data);
+            let orders:string[] = [];
+            this.localGetSet = {
+                get:() => {
+                    return JSON.parse(localStorage.getItem('orders'));
+                },
+                set:() => {
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                }
+            }
+            orders = this.localGetSet.get() ? this.localGetSet.get() : [data];
+
+            //if empty set the data else [get item and push data] after then setItem
             if(!localStorage.getItem('orders')){
-                localStorage.setItem('orders', JSON.stringify(this.datas));
+                this.localGetSet.set();
             }else{
-                console.log(typeof(localStorage.getItem('orders')));
-                localStorage.setItem('orders', JSON.stringify(this.datas))
-            }         
+                orders.push(data);
+                this.localGetSet.set();
+            }  
+            this.orders = this.ordersCtrl.getOrders();       
         })
          profileModal.present();
     }

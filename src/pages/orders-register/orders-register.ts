@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
-import { CompleteTestService } from "../../services/cars.service";
+import { OrdersController } from "../../services/cars.service";
 import { ViewController } from "ionic-angular";
 
 @Component({
@@ -9,7 +9,13 @@ import { ViewController } from "ionic-angular";
 })
 
 export class OrdersRegister{
-    
+    //old or new cars
+    isWantOldCar:boolean = false;
+    isWantNewCar:boolean = false;
+    arr:any;
+    //for old orders
+    isTrue:boolean = false;
+
     //model & brands
     brands: string[];
     constModels:any;
@@ -28,13 +34,16 @@ export class OrdersRegister{
     //object of order
     NEWORDER:NewOrder = {brand:'', model:'', address:''};
 
-    constructor(private completeTestService:CompleteTestService, private viewCtrl:ViewController){
+    constructor(private ordersCtrl:OrdersController, private viewCtrl:ViewController){
         this.initializeCars()
     }
-
+    consol(){
+        console.log('hello');
+    }
+    
     //get cars from service
     initializeCars() {
-        this.completeTestService.getResults()
+        this.ordersCtrl.getResults()
         .subscribe(data=>{
             this.cars = data;
         });

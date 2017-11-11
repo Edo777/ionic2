@@ -24,3 +24,8 @@ export interface Model{
     setModel:Function,
     getModels:Function,
 }
+
+export interface LocalGetSet {
+    get:Function;
+    set:Function
+}

@@ -22,7 +22,7 @@ import { FilterPipe } from "../pipes/loop-pipe";
 import { HttpModule, Http } from "@angular/http";
 
 //services
-import { CompleteTestService } from "../services/cars.service";
+import { OrdersController } from "../services/cars.service";
 
 
 
@@ -58,8 +58,7 @@ import { CompleteTestService } from "../services/cars.service";
     OrdersRegister,
   ],
   providers: [
-
-    CompleteTestService,
+    OrdersController,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

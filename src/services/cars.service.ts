@@ -1,25 +1,27 @@
 import { Http } from '@angular/http';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map'
-import { NewOrder } from "../pages/interfaces/interfaces";
 
 
 @Injectable()
-export class CompleteTestService {
+export class OrdersController {
   labelAttribute = "name";
-  orders:NewOrder[] = []
+  orders:string[] = []
 
   constructor(private http:Http) {
 
   }
-  removeOrder(i){
-    this.orders.splice(i, 1);
+  private ordersInit(){
+    this.orders = JSON.parse(localStorage.getItem('orders'));
   }
-  setOrder(){
-    let orders = localStorage.getItem('orders');
-    
+  removeOrder(i){
+    let orders:string[] = JSON.parse(localStorage.getItem('orders'));
+    orders.splice(i, 1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    this.ordersInit();
   }
   getOrders(){
+    this.ordersInit();
     return this.orders;
   }
   getResults() {
