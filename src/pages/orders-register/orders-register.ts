@@ -33,7 +33,7 @@ export class OrdersRegister{
     isModelComplete: boolean = false;
     //object of order
     NEWORDER:NewOrder = {brand:'', model:'', address:''};
-
+    OLDCAR:NewOrder = {brand:'', model:''}
     constructor(private ordersCtrl:OrdersController, private viewCtrl:ViewController){
         this.initializeCars()
     }
@@ -55,6 +55,7 @@ export class OrdersRegister{
         //set new order brand in  this.NEWORDER.brand
         completeBrand:()=>{
             this.NEWORDER.brand = this.activeCarBrand;
+            this.OLDCAR.brand = this.activeCarBrand;
         },
         //set the brand in value input
         setBrand:(val)=>{
@@ -81,6 +82,7 @@ export class OrdersRegister{
         //set new order model in  this.NEWORDER.model
         completeModel:() => {
             this.NEWORDER.model = this.activeCarModel;
+            this.OLDCAR.model = this.activeCarModel;
             console.log(this.NEWORDER);
         },
         //set the car's model
@@ -104,10 +106,14 @@ export class OrdersRegister{
             }
         }
     }
-
     
     closeRegisterPage(){
-          this.viewCtrl.dismiss(this.NEWORDER);
+        let data = {
+            NEWORDER: this.NEWORDER, 
+            OLDCAR: this.OLDCAR
+        };
+          this.viewCtrl.dismiss(data);
+          console.log(data)
     }
     
 

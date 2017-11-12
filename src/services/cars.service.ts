@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class OrdersController {
-  labelAttribute = "name";
+
   orders:string[] = []
 
   constructor(private http:Http) {

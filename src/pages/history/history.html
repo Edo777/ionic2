@@ -1,4 +1,12 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
-    <h1 text-center>History</h1>
+    <ion-list mode="ios">
+        <button mode="ios" no-padding detail-none ion-item *ngFor="let oldcar of oldcars; let i = index">
+            <div class="first-letter" text-center item-left>
+                {{oldcar.brand[0]}}
+            </div>
+            <ion-label mode="ios">{{oldcar.brand}} - {{oldcar.model}}</ion-label>
+            <ion-icon name="close" color="danger" (click)="remove(i)" item-right></ion-icon>
+        </button>
+    </ion-list>
 </ion-content>

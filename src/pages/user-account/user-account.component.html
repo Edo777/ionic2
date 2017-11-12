@@ -2,7 +2,7 @@
 <ion-content top>
     <button ion-button full outline (click)="createNewOrder()">Գրանցել հայտ</button>
     <ion-grid>
-        <ion-row *ngIf="orders.length">
+        <ion-row *ngIf="orders?.length">
             <ion-card *ngFor="let o of orders; let i = index">
                 <button ion-button small float-right (tap)="removeOrder(i)">Ջնջել</button>
                 <ion-card-header>

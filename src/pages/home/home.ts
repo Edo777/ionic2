@@ -18,8 +18,11 @@ export class HomePage {
 
   
   constructor(public navCtrl: NavController) {
-
+    
   }
+  
+    
+  
   isCompleteName(){
     this.classOptionsForName = {
       'color-red': !this.classOptionCtrlForName,

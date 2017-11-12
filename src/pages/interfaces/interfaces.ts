@@ -10,7 +10,7 @@ export interface CarOrder{
 export interface NewOrder{
     brand:string,
     model:string,
-    address:string,
+    address?:string,
 }
 
 export interface Brand {
