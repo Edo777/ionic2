@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {  MenuComponent } from "../barrel";
+import { MobiWash } from "../../services/barrel.service";
 
-   
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,8 +18,8 @@ export class HomePage {
   phoneNumber:string;
 
   
-  constructor(public navCtrl: NavController) {
-    
+  constructor(public navCtrl: NavController, private mobiWash:MobiWash) {
+     
   }
   
     
@@ -28,7 +29,7 @@ export class HomePage {
       'color-red': !this.classOptionCtrlForName,
       'color-green': this.classOptionCtrlForName
     }
-    if(this.name.length >=1 && this.name.length<=2){
+    if(this.name.length >=1 && this.name.length<=6){
       this.classOptionCtrlForName = true;
     }else{
       this.classOptionCtrlForName = false;
@@ -39,7 +40,7 @@ export class HomePage {
       'color-red': !this.classOptionCtrlForNumber,
       'color-green': this.classOptionCtrlForNumber
     }
-    if(this.phoneNumber.length === 1){
+    if(this.phoneNumber.length === 3){
       this.classOptionCtrlForNumber = true;
     }else{
       this.classOptionCtrlForNumber = false;
@@ -47,16 +48,19 @@ export class HomePage {
   }
   createAccount(){
     
+    this.mobiWash.addUser(this.name, this.phoneNumber);
+    this.navCtrl.setRoot(MenuComponent);
+    /*
     if(this.classOptionCtrlForNumber){
       let userInfo = {
         name: this.name,
         phoneNumber:this.phoneNumber
       }
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      this.navCtrl.setRoot(MenuComponent);
+      
     }
    
- 
+  */
   }
 
 }

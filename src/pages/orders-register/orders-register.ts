@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
-import { OrdersController } from "../../services/cars.service";
+import { CarsService } from "../../services/cars.service";
 import { ViewController } from "ionic-angular";
 
 @Component({
@@ -34,7 +34,7 @@ export class OrdersRegister{
     //object of order
     NEWORDER:NewOrder = {brand:'', model:'', address:''};
     OLDCAR:NewOrder = {brand:'', model:''}
-    constructor(private ordersCtrl:OrdersController, private viewCtrl:ViewController){
+    constructor(private ordersCtrl:CarsService, private viewCtrl:ViewController){
         this.initializeCars()
     }
     consol(){
@@ -95,8 +95,6 @@ export class OrdersRegister{
         getModels: (ev: any) => {
             this.isModelComplete = false;
             let val = ev.target.value;
-            
-
             if (val && val.trim() != '') {
                 this.localModels = this.constModels.filter((item)=>{
                     return (item.value.toLowerCase().startsWith(val.toLowerCase()));
@@ -115,7 +113,5 @@ export class OrdersRegister{
           this.viewCtrl.dismiss(data);
           console.log(data)
     }
-    
-
 }
 

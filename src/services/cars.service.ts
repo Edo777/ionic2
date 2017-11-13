@@ -4,26 +4,10 @@ import 'rxjs/add/operator/map'
 
 
 @Injectable()
-export class OrdersController {
+export class CarsService {
 
-  orders:string[] = []
-
-  constructor(private http:Http) {
-
-  }
-  private ordersInit(){
-    this.orders = JSON.parse(localStorage.getItem('orders'));
-  }
-  removeOrder(i){
-    let orders:string[] = JSON.parse(localStorage.getItem('orders'));
-    orders.splice(i, 1);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    this.ordersInit();
-  }
-  getOrders(){
-    this.ordersInit();
-    return this.orders;
-  }
+  constructor(private http:Http) {}
+ 
   getResults() {
     return this.http.get("assets/data.json")
       .map(result => result.json())  

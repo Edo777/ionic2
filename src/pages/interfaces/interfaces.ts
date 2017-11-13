@@ -1,3 +1,11 @@
+export interface User{
+    id : number,
+    name : string,
+    telNumber : any,
+    car : any[],
+    address : any[] 
+}
+
 export interface CarOrder{
     input:string,
     model:string,

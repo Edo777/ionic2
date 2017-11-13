@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { FormsModule } from '@angular/forms';
+
 //components
 import { MyApp } from './app.component';
 import { 
@@ -14,7 +15,6 @@ import {
     HeaderComponent, 
     AboutUs, OrdersRegister } from '../pages/barrel';
 //pipes
-
 import { FilterPipe } from "../pipes/loop-pipe";
 
 //modules
@@ -22,7 +22,7 @@ import { FilterPipe } from "../pipes/loop-pipe";
 import { HttpModule, Http } from "@angular/http";
 
 //services
-import { OrdersController } from "../services/cars.service";
+import { CarsService, Local, MobiWash } from "../services/barrel.service";
 
 
 
@@ -58,7 +58,9 @@ import { OrdersController } from "../services/cars.service";
     OrdersRegister,
   ],
   providers: [
-    OrdersController,
+    CarsService,
+    Local,
+    MobiWash,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
