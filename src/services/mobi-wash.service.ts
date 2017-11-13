@@ -60,7 +60,10 @@ export class MobiWash{
     }
 
     addCar(id:number, car:any){
-        this.localService.set('oldcars' + id, car);
+        let data = this.localService.get("data") || [];
+        //logic
+        
+        this.localService.set('data', data);
     }
     addAddress(id:number, address:any){
         this.localService.set('oldaddreses' + id, address);
