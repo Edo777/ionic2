@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from 'ionic-angular';
 import { OrdersRegister } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
+import { MobiWash } from "../../services/barrel.service";
 
 
 
@@ -18,12 +19,15 @@ export class UserAccount {
 
     constructor(
         public modalCtrl: ModalController,
+        private mobiWash:MobiWash
     ){}
 
    
     createNewOrder() {
         var profileModal = this.modalCtrl.create(OrdersRegister);
-        profileModal.onDidDismiss((data)=>{})
+        profileModal.onDidDismiss((data)=>{
+            this.mobiWash.addCar(data)
+        })
         profileModal.present();
     }
 

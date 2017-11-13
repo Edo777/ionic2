@@ -5,9 +5,9 @@ import { User } from "../pages/interfaces/interfaces";
 @Injectable()
 
 export class MobiWash{
-    public activeId:number;
+    private activeId:number;
     constructor(private localService:Local){}
-
+/////////////////////////////////
     //inicializacia activeId
     private getActiveUserId(tel:any, data:any){
         let index;
@@ -22,13 +22,14 @@ export class MobiWash{
             }
         }
     }
+/////////////////////////////////
     //for id
     private idControl(data){
         for(let i = 0; i < data.length; i++){
             data[i].id = i;
         }
     }
-
+/////////////////////////////////
     addUser(username:string, tel:string){
         
         let data = this.localService.get("data") || [];
@@ -48,27 +49,35 @@ export class MobiWash{
         data.push(user);
         this.localService.set('data', data);
     }
-
+/////////////////////////////////
     
-
+/////////////////////////////////
     removeUser(){
-        let data:any[] = this.localService.get("data");
+        let data:string[] = this.localService.get("data");
         data.splice(this.activeId,1);
         this.idControl(data);
         this.localService.set('data', data);
         console.log('item = ', this.activeId)
     }
 
-    addCar(id:number, car:any){
+/////////////////////////////////
+
+    addCar(carInfo:any){
         let data = this.localService.get("data") || [];
-        //logic
-        
+        //Armenuhi jan es greci me haty du naye ktesnis. Konkret sik el kanchel em en modal-y pakelu jamanak.
+        //kparzvi vabshe petq che id-n drsic tesaneli exni iran private kenem u drsic menak funkcianery kkanchem
+        //logic 
+        data[this.activeId].car.push(carInfo);
+
         this.localService.set('data', data);
     }
+/////////////////////////////////
     addAddress(id:number, address:any){
         this.localService.set('oldaddreses' + id, address);
     }
+/////////////////////////////////
     removeCar(){
         
     }
+/////////////////////////////////
 }
