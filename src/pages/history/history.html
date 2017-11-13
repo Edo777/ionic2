@@ -1,10 +1,13 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
+    <div class="empty-text" *ngIf="oldcars?.length == 0">
+        <span>
+            Չկա մեքենա
+            <button ion-button full small>Ավելացնել՞</button>
+        </span>
+    </div>
     <ion-list mode="ios">
         <button mode="ios" no-padding detail-none ion-item *ngFor="let oldcar of oldcars; let i = index">
-            <div class="first-letter" text-center item-left>
-                {{oldcar.brand[0]}}
-            </div>
             <ion-label mode="ios">{{oldcar.brand}} - {{oldcar.model}}</ion-label>
             <ion-icon name="close" color="danger" (click)="remove(i)" item-right></ion-icon>
         </button>

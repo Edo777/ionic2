@@ -38,6 +38,7 @@ export class UserAccount implements OnInit{
         profileModal.onDidDismiss((data)=>{
             let orders:string[] = [];
             let oldcars:string[] = [];
+
             this.localGetSet = {
                 get:(str:string) => {
                     return JSON.parse(localStorage.getItem(str));
