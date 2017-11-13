@@ -7,80 +7,64 @@
         <!-- BRANDS -->
         <ion-row class="cars-brands">
             <ion-col col-12>
-                <!-- searchbar -->
+
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
-                    <ion-input [value]="activeCarBrand" [(ngModel)]="activeCarBrand" (input)="BrandFn.getBrands($event)"></ion-input>
-                    <button ion-button small item-end (click)="BrandFn.completeBrand()">Ok</button>
+                    <ion-input [disabled]="rows.hide2" (ionBlur)="isCompleteBrand = false" (ionFocus)="isCompleteBrand = true" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
+                    </ion-input>
+                    <button ion-button small item-end (tap)="rows.hide2 = !rows.hide2">{{rows.hide2? 'Cancel' : 'OK'}}</button>
                 </ion-item>
-                <!-- searchbar -->
 
-                <!-- searchlist -->
 
-                <ion-scroll scrollY="true" *ngIf="!isBrandComplete">
-                    <ion-grid (click)="isBrandComplete = true">
 
-                        <ion-row *ngFor="let brand of brands" (tap)="BrandFn.setBrand(brand)">
+                <ion-scroll scrollY="true" *ngIf="isCompleteBrand">
+                    <ion-grid>
+                        <ion-row *ngFor="let brand of brands" (tap)="checkModelButton(brand, brand.value)">
                             <ion-col class="car-row" col-12>
                                 {{ brand.value }}
                             </ion-col>
                         </ion-row>
-
                     </ion-grid>
                 </ion-scroll>
-                <!-- searchlist -->
+
             </ion-col>
         </ion-row>
 
-        <!-- MODELS -->
-        <ion-row class="cars-brands" *ngIf="NEWORDER.brand != ''">
+        <ion-row class="cars-brands" *ngIf="rows.hide2">
             <ion-col col-12>
-                <!-- searchbar -->
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Ընտրեք մոդել'}}</ion-label>
-                    <ion-input [(ngModel)]="activeCarModel" [value]="activeCarModel" (input)="ModelFn.getModels($event)"></ion-input>
-                    <button ion-button small item-end (click)="ModelFn.completeModel()">Ok</button>
-                </ion-item>
-                <!-- searchbar -->
 
-                <!-- searchlist -->
-                <ion-scroll scrollY="true" *ngIf="!isModelComplete">
-                    <ion-grid (click)="isModelComplete = true">
-                        <ion-row *ngFor="let model of localModels" (tap)="ModelFn.setModel(model)">
-                            <ion-col class="car-row " col-12>
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Ընտրեք մոդելը'}}</ion-label>
+                    <ion-input [disabled]="rows.hide3" (ionBlur)="isCompleteModel = false" (ionFocus)="isCompleteModel = true" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
+                    <button ion-button small item-end (tap)="rows.hide3 = !rows.hide3">{{rows.hide3? 'Cancel' : 'OK'}}</button>
+                </ion-item>
+
+
+
+                <ion-scroll scrollY="true" *ngIf="isCompleteModel">
+                    <ion-grid>
+                        <ion-row *ngFor="let model of localModels" (tap)="NEWCAR.model = model.value">
+                            <ion-col class="car-row" col-12>
                                 {{ model.value }}
                             </ion-col>
                         </ion-row>
                     </ion-grid>
                 </ion-scroll>
-                <!-- searchlist -->
+
             </ion-col>
         </ion-row>
 
-        <!-- ADDRESS -->
-        <ion-row class="cars-brands" *ngIf="NEWORDER.model != ''">
+        <ion-row class="cars-brands" *ngIf="rows.hide3">
             <ion-col col-12>
-                <!-- searchbar 
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
-                    <ion-input [(ngModel)]="activeCarModel" [value]="activeCarModel" (input)="getModels($event)"></ion-input>
-                    <button ion-button small item-end (click)="completeModel()">Հաստատել</button>
-                </ion-item>
-               
-                -->
-                <!-- searchlist 
-                <ion-grid (click)="isModelComplete = true" *ngIf="!isModelComplete">
-                    <ion-row *ngFor="let model of localModels" (tap)="setModel(model)">
-                        <ion-col class="car-row " col-12>
-                            {{ model.value }}
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-                -->
-                <!-- searchlist -->
 
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
+                    <ion-input [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
+                    <button ion-button small item-end (tap)="rows.hide3 = !rows.hide3;">{{'OK'}}</button>
+                </ion-item>
             </ion-col>
         </ion-row>
+
 
     </ion-grid>
 </ion-content>

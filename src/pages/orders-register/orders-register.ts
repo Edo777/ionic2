@@ -9,29 +9,18 @@ import { ViewController } from "ionic-angular";
 })
 
 export class OrdersRegister{
-    //old or new cars
-    isWantOldCar:boolean = false;
-    isWantNewCar:boolean = false;
-    arr:any;
-    //for old orders
-    isTrue:boolean = false;
+    cars:any;
+    brands:string[];
 
-    //model & brands
-    brands: string[];
-    constModels:any;
-    localModels:any;
+    models:string[] = [];
+    localModels:string[] = [];
 
-    //variable who get the value from data.json
-    cars:any; 
+    isCompleteBrand:boolean = false;
+    isCompleteModel:boolean = false;
+    
 
-    //car params
-    activeCarBrand:string;
-    activeCarModel:string;
+    rows:any = {hide1:true, hide2:false, hide3:false, hide4:false};
 
-    //variable who close the searchlist after complete brand
-    isBrandComplete:boolean = false;
-    isModelComplete: boolean = false;
-    //object of order
     NEWCAR:NewOrder = {brand:'', model:'', address:''};
     OLDCAR:NewOrder = {brand:'', model:''}
     constructor(private ordersCtrl:CarsService, private viewCtrl:ViewController){
@@ -40,7 +29,11 @@ export class OrdersRegister{
     consol(){
         console.log('hello');
     }
-    
+
+    checkModelButton(model, val){
+        this.NEWCAR.brand = val;
+        this.models = model.models;
+    }
     //get cars from service
     initializeCars() {
         this.ordersCtrl.getResults()
@@ -48,61 +41,28 @@ export class OrdersRegister{
             this.cars = data;
         });
      }
-
-    
-
-    BrandFn : Brand = {
-        //set new order brand in  this.NEWORDER.brand
-        completeBrand:()=>{
-            this.NEWCAR.brand = this.activeCarBrand;
-            this.OLDCAR.brand = this.activeCarBrand;
-        },
-        //set the brand in value input
-        setBrand:(val)=>{
-            this.constModels = val.models;
-            this.activeCarBrand = val.value;
-            this.isBrandComplete = true;
-        },
-        // searchbar logic get brands
-        getBrands: (ev: any) =>{
-            this.isBrandComplete = false;
-            this.initializeCars();
-            let val = ev.target.value;
-            if (val && val.trim() != '') {
-                this.brands = this.cars.filter((item) => {
-                    return (item.value.toLowerCase().startsWith(val.toLowerCase()));
-                })
-            }else{
-                this.brands = []
-            }
+     getBrands(ev: any){
+        this.initializeCars();
+        let val = ev.target.value;
+        if (val && val.trim() != '' ) {
+            this.brands = this.cars.filter((item) => {
+                return (item.value.toLowerCase().startsWith(val.toLowerCase()));
+            })
+        }else{
+            this.brands = []
         }
-    }
-   
-    ModelFn : Model = {
-        //set new order model in  this.NEWORDER.model
-        completeModel:() => {
-            this.NEWCAR.model = this.activeCarModel;
-            this.OLDCAR.model = this.activeCarModel;
-            console.log(this.NEWCAR);
-        },
-        //set the car's model
-        setModel: (val) => {
-            this.activeCarModel = val.value;
-            this.isModelComplete = true;
-        },
-
-        // searchbar logic Get models
-        getModels: (ev: any) => {
-            this.isModelComplete = false;
-            let val = ev.target.value;
-            if (val && val.trim() != '') {
-                this.localModels = this.constModels.filter((item)=>{
-                    return (item.value.toLowerCase().startsWith(val.toLowerCase()));
-                })
-            }else{
-                this.localModels = [];
-            }
+        console.log(this.NEWCAR)
+     }
+     getModels(ev: any){
+        let val = ev.target.value;
+        if (val && val.trim() != '' && this.models.length) {
+            this.localModels = this.models.filter((item:any) => {
+                return (item.value.toLowerCase().startsWith(val.toLowerCase()));
+            })
+        }else{
+            this.localModels = []
         }
+        console.log(this.NEWCAR)
     }
     
     closeRegisterPage(){
