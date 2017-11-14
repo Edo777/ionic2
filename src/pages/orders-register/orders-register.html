@@ -30,6 +30,7 @@
             </ion-col>
         </ion-row>
 
+        <!-- car model -->
         <ion-row class="cars-brands" *ngIf="rows.hide2">
             <ion-col col-12>
 
@@ -53,17 +54,18 @@
 
             </ion-col>
         </ion-row>
-
+        <!-- Number car -->
         <ion-row class="cars-brands" *ngIf="rows.hide3">
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
-                    <ion-input [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
-                    <button ion-button small item-end (tap)="rows.hide3 = !rows.hide3;">{{'OK'}}</button>
+                    <ion-input [disabled]="rows.hide4" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
+                    <button ion-button small item-end (click)="rows.hide4 = !rows.hide4" [innerText]="rows.hide4? 'Cancel' : 'OK'"></button>
                 </ion-item>
             </ion-col>
         </ion-row>
+        <!-- Address -->
 
 
     </ion-grid>

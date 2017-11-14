@@ -49,9 +49,9 @@ export class MobiWash{
         data.push(user);
         this.localService.set('data', data);
     }
-/////////////////////////////////
     
 /////////////////////////////////
+
     removeUser(){
         let data:string[] = this.localService.get("data");
         data.splice(this.activeId,1);
@@ -59,25 +59,41 @@ export class MobiWash{
         this.localService.set('data', data);
         console.log('item = ', this.activeId)
     }
-
+    
 /////////////////////////////////
 
     addCar(carInfo:any){
         let data = this.localService.get("data") || [];
-        //Armenuhi jan es greci me haty du naye ktesnis. Konkret sik el kanchel em en modal-y pakelu jamanak.
-        //kparzvi vabshe petq che id-n drsic tesaneli exni iran private kenem u drsic menak funkcianery kkanchem
-        //logic 
+        let isNewCar = data[this.activeId].car.findIndex((i) => {
+            return (i.brand === carInfo.brand) && (i.model === carInfo.model) && (i.number === carInfo.number);
+        });
+        if(isNewCar >= 0){
+            return;
+        }
         data[this.activeId].car.push(carInfo);
-
         this.localService.set('data', data);
     }
+
+////////////////////////////////////
+
+    removeCar(i:number){
+        let data = this.localService.get("data");
+        data[this.activeId].car.splice(i, 1);
+        this.localService.set('data', data);
+    }
+    
+///////////////////////////////////
+
+    getCars(){
+        let data = this.localService.get("data");
+        return data[this.activeId].car;
+    }
+    
 /////////////////////////////////
     addAddress(id:number, address:any){
-        this.localService.set('oldaddreses' + id, address);
-    }
-/////////////////////////////////
-    removeCar(){
         
     }
+/////////////////////////////////
+    
 /////////////////////////////////
 }

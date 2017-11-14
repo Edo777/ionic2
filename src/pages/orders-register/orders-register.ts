@@ -21,8 +21,7 @@ export class OrdersRegister{
 
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false};
 
-    NEWCAR:NewOrder = {brand:'', model:'', address:''};
-    OLDCAR:NewOrder = {brand:'', model:''}
+    NEWCAR:NewOrder = {brand:'', model:'', number:''};
     constructor(private ordersCtrl:CarsService, private viewCtrl:ViewController){
         this.initializeCars()
     }
@@ -66,10 +65,7 @@ export class OrdersRegister{
     }
     
     closeRegisterPage(){
-        let data = {
-            NEWCAR: this.NEWCAR, 
-            OLDCAR: this.OLDCAR
-        };
+        let data = this.NEWCAR
           this.viewCtrl.dismiss(data);
           console.log(data)
     }
