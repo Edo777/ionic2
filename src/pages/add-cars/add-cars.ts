@@ -56,7 +56,7 @@ export class AddCars{
         this.addNewCar.model=val
     }
 
-    serach:SerachCar = {
+    search:SearchCars = {
         getModels:(ev: any) => {
             let val = ev.target.value;
             if (val && val.trim() != '' && this.models.length) {

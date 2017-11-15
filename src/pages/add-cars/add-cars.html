@@ -6,7 +6,7 @@
     <!--Brands-->
     <ion-item mode="md">
         <ion-label color="black" floating>Մեքենա</ion-label>
-        <ion-input (input)="serach.getBrands($event)" [value]="addNewCar.brand" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="addNewCar.brand"></ion-input>
+        <ion-input (input)="search.getBrands($event)" [value]="addNewCar.brand" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="addNewCar.brand"></ion-input>
     </ion-item>
     <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">
         <ion-grid>
@@ -21,7 +21,7 @@
     <!--models-->
     <ion-item mode="md">
         <ion-label color="black" floating>Մոդել</ion-label>
-        <ion-input (input)="serach.getModels($event)" [value]="addNewCar.model" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="addNewCar.model"></ion-input>
+        <ion-input (input)="search.getModels($event)" [value]="addNewCar.model" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="addNewCar.model"></ion-input>
     </ion-item>
     <ion-scroll scrollY="true" *ngIf="closeSearchModels && localModels?.length">
         <ion-grid>
