@@ -1,5 +1,8 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
+    <button detail-none text-center (click)="createNewCars()" ion-item no-padding block color="primary">
+        Ավելացնել նոր մեքենա
+    </button>
     <ion-list no-margin mode="md" *ngFor="let car of cars; let i = index">
         <button lines detail-none ion-item no-padding (click)="more[i] = !more[i]">
             <ion-label>{{car.brand}}</ion-label>
@@ -11,22 +14,6 @@
             <h6>{{car.number}}</h6>
         </ion-card>
     </ion-list>
-    <ion-card *ngIf="isAddNewCar">
-        <ion-item mode="md">
-            <ion-label color="black" floating>Մեքենա</ion-label>
-            <ion-input [(ngModel)]="addNewCar.brand"></ion-input>
-        </ion-item>
-        <ion-item mode="md">
-            <ion-label color="black" floating>Մոդել</ion-label>
-            <ion-input [(ngModel)]="addNewCar.model"></ion-input>
-        </ion-item>
-        <ion-item mode="md">
-            <ion-label color="black" floating>Համարանիշ</ion-label>
-            <ion-input [(ngModel)]="addNewCar.number"></ion-input>
-        </ion-item>
-        <button ion-button full small (click)="addCar()">Ավելացնել</button>
-    </ion-card>
-    <button detail-none text-center *ngIf="!isAddNewCar" ion-item no-padding block color="primary" (click)="isAddNewCar = true">
-        Ավելացնել նոր մեքենա
-    </button>
+
+
 </ion-content>

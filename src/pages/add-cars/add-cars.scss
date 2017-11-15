@@ -1,10 +1,11 @@
-history-page {
+add-cars {
     ion-scroll {
+        height: 30vh;
         .scroll-content {
             height: 30vh;
         }
     }
-    .order-card {
-        height: 60vh;
+    .car-row {
+        background: red
     }
 }

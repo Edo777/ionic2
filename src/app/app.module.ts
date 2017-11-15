@@ -13,7 +13,10 @@ import {
     MenuComponent, 
     HistoryPage, 
     HeaderComponent, 
-    AboutUs, OrdersRegister } from '../pages/barrel';
+    AboutUs, 
+    OrdersRegister,
+    AddCars
+  } from '../pages/barrel';
 //pipes
 import { FilterPipe } from "../pipes/loop-pipe";
 
@@ -37,7 +40,8 @@ import { CarsService, Local, MobiWash } from "../services/barrel.service";
     HeaderComponent,
     AboutUs,
     OrdersRegister,
-    FilterPipe
+    FilterPipe,
+    AddCars
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ import { CarsService, Local, MobiWash } from "../services/barrel.service";
     HeaderComponent,
     AboutUs,
     OrdersRegister,
+    AddCars
   ],
   providers: [
     CarsService,

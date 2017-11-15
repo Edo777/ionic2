@@ -33,6 +33,4 @@ export class UserAccount {
         })
         profileModal.present();
     }
-
-
 }

@@ -38,3 +38,8 @@ export interface LocalGetSet {
     get:Function;
     set:Function
 }
+
+export interface SearchCars{
+    getBrands:Function,
+    getModels:Function
+}

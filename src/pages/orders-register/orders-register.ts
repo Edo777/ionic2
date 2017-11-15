@@ -61,11 +61,10 @@ export class OrdersRegister{
         }else{
             this.localModels = []
         }
-        console.log(this.NEWCAR)
     }
     
     closeRegisterPage(){
-        let data = this.NEWCAR
+         let data = this.NEWCAR
           this.viewCtrl.dismiss(data);
           console.log(data)
     }

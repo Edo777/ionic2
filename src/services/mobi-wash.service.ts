@@ -12,7 +12,7 @@ export class MobiWash{
     private getActiveUserId(tel:any, data:any){
         let index;
         if(data.length != 0){
-            index = data.findIndex(i => tel == i.telNumber);
+            index = data.findIndex((i) => tel == i.telNumber);
             if(index >= 0){
                 this.activeId = data[index].id;
                  console.log('item = ', this.activeId)
@@ -33,7 +33,7 @@ export class MobiWash{
     addUser(username:string, tel:string){
         
         let data = this.localService.get("data") || [];
-        let isUser = data.filter(i => i.telNumber === tel);
+        let isUser = data.filter((i) => i.telNumber === tel);
         if(isUser.length){
             this.getActiveUserId(tel, data);
             return;
@@ -57,7 +57,7 @@ export class MobiWash{
         data.splice(this.activeId,1);
         this.idControl(data);
         this.localService.set('data', data);
-        console.log('item = ', this.activeId)
+        console.log('item = ', this.activeId);
     }
     
 /////////////////////////////////
@@ -77,7 +77,8 @@ export class MobiWash{
 ////////////////////////////////////
 
     removeCar(i:number){
-        let data = this.localService.get("data");
+        let data = this.localService.get("data") || [];
+        
         data[this.activeId].car.splice(i, 1);
         this.localService.set('data', data);
     }
@@ -86,7 +87,7 @@ export class MobiWash{
 
     getCars(){
         let data = this.localService.get("data");
-        return data[this.activeId].car;
+        return data[this.activeId].car;        
     }
     
 /////////////////////////////////
