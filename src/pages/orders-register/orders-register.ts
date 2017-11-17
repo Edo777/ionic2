@@ -127,19 +127,27 @@ getMyPosition(){
             animation: google.maps.Animation.DROP,
             position: this.map.getCenter()
         });
-        
-                
-        
+
+        /*
+        this.map.addListener('click', function(event) {
+            let latitude = event.latLng.lat();
+            let longitude = event.latLng.lng();
+            
+            marker.setPosition(latitude);
+            console.log(latitude, longitude)
+        });
+        */
         this.addInfoWindow(marker, 'content');
     
     }
+
     addInfoWindow(marker, content){
     
     let infoWindow = new google.maps.InfoWindow({
         content: content
     });
     
-    google.maps.event.addListener(marker, 'click', () => {
+    google.maps.event.addListener(marker, 'click', (event) => {
         infoWindow.open(this.map, marker);
     });
     
