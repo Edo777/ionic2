@@ -26,7 +26,7 @@ import { HttpModule, Http } from "@angular/http";
 
 //services
 import { CarsService, Local, MobiWash } from "../services/barrel.service";
-
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -63,6 +63,7 @@ import { CarsService, Local, MobiWash } from "../services/barrel.service";
     AddCars
   ],
   providers: [
+    Geolocation,
     CarsService,
     Local,
     MobiWash,

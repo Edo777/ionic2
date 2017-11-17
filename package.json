@@ -57,8 +57,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyBsZBuR7Pjspy3SvMCfaRZ0XEbqSsbaV9Q",
-        "API_KEY_FOR_IOS": "AIzaSyBsZBuR7Pjspy3SvMCfaRZ0XEbqSsbaV9Q"
+        "API_KEY_FOR_ANDROID": "AIzaSyCOqkUbPsQQAbm60kGYxnuH65zjqV3CbX4",
+        "API_KEY_FOR_IOS": "AIzaSyCOqkUbPsQQAbm60kGYxnuH65zjqV3CbX4"
       }
     },
     "platforms": [

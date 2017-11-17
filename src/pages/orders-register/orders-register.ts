@@ -6,19 +6,22 @@ import {
  CameraPosition,
  MarkerOptions,
  Marker,
- LatLng
+ LatLng,
+
 } from '@ionic-native/google-maps';
 
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
 import { ViewController, Platform } from "ionic-angular";
+import { Geolocation } from '@ionic-native/geolocation';
 
-
+declare var google;
 
 @Component({
     selector:'orders-register',
     templateUrl:'orders-register.html',
+    providers:[Geolocation]
 })
 
 export class OrdersRegister{
@@ -33,9 +36,7 @@ export class OrdersRegister{
     isCompleteModel:boolean = false;
     
     /////////////////////////////
-    public map:GoogleMap;
-    public mapRendered:Boolean = false;
-
+ 
     ////////////////////////////
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false};
 
@@ -45,21 +46,13 @@ export class OrdersRegister{
     constructor(
         private ordersCtrl:CarsService, 
         private viewCtrl:ViewController,
-        public plat:Platform
+        public geolocation: Geolocation
     ){
-        this.initializeCars()
-        this.plat.ready().then(() => {
-            this.loadMap();
-        })
+        this.initializeCars();
     }
 
-    
-
-    consol(){
-        console.log('hello');
-    }
-
-    
+    @ViewChild('map') mapElement: ElementRef;
+    map: any;
     checkModelButton(model, val){
         this.NEWCAR.brand = val;
         this.models = model.models;
@@ -100,48 +93,56 @@ export class OrdersRegister{
           console.log(data)
     }
 
-    //map
-
     ionViewDidLoad(){
+         this.loadMap();
+    }
+    ngDoCheck(){
         this.loadMap();
     }
  
-    loadMap(){
-        let location = new LatLng(47.6062, -122.3321);
-        this.map = new GoogleMap('map' , {
-            camera: {
-                target:{
-                    LatLng:location,
-                },
-                'tilt': 30,
-                'zoom': 15,
-                'bearing': 50
-            }
+
+  loadMap(){
+ 
+    this.geolocation.getCurrentPosition().then((position) => {
+ 
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+ 
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+    }, (err) => {
+      console.log(err);
+    });
+ 
+  }
+getMyPosition(){
+ 
+        let marker = new google.maps.Marker({
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            position: this.map.getCenter()
         });
-        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-            console.log('bhbdhbshbuhdfuhfu')
-            this.mapRendered = true;
-        })
+        
+                
+        
+        this.addInfoWindow(marker, 'content');
+    
     }
-    getMyLocation(){
-        let a;
-        this.map.getMyLocation().then( (location) => {
-            let msg = ["i am here\n",
-            "latitude:" + location.latLng.lat,
-            "longitude:" + location.latLng.lng].join('\n');
-            let position:CameraPosition<any> = {
-                target:location.latLng,
-                zoom:15
-            }
-            this.map.moveCamera(position);
-            let markerOptions:MarkerOptions = {
-                'position': location.latLng,
-                'title': msg
-            };
-            this.map.addMarker(markerOptions).then((marker:Marker) => {
-                marker.showInfoWindow();
-            })
-        }) 
-    }       
+    addInfoWindow(marker, content){
+    
+    let infoWindow = new google.maps.InfoWindow({
+        content: content
+    });
+    
+    google.maps.event.addListener(marker, 'click', () => {
+        infoWindow.open(this.map, marker);
+    });
+    
+    }
 }
 
