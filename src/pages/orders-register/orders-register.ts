@@ -124,6 +124,7 @@ export class OrdersRegister{
         })
     }
     getMyLocation(){
+        let a;
         this.map.getMyLocation().then( (location) => {
             let msg = ["i am here\n",
             "latitude:" + location.latLng.lat,
