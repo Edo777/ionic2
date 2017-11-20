@@ -27,6 +27,9 @@ import { HttpModule, Http } from "@angular/http";
 //services
 import { CarsService, Local, MobiWash } from "../services/barrel.service";
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { NativeGeocoder } from "@ionic-native/native-geocoder";
+
 
 
 
@@ -65,11 +68,13 @@ import { Geolocation } from '@ionic-native/geolocation';
   providers: [
     Geolocation,
     CarsService,
+    NativeGeocoder,
     Local,
     MobiWash,
+    Camera,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}
