@@ -1,4 +1,6 @@
-export interface User{
+import { NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
+
+export interface User {
     id : number,
     name : string,
     telNumber : any,
@@ -19,7 +21,9 @@ export interface NewOrder{
     brand:string,
     model:string,
     number:string,
-    address?:string,
+    address:string,
+    type:string,
+    promCode:string;
 }
 
 export interface Brand {

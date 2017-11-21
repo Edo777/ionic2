@@ -36,8 +36,8 @@ export class OrdersRegister{
     localModels:string[] = [];
     isCompleteBrand:boolean = false;
     isCompleteModel:boolean = false;
-    rows:any = {hide1:true, hide2:false, hide3:false, hide4:false};
-    NEWCAR:NewOrder = {brand:'', model:'', number:''};
+    rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
+    NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
 
     constructor(
         private ordersCtrl:CarsService, 
@@ -48,8 +48,11 @@ export class OrdersRegister{
     ){
         this.initializeCars();
     }
-    
+    ngDoCheck(){
+        this.isAllComplete()
+    }
     @ViewChild('map') mapElement: ElementRef;
+    @ViewChild('mapik') inputElement:any;
     map: any;
     checkModelButton(model, val){
         this.NEWCAR.brand = val;
@@ -92,16 +95,16 @@ export class OrdersRegister{
     }
 
     ionViewDidLoad(){
-         this.loadMap();
-         this.getLatLng();
+        this.loadMap();
+        
     }
     
 
     
   loadMap(){
  
- //   this.geolocation.getCurrentPosition().then((position) => {
- //40.794403, 43.839536
+ //   this.geolocation.getCurrentPosition().then((position) => 
+
       let latLng = new google.maps.LatLng(40.788546, 43.840966);
       let mapOptions = {
         center: latLng,
@@ -110,27 +113,27 @@ export class OrdersRegister{
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      console.log(this.map)
 
- //   }, (err) => {
-  //    console.log(err);
- //   });
- 
+      this.getLatLng();
+      console.log(this.map)
   }
     getLatLng(){
         this.map.addListener('click', (event) => {
                 let latitude = event.latLng.lat();
                 let longitude = event.latLng.lng();
                 this.getMyPosition(latitude, longitude);
+                this.mapChange();
                 console.log(latitude, longitude)
+                
                 });
             
     }
     //////////////////////
     private marker:any;
+
     ///////////////////
     getMyPosition(lat:number = 40.788546, lng:number = 43.840966){
-        
+    
        if(!this.marker){
             var marker = new google.maps.Marker({
                 map: this.map,
@@ -145,27 +148,47 @@ export class OrdersRegister{
             lng:lng
         });
           
-
         this.nativeGeocoder.reverseGeocode(lat, lng)
-            .then((result: NativeGeocoderReverseResult) => this.addInfoWindow(this.marker, `${result.locality} ${result.thoroughfare}`))
+            .then((result: NativeGeocoderReverseResult) => {
+                this.NEWCAR.address = result.locality;
+                this.inputElement.value = result.thoroughfare;
+            })
             .catch((error: any) => console.log(error));
-
         
-    
-    }
+        }
+        //////////////
+            private changeMap:boolean = false;
+        /////////////
+        mapChange(){
+            if(document.getElementById('map').style.display == 'block'){
+                document.getElementById('map').style.display = 'none';
+            }else{
+                document.getElementById('map').style.display = 'block';
+            }
+            
+        }
 
-    addInfoWindow(marker, content){
-    
-    let infoWindow = new google.maps.InfoWindow({
-        content: content
-    });
-    //stex bdi enenq
-    google.maps.event.addListener(marker, 'click', (event) => {
-        console.log('helloooooooo', event);
-        infoWindow.open(this.map, marker);
-    });
-    
-    }
-
+        //////////////////////////////////
+        //for constrol errors in time click ok
+        complete(id){
+           if(id === 1){
+               this.isCompleteBrand = false;
+               this.rows.hide2 = !this.rows.hide2;
+           }else if(id === 2){
+               this.isCompleteModel = false;
+               this.rows.hide3 = !this.rows.hide3;
+           }  
+        }
+        //is all complete?
+        allComplete:boolean = false;
+        isAllComplete(){
+            for(let i in this.NEWCAR){
+                if(this.NEWCAR[i] === ''){
+                    this.allComplete = false;
+                    return;
+                }
+                this.allComplete = true;
+            }
+        }
 }
 

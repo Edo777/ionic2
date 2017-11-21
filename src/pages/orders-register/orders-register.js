@@ -1,16 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  'orders-register ion-content scroll-content': {
+    'paddingBottom': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': '!important' }]
+  },
   'orders-register ion-scroll scroll-content': {
     'height': [{ 'unit': 'vh', 'value': 30 }]
   },
   'orders-register #map': {
-    'height': [{ 'unit': 'px', 'value': 400 }],
+    'height': [{ 'unit': 'px', 'value': 200 }],
     'width': [{ 'unit': '%H', 'value': 1 }]
   },
   'orders-register cars-brands': {
-    'paddingLeft': [{ 'unit': 'px', 'value': 22 }],
-    'paddingRight': [{ 'unit': 'px', 'value': 22 }]
+    'paddingLeft': [{ 'unit': 'px', 'value': 22 }]
   },
   'orders-register cars-brands ion-grid': {
     'padding': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }]

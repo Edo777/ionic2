@@ -1,7 +1,4 @@
 <ion-content>
-    <button float-right small ion-button (click)="closeRegisterPage()">Close</button>
-
-
 
     <ion-grid>
         <!-- BRANDS -->
@@ -10,11 +7,11 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
-                    <ion-input [disabled]="rows.hide2" (ionBlur)="isCompleteBrand = false" (ionFocus)="isCompleteBrand = true" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
+                    <ion-input (ionBlur)="isCompleteBrand = false" (ionFocus)="isCompleteBrand = true" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
                     </ion-input>
-                    <button ion-button small item-end (tap)="rows.hide2 = !rows.hide2">{{rows.hide2? 'Cancel' : 'OK'}}</button>
-                </ion-item>
 
+                </ion-item>
+                <button float-right ion-button small item-end (tap)="complete(1)">{{"Առաջ"}}</button>
 
 
                 <ion-scroll scrollY="true" *ngIf="isCompleteBrand">
@@ -31,15 +28,14 @@
         </ion-row>
 
         <!-- car model -->
-        <ion-row class="cars-brands" *ngIf="rows.hide2">
+        <ion-row class="cars-brands" *ngIf="rows.hide2" #mod>
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մոդելը'}}</ion-label>
-                    <ion-input [disabled]="rows.hide3" (ionBlur)="isCompleteModel = false" (ionFocus)="isCompleteModel = true" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
-                    <button ion-button small item-end (tap)="rows.hide3 = !rows.hide3">{{rows.hide3? 'Cancel' : 'OK'}}</button>
+                    <ion-input (ionBlur)="isCompleteModel = false" (ionFocus)="isCompleteModel = true" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
                 </ion-item>
-
+                <button float-right ion-button small item-end (tap)="complete(2)">{{"Առաջ"}}</button>
 
 
                 <ion-scroll scrollY="true" *ngIf="isCompleteModel">
@@ -60,15 +56,63 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
-                    <ion-input [disabled]="rows.hide4" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
-                    <button ion-button small item-end (click)="rows.hide4 = !rows.hide4" [innerText]="rows.hide4? 'Cancel' : 'OK'"></button>
+                    <ion-input [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
                 </ion-item>
+                <button float-right ion-button small item-end (tap)="rows.hide4 = !rows.hide4">{{'Առաջ'}}</button>
             </ion-col>
         </ion-row>
         <!-- Address -->
-        <button ion-button>text</button>
 
-        <button ion-button (click)="getMyPosition()"><ion-icon name="add"></ion-icon>My position</button>
-        <div #map id="map"></div>
+
+        <ion-row class="cars-brands" *ngIf="rows.hide4">
+            <ion-col col-12>
+
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
+                    <ion-input #mapik [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
+                </ion-item>
+                <button float-left ion-button small item-end (tap)="mapChange()">{{'Քարտեզ'}}</button>
+                <button float-right ion-button small item-end (tap)="rows.hide5 = !rows.hide5">{{'Հաստատել'}}</button>
+            </ion-col>
+
+        </ion-row>
+        <div #map id="map" style="display:none"></div>
+
+        <!-- pinking type -->
+        <ion-row class="cars-brands" *ngIf="rows.hide5">
+            <ion-list radio-group [(ngModel)]="NEWCAR.type">
+                <ion-list-header no-lines>
+                    Լվացման տեսակը
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-label>Լվացում 1</ion-label>
+                    <ion-radio value="1-in tesak"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Լվացում 2</ion-label>
+                    <ion-radio value="2-rd tesak"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Լվացում 3</ion-label>
+                    <ion-radio value="3-rd tesak"></ion-radio>
+                </ion-item>
+
+            </ion-list>
+        </ion-row>
+
+        <ion-row class="cars-brands" *ngIf="NEWCAR.type != ''">
+            <ion-col col-12>
+
+                <ion-item mode="md" no-padding>
+                    <ion-label color="black" floating>{{'Պրոմոկոդ'}}</ion-label>
+                    <ion-input [(ngModel)]="NEWCAR.promCode"></ion-input>
+                </ion-item>
+            </ion-col>
+
+        </ion-row>
     </ion-grid>
+    <button *ngIf="allComplete" full small ion-button (click)="closeRegisterPage()">Complete</button>
 </ion-content>

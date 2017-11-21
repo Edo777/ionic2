@@ -29,7 +29,13 @@ export class UserAccount {
             if(data.brand.length < 1 || data.model.length < 1 || data.number.length < 1){
                 return;
             }
-            this.mobiWash.addCar(data)
+            let car = {
+                brand:data.brand,
+                model:data.model,
+                number:data.number,
+            }
+            let address = data.address;
+            this.mobiWash.addCar(car)
         })
         profileModal.present();
     }
