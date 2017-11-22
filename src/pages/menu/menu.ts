@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController, Nav, NavParams, AlertController } from 'ionic-angular';
-import { UserAccount, HomePage, HistoryPage, AboutUs } from '../barrel'
+import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses } from '../barrel'
 import { MobiWash } from "../../services/barrel.service";
 
 interface Pages{
@@ -21,6 +21,7 @@ export class MenuComponent{
     pages:Pages[] = [
         { pageName:'Պատվերի գրանցում', component: UserAccount},
         { pageName:'Իմ մեքենաները', component: HistoryPage},
+        { pageName:'Իմ հասցեները', component: Addresses},
         { pageName:'Կարգավորումներ', component: AboutUs},                
         { pageName:'Դուրս գալ', component: HomePage}
     ]

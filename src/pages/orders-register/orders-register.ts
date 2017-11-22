@@ -14,9 +14,10 @@ import {
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, ToastController } from "ionic-angular";
+import { ViewController, Platform, ToastController, Content } from "ionic-angular";
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult} from '@ionic-native/native-geocoder';
+import { Keyboard } from "@ionic-native/keyboard";
 
 
 
@@ -25,7 +26,7 @@ declare var google;
 @Component({
     selector:'orders-register',
     templateUrl:'orders-register.html',
-    providers:[Geolocation,GoogleMaps]
+    providers:[Geolocation,GoogleMaps,Keyboard]
 })
 
 export class OrdersRegister{
@@ -40,22 +41,29 @@ export class OrdersRegister{
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
-
+    @ViewChild(Content) content: Content;
     constructor(
         private ordersCtrl:CarsService, 
         private viewCtrl:ViewController,
         private googleMaps: GoogleMaps,
         public geolocation: Geolocation, 
-        private nativeGeocoder: NativeGeocoder
+        private nativeGeocoder: NativeGeocoder,
+        private keyboard: Keyboard
+        
     ){
         this.initializeCars();
+        this.keyboard.onKeyboardShow().subscribe(
+            (next)=>{
+                this.content.scrollToBottom()
+            }
+        )
     }
     ngDoCheck(){
-        this.isAllComplete()
+        this.isAllComplete();
     }
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('mapik') inputElement:any;
-
+    
     map: any;
     checkModelButton(model, val){
         this.NEWCAR.brand = val;

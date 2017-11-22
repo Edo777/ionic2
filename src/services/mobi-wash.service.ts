@@ -91,10 +91,27 @@ export class MobiWash{
     }
     
 /////////////////////////////////
-    addAddress(id:number, address:any){
-        
+    addAddress(address:any){
+        let data = this.localService.get("data") || [];
+        let isNewAddress = data[this.activeId].address.findIndex((i) => {
+            return (i === address)
+        });
+        if(isNewAddress >= 0){
+            return;
+        }
+        data[this.activeId].address.push(address);
+        this.localService.set('data', data);
     }
 /////////////////////////////////
-    
+    getAddresses(){
+        let data = this.localService.get("data");
+        return data[this.activeId].address || [];
+    }
 /////////////////////////////////
+    removeAddress(i:number){
+        let data = this.localService.get("data") || [];
+        
+        data[this.activeId].address.splice(i, 1);
+        this.localService.set('data', data);
+    }
 }

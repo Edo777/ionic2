@@ -15,7 +15,8 @@ import {
     HeaderComponent, 
     AboutUs, 
     OrdersRegister,
-    AddCars
+    AddCars,
+    Addresses
   } from '../pages/barrel';
 //pipes
 import { FilterPipe } from "../pipes/loop-pipe";
@@ -44,7 +45,8 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     AboutUs,
     OrdersRegister,
     FilterPipe,
-    AddCars
+    AddCars,
+    Addresses
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     HeaderComponent,
     AboutUs,
     OrdersRegister,
-    AddCars
+    AddCars,
+    Addresses
   ],
   providers: [
     Geolocation,

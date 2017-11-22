@@ -16,13 +16,8 @@ import { AddCars } from "../barrel";
 export class HistoryPage implements OnInit{
     
     //models
-    localModels: any[];
-    models: any[];
 
-    closeSerachBrands: boolean = true;
-    closeSerachModels:boolean = true;
     pageName:string;
-    brands:any[];
     cars:any[] = [];
     dataJson:any[];
     addNewCar:any = {};
@@ -51,8 +46,7 @@ export class HistoryPage implements OnInit{
         this.cars = this.mobiWash.getCars()
     }
     addCar(){
-        this.isAddNewCar = !this.isAddNewCar;
-        
+
         this.addNewCar = {
             brand: this.addNewCar.brand.trim(),
             model: this.addNewCar.model.trim(),
@@ -65,8 +59,6 @@ export class HistoryPage implements OnInit{
         this.mobiWash.addCar(this.addNewCar);
         this.cars = this.mobiWash.getCars()
     }
-
- 
 
     createNewCars(){
         var modal=this.modalCtrl.create(AddCars);

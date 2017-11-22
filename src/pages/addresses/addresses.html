@@ -1,0 +1,12 @@
+<absolute-header [pageName]='pageName'></absolute-header>
+<ion-content top>
+    <button detail-none text-center ion-item no-padding block color="primary">
+        Ավելացնել նոր հասցե
+    </button>
+    <ion-list no-margin mode="md" *ngFor="let address of addresses; let i = index">
+        <button lines detail-none ion-item no-padding>
+            <ion-label>{{address}}</ion-label>
+            <ion-icon name="close" item-end (click)="removeAddress(i)"></ion-icon>
+        </button>
+    </ion-list>
+</ion-content>

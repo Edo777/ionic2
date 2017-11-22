@@ -5,7 +5,7 @@ export default StyleSheet.create({
     'paddingBottom': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': '!important' }]
   },
   'orders-register ion-scroll scroll-content': {
-    'height': [{ 'unit': 'vh', 'value': 30 }]
+    'height': [{ 'unit': 'vh', 'value': 40 }]
   },
   'orders-register #map': {
     'height': [{ 'unit': 'px', 'value': 200 }],

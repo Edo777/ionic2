@@ -34,7 +34,7 @@ export class UserAccount {
                 model:data.model,
                 number:data.number,
             }
-            let address = data.address;
+            this.mobiWash.addAddress(data.address);
             this.mobiWash.addCar(car)
         })
         profileModal.present();
