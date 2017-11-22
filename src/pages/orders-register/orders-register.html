@@ -58,7 +58,7 @@
                     <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
                     <ion-input [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
                 </ion-item>
-                <button float-right ion-button small item-end (tap)="rows.hide4 = !rows.hide4">{{'Առաջ'}}</button>
+                <button float-right ion-button small item-end (tap)="complete(3)">{{'Առաջ'}}</button>
             </ion-col>
         </ion-row>
         <!-- Address -->
@@ -72,7 +72,7 @@
                     <ion-input #mapik [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
                 </ion-item>
                 <button float-left ion-button small item-end (tap)="mapChange()">{{'Քարտեզ'}}</button>
-                <button float-right ion-button small item-end (tap)="rows.hide5 = !rows.hide5">{{'Հաստատել'}}</button>
+                <button float-right ion-button small item-end (tap)="complete(4)">{{'Հաստատել'}}</button>
             </ion-col>
 
         </ion-row>

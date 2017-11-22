@@ -91,10 +91,10 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCOqkUbPsQQAbm60kGYxnuH65zjqV3CbX4" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0" />
-    <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.4">
-        <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
-    </plugin>
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-hotspot" spec="^1.2.9" />
     <plugin name="cordova-plugin-camera" spec="^3.0.0" />
+    <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.4">
+        <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
+    </plugin>
 </widget>

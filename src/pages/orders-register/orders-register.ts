@@ -34,7 +34,9 @@ export class OrdersRegister{
     brands:string[];
     models:string[] = [];
     localModels:string[] = [];
+    //serach area closer
     isCompleteBrand:boolean = false;
+    //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
@@ -53,6 +55,7 @@ export class OrdersRegister{
     }
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('mapik') inputElement:any;
+
     map: any;
     checkModelButton(model, val){
         this.NEWCAR.brand = val;
@@ -90,21 +93,17 @@ export class OrdersRegister{
     
     closeRegisterPage(){
          let data = this.NEWCAR
-          this.viewCtrl.dismiss(data);
-          console.log(data)
+         this.viewCtrl.dismiss(data);
+         console.log(data)
     }
 
     ionViewDidLoad(){
-        this.loadMap();
-        
+        this.loadMap(); 
     }
     
 
     
   loadMap(){
- 
- //   this.geolocation.getCurrentPosition().then((position) => 
-
       let latLng = new google.maps.LatLng(40.788546, 43.840966);
       let mapOptions = {
         center: latLng,
@@ -131,7 +130,6 @@ export class OrdersRegister{
     //////////////////////
     private marker:any;
 
-    ///////////////////
     getMyPosition(lat:number = 40.788546, lng:number = 43.840966){
     
        if(!this.marker){
@@ -156,9 +154,9 @@ export class OrdersRegister{
             .catch((error: any) => console.log(error));
         
         }
-        //////////////
-            private changeMap:boolean = false;
-        /////////////
+        ////////////// 
+        //close and open map area
+        private changeMap:boolean = false;
         mapChange(){
             if(document.getElementById('map').style.display == 'block'){
                 document.getElementById('map').style.display = 'none';
@@ -171,16 +169,20 @@ export class OrdersRegister{
         //////////////////////////////////
         //for constrol errors in time click ok
         complete(id){
-           if(id === 1){
+           if(id === 1 && this.NEWCAR.brand != ''){
                this.isCompleteBrand = false;
                this.rows.hide2 = !this.rows.hide2;
-           }else if(id === 2){
+           }else if(id === 2 && this.NEWCAR.model != ''){
                this.isCompleteModel = false;
                this.rows.hide3 = !this.rows.hide3;
-           }  
+           }else if(id === 3 && this.NEWCAR.number != ''){
+                this.rows.hide4 = !this.rows.hide4
+           }else if(id === 4 && this.NEWCAR.address != ''){
+                this.rows.hide5 = !this.rows.hide5
+            } 
         }
         //is all complete?
-        allComplete:boolean = false;
+        private allComplete:boolean = false;
         isAllComplete(){
             for(let i in this.NEWCAR){
                 if(this.NEWCAR[i] === ''){
