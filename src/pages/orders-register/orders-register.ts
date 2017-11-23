@@ -14,7 +14,7 @@ import {
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, ToastController, Content } from "ionic-angular";
+import { ViewController, Platform, Content } from "ionic-angular";
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult} from '@ionic-native/native-geocoder';
 import { Keyboard } from "@ionic-native/keyboard";
@@ -41,28 +41,32 @@ export class OrdersRegister{
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
-    @ViewChild(Content) content: Content;
+     @ViewChild('map') mapElement: ElementRef;
+     @ViewChild('mapik') inputElement:any;
+     @ViewChild(Content) content: Content;
+
     constructor(
         private ordersCtrl:CarsService, 
         private viewCtrl:ViewController,
         private googleMaps: GoogleMaps,
         public geolocation: Geolocation, 
         private nativeGeocoder: NativeGeocoder,
-        private keyboard: Keyboard
+        public keyboard: Keyboard,
+        public platform:Platform
         
     ){
         this.initializeCars();
-        this.keyboard.onKeyboardShow().subscribe(
+        this.platform.ready().then(()=>{
+            this.keyboard.onKeyboardShow().subscribe(
             (next)=>{
-                this.content.scrollToBottom()
+                this.content.scrollToBottom()                
             }
         )
+        })
     }
-    ngDoCheck(){
-        this.isAllComplete();
+    ngOnInit(){
+        
     }
-    @ViewChild('map') mapElement: ElementRef;
-    @ViewChild('mapik') inputElement:any;
     
     map: any;
     checkModelButton(model, val){
@@ -176,18 +180,31 @@ export class OrdersRegister{
 
         //////////////////////////////////
         //for constrol errors in time click ok
-        complete(id){
+        completeBlur(id){
            if(id === 1 && this.NEWCAR.brand != ''){
                this.isCompleteBrand = false;
-               this.rows.hide2 = !this.rows.hide2;
+               this.rows.hide2 = true;
            }else if(id === 2 && this.NEWCAR.model != ''){
                this.isCompleteModel = false;
-               this.rows.hide3 = !this.rows.hide3;
+               this.rows.hide3 = true;
            }else if(id === 3 && this.NEWCAR.number != ''){
-                this.rows.hide4 = !this.rows.hide4
+                this.rows.hide4 = true
            }else if(id === 4 && this.NEWCAR.address != ''){
-                this.rows.hide5 = !this.rows.hide5
+                this.rows.hide5 = true
             } 
+        }
+        /////////////////////////////////////
+        completeFocus(id){
+            if(id === 1){
+               this.isCompleteBrand = true;
+               //this.rows.hide2 = false;
+            }else if(id === 2){
+               this.isCompleteModel = true;
+            }else if(id === 3){
+
+            }else if(id === 4){
+                
+            }
         }
         //is all complete?
         private allComplete:boolean = false;

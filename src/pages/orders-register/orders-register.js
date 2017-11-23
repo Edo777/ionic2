@@ -11,17 +11,17 @@ export default StyleSheet.create({
     'height': [{ 'unit': 'px', 'value': 200 }],
     'width': [{ 'unit': '%H', 'value': 1 }]
   },
-  'orders-register cars-brands': {
+  'orders-register cars-info': {
     'paddingLeft': [{ 'unit': 'px', 'value': 22 }]
   },
-  'orders-register cars-brands ion-grid': {
+  'orders-register cars-info ion-grid': {
     'padding': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }]
   },
-  'orders-register cars-brands ion-grid car-row': {
+  'orders-register cars-info ion-grid car-row': {
     'background': 'grey',
     'borderBottom': [{ 'unit': 'px', 'value': 1 }, { 'unit': 'string', 'value': 'solid' }, { 'unit': 'string', 'value': 'black' }]
   },
-  'orders-register cars-brands active-car-brand': {
+  'orders-register cars-info active-car-brand': {
     'background': 'grey',
     'padding': [{ 'unit': 'px', 'value': 16 }, { 'unit': 'px', 'value': 50 }, { 'unit': 'px', 'value': 16 }, { 'unit': 'px', 'value': 5 }]
   }

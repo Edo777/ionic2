@@ -26,7 +26,8 @@ export class UserAccount {
     createNewOrder() {
         var profileModal = this.modalCtrl.create(OrdersRegister);
         profileModal.onDidDismiss((data)=>{
-            if(data.brand.length < 1 || data.model.length < 1 || data.number.length < 1){
+            if(data){
+                if(data.brand.length < 1 || data.model.length < 1 || data.number.length < 1){
                 return;
             }
             let car = {
@@ -36,6 +37,8 @@ export class UserAccount {
             }
             this.mobiWash.addAddress(data.address);
             this.mobiWash.addCar(car)
+            }
+            
         })
         profileModal.present();
     }
