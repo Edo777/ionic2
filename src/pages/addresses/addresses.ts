@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams } from "ionic-angular";
+import { NavParams, ModalController, ViewController } from "ionic-angular";
 import { MobiWash } from "../../services/barrel.service";
+import { AddNewAddress } from "../barrel";
 
 @Component({
     selector:'addresses',
@@ -10,7 +11,12 @@ import { MobiWash } from "../../services/barrel.service";
 export class Addresses {
     pageName:string;
     addresses:string[];
-    constructor(private navParams: NavParams, private mobiwash:MobiWash){
+    constructor(
+        private navParams: NavParams,
+        private mobiwash:MobiWash,
+        private modalCtrl:ModalController,
+        private viewCtrl:ViewController
+    ){
         this.pageName = this.navParams.get('pageName');
     }
     ngOnInit(){
@@ -24,4 +30,10 @@ export class Addresses {
         this.mobiwash.removeAddress(i);
         this.addresses = this.mobiwash.getAddresses()
     }
+    createNewAddress(){
+       var modalAddress=this.modalCtrl.create(AddNewAddress);
+        modalAddress.present()
+
+    }
+   
 }

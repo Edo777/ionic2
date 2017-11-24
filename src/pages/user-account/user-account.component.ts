@@ -20,26 +20,37 @@ export class UserAccount {
     constructor(
         public modalCtrl: ModalController,
         private mobiWash:MobiWash
-    ){}
-
+    ){
+        
+    }
+   ngOnInit(){
+       this.getOrder()
+   }
    
     createNewOrder() {
         var profileModal = this.modalCtrl.create(OrdersRegister);
         profileModal.onDidDismiss((data)=>{
             if(data){
-                if(data.brand.length < 1 || data.model.length < 1 || data.number.length < 1){
-                return;
+                let car = {
+                    brand:data.brand,
+                    model:data.model,
+                    number:data.number,
+                }
+                this.mobiWash.addAddress(data.address);
+                this.mobiWash.addCar(car);
+                this.mobiWash.addOrder(data);
+                this.getOrder();
             }
-            let car = {
-                brand:data.brand,
-                model:data.model,
-                number:data.number,
-            }
-            this.mobiWash.addAddress(data.address);
-            this.mobiWash.addCar(car)
-            }
-            
+            console.log('none')
         })
         profileModal.present();
+    }
+
+    getOrder(){
+         this.orders=this.mobiWash.getOrder()
+    }
+    removeOrder(i){
+        this.mobiWash.removeOrder(i)
+        this.orders = this.mobiWash.getOrder()
     }
 }

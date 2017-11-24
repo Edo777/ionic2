@@ -1,6 +1,6 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
-    <button detail-none text-center ion-item no-padding block color="primary">
+    <button detail-none text-center ion-item no-padding block color="primary" (click)="createNewAddress()">
         Ավելացնել նոր հասցե
     </button>
     <ion-list no-margin mode="md" *ngFor="let address of addresses; let i = index">

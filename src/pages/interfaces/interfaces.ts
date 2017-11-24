@@ -5,7 +5,8 @@ export interface User {
     name : string,
     telNumber : any,
     car : any[],
-    address : any[] 
+    address : any[],
+    order: any[]
 }
 
 export interface CarOrder{

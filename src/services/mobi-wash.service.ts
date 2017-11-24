@@ -43,7 +43,8 @@ export class MobiWash{
             name: username,
             telNumber: tel,
             car:[],
-            address :[]   
+            address :[],
+            order:[]
         }
         this.activeId = user.id;
         data.push(user);
@@ -113,5 +114,20 @@ export class MobiWash{
         
         data[this.activeId].address.splice(i, 1);
         this.localService.set('data', data);
+    }
+////////////////////////////////////
+    addOrder(ord:any){
+        let data = this.localService.get("data") || [];
+        data[this.activeId].order.push(ord);
+        this.localService.set('data', data);
+    }
+    getOrder(){
+        let data=this.localService.get('data');
+        return data[this.activeId].order
+    }
+    removeOrder(i:number){
+        let data=this.localService.get('data');
+        data[this.activeId].order.splice(i,1);
+        this.localService.set('data',data)
     }
 }

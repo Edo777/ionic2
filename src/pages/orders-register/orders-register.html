@@ -1,4 +1,5 @@
 <ion-content>
+    <button (click)="closeRegisterPage()" ion-button float-right>Close</button>
 
     <ion-grid>
         <!-- BRANDS -->
@@ -7,7 +8,7 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus(1)" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
+                    <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
                     </ion-input>
 
                 </ion-item>
@@ -30,7 +31,7 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Ընտրեք մոդելը'}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus(2)" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
+                    <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus($event, 2)" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="isCompleteModel">
                     <ion-grid>
@@ -50,7 +51,7 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(3)" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
+                    <ion-input (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -61,7 +62,7 @@
             <ion-col col-12>
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(4)" #mapik [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
+                    <ion-input (ionBlur)="completeBlur(4)" (ionFocus)="completeFocus($event)" #mapHide [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
                 </ion-item>
                 <button float-left ion-button small item-end (tap)="mapChange()">{{'Քարտեզ'}}</button>
             </ion-col>
@@ -99,11 +100,11 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Պրոմոկոդ'}}</ion-label>
-                    <ion-input (ionBlur)="isAllComplete()" [(ngModel)]="NEWCAR.promCode"></ion-input>
+                    <ion-input (ionBlur)="isAllComplete()" (ionFocus)="completeFocus($event)" [(ngModel)]="NEWCAR.promCode"></ion-input>
                 </ion-item>
             </ion-col>
 
         </ion-row>
     </ion-grid>
-    <button *ngIf="allComplete" full large ion-button (click)="closeRegisterPage()">Complete</button>
+    <button *ngIf="allComplete" full large ion-button (tap)="completeRegisterPage()">Complete</button>
 </ion-content>

@@ -11,13 +11,14 @@ import {
 
 } from '@ionic-native/google-maps';
 
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
 import { ViewController, Platform, Content } from "ionic-angular";
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult} from '@ionic-native/native-geocoder';
 import { Keyboard } from "@ionic-native/keyboard";
+import { MobiWash } from "../../services/barrel.service";
 
 
 
@@ -29,8 +30,9 @@ declare var google;
     providers:[Geolocation,GoogleMaps,Keyboard]
 })
 
-export class OrdersRegister{
+export class OrdersRegister implements OnInit,AfterViewInit{
 
+    map: any;
     cars:any;
     brands:string[];
     models:string[] = [];
@@ -41,9 +43,9 @@ export class OrdersRegister{
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
-     @ViewChild('map') mapElement: ElementRef;
-     @ViewChild('mapik') inputElement:any;
-     @ViewChild(Content) content: Content;
+     @ViewChild( 'map' ) mapElement: ElementRef;
+     @ViewChild( 'mapHide' ) inputElement:any;
+     @ViewChild( Content ) content: Content;
 
     constructor(
         private ordersCtrl:CarsService, 
@@ -52,23 +54,28 @@ export class OrdersRegister{
         public geolocation: Geolocation, 
         private nativeGeocoder: NativeGeocoder,
         public keyboard: Keyboard,
-        public platform:Platform
-        
+        public platform:Platform,
+        private mobiWash:MobiWash
     ){
         this.initializeCars();
-        this.platform.ready().then(()=>{
-            this.keyboard.onKeyboardShow().subscribe(
-            (next)=>{
-                this.content.scrollToBottom()                
+    }
+    ngAfterViewInit(){
+        this.keyboard.onKeyboardShow().subscribe(
+            (event)=>{ 
+                if(this.content._scroll){
+                   
+                }
+            },
+            (err) => {
+                console.log(err);
             }
         )
-        })
     }
     ngOnInit(){
         
     }
+    /////////////////////////
     
-    map: any;
     checkModelButton(model, val){
         this.NEWCAR.brand = val;
         this.models = model.models;
@@ -102,15 +109,16 @@ export class OrdersRegister{
             this.localModels = []
         }
     }
-    
+    completeRegisterPage(){
+         this.viewCtrl.dismiss(this.NEWCAR);
+         console.log(this.NEWCAR)
+    }
     closeRegisterPage(){
-         let data = this.NEWCAR
-         this.viewCtrl.dismiss(data);
-         console.log(data)
+        this.viewCtrl.dismiss()
     }
 
     ionViewDidLoad(){
-        this.loadMap(); 
+        this.loadMap();         
     }
     
 
@@ -194,16 +202,11 @@ export class OrdersRegister{
             } 
         }
         /////////////////////////////////////
-        completeFocus(id){
+        completeFocus(ev, id?){
             if(id === 1){
                this.isCompleteBrand = true;
-               //this.rows.hide2 = false;
             }else if(id === 2){
-               this.isCompleteModel = true;
-            }else if(id === 3){
-
-            }else if(id === 4){
-                
+               this.isCompleteModel = true;  
             }
         }
         //is all complete?

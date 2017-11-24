@@ -7,3 +7,4 @@ export * from './about-us/about-us';
 export * from './orders-register/orders-register';
 export * from './add-cars/add-cars'
 export * from './addresses/addresses';
+export * from './add-address/add-address'

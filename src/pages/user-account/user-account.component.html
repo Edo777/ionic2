@@ -4,12 +4,16 @@
     <ion-grid>
         <ion-row *ngIf="orders?.length">
             <ion-card *ngFor="let o of orders; let i = index">
-                <button ion-button small float-right (tap)="removeOrder(i)">Ջնջել</button>
                 <ion-card-header>
-                    <h5 text-wrap>Դուք պատվիրել եք {{o.brand}} մակնիշի մեքենայի լվացում</h5>
+                    <button ion-button small float-right (click)="removeOrder(i)">Ջնջել</button>
                 </ion-card-header>
                 <ion-card-content>
-                    մոդել - {{o.model}}
+                    <span>Մեքենա - {{o.brand}}</span>
+                    <span>մոդել - {{o.model}}</span>
+                    <span>Համարանիշ - {{o.number}}</span>
+                    <span>Հասցե - {{o.address}}</span>
+                    <span>Կոդ - {{o.promCode}}</span>
+                    <span>Լվացման տեսակ- {{o.type}}</span>
                 </ion-card-content>
             </ion-card>
         </ion-row>
