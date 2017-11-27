@@ -8,7 +8,6 @@ export default StyleSheet.create({
     'height': [{ 'unit': 'vh', 'value': 40 }]
   },
   'orders-register #map': {
-    'height': [{ 'unit': 'px', 'value': 200 }],
     'width': [{ 'unit': '%H', 'value': 1 }]
   },
   'orders-register cars-info': {

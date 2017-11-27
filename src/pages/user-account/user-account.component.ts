@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController } from 'ionic-angular';
-import { OrdersRegister } from "../barrel";
+import { ModalController, NavController, App } from 'ionic-angular';
+import { OrdersRegister, AddNewAddress, OrdersList } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
 import { MobiWash } from "../../services/barrel.service";
 
@@ -19,31 +19,19 @@ export class UserAccount {
 
     constructor(
         public modalCtrl: ModalController,
-        private mobiWash:MobiWash
+        private mobiWash:MobiWash,
+        private nav:NavController,
+        public appCtrl: App
     ){
         
     }
    ngOnInit(){
        this.getOrder()
    }
+ 
    
     createNewOrder() {
-        var profileModal = this.modalCtrl.create(OrdersRegister);
-        profileModal.onDidDismiss((data)=>{
-            if(data){
-                let car = {
-                    brand:data.brand,
-                    model:data.model,
-                    number:data.number,
-                }
-                this.mobiWash.addAddress(data.address);
-                this.mobiWash.addCar(car);
-                this.mobiWash.addOrder(data);
-                this.getOrder();
-            }
-            console.log('none')
-        })
-        profileModal.present();
+       this.nav.push(OrdersList);
     }
 
     getOrder(){

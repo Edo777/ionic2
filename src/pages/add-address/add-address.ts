@@ -1,31 +1,44 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import {
- GoogleMaps,
- GoogleMap,
- GoogleMapsEvent,
- GoogleMapOptions,
- CameraPosition,
- MarkerOptions,
- Marker,
- LatLng,
- ILatLng,
+import { ViewController, NavController, LoadingController } from "ionic-angular";
+import { NativeGeocoder, NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
+import { Geolocation } from '@ionic-native/geolocation';
+import { OrdersPage, MapGoogle } from "../barrel";
 
-} from '@ionic-native/google-maps';
-import { ViewController } from "ionic-angular";
+declare var google;
 
 @Component({
     selector:'add-address',
-    templateUrl:'add-address.html'
+    templateUrl:'add-address.html',
 })
 export class AddNewAddress{
-    constructor(
-        private viewCtrl:ViewController
-    ){}
     newAddress:any;
-    @ViewChild('map') mapElement:ElementRef;
+    @ViewChild('map') map:MapGoogle;
+    constructor(
+        private viewCtrl:ViewController,
+        private nav:NavController,
+        public loadingCtrl: LoadingController
+    ){}
+    ngOnInit(){
+        this.presentLoadingDefault()
+    }
+    
+    closeRegister(){
+        //this.map.emit();
+        this.viewCtrl.dismiss(this.newAddress);
+    }
 
+    presentLoadingDefault() {
+        let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
 
-     closeRegister(){
-        this.viewCtrl.dismiss()
+        loading.present();
+
+        setTimeout(() => {
+            loading.dismiss();
+        }, 2000);
+    }
+    setNewAddress(a){
+        this.newAddress=a
     }
 }

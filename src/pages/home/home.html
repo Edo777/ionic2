@@ -2,12 +2,17 @@
     <div class="user-info">
         <div text-center margin-top>Մուտքագրեք ձեր անունը</div>
         <ion-item mode="md">
-            <ion-input [ngClass]="classOptionsForName" (input)="isCompleteName()" [(ngModel)]="name" text-center mode="md"></ion-input>
+            <ion-input [(ngModel)]="name" text-center mode="md"></ion-input>
         </ion-item>
         <div text-center margin-top>Մուտքագրեք ձեր <br>հեռախոսահամարը</div>
         <ion-item mode="md">
-            <ion-input type="number" [disabled]="!classOptionCtrlForName" (input)="isCompletePhone()" [ngClass]="classOptionsForNumber" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
+            <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
-        <button ion-button [disabled]="!classOptionCtrlForNumber" mode="ios" (click)="createAccount()">Ստեղծել էջ</button>
+        <div text-center margin-top>Էլ․ հասցե</div>
+        <ion-item mode="md">
+            <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
+        </ion-item>
+
+        <button ion-button mode="ios" [disabled]="!isComplete" (click)="createAccount()">Ստեղծել էջ</button>
     </div>
 </ion-content>

@@ -8,3 +8,7 @@ export * from './orders-register/orders-register';
 export * from './add-cars/add-cars'
 export * from './addresses/addresses';
 export * from './add-address/add-address'
+export * from "./orders-page/orders-page";
+export * from './map/map';
+export * from './orders-list/orders-list';
+export * from './complete-order/complete-order'

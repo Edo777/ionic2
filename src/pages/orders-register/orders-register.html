@@ -55,23 +55,12 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        <!-- Address -->
 
+
+
+        <!-- Type pinking -->
 
         <ion-row class="cars-info" *ngIf="rows.hide4">
-            <ion-col col-12>
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(4)" (ionFocus)="completeFocus($event)" #mapHide [value]="NEWCAR.address" [(ngModel)]="NEWCAR.address"></ion-input>
-                </ion-item>
-                <button float-left ion-button small item-end (tap)="mapChange()">{{'Քարտեզ'}}</button>
-            </ion-col>
-
-        </ion-row>
-        <div #map id="map" style="display:none"></div>
-
-        <!-- pinking type -->
-        <ion-row class="cars-info" *ngIf="rows.hide5">
             <ion-list radio-group [(ngModel)]="NEWCAR.type">
                 <ion-list-header no-lines>
                     Լվացման տեսակը
@@ -94,17 +83,14 @@
 
             </ion-list>
         </ion-row>
+        <!-- Address -->
+        <ion-row *ngIf="NEWCAR.type != ''">
+            <map id="map" (close)="NEWCAR.address = $event.address"></map>
+        </ion-row>
 
-        <ion-row class="cars-info" *ngIf="NEWCAR.type != ''">
-            <ion-col col-12>
-
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Պրոմոկոդ'}}</ion-label>
-                    <ion-input (ionBlur)="isAllComplete()" (ionFocus)="completeFocus($event)" [(ngModel)]="NEWCAR.promCode"></ion-input>
-                </ion-item>
-            </ion-col>
-
+        <ion-row>
+            <button full large ion-button *ngIf="NEWCAR.address != ''" (tap)="completeRegisterPage()">Հաստատել</button>
         </ion-row>
     </ion-grid>
-    <button *ngIf="allComplete" full large ion-button (tap)="completeRegisterPage()">Complete</button>
+
 </ion-content>

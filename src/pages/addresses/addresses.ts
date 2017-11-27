@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ModalController, ViewController } from "ionic-angular";
+import { NavParams, ModalController, ViewController, LoadingController } from "ionic-angular";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress } from "../barrel";
 
@@ -15,7 +15,8 @@ export class Addresses {
         private navParams: NavParams,
         private mobiwash:MobiWash,
         private modalCtrl:ModalController,
-        private viewCtrl:ViewController
+        private viewCtrl:ViewController,
+        
     ){
         this.pageName = this.navParams.get('pageName');
     }
@@ -32,8 +33,15 @@ export class Addresses {
     }
     createNewAddress(){
        var modalAddress=this.modalCtrl.create(AddNewAddress);
+       modalAddress.onDidDismiss((data)=>{
+           if(data){
+               this.mobiwash.addAddress(data);
+               this.addresses = this.mobiwash.getAddresses();
+           }
+       })
         modalAddress.present()
 
     }
+    //loading
    
 }

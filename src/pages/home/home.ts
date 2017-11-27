@@ -9,58 +9,27 @@ import { MobiWash } from "../../services/barrel.service";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  classOptionCtrlForName:boolean = false;
-  classOptionsForName:any;
-  classOptionCtrlForNumber:boolean = false;
-  classOptionsForNumber:any;
 
+  isComplete:boolean = false;
   name:string = '';
-  phoneNumber:string;
-
+  phoneNumber:string = '';
+  email:string;
   
   constructor(public navCtrl: NavController, private mobiWash:MobiWash) {
      
   }
   
-    
+  ngDoCheck(){
+    if(this.name != '' && this.phoneNumber != ''){
+      this.isComplete = true;
+    }else{
+       this.isComplete = false;
+    }
+  }
   
-  isCompleteName(){
-    this.classOptionsForName = {
-      'color-red': !this.classOptionCtrlForName,
-      'color-green': this.classOptionCtrlForName
-    }
-    if(this.name.length >=1 && this.name.length<=6){
-      this.classOptionCtrlForName = true;
-    }else{
-      this.classOptionCtrlForName = false;
-    }
-  }
-  isCompletePhone(){
-    this.classOptionsForNumber = {
-      'color-red': !this.classOptionCtrlForNumber,
-      'color-green': this.classOptionCtrlForNumber
-    }
-    if(this.phoneNumber.length === 3){
-      this.classOptionCtrlForNumber = true;
-    }else{
-      this.classOptionCtrlForNumber = false;
-    }   
-  }
-  createAccount(){
-    
+  createAccount(){ 
     this.mobiWash.addUser(this.name, this.phoneNumber);
     this.navCtrl.setRoot(MenuComponent);
-    /*
-    if(this.classOptionCtrlForNumber){
-      let userInfo = {
-        name: this.name,
-        phoneNumber:this.phoneNumber
-      }
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      
-    }
-   
-  */
   }
 
 }

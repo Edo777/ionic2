@@ -1,15 +1,4 @@
 <ion-content>
-    <button ion-button float-right (click)="closeRegister()">Close</button>
-    <ion-grid>
-        <ion-row>
-            <ion-col col-12>
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Հասցե'}}</ion-label>
-                    <ion-input #mapik [value]="newAddress" [(ngModel)]="newAddress"></ion-input>
-                </ion-item>
-                <button float-left ion-button small item-end>{{'Քարտեզ'}}</button>
-            </ion-col>
-        </ion-row>
-        <div #map id="map" style="display:none"></div>
-    </ion-grid>
+    <map id="map" #map (close)="setNewAddress($event)"></map>
+    <button ion-button (tap)="closeRegister()">Հաստատել</button>
 </ion-content>
