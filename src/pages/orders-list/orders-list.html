@@ -1,3 +1,16 @@
-<ion-content>
+<ion-header>
     <button ion-button full (tap)="createNewAddress()">Ավելացնել նոր հայտ</button>
+</ion-header>
+<ion-content>
+    <ion-card *ngFor="let neworder of newOrder">
+        <ion-card-content>
+            <div>{{neworder.model}}</div>
+            <div>{{neworder.brand}}</div>
+            <div>{{neworder.number}}</div>
+            <div>{{neworder.type}}</div>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
+<ion-footer>
+    <button ion-button text-center full (tap)="completeAll()">Հաստատել բոլորը</button>
+</ion-footer>

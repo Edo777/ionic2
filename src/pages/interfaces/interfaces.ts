@@ -22,9 +22,7 @@ export interface NewOrder{
     brand:string,
     model:string,
     number:string,
-    address:string,
     type:string,
-    promCode:string;
 }
 
 export interface Brand {

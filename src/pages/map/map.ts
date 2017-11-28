@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter ,NgZone} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, NgZone, Input } from '@angular/core';
 import {
  GoogleMaps,
  GoogleMap,
@@ -52,7 +52,6 @@ export class MapGoogle implements OnInit{
     @ViewChild('map') mapElement:ElementRef;
     @ViewChild('mapHide') mapInput:any;
     @Output() close = new EventEmitter<any>()
-    
     ngOnInit(){
         this.loadMap(); 
     }

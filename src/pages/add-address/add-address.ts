@@ -23,7 +23,6 @@ export class AddNewAddress{
     }
     
     closeRegister(){
-        //this.map.emit();
         this.viewCtrl.dismiss(this.newAddress);
     }
 

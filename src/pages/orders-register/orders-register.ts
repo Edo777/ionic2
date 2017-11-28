@@ -25,7 +25,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    NEWCAR:NewOrder = {brand:'', model:'', number:'', address:'', type:'', promCode:''};
+    NEWCAR:NewOrder = {brand:'', model:'', number:'',  type:''};
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -89,7 +89,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         }
     }
     completeRegisterPage(){
-        this.viewCtrl.dismiss()        
+        this.viewCtrl.dismiss(this.NEWCAR)   
     }
     closeRegisterPage(){
         this.viewCtrl.dismiss()
@@ -106,9 +106,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.rows.hide3 = true;
         }else if(id === 3 && this.NEWCAR.number != ''){
             this.rows.hide4 = true
-        }else if(id === 4 && this.NEWCAR.address != ''){
-            this.rows.hide5 = true
-        } 
+        }
     }
     /////////////////////////////////////
     completeFocus(ev, id?){

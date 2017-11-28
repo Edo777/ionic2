@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        Հետ
+    </ion-navbar>
+</ion-header>
+<ion-content no-scroll>
+    <map #map id="map" (close)="setNewAddress($event)"></map>
+
+    <ion-item>
+        <ion-label>Պրոմոկոդ</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item>
+
+</ion-content>
+<ion-footer>
+    <button ion-button full (click)="completeOrder()">ՈՒղարկել հայտը</button>
+</ion-footer>

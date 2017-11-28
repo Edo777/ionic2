@@ -21,7 +21,8 @@ import {
     OrdersPage,
     MapGoogle,
     OrdersList,
-    CompleteOrder
+    CompleteOrder,
+    OrderAddress
   } from '../pages/barrel';
 //pipes
 import { FilterPipe } from "../pipes/loop-pipe";
@@ -56,7 +57,8 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     OrdersPage,
     MapGoogle,
     OrdersList,
-    CompleteOrder
+    CompleteOrder,
+    OrderAddress
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     OrdersPage,
     MapGoogle,
     OrdersList,
-    CompleteOrder
+    CompleteOrder,
+    OrderAddress
   ],
   providers: [
     Geolocation,

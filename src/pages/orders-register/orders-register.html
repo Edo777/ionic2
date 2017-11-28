@@ -83,13 +83,9 @@
 
             </ion-list>
         </ion-row>
-        <!-- Address -->
-        <ion-row *ngIf="NEWCAR.type != ''">
-            <map id="map" (close)="NEWCAR.address = $event.address"></map>
-        </ion-row>
 
         <ion-row>
-            <button full large ion-button *ngIf="NEWCAR.address != ''" (tap)="completeRegisterPage()">Հաստատել</button>
+            <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">Ավելացնել զամբյուղ</button>
         </ion-row>
     </ion-grid>
 

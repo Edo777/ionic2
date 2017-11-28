@@ -12,3 +12,4 @@ export * from "./orders-page/orders-page";
 export * from './map/map';
 export * from './orders-list/orders-list';
 export * from './complete-order/complete-order'
+export * from './order-address/order-address';
