@@ -52,10 +52,15 @@ export class MapGoogle implements OnInit{
     @ViewChild('map') mapElement:ElementRef;
     @ViewChild('mapHide') mapInput:any;
     @Output() close = new EventEmitter<any>()
+    @Input() address:any;
     ngOnInit(){
         this.loadMap(); 
     }
-
+    ngOnChanges(){
+        if(this.address){
+            this.newAddress = this.address;
+        }
+    }
     loadMap(){
         let latLng = new google.maps.LatLng(40.788546, 43.840966);
         let mapOptions = {

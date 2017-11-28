@@ -4,7 +4,8 @@
     </ion-navbar>
 </ion-header>
 <ion-content no-scroll>
-    <map #map id="map" (close)="setNewAddress($event)"></map>
+    <button ion-button full (tap)="presentPrompt()">Ընտրել հին հասցեներից</button>
+    <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
 
     <ion-item>
         <ion-label>Պրոմոկոդ</ion-label>

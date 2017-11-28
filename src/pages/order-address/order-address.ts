@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, NavParams } from "ionic-angular";
+import { NavController, LoadingController, NavParams, AlertController } from "ionic-angular";
 import { CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 
@@ -16,7 +16,8 @@ export class OrderAddress{
         private nav:NavController,
         public loadingCtrl: LoadingController,
         private navParams:NavParams,
-        private mobiWash:MobiWash
+        private mobiWash:MobiWash,
+        private alertCtrl:AlertController
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
@@ -44,4 +45,24 @@ export class OrderAddress{
         this.mobiWash.addAddress(this.address)
         this.nav.setRoot(CompleteOrder)
     }
+    presentPrompt() {
+        let inp = this.mobiWash.getAddresses();
+        let alert = this.alertCtrl.create();
+        for(let i = 0; i < inp.length; i++){
+            alert.addInput({
+                type:'radio',
+                value:inp[i],
+                label:inp[i].address
+            })
+        }
+        alert.addButton({
+            text: 'Ok',
+            handler:(data) => {
+                if(data){
+                    this.address = data;
+                }
+            }
+        })
+        alert.present();
+      }
 }

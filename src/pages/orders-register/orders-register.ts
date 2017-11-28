@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, Content, Nav, NavController, App } from "ionic-angular";
+import { ViewController, Platform, Content, Nav, NavController, App, AlertController } from "ionic-angular";
 import { Keyboard } from "@ionic-native/keyboard";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress, CompleteOrder } from "../barrel"
@@ -34,7 +34,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         public keyboard: Keyboard,
         public platform:Platform,
         private mobiWash:MobiWash,
-        private nav:NavController
+        private nav:NavController,
+        private alertCtrl:AlertController
     ){
         this.initializeCars();
     }
@@ -66,6 +67,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.cars = data;
         });
      }
+     
      getBrands(ev: any){
         this.initializeCars();
         let val = ev.target.value;
@@ -116,12 +118,33 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.isCompleteModel = true;  
         }
     }
-    ngOnDestroy(){
-        console.log('deleted')
-    }
-    cons(event){
-        console.log(event)
-    }
-    
+    /////////////////////////////
+    //alert
+    ////////////////////////////
+    presentPrompt() {
+        let inp = this.mobiWash.getCars();
+        let alert = this.alertCtrl.create();
+        for(let i = 0; i < inp.length; i++){
+            alert.addInput({
+                type:'radio',
+                value:inp[i],
+                label:inp[i].brand+ ' ' + inp[i].model + ' ' + inp[i].number,
+            })
+        }
+        alert.addButton({
+            text: 'Ok',
+            handler:(data) => {
+                if(data){
+                    this.rows.hide2 = true;
+                    this.rows.hide3 = true;
+                    this.rows.hide4 = true;
+                    this.NEWCAR.brand = data.brand;
+                    this.NEWCAR.model = data.model;
+                    this.NEWCAR.number = data.number;
+                }
+            }
+        })
+        alert.present();
+      }
 }
 

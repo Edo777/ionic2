@@ -95,7 +95,7 @@ export class MobiWash{
     addAddress(address:any){
         let data = this.localService.get("data") || [];
         let isNewAddress = data[this.activeId].address.findIndex((i) => {
-            return (i === address)
+            return (i.address === address.address)
         });
         if(isNewAddress >= 0){
             return;
