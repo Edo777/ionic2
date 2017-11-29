@@ -1,6 +1,6 @@
 <ion-content>
     <button (click)="closeRegisterPage()" ion-button float-right>Close</button>
-    <button ion-button (tap)="presentPrompt()">Ընտրել հին մեքենաներից</button>
+    <button ion-button (tap)="presentPrompt()" *ngIf="historyCars?.length">Ընտրել հին մեքենաներից</button>
     <ion-grid>
         <!-- BRANDS -->
         <ion-row class="cars-info">

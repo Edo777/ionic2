@@ -16,6 +16,7 @@ import { AddNewAddress, CompleteOrder } from "../barrel"
 })
 
 export class OrdersRegister implements OnInit,AfterViewInit{
+    historyCars:any;
     cars:any;
     brands:string[];
     models:string[] = [];
@@ -52,7 +53,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         )
     }
     ngOnInit(){
-        
+        this.historyCars = this.mobiWash.getCars();
     }
     /////////////////////////
     
@@ -121,8 +122,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     /////////////////////////////
     //alert
     ////////////////////////////
+    
     presentPrompt() {
-        let inp = this.mobiWash.getCars();
+        let inp = this.historyCars;
         let alert = this.alertCtrl.create();
         for(let i = 0; i < inp.length; i++){
             alert.addInput({

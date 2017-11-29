@@ -65,7 +65,17 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     FormsModule,
 
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{ 
+      platforms: {
+          ios: {
+            backButtonText: ' Հետ',
+            iconMode: 'ios',
+          },
+          android:{
+            backButtonText: ' Հետ',
+          }
+       }
+			})
   ],
   bootstrap: [IonicApp],
   entryComponents: [

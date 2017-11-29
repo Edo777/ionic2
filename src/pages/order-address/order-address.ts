@@ -1,17 +1,18 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, NavParams, AlertController } from "ionic-angular";
+import { NavController, LoadingController, NavParams, AlertController , App} from "ionic-angular";
 import { CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 
+
 @Component({
     selector:'order-address',
-    templateUrl:'order-address.html'
+    templateUrl:'order-address.html',
 })
 
 export class OrderAddress{
     address: any;
     newOrder: any[];
-    
+    myDate:string;
     constructor(
         private nav:NavController,
         public loadingCtrl: LoadingController,
@@ -19,10 +20,14 @@ export class OrderAddress{
         private mobiWash:MobiWash,
         private alertCtrl:AlertController
     ){}
+    ngDoCheck(){
+        console.log(this.myDate)
+    }
     ngOnInit(){
         this.presentLoadingDefault();
-        this.newOrder = this.navParams.get('newOrder')
-        console.log(this.newOrder)
+        this.newOrder = this.navParams.get('newOrder');
+        this.historyAddresses = this.mobiWash.getAddresses();
+        console.log(this.newOrder);
     }
     presentLoadingDefault() {
         let loading = this.loadingCtrl.create({
@@ -45,8 +50,10 @@ export class OrderAddress{
         this.mobiWash.addAddress(this.address)
         this.nav.setRoot(CompleteOrder)
     }
+    //////////////////////
+    historyAddresses:any;
     presentPrompt() {
-        let inp = this.mobiWash.getAddresses();
+        let inp = this.historyAddresses;
         let alert = this.alertCtrl.create();
         for(let i = 0; i < inp.length; i++){
             alert.addInput({
@@ -60,6 +67,7 @@ export class OrderAddress{
             handler:(data) => {
                 if(data){
                     this.address = data;
+                    console.log(this.address)
                 }
             }
         })

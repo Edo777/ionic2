@@ -1,0 +1,32 @@
+{
+
+    "customer_id": 2,
+    "customer_phone": "098050954",
+    "promo_code": 123456,
+    "date": "2017-11-28 16:00:00",
+    "address": {
+        "lat": 165465465465,
+        "long": 456865446.54,
+        "address": "Sayat lova"
+    },
+    "cars": [{
+            "car_number": "23AD658",
+            "service": 2,
+            "make_id": 1,
+            "model_id": 12
+        },
+        {
+            "car_number": "23AD658",
+            "service": 2,
+            "make_id": 1,
+            "model_id": 12
+        },
+        {
+            "car_number": "23AD658",
+            "service": 2,
+            "make_id": "opel",
+            "model_id": "vectra",
+            "type": "new"
+        }
+    ]
+}
