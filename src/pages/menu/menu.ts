@@ -18,7 +18,7 @@ export class MenuComponent{
     rootPage = UserAccount;
     activePage:any = UserAccount;
     activeLng:string = 'Հայերեն';
-    activeFlag:string = '/assets/imgs/drosh.jpg'
+    activeFlag:string = 'assets/imgs/drosh.jpg'
     id:number;
     pages:Pages[] = [
         { pageName:'Պատվերի գրանցում', component: OrdersPage},
@@ -46,10 +46,10 @@ export class MenuComponent{
     changeLng(){
         if(this.activeLng == 'Հայերեն'){
             this.activeLng = 'English'
-            this.activeFlag = '/assets/imgs/english.png'
+            this.activeFlag = 'assets/imgs/english.png'
         }else{
             this.activeLng = 'Հայերեն';
-            this.activeFlag = '/assets/imgs/drosh.jpg';
+            this.activeFlag = 'assets/imgs/drosh.jpg';
         }
     }
     outUser() {
