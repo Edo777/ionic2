@@ -20,9 +20,6 @@ export class OrderAddress{
         private mobiWash:MobiWash,
         private alertCtrl:AlertController
     ){}
-    ngDoCheck(){
-        console.log(this.myDate)
-    }
     ngOnInit(){
         this.presentLoadingDefault();
         this.newOrder = this.navParams.get('newOrder');

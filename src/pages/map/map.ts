@@ -48,7 +48,6 @@ export class MapGoogle implements OnInit{
     };
     map:any;
     @ViewChild('map') mapElement:ElementRef;
-    @ViewChild('mapHide') mapInput:any;
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
     ngOnInit(){
@@ -117,15 +116,12 @@ export class MapGoogle implements OnInit{
                     this.emit()
                 })
                 
-                
-               // this.mapInput.value = result.thoroughfare;
-                
             })
             .catch((error: any) => console.log(error));
         
         }
         /////////////////////////////
-        setNewMarker(lat, lng){
+        private setNewMarker(lat, lng){
              if(!this.marker){
                  var marker = new google.maps.Marker({
                     map: this.map,

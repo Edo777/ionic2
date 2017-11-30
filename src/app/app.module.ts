@@ -22,7 +22,10 @@ import {
     MapGoogle,
     OrdersList,
     CompleteOrder,
-    OrderAddress
+    OrderAddress,
+    OrdersHistory,
+    NewOrders,
+    OldOrders,
   } from '../pages/barrel';
 //pipes
 import { FilterPipe } from "../pipes/loop-pipe";
@@ -58,14 +61,19 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     MapGoogle,
     OrdersList,
     CompleteOrder,
-    OrderAddress
+    OrderAddress,
+    OrdersHistory,
+    NewOrders,
+    OldOrders
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
 
     HttpModule,
-    IonicModule.forRoot(MyApp,{ 
+    IonicModule.forRoot(MyApp,{
+      tabsPlacement: 'top', 
       platforms: {
           ios: {
             backButtonText: ' Հետ',
@@ -94,7 +102,10 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     MapGoogle,
     OrdersList,
     CompleteOrder,
-    OrderAddress
+    OrderAddress,
+    OrdersHistory,
+    NewOrders,
+    OldOrders
   ],
   providers: [
     Geolocation,

@@ -13,3 +13,5 @@ export * from './map/map';
 export * from './orders-list/orders-list';
 export * from './complete-order/complete-order'
 export * from './order-address/order-address';
+export * from './orders-history/orders-history';
+export * from './orders-history/barrel-orders';

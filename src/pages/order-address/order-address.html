@@ -7,7 +7,6 @@
     <button ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">Ընտրել հին հասցեներից</button>
     <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
 
-
     <ion-item>
         <ion-label>Ամսաթիվ</ion-label>
         <ion-datetime displayFormat="MMM DD, YYYY HH:mm" monthShortNames="Հունվար, Փետրվար, Մարտ, Ապրիլ, Մայիս, Հունիս, Հուլիս, Օգոստոսմ, Սեպտեմբեր, Հոկտեմբեր, Նոյեմբեր, Դեկտեմբեր" [(ngModel)]="myDate"></ion-datetime>
