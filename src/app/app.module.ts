@@ -79,7 +79,7 @@ import { TranslateService } from "../translate/translate.service";
       tabsPlacement: 'top', 
       platforms: {
           ios: {
-            backButtonText: ' Հետ',
+            backButtonText: 'Հետ',
             iconMode: 'ios',
           },
           android:{

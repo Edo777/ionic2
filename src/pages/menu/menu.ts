@@ -75,28 +75,32 @@ export class MenuComponent{
             }
         this.serv.setActiveLng(getter);
     }
-    outUser(text) {
-        console.log(text)
+    outUser() {
+        let a:any = {};
+        a.exit = this.serv.translateImportant("Դուրս գալ", "Exit");
+        a.delete = this.serv.translateImportant("Ջնջել", "Delete");
+        a.cancel = this.serv.translateImportant("Մնալ", "Cancel");
+        a.question = this.serv.translateImportant("Ընտրեք ի՞նչ եք ցանկանում", "What you need?")
         let confirm = this.alertCtrl.create({
           enableBackdropDismiss:false,
           title: 'MobiWash',
-          message: 'Ընտրեք ի՞նչ եք ցանկանում ',
+          message: a.question,
           buttons: [
             {
-              text: 'Ջնջել',
+              text: a.delete,
               handler: () => {
                 this.mobiWash.removeUser();
                 this.navCtrl.setRoot(HomePage);
               }
             },
             {
-              text: 'Դուրս գալ',
+              text: a.exit,
               handler: () => {
                 this.navCtrl.setRoot(HomePage);
               }
             },
             {
-                text: 'Մնալ',
+                text: a.cancel,
                 handler: () => {}
               }
           ]

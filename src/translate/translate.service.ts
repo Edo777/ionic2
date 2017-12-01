@@ -19,5 +19,12 @@ export class TranslateService{
     translate(key:string){
         return DICTIONARY[this._activeLng.lng][key];
     }
+    translateImportant(key1, key2){
+        if(this._activeLng.lng == "arm"){
+            return key1
+        }else{
+            return key2;
+        }
+    }
 
 }

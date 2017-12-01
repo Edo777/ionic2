@@ -5,7 +5,7 @@
         </button>
     <!--Brands-->
     <ion-item mode="md">
-        <ion-label color="black" floating>Մեքենա</ion-label>
+        <ion-label color="black" floating>{{"Մեքենա" | translate}}</ion-label>
         <ion-input (input)="search.getBrands($event)" [value]="addNewCar.brand" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="addNewCar.brand"></ion-input>
     </ion-item>
     <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">
@@ -20,7 +20,7 @@
 
     <!--models-->
     <ion-item mode="md">
-        <ion-label color="black" floating>Մոդել</ion-label>
+        <ion-label color="black" floating>{{"Մոդել" | translate}}</ion-label>
         <ion-input (input)="search.getModels($event)" [value]="addNewCar.model" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="addNewCar.model"></ion-input>
     </ion-item>
     <ion-scroll scrollY="true" *ngIf="closeSearchModels && localModels?.length">
@@ -34,10 +34,10 @@
     </ion-scroll>
     <!--numbers-->
     <ion-item mode="md">
-        <ion-label color="black" floating>Համարանիշ</ion-label>
+        <ion-label color="black" floating>{{"Համարանիշ" | translate}}</ion-label>
         <ion-input [(ngModel)]="addNewCar.number"></ion-input>
     </ion-item>
 
-    <button ion-button full small (click)="addCar()">Ավելացնել</button>
+    <button ion-button full small (click)="addCar()">{{"Ավելացնել" | translate}}</button>
 
 </ion-content>

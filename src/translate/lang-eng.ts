@@ -21,6 +21,24 @@ export const LANG_EN_TRANS = {
     "Անգլերեն" :"English",
     "Նոր պատվերներ" : "New orders",
     "Պատմություն" : "History",
-    "Ավելացնել նոր մեքենա" : "Create new car"
+    "Ավելացնել նոր մեքենա" : "Add new car",
+    "Գրանցել հայտ" : "Create order",
+    "Ավելացնել նոր հայտ" : "Add new order",
+    "Հաստատել բոլորը" : "Confirm all",
+    "Ուղարկել հայտը" : "Send order",
+    "Ամսաթիվ" : "Date",
+    "Պրոմո կոդ" : "Promcode", 
+    "Վերադառնալ սկիզբ" : "Back to home",
+    "Համարանիշ" : "Car number",
+    "Մեքենա" : "Car",
+    "Մոդել" : "Model",
+    "Ավելացնել" : "Add",
+    "Ավելացնել նոր հասցե" : "Add new address",
+    "Հասցե" : "Address",
+    "Ընտրել հին մեքենաներից" : "Select from old cars",
+    "Ընտրել հին հասցեներից" :  "Select from old addresses",
+    "Ընտրեք մեքենան" : "Select car",
+    "Լվացման տեսակը" : "Pinking type",
+    "Ջնջել" : "Delete"
 };
 

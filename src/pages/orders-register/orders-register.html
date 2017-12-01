@@ -1,13 +1,13 @@
 <ion-content>
     <button (click)="closeRegisterPage()" ion-button float-right>Close</button>
-    <button ion-button (tap)="presentPrompt()" *ngIf="historyCars?.length">Ընտրել հին մեքենաներից</button>
+    <button ion-button (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ընտրել հին մեքենաներից" | translate}}</button>
     <ion-grid>
         <!-- BRANDS -->
         <ion-row class="cars-info">
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Ընտրեք մեքենան'}}</ion-label>
+                    <ion-label color="black" floating>{{'Մեքենա' | translate}}</ion-label>
                     <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
                     </ion-input>
 
@@ -30,7 +30,7 @@
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Ընտրեք մոդելը'}}</ion-label>
+                    <ion-label color="black" floating>{{'Մոդել' | translate}}</ion-label>
                     <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus($event, 2)" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="isCompleteModel">
@@ -50,7 +50,7 @@
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Համարանիշ'}}</ion-label>
+                    <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
                     <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
                 </ion-item>
             </ion-col>
@@ -63,7 +63,7 @@
         <ion-row class="cars-info" *ngIf="rows.hide4">
             <ion-list mode="ios" radio-group [(ngModel)]="NEWCAR.type">
                 <ion-list-header no-lines>
-                    Լվացման տեսակը
+                    {{"Լվացման տեսակը" | translate}}
                 </ion-list-header>
 
                 <ion-item mode="ios">
@@ -85,7 +85,7 @@
         </ion-row>
 
         <ion-row>
-            <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">Ավելացնել զամբյուղ</button>
+            <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
         </ion-row>
     </ion-grid>
 

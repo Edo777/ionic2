@@ -1,7 +1,7 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
     <button detail-none text-center ion-item no-padding block color="primary" (click)="createNewAddress()">
-        Ավելացնել նոր հասցե
+        {{"Ավելացնել նոր հասցե" | translate}}
     </button>
     <ion-list no-margin mode="md" *ngFor="let address of addresses; let i = index">
         <button lines detail-none ion-item no-padding>
