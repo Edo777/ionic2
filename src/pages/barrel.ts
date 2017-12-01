@@ -15,3 +15,5 @@ export * from './complete-order/complete-order'
 export * from './order-address/order-address';
 export * from './orders-history/orders-history';
 export * from './orders-history/barrel-orders';
+export * from './settings/settings';
+

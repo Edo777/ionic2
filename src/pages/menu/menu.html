@@ -1,26 +1,27 @@
 <ion-menu [content]="content">
     <ion-header mode="md">
         <ion-toolbar mode="md">
-            <ion-title>Ցանկ</ion-title>
+            <ion-title>{{ "Ցանկ" | translate}}</ion-title>
         </ion-toolbar>
     </ion-header>
     <ion-content>
         <ion-list mode="ios">
             <button [class.bg-btt]="bgChange(p)" menuClose no-padding ion-item detail-none *ngFor="let p of pages; let ind = index" (tap)="openPage(p)">
-                {{p.pageName}}
+                {{ p.pageName | translate }}
             </button>
             <button no-padding ion-item detail-none (tap)="changeLng()">
-                {{activeLng}}
+                {{ activeLngText | translate }}
                 <ion-avatar item-end>
                     <img [src]="activeFlag">
                 </ion-avatar>
             </button>
-            <button no-padding ion-item detail-none color="primary" (tap)="outUser()">
-                Դուրս գալ
+            <button #butt no-padding ion-item detail-none color="primary" (tap)="outUser(butt)">
+                {{"Դուրս գալ" | translate}}
                 <ion-icon name="md-exit" item-end margin-right></ion-icon>
             </button>
         </ion-list>
     </ion-content>
 </ion-menu>
+
 
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>

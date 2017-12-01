@@ -1,18 +1,26 @@
+<ion-header>
+    <button ion-item detail-none no-lines (tap)="changeLng()"> 
+        {{ activeLngText | translate }}
+        <ion-avatar item-left>
+            <img [src]="activeFlag">
+        </ion-avatar>
+    </button>
+</ion-header>
 <ion-content no-padding>
     <div class="user-info">
-        <div text-center margin-top>Մուտքագրեք ձեր անունը</div>
+        <div text-center margin-top>{{"Մուտքագրեք ձեր անունը" | translate}}</div>
         <ion-item mode="md">
             <ion-input [(ngModel)]="name" text-center mode="md"></ion-input>
         </ion-item>
-        <div text-center margin-top>Մուտքագրեք ձեր <br>հեռախոսահամարը</div>
+        <div text-center margin-top>{{"Մուտքագրեք ձեր հեռախոսահամարը" | translate}}</div>
         <ion-item mode="md">
             <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
-        <div text-center margin-top>Էլ․ հասցե</div>
+        <div text-center margin-top>{{"Էլ․ հասցե" | translate}}</div>
         <ion-item mode="md">
             <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
         </ion-item>
 
-        <button ion-button mode="ios" [disabled]="!isComplete" (click)="createAccount()">Ստեղծել էջ</button>
+        <button ion-button mode="ios" [disabled]="!isComplete" (click)="createAccount()">{{"Ստեղծել էջ" | translate}}</button>
     </div>
 </ion-content>

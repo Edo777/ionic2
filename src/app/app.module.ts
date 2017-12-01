@@ -26,9 +26,11 @@ import {
     OrdersHistory,
     NewOrders,
     OldOrders,
+    Settings
   } from '../pages/barrel';
+
 //pipes
-import { FilterPipe } from "../pipes/loop-pipe";
+
 
 //modules
 
@@ -39,9 +41,8 @@ import { CarsService, Local, MobiWash } from "../services/barrel.service";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { NativeGeocoder } from "@ionic-native/native-geocoder";
-
-
-
+import { Translate } from "../pipes/translate";
+import { TranslateService } from "../translate/translate.service";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,6 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     HeaderComponent,
     AboutUs,
     OrdersRegister,
-    FilterPipe,
     AddCars,
     Addresses,
     AddNewAddress,
@@ -64,7 +64,9 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     OrderAddress,
     OrdersHistory,
     NewOrders,
-    OldOrders
+    OldOrders,
+    Settings,
+    Translate
     
   ],
   imports: [
@@ -73,6 +75,7 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
     HttpModule,
     IonicModule.forRoot(MyApp,{
+      mode: 'md',
       tabsPlacement: 'top', 
       platforms: {
           ios: {
@@ -105,7 +108,8 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     OrderAddress,
     OrdersHistory,
     NewOrders,
-    OldOrders
+    OldOrders,
+    Settings
   ],
   providers: [
     Geolocation,
@@ -116,6 +120,7 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
     Camera,
     StatusBar,
     SplashScreen,
+    TranslateService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

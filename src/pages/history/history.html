@@ -1,7 +1,7 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
     <button detail-none text-center (click)="createNewCars()" ion-item no-padding block color="primary">
-        Ավելացնել նոր մեքենա
+        {{"Ավելացնել նոր մեքենա" | translate}}
     </button>
     <ion-list no-margin mode="md" *ngFor="let car of cars; let i = index">
         <button lines detail-none ion-item no-padding (click)="more[i] = !more[i]">

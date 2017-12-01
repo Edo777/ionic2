@@ -1,7 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController, Nav, NavParams, AlertController } from 'ionic-angular';
-import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses, OrdersPage, OrdersHistory } from '../barrel'
-import { MobiWash } from "../../services/barrel.service";
+import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses, OrdersPage, OrdersHistory, Settings } from '../barrel'
+import { MobiWash, CarsService } from "../../services/barrel.service";
+import { TranslateService } from "../../translate/translate.service";
 
 interface Pages{
     pageName: string,
@@ -15,44 +16,67 @@ interface Pages{
 
 export class MenuComponent{
     @ViewChild(Nav) nav:Nav;
+    
     rootPage = UserAccount;
     activePage:any = UserAccount;
-    activeLng:string = 'Հայերեն';
-    activeFlag:string = 'assets/imgs/drosh.jpg'
+    activeLng:any;
+    localActiveLng:string;
+    activeLngText:string;
+    activeFlag:string;
     id:number;
     pages:Pages[] = [
         { pageName:'Պատվերի գրանցում', component: OrdersPage},
         { pageName:'Իմ մեքենաները', component: HistoryPage},
         { pageName:'Իմ հասցեները', component: Addresses},
         { pageName:'Իմ պատվերները', component: OrdersHistory},
+        { pageName:'Կարգավորումներ', component: Settings},
         { pageName:'Մեր մասին', component: AboutUs},          
     ]
     constructor(
         private navCtrl:NavController, 
         public params:NavParams, 
         private mobiWash:MobiWash,
-        private alertCtrl:AlertController
+        private alertCtrl:AlertController,
+        private serv:TranslateService
     ){
-        
+        this.activeLng = this.serv.getActiveLng();
+    }
+    ngOnInit(){
+        this.localActiveLng = this.activeLng.lng;
+        this.activeLngText = this.activeLng.text;
+        this.activeFlag = this.activeLng.flag;
     }
     bgChange(page){
         return page.component == this.activePage;
+        
     }
     openPage(page:Pages){
         this.activePage = page.component;
         this.nav.setRoot(page.component, {pageName:page.pageName});
     }
+
     //language
     changeLng(){
-        if(this.activeLng == 'Հայերեն'){
-            this.activeLng = 'English'
+        if(this.localActiveLng == "arm"){
+            this.activeLngText = "Անգլերեն"
+            this.localActiveLng = "en"
             this.activeFlag = 'assets/imgs/english.png'
+           
         }else{
-            this.activeLng = 'Հայերեն';
+            this.activeLngText = "Հայերեն"
+            this.localActiveLng = "arm";
             this.activeFlag = 'assets/imgs/drosh.jpg';
+            
         }
+         let getter = {
+                lng:this.localActiveLng,
+                text:this.activeLngText,
+                flag:this.activeFlag
+            }
+        this.serv.setActiveLng(getter);
     }
-    outUser() {
+    outUser(text) {
+        console.log(text)
         let confirm = this.alertCtrl.create({
           enableBackdropDismiss:false,
           title: 'MobiWash',
