@@ -5,8 +5,9 @@
     <button ion-button full (tap)="createNewAddress()">{{"Ավելացնել նոր հայտ" | translate}}</button>
 </ion-header>
 <ion-content>
-    <ion-card *ngFor="let neworder of newOrder">
+    <ion-card *ngFor="let neworder of newOrder; let i = index">
         <ion-card-content>
+            <button ion-fab float-right (tap)="remove(i)">Ջնջել</button>
             <div>{{neworder.model}}</div>
             <div>{{neworder.brand}}</div>
             <div>{{neworder.number}}</div>

@@ -19,6 +19,9 @@ export class OrdersList implements OnInit{
     ngOnInit(){
         
     }
+    remove(i){
+        this.newOrder.splice(i, 1);
+    }
     completeAll(){
        this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
     }
@@ -31,5 +34,8 @@ export class OrdersList implements OnInit{
            }
        })
         modalAddress.present()
+    }
+    ngOnDestroy(){
+        console.log("delete orders-list")
     }
 }
