@@ -11,6 +11,7 @@ import { TranslateService } from "../../translate/translate.service";
 })
 
 export class OrderAddress{
+    fast:boolean;
     address: any;
     newOrder: any[];
     myDate:string;

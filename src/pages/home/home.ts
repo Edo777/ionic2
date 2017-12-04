@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {  MenuComponent } from "../barrel";
+import { MenuComponent, OrdersHistory } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
 
@@ -10,7 +10,7 @@ import { TranslateService } from "../../translate/translate.service";
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+    
    activeLng:any;
    localActiveLng:string;
    activeLngText:string;
@@ -19,6 +19,7 @@ export class HomePage {
   isComplete:boolean = false;
   name:string = '';
   phoneNumber:string = '';
+  refCode=""
   email:string;
   
   constructor(public navCtrl: NavController, private mobiWash:MobiWash, private serv:TranslateService) {
@@ -28,6 +29,8 @@ export class HomePage {
      this.localActiveLng = this.activeLng.lng;
      this.activeLngText = this.activeLng.text;
      this.activeFlag = this.activeLng.flag;
+     //////////////////////////// maxinacia
+    // this.createAccount()
   }
   ngDoCheck(){
     if(this.name != '' && this.phoneNumber != ''){
@@ -58,6 +61,7 @@ export class HomePage {
   createAccount(){ 
     this.mobiWash.addUser(this.name, this.phoneNumber);
     this.navCtrl.setRoot(MenuComponent);
+   // this.navCtrl.setRoot(OrdersHistory);
   }
 
 }

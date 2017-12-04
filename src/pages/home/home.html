@@ -6,21 +6,28 @@
         </ion-avatar>
     </button>
 </ion-header>
-<ion-content no-padding>
-    <div class="user-info">
-        <div text-center margin-top>{{"Մուտքագրեք ձեր անունը" | translate}}</div>
-        <ion-item mode="md">
+<ion-content no-padding no-margin>
+    <ion-list mode="md" text-center>
+
+        <ion-item mode="md" no-padding>
+            <ion-label floating> {{"Մուտքագրեք ձեր անունը" | translate}}</ion-label>
             <ion-input [(ngModel)]="name" text-center mode="md"></ion-input>
         </ion-item>
-        <div text-center margin-top>{{"Մուտքագրեք ձեր հեռախոսահամարը" | translate}}</div>
-        <ion-item mode="md">
+
+        <ion-item mode="md" no-padding>
+            <ion-label floating>{{"Մուտքագրեք ձեր հեռախոսահամարը" | translate}}</ion-label>
             <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
-        <div text-center margin-top>{{"Էլ․ հասցե" | translate}}</div>
-        <ion-item mode="md">
+
+        <ion-item mode="md" no-padding>
+            <ion-label floating>{{"Էլ․ հասցե" | translate}}</ion-label>
             <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
         </ion-item>
 
-        <button ion-button mode="ios" [disabled]="!isComplete" (click)="createAccount()">{{"Ստեղծել էջ" | translate}}</button>
-    </div>
+        <ion-item mode="md" no-padding>
+            <ion-label floating>{{"Հրավերքի կոդ" | translate}}</ion-label>
+            <ion-input type="text" text-center [(ngModel)]="refCode" mode="md"></ion-input>
+        </ion-item>
+        <button margin-top ion-button mode="ios" full [disabled]="!isComplete" (click)="createAccount()">{{"Ստեղծել էջ" | translate}}</button>
+    </ion-list>
 </ion-content>

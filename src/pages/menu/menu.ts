@@ -66,7 +66,6 @@ export class MenuComponent{
             this.activeLngText = "Հայերեն"
             this.localActiveLng = "arm";
             this.activeFlag = 'assets/imgs/drosh.jpg';
-            
         }
          let getter = {
                 lng:this.localActiveLng,

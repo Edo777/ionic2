@@ -1,3 +1,26 @@
 <ion-content>
-    <h1 text-center>New Orders</h1>
+    <ion-list>
+        <ion-item-sliding #item>
+            <ion-item class="view" mode="md">
+                <div class="number">
+                    № 454812
+                </div>
+                <div class="price">
+                    <span>2500 dr</span>
+                </div>
+                <div class="status">
+                    <span>booking...</span>
+                </div>
+                <button class="confirm" color="secondary" ion-button>{{"Հաստատել" | translate}}</button>
+                <button class="more" color="danger" ion-button>{{"Մանրամասն" | translate}}...</button>
+
+            </ion-item>
+            <ion-item-options side="right">
+
+                <button color="danger" ion-button>
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>

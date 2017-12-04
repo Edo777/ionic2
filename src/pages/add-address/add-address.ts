@@ -3,6 +3,7 @@ import { ViewController, NavController, LoadingController } from "ionic-angular"
 import { NativeGeocoder, NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
 import { Geolocation } from '@ionic-native/geolocation';
 import { OrdersPage, MapGoogle } from "../barrel";
+import { TranslateService } from "../../translate/translate.service";
 
 declare var google;
 
@@ -16,7 +17,8 @@ export class AddNewAddress{
     constructor(
         private viewCtrl:ViewController,
         private nav:NavController,
-        public loadingCtrl: LoadingController
+        public loadingCtrl: LoadingController,
+        private translateService:TranslateService
     ){}
     ngOnInit(){
         this.presentLoadingDefault()
@@ -28,7 +30,7 @@ export class AddNewAddress{
 
     presentLoadingDefault() {
         let loading = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: this.translateService.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
         });
 
         loading.present();

@@ -6,10 +6,13 @@
 <ion-content no-scroll>
     <button ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ընտրել հին հասցեներից" | translate}}</button>
     <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
-
-    <ion-item>
+    <ion-item no-lines>
+        <ion-label>{{'Հնարավորինս շուտ'}}</ion-label>
+        <ion-checkbox [(ngModel)]="fast"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="!fast">
         <ion-label>{{"Ամսաթիվ" | translate}}</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" monthShortNames="Հունվար, Փետրվար, Մարտ, Ապրիլ, Մայիս, Հունիս, Հուլիս, Օգոստոսմ, Սեպտեմբեր, Հոկտեմբեր, Նոյեմբեր, Դեկտեմբեր" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" monthNames="janeiro, fevereiro, mar\u00e7o, ..." min="2016" monthShortNames="Հնվ, Փտր, Մրտ, Ապրլ, Մայ, Հունիս, Հուլիս, Օգոստոսմ, Սեպտեմբեր, Հոկտեմբեր, Նոյեմբեր, Դեկտեմբեր" [(ngModel)]="myDate"></ion-datetime>
     </ion-item>
 
     <ion-item>

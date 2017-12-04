@@ -1,0 +1,57 @@
+new-orders {
+    ion-item-sliding .item {
+        background: orange;
+        height: 35vw;
+    }
+    .view {
+        .number {
+            width: fit-content;
+            margin-top: 10px;
+            float: left;
+        }
+        .price {
+            float: right;
+            width: 35vw;
+            display: flex;
+            height: 30%;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            span {
+                margin: 0 auto;
+            }
+        }
+        .status {
+            position: absolute;
+            height: 31%;
+            top: 30%;
+            right: 0;
+            width: 35vw;
+            display: flex;
+            align-items: center;
+            span {
+                margin: 0 auto
+            }
+        }
+        .confirm {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            width: 34vw;
+        }
+        .more {
+            position: absolute;
+            left: 0;
+            height: 35%;
+            width: 34vw;
+            bottom: 0;
+        }
+        .label-md {
+            height: 100%;
+        }
+    }
+    .button-md {
+        width: 30vw;
+    }
+}

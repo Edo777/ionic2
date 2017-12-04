@@ -39,6 +39,9 @@ export const LANG_EN_TRANS = {
     "Ընտրել հին հասցեներից" :  "Select from old addresses",
     "Ընտրեք մեքենան" : "Select car",
     "Լվացման տեսակը" : "Pinking type",
-    "Ջնջել" : "Delete"
+    "Ջնջել" : "Delete",
+    "Հրավերքի կոդ" : "Ref code",
+    "Ձեր պրոմ կոդն է" : "Your Promcode is",
+    "Մանրամասն" : "More"
 };
 
