@@ -8,8 +8,14 @@
                 <div class="price">
                     <span>2500 dr</span>
                 </div>
-                <div class="status">
+                <div *ngIf="false" class="status">
                     <span>booking...</span>
+                </div>
+                <div *ngIf="false" class="status">
+                    <span>waiting...</span>
+                </div>
+                <div *ngIf="true" class="status">
+                    <span>completed...</span>
                 </div>
                 <button class="confirm" color="secondary" ion-button>{{"Հաստատել" | translate}}</button>
                 <button class="more" color="danger" ion-button>{{"Մանրամասն" | translate}}...</button>
@@ -17,7 +23,7 @@
             </ion-item>
             <ion-item-options side="right">
 
-                <button color="danger" ion-button>
+                <button class="close-button" color="danger" ion-button icon-only>
                     <ion-icon name="close"></ion-icon>
                 </button>
             </ion-item-options>

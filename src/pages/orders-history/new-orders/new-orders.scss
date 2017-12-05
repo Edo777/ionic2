@@ -1,7 +1,11 @@
 new-orders {
     ion-item-sliding .item {
         background: orange;
-        height: 35vw;
+        height: 30vw;
+    }
+    ion-item-sliding.active-slide.active-options-right ion-item-options {
+        background: rgba(10, 100, 10, 0.5);
+        ;
     }
     .view {
         .number {
@@ -30,6 +34,7 @@ new-orders {
             display: flex;
             align-items: center;
             span {
+                font-size: 0.8em;
                 margin: 0 auto
             }
         }
@@ -51,7 +56,13 @@ new-orders {
             height: 100%;
         }
     }
-    .button-md {
+    .list-md ion-item-options .button {
         width: 30vw;
+        height: 30vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        span {
+            width: 30vw;
+        }
     }
 }

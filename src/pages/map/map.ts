@@ -23,7 +23,13 @@ declare var google;
     templateUrl:'map.html',
     styles:
     [`
-        #map {
+       
+        .my-map{
+            height: 1px;
+            width: 100%;
+
+        }
+        .map {
             height: 100vw;
             width: 100%;
         }
@@ -50,6 +56,7 @@ export class MapGoogle implements OnInit{
     @ViewChild('map') mapElement:ElementRef;
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
+    @Input() hide:boolean = true;
     ngOnInit(){
         this.loadMap(); 
     }

@@ -3,7 +3,10 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   'new-orders ion-item-sliding item': {
     'background': 'orange',
-    'height': [{ 'unit': 'vw', 'value': 35 }]
+    'height': [{ 'unit': 'vw', 'value': 30 }]
+  },
+  'new-orders ion-item-slidingactive-slideactive-options-right ion-item-options': {
+    'background': 'rgba(10, 100, 10, 0.5)'
   },
   'new-orders view number': {
     'width': [{ 'unit': 'string', 'value': 'fit-content' }],
@@ -32,6 +35,7 @@ export default StyleSheet.create({
     'alignItems': 'center'
   },
   'new-orders view status span': {
+    'fontSize': [{ 'unit': 'em', 'value': 0.8 }],
     'margin': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': 'auto' }, { 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': 'auto' }]
   },
   'new-orders view confirm': {
@@ -51,7 +55,13 @@ export default StyleSheet.create({
   'new-orders view label-md': {
     'height': [{ 'unit': '%V', 'value': 1 }]
   },
-  'new-orders button-md': {
+  'new-orders list-md ion-item-options button': {
+    'width': [{ 'unit': 'vw', 'value': 30 }],
+    'height': [{ 'unit': 'vw', 'value': 30 }],
+    'marginLeft': [{ 'unit': 'vw', 'value': 5 }],
+    'marginRight': [{ 'unit': 'vw', 'value': 5 }]
+  },
+  'new-orders list-md ion-item-options button span': {
     'width': [{ 'unit': 'vw', 'value': 30 }]
   }
 });

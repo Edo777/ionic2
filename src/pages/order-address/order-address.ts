@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, NavParams, AlertController , App} from "ionic-angular";
+import { NavController, LoadingController, NavParams, AlertController, App, Platform } from "ionic-angular";
 import { CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
@@ -15,20 +15,22 @@ export class OrderAddress{
     address: any;
     newOrder: any[];
     myDate:string;
+    mapAddClassHide:boolean = false;
     constructor(
         private nav:NavController,
         public loadingCtrl: LoadingController,
         private navParams:NavParams,
         private mobiWash:MobiWash,
         private alertCtrl:AlertController,
-        private serv:TranslateService
+        private serv:TranslateService,
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
+        console.log(this.newOrder);
         this.newOrder = this.navParams.get('newOrder');
         this.historyAddresses = this.mobiWash.getAddresses();
-        console.log(this.newOrder);
     }
+
     presentLoadingDefault() {
         let message = this.serv.translateImportant('Խնդրում ենք սպասել...', "Please wait...")
         let loading = this.loadingCtrl.create({
@@ -74,4 +76,7 @@ export class OrderAddress{
         })
         alert.present();
       }
+    hideMap(){
+        this.mapAddClassHide = !this.mapAddClassHide;
+    }
 }

@@ -24,6 +24,7 @@ export class OrdersList implements OnInit{
     }
     completeAll(){
        this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
+       console.log('hello')
     }
     createNewAddress(){
        var modalAddress=this.modalCtrl.create(OrdersRegister);

@@ -61,7 +61,7 @@ export class HomePage {
   createAccount(){ 
     this.mobiWash.addUser(this.name, this.phoneNumber);
     this.navCtrl.setRoot(MenuComponent);
-   // this.navCtrl.setRoot(OrdersHistory);
+    //this.navCtrl.setRoot(OrdersHistory);
   }
 
 }

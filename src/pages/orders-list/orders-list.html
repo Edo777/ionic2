@@ -16,5 +16,5 @@
     </ion-card>
 </ion-content>
 <ion-footer>
-    <button ion-button text-center full (tap)="completeAll()">{{"Հաստատել բոլորը" | translate}}</button>
+    <button ion-button text-center full (tap)="completeAll()" [disabled]="newOrder?.length == 0">{{"Հաստատել բոլորը" | translate}}</button>
 </ion-footer>
