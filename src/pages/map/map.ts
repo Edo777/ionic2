@@ -23,20 +23,15 @@ declare var google;
     templateUrl:'map.html',
     styles:
     [`
-       
-        .my-map{
-            height: 1px;
-            width: 100%;
-
-        }
-        .map {
-            height: 100vw;
+        #map {
+            height: 200px;
             width: 100%;
         }
     `],
     providers:[Geolocation,GoogleMaps]
 })
 export class MapGoogle implements OnInit{
+    
     constructor(
         private viewCtrl:ViewController,
         private googleMaps: GoogleMaps,
@@ -57,8 +52,31 @@ export class MapGoogle implements OnInit{
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
     @Input() hide:boolean = true;
+
     ngOnInit(){
         this.loadMap(); 
+        //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
+       
+            this.geolocation.getCurrentPosition().then((position) => {
+                this.setNewMarker(position.coords.latitude, position.coords.longitude);
+                this.newAddress.lng = position.coords.longitude;
+                this.newAddress.lat = position.coords.latitude;
+                this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
+                .then((result: NativeGeocoderReverseResult) => {
+                    this.ngZone.run(()=>{
+                        console.log(result)
+                        this.newAddress.address = result.thoroughfare;
+                        this.emit()
+                    })
+                    
+                })
+                .catch((error: any) => console.log(error));
+                this.emit()
+               
+            }).catch((err) => {
+                console.log(err)
+            })
+        
     }
     ngOnChanges(){
         if(this.address){

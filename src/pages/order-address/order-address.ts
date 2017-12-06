@@ -41,7 +41,7 @@ export class OrderAddress{
 
         setTimeout(() => {
             loading.dismiss();
-        }, 2000);
+        }, 3000);
     }
     setNewAddress(event){
         this.address = event;
@@ -78,5 +78,8 @@ export class OrderAddress{
       }
     hideMap(){
         this.mapAddClassHide = !this.mapAddClassHide;
+    }
+    ngOnDestroy(){
+        console.log(this.address)
     }
 }
