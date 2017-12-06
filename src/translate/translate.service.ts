@@ -6,8 +6,8 @@ export class TranslateService{
     dictionary:any = DICTIONARY;
     _activeLng:any = {
         lng:"arm",
-        text:"Հայերեն",
-        flag:'assets/imgs/drosh.jpg'
+        text:"Անգլերեն",
+        flag:'assets/imgs/english.png'
     }
     constructor(){}
     public getActiveLng(){

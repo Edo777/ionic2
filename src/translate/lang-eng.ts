@@ -42,6 +42,7 @@ export const LANG_EN_TRANS = {
     "Ջնջել" : "Delete",
     "Հրավերքի կոդ" : "Ref code",
     "Ձեր պրոմ կոդն է" : "Your Promcode is",
-    "Մանրամասն" : "More"
+    "Մանրամասն" : "More",
+    "Հայերեն" : "Հայերեն"
 };
 

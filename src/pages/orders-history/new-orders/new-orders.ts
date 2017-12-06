@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class NewOrders{
-     
+     some(item){
+         console.log('close')
+         item.close()
+
+     }
 }

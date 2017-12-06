@@ -57,21 +57,20 @@ export class MenuComponent{
 
     //language
     changeLng(){
-        if(this.localActiveLng == "arm"){
+        if(this.localActiveLng == "en"){
             this.activeLngText = "Անգլերեն"
-            this.localActiveLng = "en"
+            this.localActiveLng = "arm"
             this.activeFlag = 'assets/imgs/english.png'
-           
         }else{
             this.activeLngText = "Հայերեն"
-            this.localActiveLng = "arm";
+            this.localActiveLng = "en";
             this.activeFlag = 'assets/imgs/drosh.jpg';
         }
-         let getter = {
-                lng:this.localActiveLng,
-                text:this.activeLngText,
-                flag:this.activeFlag
-            }
+        let getter = {
+          lng:this.localActiveLng,
+          text:this.activeLngText,
+          flag:this.activeFlag
+        }
         this.serv.setActiveLng(getter);
     }
     outUser() {

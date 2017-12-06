@@ -3,6 +3,7 @@
 export const LANG_ARM_NAME = 'arm'; 
 
 export const LANG_ARM_TRANS = {
+    "Անգլերեն" : "English",
     "Ցանկ" : "Ցանկ",
     "Դուրս գալ" : "Դուրս գալ",
     "Կարգավորումներ" : "Կարգավորումներ",

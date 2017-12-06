@@ -11,27 +11,38 @@ import { MobiWash } from "../../services/barrel.service";
 
 export class OrdersList implements OnInit{
     newOrder:any[] = [];
+    editIndex:number;
+    isEdit:boolean = false;
     constructor(
         private nav:NavController, 
         private modalCtrl:ModalController, 
         private mobiWash:MobiWash
     ){}
     ngOnInit(){
-        
+        this.editIndex = this.newOrder.length - 1;
     }
     remove(i){
         this.newOrder.splice(i, 1);
+    }
+    edit(i){
+        this.editIndex = i;
+        this.isEdit = true;
+        this.createNewAddress(this.newOrder[i]);
     }
     completeAll(){
        this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
        console.log('hello')
     }
-    createNewAddress(){
-       var modalAddress=this.modalCtrl.create(OrdersRegister);
-       modalAddress.onDidDismiss((data)=>{
+    createNewAddress(orderEdit?:any){
+       var modalAddress=this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit});
+       modalAddress.onWillDismiss((data) => {
            if(data){
-               this.newOrder.push(data)
-               console.log(this.newOrder)
+                if(this.isEdit){
+                    this.newOrder.splice(this.editIndex, 1 , data);
+                }else{
+                    this.newOrder.push(data);   
+                }
+                this.isEdit = false;
            }
        })
         modalAddress.present()

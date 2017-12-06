@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, Content, Nav, NavController, App, AlertController } from "ionic-angular";
+import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams } from "ionic-angular";
 import { Keyboard } from "@ionic-native/keyboard";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress, CompleteOrder } from "../barrel"
@@ -16,6 +16,8 @@ import { AddNewAddress, CompleteOrder } from "../barrel"
 })
 
 export class OrdersRegister implements OnInit,AfterViewInit{
+    //edit order
+    private orderEdit:any;
     historyCars:any;
     cars:any;
     brands:string[];
@@ -36,7 +38,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         public platform:Platform,
         private mobiWash:MobiWash,
         private nav:NavController,
-        private alertCtrl:AlertController
+        private alertCtrl:AlertController,
+        private params:NavParams
     ){
         this.initializeCars();
     }
@@ -54,6 +57,16 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     ngOnInit(){
         this.historyCars = this.mobiWash.getCars();
+        if(this.params.data["orderEdit"]){
+            this.orderEdit = this.params.data["orderEdit"];
+            this.rows.hide2 = true;
+            this.rows.hide3 = true;
+            this.rows.hide4 = true;
+            this.NEWCAR.brand = this.orderEdit.brand;
+            this.NEWCAR.model = this.orderEdit.model;
+            this.NEWCAR.number = this.orderEdit.number;
+            this.NEWCAR.type = this.orderEdit.type;
+        }
     }
     /////////////////////////
     
@@ -143,6 +156,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                     this.NEWCAR.brand = data.brand;
                     this.NEWCAR.model = data.model;
                     this.NEWCAR.number = data.number;
+                    
                 }
             }
         })
