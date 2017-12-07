@@ -80,6 +80,8 @@
     <allow-navigation href="http://192.168.0.101:8100" />
     <allow-navigation href="http://192.168.0.101:8101" />
     <allow-navigation href="http://192.168.0.104:8101" />
+    <allow-navigation href="http://192.168.1.2:8101" />
+    <allow-navigation href="http://192.168.1.2:8100" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="~4.5.3" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -98,5 +100,5 @@
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-hotspot" spec="^1.2.9" />
     <plugin name="cordova-plugin-camera" spec="^3.0.0" />
-    <allow-navigation href="http://192.168.1.2:8101" />
+    <plugin name="mx.ferreyra.callnumber" />
 </widget>

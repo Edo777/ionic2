@@ -80,6 +80,6 @@ export class OrderAddress{
         this.mapAddClassHide = !this.mapAddClassHide;
     }
     ngOnDestroy(){
-        console.log(this.address)
+        console.log(this.address, "delete order address")
     }
 }

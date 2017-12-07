@@ -33,18 +33,22 @@ export class MenuComponent{
         { pageName:'Մեր մասին', component: AboutUs},          
     ]
     constructor(
-        private navCtrl:NavController, 
+        public navCtrl:NavController, 
         public params:NavParams, 
         private mobiWash:MobiWash,
         private alertCtrl:AlertController,
         private serv:TranslateService
     ){
-        this.activeLng = this.serv.getActiveLng();
+        
+            this.activeLng = this.serv.getActiveLng();
+       
     }
     ngOnInit(){
-        this.localActiveLng = this.activeLng.lng;
-        this.activeLngText = this.activeLng.text;
-        this.activeFlag = this.activeLng.flag;
+        
+            this.localActiveLng = this.activeLng.lng;
+            this.activeLngText = this.activeLng.text;
+            this.activeFlag = this.activeLng.flag;
+        
     }
     bgChange(page){
         return page.component == this.activePage;

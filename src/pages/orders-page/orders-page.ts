@@ -7,6 +7,5 @@ import { UserAccount } from "../barrel";
 })
 export class OrdersPage {
    @ViewChild('myNav') nav: NavController
-   private rootPage: any = UserAccount;
-   
+   private rootPage: any = UserAccount;   
 }

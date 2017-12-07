@@ -1,17 +1,25 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
-import { OrdersPage } from "../barrel";
+import { NavController, App, NavOptions } from "ionic-angular";
+import { OrdersPage, OrdersList, OrdersHistory, MenuComponent } from "../barrel";
+import { TranslateService } from "../../translate/translate.service";
 
 @Component({
     selector:'complete-order',
     templateUrl:'complete-order.html'
 })
 
-export class CompleteOrder{
-    constructor(private nav:NavController){
+export class CompleteOrder {
+
+    constructor(private _nav:NavController,public appCtrl: App){
         
     }
     goToStart(){
-        this.nav.setRoot(OrdersPage)
+        this._nav.setRoot(OrdersPage)
+    }
+    goToOrdersList(){
+        this._nav.setPages([{page: OrdersPage}, {page:OrdersList}])
+    }
+    goToOrdersHistory(){
+        this._nav.setPages([{page: OrdersPage}, {page:OrdersHistory}])
     }
 }

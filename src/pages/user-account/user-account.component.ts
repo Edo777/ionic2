@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController, NavController, App } from 'ionic-angular';
+import { ModalController, NavController, App, NavParams } from 'ionic-angular';
 import { OrdersRegister, AddNewAddress, OrdersList } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
 import { MobiWash } from "../../services/barrel.service";
@@ -21,9 +21,10 @@ export class UserAccount {
         public modalCtrl: ModalController,
         private mobiWash:MobiWash,
         private nav:NavController,
-        public appCtrl: App
+        public appCtrl: App,
+        private params:NavParams
     ){
-        
+       
     }
    ngOnInit(){
        this.getOrder()

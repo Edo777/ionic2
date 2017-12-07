@@ -63,15 +63,17 @@ export class MapGoogle implements OnInit{
                 this.newAddress.lat = position.coords.latitude;
                 this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
                 .then((result: NativeGeocoderReverseResult) => {
+                    let locality = result.locality || '';
+                    let subLocality = result.subLocality || '';
+                    let thoroughfare = result.thoroughfare || '';
                     this.ngZone.run(()=>{
-                        console.log(result)
-                        this.newAddress.address = result.thoroughfare;
-                        this.emit()
+                        this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
+                        this.emitForAddressChange()
                     })
                     
                 })
                 .catch((error: any) => console.log(error));
-                this.emit()
+                this.emitForAddressChange()
                
             }).catch((err) => {
                 console.log(err)
@@ -133,12 +135,15 @@ export class MapGoogle implements OnInit{
         this.mapAnimate(lat, lng);
         this.nativeGeocoder.reverseGeocode(lat,lng)
             .then((result: NativeGeocoderReverseResult) => {
+                let locality = result.locality || '';
+                let subLocality = result.subLocality || '';
+                let thoroughfare = result.thoroughfare;
                 this.ngZone.run(()=>{
                     console.log(result)
-                    this.newAddress.address = result.thoroughfare;
+                    this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
                     this.newAddress.lat = lat;
                     this.newAddress.lng = lng;
-                    this.emit()
+                    this.emitForAddressChange()
                 })
                 
             })
@@ -169,7 +174,7 @@ export class MapGoogle implements OnInit{
             }, 100);
         }
         //////////////////////////
-        emit(){
+        emitForAddressChange(){
             this.close.emit(this.newAddress);
         }
         changeInput(){

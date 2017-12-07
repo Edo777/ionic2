@@ -26,7 +26,8 @@ import {
     OrdersHistory,
     NewOrders,
     OldOrders,
-    Settings
+    Settings,
+    PhoneCall
   } from '../pages/barrel';
 
 //pipes
@@ -66,7 +67,8 @@ import { TranslateService } from "../translate/translate.service";
     NewOrders,
     OldOrders,
     Settings,
-    Translate
+    Translate,
+    PhoneCall
     
   ],
   imports: [
@@ -109,7 +111,8 @@ import { TranslateService } from "../translate/translate.service";
     OrdersHistory,
     NewOrders,
     OldOrders,
-    Settings
+    Settings,
+    PhoneCall
   ],
   providers: [
     Geolocation,

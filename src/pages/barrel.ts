@@ -16,4 +16,5 @@ export * from './order-address/order-address';
 export * from './orders-history/orders-history';
 export * from './orders-history/barrel-orders';
 export * from './settings/settings';
+export * from './phone-call';
 

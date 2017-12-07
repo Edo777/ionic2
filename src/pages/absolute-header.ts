@@ -6,10 +6,10 @@ import { Component, Input } from '@angular/core';
     `
      <ion-header mode="md">
         <ion-navbar mode="md">
-            <button mode="md" ion-button menuToggle icon-only>
+            <button mode="md" ion-button menuToggle icon-only *ngIf="pageName?.length">
                     <ion-icon md="ios-menu" ios="ios-menu"></ion-icon>
                 </button>
-            <h1 no-margin>
+            <h1 no-margin *ngIf="pageName?.length">
                 <span>{{pageName | translate}}</span>
             </h1>
         </ion-navbar>
