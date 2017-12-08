@@ -53,31 +53,37 @@ export class MapGoogle implements OnInit{
     @Input() address:any;
     @Input() hide:boolean = true;
 
+
+
     ngOnInit(){
         this.loadMap(); 
         //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
        
-            this.geolocation.getCurrentPosition().then((position) => {
-                this.setNewMarker(position.coords.latitude, position.coords.longitude);
-                this.newAddress.lng = position.coords.longitude;
-                this.newAddress.lat = position.coords.latitude;
-                this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
-                .then((result: NativeGeocoderReverseResult) => {
-                    let locality = result.locality || '';
-                    let subLocality = result.subLocality || '';
-                    let thoroughfare = result.thoroughfare || '';
-                    this.ngZone.run(()=>{
-                        this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
-                        this.emitForAddressChange()
+        
+            
+                this.geolocation.getCurrentPosition().then((position) => {   
+                    this.newAddress.lng = position.coords.longitude;
+                    this.newAddress.lat = position.coords.latitude;
+                    this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
+                    .then((result: NativeGeocoderReverseResult) => {
+                        let locality = result.locality || '';
+                        let subLocality = result.subLocality || '';
+                        let thoroughfare = result.thoroughfare || '';
+                        
+                        this.ngZone.run(() => {
+                            this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
+                            this.setNewMarker(position.coords.latitude, position.coords.longitude);            
+                            this.emitForAddressChange()
+                        })
+                        
                     })
-                    
-                })
-                .catch((error: any) => console.log(error));
-                this.emitForAddressChange()
-               
+                    .catch((error: any) => console.log(error));
+                    this.emitForAddressChange()
+                
             }).catch((err) => {
                 console.log(err)
             })
+        
         
     }
     ngOnChanges(){
@@ -85,8 +91,7 @@ export class MapGoogle implements OnInit{
             this.newAddress = this.address;
             if(this.address.lat != 0 && this.address.lng != 0){
                 this.setNewMarker(this.address.lat, this.address.lng);
-            }
-            
+            }   
         }
     }
 

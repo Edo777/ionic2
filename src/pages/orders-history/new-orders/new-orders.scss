@@ -8,6 +8,7 @@ new-orders {
         align-items: center;
     }
     .view {
+        .grid {}
         .number {
             font-size: 1em;
             width: fit-content;
@@ -43,7 +44,7 @@ new-orders {
                 margin: 0 auto
             }
         }
-        .confirm {
+        /*.confirm {
             font-size: 1rem;
             position: absolute;
             right: 0;
@@ -58,9 +59,16 @@ new-orders {
             height: 35%;
             width: 34vw;
             bottom: 0;
-        }
+        }*/
         .label-md {
             height: 100px;
+        }
+        .buttons {
+            padding: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 38%;
         }
     }
     .list-md ion-item-options .button {
@@ -70,4 +78,11 @@ new-orders {
             width: 100px;
         }
     }
+}
+
+*[normal] {
+    width: 100%;
+    font-size: 0.7em;
+    max-height: 26px;
+    min-height: 26px;
 }

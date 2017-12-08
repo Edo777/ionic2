@@ -44,6 +44,7 @@ import { Camera } from '@ionic-native/camera';
 import { NativeGeocoder } from "@ionic-native/native-geocoder";
 import { Translate } from "../pipes/translate";
 import { TranslateService } from "../translate/translate.service";
+import { ApiService } from "../services/api.service";
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { TranslateService } from "../translate/translate.service";
     StatusBar,
     SplashScreen,
     TranslateService,
+    ApiService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

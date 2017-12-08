@@ -100,5 +100,5 @@
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-hotspot" spec="^1.2.9" />
     <plugin name="cordova-plugin-camera" spec="^3.0.0" />
-    <plugin name="mx.ferreyra.callnumber" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

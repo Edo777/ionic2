@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgZone } from "@angular/core";
 import { NavController, ModalController } from "ionic-angular";
 import { OrdersRegister,  OrderAddress } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
@@ -16,7 +16,8 @@ export class OrdersList implements OnInit{
     constructor(
         private nav:NavController, 
         private modalCtrl:ModalController, 
-        private mobiWash:MobiWash
+        private mobiWash:MobiWash,
+        private ngZone:NgZone
     ){}
     ngOnInit(){
         this.editIndex = this.newOrder.length - 1;
@@ -30,7 +31,10 @@ export class OrdersList implements OnInit{
         this.createNewAddress(this.newOrder[i]);
     }
     completeAll(){
-       this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
+        this.ngZone.run(() => {
+             this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
+        })
+      
        console.log('hello')
     }
     createNewAddress(orderEdit?:any){

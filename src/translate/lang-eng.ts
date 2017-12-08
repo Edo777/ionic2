@@ -43,6 +43,7 @@ export const LANG_EN_TRANS = {
     "Հրավերքի կոդ" : "Ref code",
     "Ձեր պրոմ կոդն է" : "Your Promcode is",
     "Մանրամասն" : "More",
+    "Չեղարկել":"Cancel",
     "Հայերեն" : "Հայերեն"
 };
 

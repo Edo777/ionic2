@@ -9,6 +9,24 @@ export default StyleSheet.create({
     'background': 'grey',
     'alignItems': 'center'
   },
+  'new-orders view': {
+    // .confirm {
+            font-size: 1rem;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            width: 34vw;
+        }
+        .more {
+            font-size: 1rem;
+            position: absolute;
+            left: 0;
+            height: 35%;
+            width: 34vw;
+            bottom: 0;
+        }
+  },
   'new-orders view number': {
     'fontSize': [{ 'unit': 'em', 'value': 1 }],
     'width': [{ 'unit': 'string', 'value': 'fit-content' }],
@@ -44,24 +62,15 @@ export default StyleSheet.create({
     'fontSize': [{ 'unit': 'em', 'value': 0.8 }],
     'margin': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': 'auto' }, { 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': 'auto' }]
   },
-  'new-orders view confirm': {
-    'fontSize': [{ 'unit': 'rem', 'value': 1 }],
-    'position': 'absolute',
-    'right': [{ 'unit': 'px', 'value': 0 }],
-    'bottom': [{ 'unit': 'px', 'value': 0 }],
-    'height': [{ 'unit': '%V', 'value': 0.35 }],
-    'width': [{ 'unit': 'vw', 'value': 34 }]
-  },
-  'new-orders view more': {
-    'fontSize': [{ 'unit': 'rem', 'value': 1 }],
-    'position': 'absolute',
-    'left': [{ 'unit': 'px', 'value': 0 }],
-    'height': [{ 'unit': '%V', 'value': 0.35 }],
-    'width': [{ 'unit': 'vw', 'value': 34 }],
-    'bottom': [{ 'unit': 'px', 'value': 0 }]
-  },
   'new-orders view label-md': {
     'height': [{ 'unit': 'px', 'value': 100 }]
+  },
+  'new-orders view buttons': {
+    'padding': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }],
+    'position': 'absolute',
+    'left': [{ 'unit': 'px', 'value': 0 }],
+    'bottom': [{ 'unit': 'px', 'value': 0 }],
+    'height': [{ 'unit': '%V', 'value': 0.38 }]
   },
   'new-orders list-md ion-item-options button': {
     'width': [{ 'unit': 'px', 'value': 100 }],
@@ -69,5 +78,11 @@ export default StyleSheet.create({
   },
   'new-orders list-md ion-item-options button span': {
     'width': [{ 'unit': 'px', 'value': 100 }]
+  },
+  '*[normal]': {
+    'width': [{ 'unit': '%H', 'value': 1 }],
+    'fontSize': [{ 'unit': 'em', 'value': 0.7 }],
+    'maxHeight': [{ 'unit': 'px', 'value': 26 }],
+    'minHeight': [{ 'unit': 'px', 'value': 26 }]
   }
 });
