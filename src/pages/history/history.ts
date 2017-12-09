@@ -60,9 +60,10 @@ export class HistoryPage implements OnInit{
         this.cars = this.mobiWash.getCars()
     }
 
-    createNewCars(){
-        var modal=this.modalCtrl.create(AddCars);
-        modal.onDidDismiss((data) =>{
+
+    createNewCars(car?:any){
+        var modal=this.modalCtrl.create(AddCars, {"car" :car});
+        modal.onWillDismiss((data) =>{
             if(data){
                 this.addNewCar = data;
                 this.addCar();

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { SearchCars } from "../interfaces/interfaces";
-import { ViewController } from "ionic-angular";
+import { ViewController, NavParams } from "ionic-angular";
 
 @Component({
     selector:'add-cars',
@@ -20,17 +20,23 @@ export class AddCars{
     cars:any[] = [];
     dataJson:any[];
     addNewCar:any = {brand: '', model:'', number:''}
+    
     isAddNewCar:boolean = false;
     
       constructor(
         private viewCtrl:ViewController,
         private mobiWash:MobiWash,
-        private ordersCtrl:CarsService
+        private ordersCtrl:CarsService,
+        private params:NavParams
     ){}      
         ngOnInit(){
        
         this.cars = this.mobiWash.getCars();
-       
+        if(this.params.data["car"]){
+            this.addNewCar.brand = this.params.data["car"].brand;
+            this.addNewCar.model = this.params.data["car"].model;
+            this.addNewCar.number = this.params.data["car"].number;
+        }
         this.initializeCars();
     }
     ngAfterViewInit() {
@@ -51,7 +57,6 @@ export class AddCars{
     }
 
     completeModel(val:string){
-        
         this.closeSearchModels = false;
         this.addNewCar.model=val
     }
