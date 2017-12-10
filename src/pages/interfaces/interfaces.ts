@@ -3,7 +3,7 @@ import { NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
 export interface User {
     id : number,
     name : string,
-    telNumber : any,
+    customer_phone : any,
     car : any[],
     address : any[],
     order: any[]

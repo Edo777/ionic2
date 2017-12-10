@@ -1,10 +1,31 @@
 history-page {
+    ion-item-sliding {
+        margin-bottom: 10px;
+    }
+    ion-item-sliding .item {
+        background: lightseagreen;
+        height: 100px;
+    }
     ion-scroll {
         .scroll-content {
             height: 30vh;
         }
     }
-    .order-card {
-        height: 60vh;
+    .view {
+        padding-left: 8px;
+        ion-icon[item-left]+.item-inner {
+            margin-left: 0;
+        }
+        .label-md {
+            height: 100px;
+        }
+    }
+    .list-md ion-item-options .button {
+        width: 100px;
+        height: 100%;
+        display: flex;
+        span {
+            width: 100px;
+        }
     }
 }

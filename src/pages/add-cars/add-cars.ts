@@ -20,7 +20,7 @@ export class AddCars{
     cars:any[] = [];
     dataJson:any[];
     addNewCar:any = {brand: '', model:'', number:''}
-    
+    isEdit:boolean;
     isAddNewCar:boolean = false;
     
       constructor(
@@ -33,6 +33,7 @@ export class AddCars{
        
         this.cars = this.mobiWash.getCars();
         if(this.params.data["car"]){
+            this.isEdit = true;
             this.addNewCar.brand = this.params.data["car"].brand;
             this.addNewCar.model = this.params.data["car"].model;
             this.addNewCar.number = this.params.data["car"].number;
@@ -86,10 +87,13 @@ export class AddCars{
     }
 
     addCar(){
-        this.viewCtrl.dismiss(this.addNewCar);
+        this.viewCtrl.dismiss([this.addNewCar, this.isEdit]);
     }
     close(){
         this.viewCtrl.dismiss();
+    }
+    ngOnDestroy(){
+         this.isEdit = false;
     }
 
 }

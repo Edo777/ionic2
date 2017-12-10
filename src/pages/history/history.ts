@@ -46,7 +46,6 @@ export class HistoryPage implements OnInit{
         this.cars = this.mobiWash.getCars()
     }
     addCar(){
-
         this.addNewCar = {
             brand: this.addNewCar.brand.trim(),
             model: this.addNewCar.model.trim(),
@@ -55,18 +54,24 @@ export class HistoryPage implements OnInit{
         if(this.addNewCar.brand.length < 1 || this.addNewCar.model.length < 1 || this.addNewCar.number.length < 1){
             return;
         }
-        
         this.mobiWash.addCar(this.addNewCar);
         this.cars = this.mobiWash.getCars()
     }
 
 
-    createNewCars(car?:any){
+
+    createNewCars(car?:any, index?:number){
         var modal=this.modalCtrl.create(AddCars, {"car" :car});
         modal.onWillDismiss((data) =>{
             if(data){
-                this.addNewCar = data;
-                this.addCar();
+                if(data[1]){
+                    this.mobiWash.editCar(index, data[0])
+                    this.cars = this.mobiWash.getCars();
+                    
+                }else{
+                    this.addNewCar = data[0];
+                    this.addCar();
+                }
             }
         })
         modal.present();

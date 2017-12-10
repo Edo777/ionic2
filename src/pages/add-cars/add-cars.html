@@ -4,40 +4,55 @@
              <ion-icon name="close" item-end ></ion-icon>
         </button>
     <!--Brands-->
-    <ion-item mode="md">
-        <ion-label color="black" floating>{{"Մեքենա" | translate}}</ion-label>
-        <ion-input (input)="search.getBrands($event)" [value]="addNewCar.brand" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="addNewCar.brand"></ion-input>
-    </ion-item>
-    <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">
-        <ion-grid>
-            <ion-row *ngFor="let brand of brands">
-                <ion-col class="car-row" col-12 (tap)="completeBrand(brand.models,brand.value)">
-                    {{ brand.value }}
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-scroll>
+    <ion-grid>
+        <ion-row class="cars-info">
+            <ion-col col-12>
+                <ion-item mode="md">
+                    <ion-label color="black" floating>{{"Մեքենա" | translate}}</ion-label>
+                    <ion-input (input)="search.getBrands($event)" [value]="addNewCar.brand" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="addNewCar.brand"></ion-input>
+                </ion-item>
+                <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">
+                    <ion-grid>
+                        <ion-row *ngFor="let brand of brands">
+                            <ion-col class="car-row" col-12 (tap)="completeBrand(brand.models,brand.value)">
+                                {{ brand.value }}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-scroll>
+            </ion-col>
+        </ion-row>
+        <!--models-->
+        <ion-row class="cars-info">
+            <ion-col col-12>
+                <ion-item mode="md">
+                    <ion-label color="black" floating>{{"Մոդել" | translate}}</ion-label>
+                    <ion-input (input)="search.getModels($event)" [value]="addNewCar.model" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="addNewCar.model"></ion-input>
+                </ion-item>
+                <ion-scroll scrollY="true" *ngIf="closeSearchModels && localModels?.length">
+                    <ion-grid>
+                        <ion-row *ngFor="let model of localModels">
+                            <ion-col class="car-row" col-12 (tap)="completeModel(model.value)">
+                                {{ model.value }}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-scroll>
+            </ion-col>
+        </ion-row>
+        <!--numbers-->
+        <ion-row class="cars-info">
+            <ion-col col-12>
 
-    <!--models-->
-    <ion-item mode="md">
-        <ion-label color="black" floating>{{"Մոդել" | translate}}</ion-label>
-        <ion-input (input)="search.getModels($event)" [value]="addNewCar.model" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="addNewCar.model"></ion-input>
-    </ion-item>
-    <ion-scroll scrollY="true" *ngIf="closeSearchModels && localModels?.length">
-        <ion-grid>
-            <ion-row *ngFor="let model of localModels">
-                <ion-col class="car-row" col-12 (tap)="completeModel(model.value)">
-                    {{ model.value }}
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-scroll>
-    <!--numbers-->
-    <ion-item mode="md">
-        <ion-label color="black" floating>{{"Համարանիշ" | translate}}</ion-label>
-        <ion-input [(ngModel)]="addNewCar.number"></ion-input>
-    </ion-item>
-
-    <button ion-button full small (click)="addCar()">{{"Ավելացնել" | translate}}</button>
+                <ion-item mode="md">
+                    <ion-label color="black" floating>{{"Համարանիշ" | translate}}</ion-label>
+                    <ion-input [(ngModel)]="addNewCar.number"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>
+<ion-footer>
+    <button ion-button full (click)="addCar()">{{"Ավելացնել" | translate}}</button>
+</ion-footer>

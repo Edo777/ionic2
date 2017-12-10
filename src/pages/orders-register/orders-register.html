@@ -85,8 +85,11 @@
         </ion-row>
 
         <ion-row>
-            <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+
         </ion-row>
     </ion-grid>
 
 </ion-content>
+<ion-footer *ngIf="NEWCAR.type != ''">
+    <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+</ion-footer>

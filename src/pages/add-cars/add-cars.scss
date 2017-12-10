@@ -1,11 +1,26 @@
 add-cars {
     ion-scroll {
-        height: 30vh;
         .scroll-content {
             height: 30vh;
+            padding-left: 16px;
         }
     }
     .car-row {
-        background: red
+        background: grey;
+        border-bottom: 1px solid black;
+    }
+    .cars-info {
+        padding-right: 16px;
+        ion-grid {
+            padding: 0;
+            .car-row {
+                background: grey;
+                border-bottom: 1px solid black;
+            }
+        }
+        /*.active-car-brand {
+            background: grey;
+            padding: 16px 50px 16px 5px;
+        }*/
     }
 }

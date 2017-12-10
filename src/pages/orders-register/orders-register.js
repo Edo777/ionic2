@@ -11,7 +11,8 @@ export default StyleSheet.create({
     'width': [{ 'unit': '%H', 'value': 1 }]
   },
   'orders-register cars-info': {
-    'paddingLeft': [{ 'unit': 'px', 'value': 22 }]
+    'paddingLeft': [{ 'unit': 'px', 'value': 22 }],
+    'paddingRight': [{ 'unit': 'px', 'value': 16 }]
   },
   'orders-register cars-info ion-grid': {
     'padding': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }]

@@ -5,20 +5,20 @@ import { User } from "../pages/interfaces/interfaces";
 @Injectable()
 
 export class MobiWash{
-    private activeId:number;
+    private customer_id:number;
     constructor(private localService:Local){}
 /////////////////////////////////
-    //inicializacia activeId
+    //inicializacia customer_id
     private getActiveUserId(tel:any, data:any){
         let index;
         if(data.length != 0){
-            index = data.findIndex((i) => tel == i.telNumber);
+            index = data.findIndex((i) => tel == i.customer_phone);
             if(index >= 0){
-                this.activeId = data[index].id;
-                 console.log('item = ', this.activeId)
+                this.customer_id = data[index].id;
+                 console.log('item = ', this.customer_id)
             }else{
-                this.activeId = data[length-1].id;
-                 console.log('item length -1 = ', this.activeId)
+                this.customer_id = data[length-1].id;
+                 console.log('item length -1 = ', this.customer_id)
             }
         }
     }
@@ -33,7 +33,7 @@ export class MobiWash{
     addUser(username:string, tel:string){
         
         let data = this.localService.get("data") || [];
-        let isUser = data.filter((i) => i.telNumber === tel);
+        let isUser = data.filter((i) => i.customer_phone === tel);
         if(isUser.length){
             this.getActiveUserId(tel, data);
             return;
@@ -41,12 +41,12 @@ export class MobiWash{
         let user:User = {
             id:data.length,
             name: username,
-            telNumber: tel,
+            customer_phone: tel,
             car:[],
             address :[],
             order:[]
         }
-        this.activeId = user.id;
+        this.customer_id = user.id;
         data.push(user);
         this.localService.set('data', data);
     }
@@ -55,32 +55,40 @@ export class MobiWash{
 
     removeUser(){
         let data:string[] = this.localService.get("data");
-        data.splice(this.activeId,1);
+        data.splice(this.customer_id,1);
         this.idControl(data);
         this.localService.set('data', data);
-        console.log('item = ', this.activeId);
+        console.log('item = ', this.customer_id);
     }
     
 /////////////////////////////////
 
     addCar(carInfo:any){
         let data = this.localService.get("data") || [];
-        let isNewCar = data[this.activeId].car.findIndex((i) => {
+        let isNewCar = data[this.customer_id].car.findIndex((i) => {
             return (i.brand === carInfo.brand) && (i.model === carInfo.model) && (i.number === carInfo.number);
         });
         if(isNewCar >= 0){
             return;
         }
-        data[this.activeId].car.push(carInfo);
+        data[this.customer_id].car.push(carInfo);
         this.localService.set('data', data);
     }
 
 ////////////////////////////////////
 
+    editCar(oldIndex, newCar){
+        let data = this.localService.get("data") || [];
+        data[this.customer_id].car.splice(oldIndex, 1, newCar);
+        this.localService.set('data', data);
+    }
+
+///////////////////////////////////
+
     removeCar(i:number){
         let data = this.localService.get("data") || [];
         
-        data[this.activeId].car.splice(i, 1);
+        data[this.customer_id].car.splice(i, 1);
         this.localService.set('data', data);
     }
     
@@ -88,46 +96,46 @@ export class MobiWash{
 
     getCars(){
         let data = this.localService.get("data");
-        return data[this.activeId].car;        
+        return data[this.customer_id].car;        
     }
     
 /////////////////////////////////
     addAddress(address:any){
         let data = this.localService.get("data") || [];
-        let isNewAddress = data[this.activeId].address.findIndex((i) => {
+        let isNewAddress = data[this.customer_id].address.findIndex((i) => {
             return (i.address === address.address)
         });
         if(isNewAddress >= 0){
             return;
         }
-        data[this.activeId].address.push(address);
+        data[this.customer_id].address.push(address);
         this.localService.set('data', data);
     }
 /////////////////////////////////
     getAddresses(){
         let data = this.localService.get("data");
-        return data[this.activeId].address || [];
+        return data[this.customer_id].address || [];
     }
 /////////////////////////////////
     removeAddress(i:number){
         let data = this.localService.get("data") || [];
         
-        data[this.activeId].address.splice(i, 1);
+        data[this.customer_id].address.splice(i, 1);
         this.localService.set('data', data);
     }
 ////////////////////////////////////
     addOrder(ord:any){
         let data = this.localService.get("data") || [];
-        data[this.activeId].order.push(ord);
+        data[this.customer_id].order.push(ord);
         this.localService.set('data', data);
     }
     getOrder(){
         let data=this.localService.get('data');
-        return data[this.activeId].order
+        return data[this.customer_id].order
     }
     removeOrder(i:number){
         let data=this.localService.get('data');
-        data[this.activeId].order.splice(i,1);
+        data[this.customer_id].order.splice(i,1);
         this.localService.set('data',data)
     }
 }
