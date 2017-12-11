@@ -1,12 +1,62 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
+
     <button detail-none text-center ion-item no-padding block color="primary" (click)="createNewAddress()">
         {{"Ավելացնել նոր հասցե" | translate}}
     </button>
-    <ion-list no-margin mode="md" *ngFor="let address of addresses; let i = index">
-        <button lines detail-none ion-item no-padding>
-            <ion-label>{{address.address}}</ion-label>
-            <ion-icon name="close" item-end (click)="removeAddress(i)"></ion-icon>
-        </button>
+    <ion-list no-margin mode="md">
+        <ion-item-sliding #item *ngFor="let address of addresses; let i = index">
+            <ion-item mode="md" class="view" no-lines>
+                <ion-icon item-left color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-2 text-center>
+                            <ion-icon md="md-globe" ios="md-globe" color="primary"></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            {{"Հասցե"}}
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-12>
+                            <span text-wrap>{{address.address}}</span>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-icon item-right color="danger" md="md-arrow-dropright" ios="md-arrow-dropright"></ion-icon>
+            </ion-item>
+            <ion-item-options side="right">
+                <button mode="ios" class="close-button" color="danger" (click)="removeAddress(i)" ion-button icon-only>
+                    <ion-grid>
+                        <ion-row>
+                                <ion-col col-12 text-center>
+                                    {{"Ջնջել" | translate}}
+                                </ion-col>  
+                        </ion-row>
+                        <ion-row>
+                                <ion-col col-12>
+                                    <ion-icon md="md-trash" ios="md-trash"></ion-icon>
+                                </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button mode="ios" class="close-button" color="secondary" (click)="createNewAddress(address, i)" ion-button icon-only>
+                    <ion-grid>
+                        <ion-row>
+                                <ion-col col-12 text-center>
+                                    {{"Փոփոխել" | translate}}
+                                </ion-col>  
+                        </ion-row>
+                        <ion-row>
+                                <ion-col col-12>
+                                    <ion-icon md="md-create" ios="md-create"></ion-icon>
+                                </ion-col>
+                        </ion-row>
+                    </ion-grid>  
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </ion-content>

@@ -31,12 +31,18 @@ export class Addresses {
         this.mobiwash.removeAddress(i);
         this.addresses = this.mobiwash.getAddresses()
     }
-    createNewAddress(){
-       var modalAddress=this.modalCtrl.create(AddNewAddress);
-       modalAddress.onDidDismiss((data)=>{
+    createNewAddress(address?:any, index?:number){
+       var modalAddress=this.modalCtrl.create(AddNewAddress, {"address" :address});
+       modalAddress.onWillDismiss((data)=>{
            if(data){
-               this.mobiwash.addAddress(data);
-               this.addresses = this.mobiwash.getAddresses();
+               if(data[1]){
+                   this.mobiwash.editAddress(index, data[0]);
+                   this.addresses = this.mobiwash.getAddresses();
+               }else{
+                    this.mobiwash.addAddress(data[0]);
+                    this.addresses = this.mobiwash.getAddresses();
+               }
+               
            }
        })
         modalAddress.present()

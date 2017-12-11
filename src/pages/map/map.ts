@@ -48,6 +48,7 @@ export class MapGoogle implements OnInit{
         lat:0        
     };
     map:any;
+    marker:any;
     @ViewChild('map') mapElement:ElementRef;
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
@@ -56,12 +57,9 @@ export class MapGoogle implements OnInit{
 
 
     ngOnInit(){
-        this.loadMap(); 
+         this.loadMap();
         //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
-       
-        
-            
-                this.geolocation.getCurrentPosition().then((position) => {   
+           this.geolocation.getCurrentPosition().then((position) => {   
                     this.newAddress.lng = position.coords.longitude;
                     this.newAddress.lat = position.coords.latitude;
                     this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
@@ -82,8 +80,7 @@ export class MapGoogle implements OnInit{
                 
             }).catch((err) => {
                 console.log(err)
-            })
-        
+            })      
         
     }
     ngOnChanges(){
@@ -111,15 +108,16 @@ export class MapGoogle implements OnInit{
 
    getLatLng(){
         this.map.addListener('click', (event) => {
+            
                     let latitude = event.latLng.lat();
-                    let longitude = event.latLng.lng();
+                    let longitude = event.latLng.lng();                   
                     this.getMyPosition(latitude, longitude);
                     console.log(latitude, longitude)
-                
+                    console.log(this.marker)
                 });
             
     }
-    private marker:any;
+    
 
 
     getMyPosition(lat:number = 40.788546, lng:number = 43.840966){

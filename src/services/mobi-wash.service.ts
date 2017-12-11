@@ -98,6 +98,13 @@ export class MobiWash{
         let data = this.localService.get("data");
         return data[this.customer_id].car;        
     }
+///////////////////////////////////
+
+editAddress(oldIndex, newAddress){
+    let data = this.localService.get("data") || [];
+    data[this.customer_id].address.splice(oldIndex, 1, newAddress);
+    this.localService.set('data', data);
+}
     
 /////////////////////////////////
     addAddress(address:any){

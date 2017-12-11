@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  'history-page scroll-content': {
+    'paddingBottom': [{ 'unit': 'px', 'value': 50 }]
+  },
   'history-page ion-item-sliding': {
     'marginBottom': [{ 'unit': 'px', 'value': 10 }]
   },

@@ -1,4 +1,4 @@
 <ion-content>
-    <map id="map" #map (close)="setNewAddress($event)"></map>
+    <map id="map" #map [address]="addressForEdit" (close)="setNewAddress($event)"></map>
     <button ion-button (tap)="closeRegister()">{{"Հաստատել" | translate}}</button>
 </ion-content>

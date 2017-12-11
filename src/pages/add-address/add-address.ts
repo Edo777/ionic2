@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { ViewController, NavController, LoadingController } from "ionic-angular";
+import { ViewController, NavController, LoadingController, NavParams } from "ionic-angular";
 import { NativeGeocoder, NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
 import { Geolocation } from '@ionic-native/geolocation';
 import { OrdersPage, MapGoogle } from "../barrel";
@@ -13,19 +13,27 @@ declare var google;
 })
 export class AddNewAddress{
     newAddress:any;
+    addressForEdit:any;
+    isEdit:boolean = false;
     @ViewChild('map') map:MapGoogle;
     constructor(
         private viewCtrl:ViewController,
         private nav:NavController,
         public loadingCtrl: LoadingController,
-        private translateService:TranslateService
+        private translateService:TranslateService,
+        private params:NavParams
     ){}
     ngOnInit(){
+        if(this.params.data["address"]){
+            this.addressForEdit = this.params.data["address"];
+            this.isEdit = true;
+            console.log("ekav")
+        }
         this.presentLoadingDefault()
     }
     
     closeRegister(){
-        this.viewCtrl.dismiss(this.newAddress);
+        this.viewCtrl.dismiss([this.newAddress, this.isEdit]);
     }
 
     presentLoadingDefault() {
@@ -40,6 +48,9 @@ export class AddNewAddress{
         }, 2000);
     }
     setNewAddress(a){
-        this.newAddress=a
+        this.newAddress = a
+    }
+    ngOnDestroy() {
+        
     }
 }
