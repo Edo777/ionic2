@@ -32,7 +32,13 @@ export class Addresses {
         this.addresses = this.mobiwash.getAddresses()
     }
     createNewAddress(address?:any, index?:number){
-       var modalAddress=this.modalCtrl.create(AddNewAddress, {"address" :address});
+       var modalAddress;
+       if(address){
+            modalAddress=this.modalCtrl.create(AddNewAddress, {"address" :address});
+       }else{
+            modalAddress = this.modalCtrl.create(AddNewAddress);
+       } 
+       
        modalAddress.onWillDismiss((data)=>{
            if(data){
                if(data[1]){

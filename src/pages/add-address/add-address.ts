@@ -22,17 +22,21 @@ export class AddNewAddress{
         public loadingCtrl: LoadingController,
         private translateService:TranslateService,
         private params:NavParams
-    ){}
-    ngOnInit(){
+    ){
         if(this.params.data["address"]){
             this.addressForEdit = this.params.data["address"];
             this.isEdit = true;
-            console.log("ekav")
+            
         }
+    }
+    ngOnInit(){
+        
+        
         this.presentLoadingDefault()
     }
     
     closeRegister(){
+       // console.log(this.newAddress)
         this.viewCtrl.dismiss([this.newAddress, this.isEdit]);
     }
 
@@ -51,6 +55,6 @@ export class AddNewAddress{
         this.newAddress = a
     }
     ngOnDestroy() {
-        
+        console.log(this.isEdit)
     }
 }

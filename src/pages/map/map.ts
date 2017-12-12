@@ -53,13 +53,19 @@ export class MapGoogle implements OnInit{
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
     @Input() hide:boolean = true;
+    @Input() isNew:boolean = true;
 
 
 
     ngOnInit(){
          this.loadMap();
         //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
-           this.geolocation.getCurrentPosition().then((position) => {   
+        if(!this.isNew){
+            this.newAddress = this.address;
+            this.setNewMarker(this.newAddress.lat, this.newAddress.lng)
+            return
+        }
+        this.geolocation.getCurrentPosition().then((position) => {   
                     this.newAddress.lng = position.coords.longitude;
                     this.newAddress.lat = position.coords.latitude;
                     this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
@@ -80,17 +86,25 @@ export class MapGoogle implements OnInit{
                 
             }).catch((err) => {
                 console.log(err)
-            })      
+            })
+
         
     }
     ngOnChanges(){
         if(this.address){
-            this.newAddress = this.address;
-            if(this.address.lat != 0 && this.address.lng != 0){
-                this.setNewMarker(this.address.lat, this.address.lng);
-            }   
+            this.ngZone.run(() => {
+                this.newAddress = this.address;
+                if(this.address.lat != 0 && this.address.lng != 0){
+                    
+                        this.setNewMarker(this.address.lat, this.address.lng);
+                         this.emitForAddressChange()
+                    }
+
+            } )
+           
         }
-    }
+        
+}
 
     loadMap(){
         let latLng = new google.maps.LatLng(40.788546, 43.840966);
@@ -103,12 +117,15 @@ export class MapGoogle implements OnInit{
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
         this.getLatLng();
+        this.marker = new google.maps.Marker({
+                    map: this.map,
+                    animation: google.maps.Animation.DROP
+        });
         console.log(this.map)
     }
 
    getLatLng(){
         this.map.addListener('click', (event) => {
-            
                     let latitude = event.latLng.lat();
                     let longitude = event.latLng.lng();                   
                     this.getMyPosition(latitude, longitude);
@@ -121,16 +138,6 @@ export class MapGoogle implements OnInit{
 
 
     getMyPosition(lat:number = 40.788546, lng:number = 43.840966){
-    
-       if(!this.marker){
-            var marker = new google.maps.Marker({
-                map: this.map,
-                animation: google.maps.Animation.BOUNCE,
-                position: new LatLng(lat, lng)
-            });
-            this.marker = marker;
-       }
-         
         this.marker.setPosition({
             lat:lat,
             lng:lng
@@ -155,15 +162,7 @@ export class MapGoogle implements OnInit{
         }
         /////////////////////////////
         private setNewMarker(lat, lng){
-             if(!this.marker){
-                 var marker = new google.maps.Marker({
-                    map: this.map,
-                    animation: google.maps.Animation.DROP,
-                    position: new LatLng(lat, lng)
-                    });
-                this.marker = marker;
-                }
-         
+                if(!this.marker) return;
                 this.marker.setPosition({
                     lat:lat,
                     lng:lng
