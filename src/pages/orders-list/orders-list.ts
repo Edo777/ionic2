@@ -10,7 +10,7 @@ import { MobiWash } from "../../services/barrel.service";
 })
 
 export class OrdersList implements OnInit{
-    newOrder:any[] = [];
+    cars:any[] = [];
     editIndex:number;
     isEdit:boolean = false;
     constructor(
@@ -18,32 +18,36 @@ export class OrdersList implements OnInit{
         private modalCtrl:ModalController, 
         private mobiWash:MobiWash,
         private ngZone:NgZone
-    ){}
+    ){
+
+    }
     ngOnInit(){
-        this.editIndex = this.newOrder.length - 1;
+        this.editIndex = this.cars.length - 1;
     }
     remove(i){
-        this.newOrder.splice(i, 1);
+        this.cars.splice(i, 1);
     }
     edit(i){
         this.editIndex = i;
         this.isEdit = true;
-        this.createNewAddress(this.newOrder[i]);
+        this.createNewAddress(this.cars[i]);
     }
     completeAll(){
         this.ngZone.run(() => {
-             this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
+             this.nav.push(OrderAddress, {'newOrder' : this.cars})
         })
         console.log('hello')
     }
     createNewAddress(orderEdit?:any){
-       var modalAddress=this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit});
+       var modalAddress = orderEdit? this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit}) : this.modalCtrl.create(OrdersRegister);
        modalAddress.onWillDismiss((data) => {
            if(data){
+               console.log(data.forServer);
+               console.log(data.forUser)
                 if(this.isEdit){
-                    this.newOrder.splice(this.editIndex, 1 , data);
+                    this.cars.splice(this.editIndex, 1 , data.forUser);
                 }else{
-                    this.newOrder.push(data);   
+                    this.cars.push(data.forUser);   
                 }
                 this.isEdit = false;
            }

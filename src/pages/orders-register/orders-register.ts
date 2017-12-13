@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, NgZone } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
 import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams } from "ionic-angular";
@@ -19,7 +19,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //edit order
     private orderEdit:any;
 
-    private modelName; brandName; 
+    private modelName; brandName; carNumber; service;
 
 
     historyCars:any;
@@ -32,7 +32,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    NEWCAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:'', type:""};
+    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:"", type:""};
+    CarForUser:NewOrder;
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -43,7 +44,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         private mobiWash:MobiWash,
         private nav:NavController,
         private alertCtrl:AlertController,
-        private params:NavParams
+        private params:NavParams,
+        private ngZone:NgZone
     ){
         this.initializeCars();
     }
@@ -66,22 +68,22 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.rows.hide2 = true;
             this.rows.hide3 = true;
             this.rows.hide4 = true;
-            this.NEWCAR.make_id = this.orderEdit.make_id;
-            this.NEWCAR.model_id = this.orderEdit.model_id;
-            this.NEWCAR.car_number = this.orderEdit.car_number;
-            this.NEWCAR.service = this.orderEdit.service;
+            this.brandName = this.orderEdit.make_id;
+            this.modelName = this.orderEdit.model_id;
+            this.carNumber = this.orderEdit.car_number;
+            this.service = this.orderEdit.service;
         }
     }
     /////////////////////////
     
     checkBrandButton(brand, val){
         this.brandName = brand.name;
-        this.NEWCAR.make_id = brand.id;
+        this.CAR.make_id = brand.id;
         this.models = brand.models;
     }
     checkModelButton(mod){
         this.modelName = mod.name;
-        this.NEWCAR.model_id = mod.id;
+        this.CAR.model_id = mod.id;
     }
     //get cars from service
     initializeCars() {
@@ -113,8 +115,11 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.localModels = []
         }
     }
+    
     completeRegisterPage(){
-        this.viewCtrl.dismiss(this.NEWCAR)   
+        this.carTypeControl();
+        console.log(this.CarForUser)
+        this.viewCtrl.dismiss({forServer: this.CAR, forUser:this.CarForUser})   
     }
     closeRegisterPage(){
         this.viewCtrl.dismiss()
@@ -122,30 +127,17 @@ export class OrdersRegister implements OnInit,AfterViewInit{
 
     //////////////////////////////////
     //for constrol errors in time click ok
+
     completeBlur(id){
-        if(id === 1 && this.NEWCAR.make_id != ''){
-            if(this.brands.length < 1){
-                this.NEWCAR.make_id = this.brandName;
-                this.NEWCAR.type = "new";
-                console.log(this.NEWCAR)
-            }else{
-                delete this.NEWCAR.type;
-                console.log(this.NEWCAR)
-            }
+        if(id === 1 && this.brandName != ''){
             this.isCompleteBrand = false;
             this.rows.hide2 = true;
+            console.log(this.CAR)
         }else if(id === 2){
-            if(this.localModels.length < 1){
-                this.NEWCAR.type = "new";
-                this.NEWCAR.model_id = this.modelName; 
-                console.log(this.NEWCAR)
-            }else{
-                delete this.NEWCAR.type;
-                console.log(this.NEWCAR)
-            }
             this.isCompleteModel = false;
             this.rows.hide3 = true;
-        }else if(id === 3 && this.NEWCAR.car_number != ''){
+        }else if(id === 3){
+            this.CAR.car_number = this.carNumber;
             this.rows.hide4 = true
         }
     }
@@ -156,6 +148,34 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         }else if(id === 2){
             this.isCompleteModel = true;  
         }
+    }
+    ///////////////////////////////
+    private carTypeControl(){
+        this.CarForUser = {
+            make_id:this.brandName, 
+            model_id:this.modelName, 
+            car_number:this.carNumber,
+            service: this.service,
+        };
+        this.CAR.make_id = this.brandName;
+        this.CAR.model_id = this.modelName;
+        this.CAR.service = this.service;
+        this.CAR.type = "new";
+        for(let brand of this.cars){
+            if(brand.name.toLowerCase() == this.brandName.toLowerCase()){
+                console.log("yes brand")
+                for(let model of brand.models){
+                    if(model.name.toLowerCase() == this.modelName.toLowerCase()){
+                        console.log("yes model")
+                        this.CAR.make_id = brand.id;
+                        this.CAR.model_id = model.id;
+                        delete this.CAR.type
+                        break;
+                    }
+                };
+                break;
+            }         
+        };
     }
     /////////////////////////////
     //alert
@@ -178,9 +198,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                     this.rows.hide2 = true;
                     this.rows.hide3 = true;
                     this.rows.hide4 = true;
-                    this.NEWCAR.make_id = data.make_id;
-                    this.NEWCAR.model_id = data.model_id;
-                    this.NEWCAR.car_number = data.car_number;
+                    this.CAR.make_id = data.make_id;
+                    this.CAR.model_id = data.model_id;
+                    this.CAR.car_number = data.car_number;
                     
                 }
             }

@@ -51,7 +51,7 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
-                    <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="NEWCAR.car_number" [(ngModel)]="NEWCAR.car_number"></ion-input>
+                    <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="carNumber" [(ngModel)]="carNumber"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -61,7 +61,7 @@
         <!-- Type pinking -->
 
         <ion-row class="cars-info" *ngIf="rows.hide4">
-            <ion-list mode="ios" radio-group [(ngModel)]="NEWCAR.type">
+            <ion-list mode="ios" radio-group [(ngModel)]="service">
                 <ion-list-header no-lines>
                     {{"Լվացման տեսակը" | translate}}
                 </ion-list-header>
@@ -80,7 +80,7 @@
                     <ion-label>Լվացում 3</ion-label>
                     <ion-radio mode="ios" value="երրորրդ տեսակ"></ion-radio>
                 </ion-item>
-                <ion-item no-lines text-left>{{NEWCAR.type}}</ion-item>
+                <ion-item no-lines text-left>{{service}}</ion-item>
             </ion-list>
         </ion-row>
 
@@ -90,6 +90,6 @@
     </ion-grid>
 
 </ion-content>
-<ion-footer *ngIf="NEWCAR.type != ''">
-    <button full large ion-button *ngIf="NEWCAR.type != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+<ion-footer *ngIf="service != ''">
+    <button full large ion-button *ngIf="service != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
 </ion-footer>
