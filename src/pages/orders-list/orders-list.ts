@@ -34,8 +34,7 @@ export class OrdersList implements OnInit{
         this.ngZone.run(() => {
              this.nav.push(OrderAddress, {'newOrder' : this.newOrder})
         })
-      
-       console.log('hello')
+        console.log('hello')
     }
     createNewAddress(orderEdit?:any){
        var modalAddress=this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit});

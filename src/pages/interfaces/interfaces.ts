@@ -19,10 +19,11 @@ export interface CarOrder{
 }
 
 export interface NewOrder{
-    brand:string,
-    model:string,
-    number:string,
-    type:string,
+    make_id:string,
+    model_id:string,
+    car_number:string,
+    service:string,
+    type?:string
 }
 
 export interface Brand {

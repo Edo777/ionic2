@@ -34,6 +34,7 @@ export class HomePage {
      this.localActiveLng = this.activeLng.lng;
      this.activeLngText = this.activeLng.text;
      this.activeFlag = this.activeLng.flag;
+     /*
      this.api.registration("Agahsi","1145747","AghHg","1145","eryhjklkcxghj").subscribe(
        data=>{
         console.log(data)
@@ -45,6 +46,7 @@ export class HomePage {
       this.api.getAllcars().subscribe(data=>{
         console.log(data)
       })
+      */
      //////////////////////////// maxinacia
      //this.createAccount()
   }
@@ -74,9 +76,21 @@ export class HomePage {
         this.serv.setActiveLng(getter);
     }
 
-  createAccount(){ 
+  createAccount(){
+    this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe(data=>{
+      console.log(data)
+      if(data["status"]=="ok"){
+        this.mobiWash.setActiveUser(data["data"].id)
+        this.api.setId(data["data"].id);
+        this.navCtrl.setRoot(MenuComponent);
+      }
+    },error=>{
+      console.log(error)
+    }) 
+    /*
     this.mobiWash.addUser(this.name, this.phoneNumber);
-    this.navCtrl.setRoot(MenuComponent);
+    
+    */
     //this.navCtrl.setRoot(OrdersHistory);
   }
 

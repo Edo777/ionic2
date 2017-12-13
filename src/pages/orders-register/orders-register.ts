@@ -18,8 +18,12 @@ import { AddNewAddress, CompleteOrder } from "../barrel"
 export class OrdersRegister implements OnInit,AfterViewInit{
     //edit order
     private orderEdit:any;
+
+    private modelName; brandName; 
+
+
     historyCars:any;
-    cars:any;
+    cars = [];
     brands:string[];
     models:string[] = [];
     localModels:string[] = [];
@@ -28,7 +32,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    NEWCAR:NewOrder = {brand:'', model:'', number:'',  type:''};
+    NEWCAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:'', type:""};
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -62,43 +66,48 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.rows.hide2 = true;
             this.rows.hide3 = true;
             this.rows.hide4 = true;
-            this.NEWCAR.brand = this.orderEdit.brand;
-            this.NEWCAR.model = this.orderEdit.model;
-            this.NEWCAR.number = this.orderEdit.number;
-            this.NEWCAR.type = this.orderEdit.type;
+            this.NEWCAR.make_id = this.orderEdit.make_id;
+            this.NEWCAR.model_id = this.orderEdit.model_id;
+            this.NEWCAR.car_number = this.orderEdit.car_number;
+            this.NEWCAR.service = this.orderEdit.service;
         }
     }
     /////////////////////////
     
-    checkModelButton(model, val){
-        this.NEWCAR.brand = val;
-        this.models = model.models;
+    checkBrandButton(brand, val){
+        this.brandName = brand.name;
+        this.NEWCAR.make_id = brand.id;
+        this.models = brand.models;
+    }
+    checkModelButton(mod){
+        this.modelName = mod.name;
+        this.NEWCAR.model_id = mod.id;
     }
     //get cars from service
     initializeCars() {
-        this.ordersCtrl.getResults()
-        .subscribe(data=>{
-            this.cars = data;
-        });
+        this.cars = this.ordersCtrl.getResults()
+        
      }
-     
+    ionViewWillEnter(){
+        this.cars = this.ordersCtrl.getResults()
+    }
      getBrands(ev: any){
         this.initializeCars();
         let val = ev.target.value;
         if (val && val.trim() != '' ) {
             this.brands = this.cars.filter((item) => {
-                return (item.value.toLowerCase().startsWith(val.toLowerCase()));
+                return (item.name.toLowerCase().startsWith(val.toLowerCase()));
             })
         }else{
             this.brands = []
         }
-        console.log(this.NEWCAR)
+        console.log(this.brands)
      }
      getModels(ev: any){
         let val = ev.target.value;
         if (val && val.trim() != '' && this.models.length) {
             this.localModels = this.models.filter((item:any) => {
-                return (item.value.toLowerCase().startsWith(val.toLowerCase()));
+                return (item.name.toLowerCase().startsWith(val.toLowerCase()));
             })
         }else{
             this.localModels = []
@@ -114,20 +123,36 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //////////////////////////////////
     //for constrol errors in time click ok
     completeBlur(id){
-        if(id === 1 && this.NEWCAR.brand != ''){
+        if(id === 1 && this.NEWCAR.make_id != ''){
+            if(this.brands.length < 1){
+                this.NEWCAR.make_id = this.brandName;
+                this.NEWCAR.type = "new";
+                console.log(this.NEWCAR)
+            }else{
+                delete this.NEWCAR.type;
+                console.log(this.NEWCAR)
+            }
             this.isCompleteBrand = false;
             this.rows.hide2 = true;
-        }else if(id === 2 && this.NEWCAR.model != ''){
+        }else if(id === 2){
+            if(this.localModels.length < 1){
+                this.NEWCAR.type = "new";
+                this.NEWCAR.model_id = this.modelName; 
+                console.log(this.NEWCAR)
+            }else{
+                delete this.NEWCAR.type;
+                console.log(this.NEWCAR)
+            }
             this.isCompleteModel = false;
             this.rows.hide3 = true;
-        }else if(id === 3 && this.NEWCAR.number != ''){
+        }else if(id === 3 && this.NEWCAR.car_number != ''){
             this.rows.hide4 = true
         }
     }
     /////////////////////////////////////
     completeFocus(ev, id?){
         if(id === 1){
-            this.isCompleteBrand = true;
+            this.isCompleteBrand = true;        
         }else if(id === 2){
             this.isCompleteModel = true;  
         }
@@ -143,7 +168,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             alert.addInput({
                 type:'radio',
                 value:inp[i],
-                label:inp[i].brand+ ' ' + inp[i].model + ' ' + inp[i].number,
+                label:inp[i].make_id+ ' ' + inp[i].model_id + ' ' + inp[i].car_number,
             })
         }
         alert.addButton({
@@ -153,9 +178,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                     this.rows.hide2 = true;
                     this.rows.hide3 = true;
                     this.rows.hide4 = true;
-                    this.NEWCAR.brand = data.brand;
-                    this.NEWCAR.model = data.model;
-                    this.NEWCAR.number = data.number;
+                    this.NEWCAR.make_id = data.make_id;
+                    this.NEWCAR.model_id = data.model_id;
+                    this.NEWCAR.car_number = data.car_number;
                     
                 }
             }

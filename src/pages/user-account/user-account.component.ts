@@ -27,7 +27,7 @@ export class UserAccount {
        
     }
    ngOnInit(){
-       this.getOrder()
+      // this.getOrder()
    }
  
    
@@ -36,10 +36,10 @@ export class UserAccount {
     }
 
     getOrder(){
-         this.orders=this.mobiWash.getOrder()
+       //  this.orders=this.mobiWash.getOrder()
     }
     removeOrder(i){
         this.mobiWash.removeOrder(i)
-        this.orders = this.mobiWash.getOrder()
+      //  this.orders = this.mobiWash.getOrder()
     }
 }

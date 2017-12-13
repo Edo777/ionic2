@@ -3,6 +3,7 @@ import { NavController, LoadingController, NavParams, AlertController, App, Plat
 import { CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
+import { ApiService } from "../../services/api.service";
 
 
 @Component({
@@ -11,6 +12,39 @@ import { TranslateService } from "../../translate/translate.service";
 })
 
 export class OrderAddress{
+    simple = {
+        customer_id:"62",
+        customer_phone:"1145747",
+        promo_code:123456,
+        date:"2017-11-28 16:00:00",
+        address:{
+            lat:165465465465,
+            long:456865446.54,
+            address:"Sayat lova"
+        },
+        cars:[
+            {
+                car_number:"23AD658",
+                service:2,
+                make_id:1,
+                model_id:12
+            },
+            {
+                car_number:"23AD658",
+                service:2,
+                make_id:1,
+                model_id:12
+            },
+            {
+                car_number:"23AD658",
+                service:2,
+                make_id:"opel",
+                model_id:"vectra",
+                type:"new"
+            }
+        ]  
+    }
+
     fast:boolean;
     address: any;
     newOrder: any[];
@@ -23,6 +57,7 @@ export class OrderAddress{
         private mobiWash:MobiWash,
         private alertCtrl:AlertController,
         private serv:TranslateService,
+        private api:ApiService
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
@@ -47,11 +82,23 @@ export class OrderAddress{
         this.address = event;
     }
     completeOrder(){
+        console.log(this.newOrder)
+        console.log(this.address)
+        this.simple.customer_id = this.api.getId()
+        this.api.sendOrder(this.simple).subscribe(data=>{
+            if(data["status"]=="success"){
+                this.nav.setRoot(CompleteOrder)
+            }else{
+
+            }
+        })
+        /*
         for(let i of this.newOrder){
             this.mobiWash.addCar({brand:i.brand, model:i.model, number:i.number});
         }
         this.mobiWash.addAddress(this.address)
-        this.nav.setRoot(CompleteOrder)
+        
+        */
     }
     //////////////////////
     historyAddresses:any;

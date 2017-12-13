@@ -9,6 +9,10 @@ export class MobiWash{
     constructor(private localService:Local){}
 /////////////////////////////////
     //inicializacia customer_id
+    public setActiveUser(id){
+        this.customer_id = id;
+
+    }
     private getActiveUserId(tel:any, data:any){
         let index;
         if(data.length != 0){
@@ -96,7 +100,8 @@ export class MobiWash{
 
     getCars(){
         let data = this.localService.get("data");
-        return data[this.customer_id].car;        
+        return [];
+        //return data[this.customer_id].car;        
     }
 ///////////////////////////////////
 
@@ -121,7 +126,8 @@ editAddress(oldIndex, newAddress){
 /////////////////////////////////
     getAddresses(){
         let data = this.localService.get("data");
-        return data[this.customer_id].address || [];
+        return []
+        //return data[this.customer_id].address || [];
     }
 /////////////////////////////////
     removeAddress(i:number){
@@ -138,7 +144,8 @@ editAddress(oldIndex, newAddress){
     }
     getOrder(){
         let data=this.localService.get('data');
-        return data[this.customer_id].order
+        return [];
+       // return data[this.customer_id].order
     }
     removeOrder(i:number){
         let data=this.localService.get('data');

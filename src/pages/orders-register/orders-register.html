@@ -8,15 +8,15 @@
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Մեքենա' | translate}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" [value]="NEWCAR.brand" [(ngModel)]="NEWCAR.brand" (input)="getBrands($event)">
+                    <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" [value]="brandName" [(ngModel)]="brandName" (input)="getBrands($event)">
                     </ion-input>
 
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="isCompleteBrand">
                     <ion-grid>
-                        <ion-row *ngFor="let brand of brands" (tap)="checkModelButton(brand, brand.value)">
+                        <ion-row *ngFor="let brand of brands" (tap)="checkBrandButton(brand, brand.name)">
                             <ion-col class="car-row" col-12>
-                                {{ brand.value }}
+                                {{ brand.name }}
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -25,19 +25,19 @@
             </ion-col>
         </ion-row>
 
-        <!-- car model -->
+        <!-- car model_id -->
         <ion-row class="cars-info" *ngIf="rows.hide2" #mod>
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Մոդել' | translate}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus($event, 2)" [value]="NEWCAR.model" [(ngModel)]="NEWCAR.model" (input)="getModels($event)"></ion-input>
+                    <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus($event, 2)" [value]="modelName" [(ngModel)]="modelName" (input)="getModels($event)"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="isCompleteModel">
                     <ion-grid>
-                        <ion-row *ngFor="let model of localModels" (tap)="NEWCAR.model = model.value">
+                        <ion-row *ngFor="let model of localModels" (tap)="checkModelButton(model)">
                             <ion-col class="car-row" col-12>
-                                {{ model.value }}
+                                {{ model.name }}
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -45,13 +45,13 @@
 
             </ion-col>
         </ion-row>
-        <!-- Number car -->
+        <!-- car_number car -->
         <ion-row class="cars-info" *ngIf="rows.hide3">
             <ion-col col-12>
 
                 <ion-item mode="md" no-padding>
                     <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
-                    <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="NEWCAR.number" [(ngModel)]="NEWCAR.number"></ion-input>
+                    <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="NEWCAR.car_number" [(ngModel)]="NEWCAR.car_number"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
