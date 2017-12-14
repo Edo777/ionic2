@@ -2,6 +2,9 @@
     <ion-header mode="md">
         <ion-toolbar mode="md">
             <ion-title>{{ "Ցանկ" | translate}}</ion-title>
+            <div class="logo">
+                <img src="../assets/imgs/logo.png" alt="">
+            </div>
         </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -15,7 +18,7 @@
                     <img [src]="activeFlag">
                 </ion-avatar>
             </button>
-            <button no-padding ion-item detail-none color="primary" (tap)="outUser()">
+            <button no-padding ion-item detail-none color="dark" (tap)="outUser()">
                 {{"Դուրս գալ" | translate}}
                 <ion-icon name="md-exit" item-end margin-right></ion-icon>
             </button>

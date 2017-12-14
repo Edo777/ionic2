@@ -77,10 +77,12 @@ export class HomePage {
     }
 
   createAccount(){
-    this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe(
+  this.navCtrl.setRoot(MenuComponent);
+  /*this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe(
       (data)=>{
         console.log(data)
-        if(data["status"]=="ok"){
+        //data["status"]=="ok"
+        if(true){
           this.mobiWash.setActiveUser(data["data"].id)
           this.api.setId(data["data"].id);
           this.navCtrl.setRoot(MenuComponent);
@@ -88,7 +90,7 @@ export class HomePage {
     },
       (error)=>{
         console.log(error)
-    }) 
+    }) */
     /*
     this.mobiWash.addUser(this.name, this.phoneNumber);
     

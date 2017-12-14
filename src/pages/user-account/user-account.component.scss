@@ -1,5 +1,12 @@
 user-account {
+    .button-md {
+        height: 5.6em;
+    }
     .scroll-content {
         padding-bottom: 56px;
+        background-image: url("../assets/imgs/logo.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: auto;
     }
 }

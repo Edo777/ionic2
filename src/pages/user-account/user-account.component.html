@@ -1,21 +1,5 @@
 <absolute-header [pageName]="pageName"></absolute-header>
 <ion-content top>
-    <button ion-button full outline (click)="createNewOrder()">{{"Գրանցել հայտ" | translate}}</button>
-    <ion-grid>
-        <ion-row *ngIf="orders?.length">
-            <ion-card *ngFor="let o of orders; let i = index">
-                <ion-card-header>
-                    <button ion-button small float-right (click)="removeOrder(i)">{{"Ջնջել" | translate}}</button>
-                </ion-card-header>
-                <ion-card-content>
-                    <span>{{"Մեքենա" | translate}} - {{o.brand}}</span>
-                    <span>{{"Մոդել" | translate}} - {{o.model}}</span>
-                    <span>{{"Համարանիշ" | translate}} - {{o.number}}</span>
-                    <span>{{"Հասցե" | translate}} - {{o.address}}</span>
-                    <span>{{"Պրոմո կոդ" | translate}} - {{o.promCode}}</span>
-                    <span>{{"Լվացման տեսակ" | translate}}- {{o.type}}</span>
-                </ion-card-content>
-            </ion-card>
-        </ion-row>
-    </ion-grid>
+    <button ion-button full (click)="createNewOrder()">{{"Գրանցել հայտ" | translate}}</button>
+
 </ion-content>

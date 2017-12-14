@@ -80,7 +80,6 @@ export class MenuComponent{
     outUser() {
         let a:any = {};
         a.exit = this.serv.translateImportant("Դուրս գալ", "Exit");
-        a.delete = this.serv.translateImportant("Ջնջել", "Delete");
         a.cancel = this.serv.translateImportant("Մնալ", "Cancel");
         a.question = this.serv.translateImportant("Ընտրեք ի՞նչ եք ցանկանում", "What you need?")
         let confirm = this.alertCtrl.create({
@@ -88,13 +87,6 @@ export class MenuComponent{
           title: 'MobiWash',
           message: a.question,
           buttons: [
-            {
-              text: a.delete,
-              handler: () => {
-                this.mobiWash.removeUser();
-                this.navCtrl.setRoot(HomePage);
-              }
-            },
             {
               text: a.exit,
               handler: () => {
