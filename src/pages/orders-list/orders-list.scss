@@ -1,0 +1,34 @@
+orders-list {
+    .scroll-content {
+        padding-bottom: 50px;
+    }
+    ion-item-sliding {
+        margin-bottom: 10px;
+    }
+    ion-item-sliding .item {
+        background: lightseagreen;
+        height: 100px;
+    }
+    ion-scroll {
+        .scroll-content {
+            height: 30vh;
+        }
+    }
+    .view {
+        padding-left: 8px;
+        ion-icon[item-left]+.item-inner {
+            margin-left: 0;
+        }
+        .label-md {
+            height: 100px;
+        }
+    }
+    .list-md ion-item-options .button {
+        width: 100px;
+        height: 100%;
+        display: flex;
+        span {
+            width: 100px;
+        }
+    }
+}

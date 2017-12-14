@@ -33,7 +33,6 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:"", type:""};
-    CarForUser:NewOrder;
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -45,7 +44,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         private nav:NavController,
         private alertCtrl:AlertController,
         private params:NavParams,
-        private ngZone:NgZone
+        private ngZone:NgZone,
+        
     ){
         this.initializeCars();
     }
@@ -63,16 +63,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     ngOnInit(){
         this.historyCars = this.mobiWash.getCars();
-        if(this.params.data["orderEdit"]){
-            this.orderEdit = this.params.data["orderEdit"];
-            this.rows.hide2 = true;
-            this.rows.hide3 = true;
-            this.rows.hide4 = true;
-            this.brandName = this.orderEdit.make_id;
-            this.modelName = this.orderEdit.model_id;
-            this.carNumber = this.orderEdit.car_number;
-            this.service = this.orderEdit.service;
-        }
+        this.isHasDataWhenModalOpen()
     }
     /////////////////////////
     
@@ -118,8 +109,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     
     completeRegisterPage(){
         this.carTypeControl();
-        console.log(this.CarForUser)
-        this.viewCtrl.dismiss({forServer: this.CAR, forUser:this.CarForUser})   
+        console.log(this.CAR)
+        this.viewCtrl.dismiss(this.CAR);  
     }
     closeRegisterPage(){
         this.viewCtrl.dismiss()
@@ -151,12 +142,6 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     ///////////////////////////////
     private carTypeControl(){
-        this.CarForUser = {
-            make_id:this.brandName, 
-            model_id:this.modelName, 
-            car_number:this.carNumber,
-            service: this.service,
-        };
         this.CAR.make_id = this.brandName;
         this.CAR.model_id = this.modelName;
         this.CAR.service = this.service;
@@ -176,6 +161,26 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                 break;
             }         
         };
+    }
+   
+    isHasDataWhenModalOpen(){
+        if(this.params.data["orderEdit"]){
+            this.orderEdit = this.params.data["orderEdit"];
+            this.rows.hide2 = true;
+            this.rows.hide3 = true;
+            this.rows.hide4 = true;
+            this.carNumber = this.orderEdit.car_number;
+            this.service = this.orderEdit.service;
+            if(this.params.data["orderEdit"].type){
+                this.brandName = this.orderEdit.make_id;
+                this.modelName = this.orderEdit.model_id;
+            }else{
+               let brand = this.cars.find((element) => this.params.data["orderEdit"].make_id == element.id);
+               let model = brand.models.find((element) => this.params.data["orderEdit"].model_id == element.id);
+               this.brandName = brand.name;
+               this.modelName = model.name;
+            }
+        }
     }
     /////////////////////////////
     //alert

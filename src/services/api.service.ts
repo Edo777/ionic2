@@ -24,7 +24,7 @@ export class ApiService{
         urlSearchParams.append('device_token', device_token);
         let body = urlSearchParams.toString()
         var headers = new Headers();
-      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post("http://mobiwash.am/login/registration",body,{headers:headers}).map(res=>res.json())
     }
     getAllcars():Observable<any>{

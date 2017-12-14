@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MenuComponent, HomePage } from "../pages/barrel";
+import { ApiService } from "../services/api.service";
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +13,7 @@ import { MenuComponent, HomePage } from "../pages/barrel";
 export class MyApp {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private api:ApiService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -21,11 +22,7 @@ export class MyApp {
     });
   }
   ngOnInit(){
-    if(localStorage.getItem('userInfo')){
-      this.rootPage = MenuComponent;
-    }else{
-      this.rootPage = HomePage
-    }
+    
   }
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from "@angular/core";
-import { NavController, ModalController } from "ionic-angular";
+import { NavController, ModalController, AlertController } from "ionic-angular";
+import { CarsService } from "../../services/cars.service";
 import { OrdersRegister,  OrderAddress } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
 import { MobiWash } from "../../services/barrel.service";
@@ -17,7 +18,9 @@ export class OrdersList implements OnInit{
         private nav:NavController, 
         private modalCtrl:ModalController, 
         private mobiWash:MobiWash,
-        private ngZone:NgZone
+        private ngZone:NgZone,
+        private carService:CarsService,
+        private alertCtrl:AlertController
     ){
 
     }
@@ -42,19 +45,42 @@ export class OrdersList implements OnInit{
        var modalAddress = orderEdit? this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit}) : this.modalCtrl.create(OrdersRegister);
        modalAddress.onWillDismiss((data) => {
            if(data){
-               console.log(data.forServer);
-               console.log(data.forUser)
+                      
                 if(this.isEdit){
-                    this.cars.splice(this.editIndex, 1 , data.forUser);
+                    this.cars.splice(this.editIndex, 1 , data);
                 }else{
-                    this.cars.push(data.forUser);   
+                    this.cars.push(data);   
                 }
                 this.isEdit = false;
+                console.log(this.cars)
            }
        })
         modalAddress.present()
     }
+        deleteConfirm(i, item) {
+            let alert = this.alertCtrl.create({
+                title: 'Ջնջել',
+                message: 'Դուք ցանկանում եք ջնջել?',
+                buttons: [
+                {
+                    text: 'Մերժել',
+                    role: 'Cancel',
+                    handler: () => {
+                        item.close()
+                    }
+                },
+                {
+                    text: 'Հաստատել',
+                    handler: () => {
+                        this.remove(i);
+                    }
+                }
+                ]
+            });
+            alert.present();
+            }
     ngOnDestroy(){
         console.log("delete orders-list")
     }
 }
+ 
