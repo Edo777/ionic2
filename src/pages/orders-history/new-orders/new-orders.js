@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   'new-orders ion-item-sliding item': {
-    'background': 'orange',
+    'background': '#889676',
     'height': [{ 'unit': 'px', 'value': 100 }]
   },
   'new-orders ion-item-slidingactive-slideactive-options-right ion-item-options': {

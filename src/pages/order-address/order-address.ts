@@ -12,43 +12,44 @@ import { ApiService } from "../../services/api.service";
 })
 
 export class OrderAddress{
-    simple = {
-        customer_id:"62",
-        customer_phone:"1145747",
-        promo_code:123456,
-        date:"2017-11-28 16:00:00",
-        address:{
-            lat:165465465465,
-            long:456865446.54,
-            address:"Sayat lova"
-        },
-        cars:[
-            {
-                car_number:"23AD658",
-                service:2,
-                make_id:1,
-                model_id:12
+    simple:any = {
+            customer_id:"62",
+            customer_phone:"1145747",
+            promo_code:123456,
+            date:"2017-11-28 16:00:00",
+            address:{
+                lat:165465465465,
+                long:456865446.54,
+                address:"Sayat lova"
             },
-            {
-                car_number:"23AD658",
-                service:2,
-                make_id:1,
-                model_id:12
-            },
-            {
-                car_number:"23AD658",
-                service:2,
-                make_id:"opel",
-                model_id:"vectra",
-                type:"new"
-            }
-        ]  
-    }
+            cars:[
+                {
+                    car_number:"23AD658",
+                    service:2,
+                    make_id:1,
+                    model_id:12
+                },
+                {
+                    car_number:"23AD658",
+                    service:2,
+                    make_id:1,
+                    model_id:12
+                },
+                {
+                    car_number:"23AD658",
+                    service:2,
+                    make_id:"opel",
+                    model_id:"vectra",
+                    type:"new"
+                }
+            ]  
+        };
 
     fast:boolean;
     address: any;
-    newOrder: any[];
+    cars:any;
     myDate:string;
+    promo_code:number;
     mapAddClassHide:boolean = false;
     constructor(
         private nav:NavController,
@@ -61,9 +62,11 @@ export class OrderAddress{
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
-        console.log(this.newOrder);
-        this.newOrder = this.navParams.get('newOrder');
-        this.historyAddresses = this.mobiWash.getAddresses();
+        
+        this.cars = this.navParams.get("cars");
+        console.log(this.cars)
+        //this.historyAddresses = this.mobiWash.getAddresses();
+        
     }
 
     presentLoadingDefault() {
@@ -82,11 +85,19 @@ export class OrderAddress{
         this.address = event;
     }
     completeOrder(){
-        console.log(this.newOrder)
-        console.log(this.address)
-        this.simple.customer_id = this.api.getId()
-        this.api.sendOrder(this.simple).subscribe(data=>{
-            if(data["status"]=="success"){
+        this.simple["address"] = this.address;
+        this.simple["date"] = this.myDate;
+        this.simple["promo_code"] = this.promo_code;
+        this.simple["customer_phone"] = "7777";
+        this.simple["cars"] = this.cars;
+        this.simple["customer_id"] = this.api.getId()
+
+        console.log(this.simple)
+        this.api.sendOrder(this.simple).subscribe((data)=>{
+            console.log("data ",data)
+            if(data["status"] == "success"){
+                console.log(this.simple);
+                
                 this.nav.setRoot(CompleteOrder)
             }else{
 
@@ -123,9 +134,7 @@ export class OrderAddress{
         })
         alert.present();
       }
-    hideMap(){
-        this.mapAddClassHide = !this.mapAddClassHide;
-    }
+
     ngOnDestroy(){
         console.log(this.address, "delete order address")
     }

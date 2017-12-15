@@ -8,7 +8,7 @@ export default StyleSheet.create({
     'marginBottom': [{ 'unit': 'px', 'value': 10 }]
   },
   'orders-list ion-item-sliding item': {
-    'background': 'lightseagreen',
+    'backgroundColor': '#889676',
     'height': [{ 'unit': 'px', 'value': 100 }]
   },
   'orders-list ion-scroll scroll-content': {

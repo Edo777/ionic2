@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import { MenuComponent, OrdersHistory } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
@@ -27,7 +27,10 @@ export class HomePage {
     public navCtrl: NavController, 
     private mobiWash:MobiWash, 
     private serv:TranslateService,
-    private api:ApiService) {
+    private api:ApiService,
+    private toastCtrl:ToastController,
+    private loadingCtrl:LoadingController
+  ) {
     this.activeLng = this.serv.getActiveLng();
   }
   ngOnInit(){
@@ -76,26 +79,49 @@ export class HomePage {
         this.serv.setActiveLng(getter);
     }
 
+
+
   createAccount(){
-  this.navCtrl.setRoot(MenuComponent);
-  /*this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe(
+    let loading = this.loadingCtrl.create({
+            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+        });
+      loading.present();
+  this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe( 
+      
       (data)=>{
+        
         console.log(data)
-        //data["status"]=="ok"
-        if(true){
+        if(data["status"]=="ok" || data["status"] == "success"){
+          console.log(data)
+          loading.dismiss();
           this.mobiWash.setActiveUser(data["data"].id)
           this.api.setId(data["data"].id);
           this.navCtrl.setRoot(MenuComponent);
+        }else {
+          loading.dismiss();
+          let message = "you haven'n internet connection";
+          this.showToast(message);
         }
     },
       (error)=>{
-        console.log(error)
-    }) */
+        this.showToast(error);
+    })
     /*
     this.mobiWash.addUser(this.name, this.phoneNumber);
     
     */
     //this.navCtrl.setRoot(OrdersHistory);
   }
+
+  showToast(err) {
+    let toast = this.toastCtrl.create({
+      message: `${err}`,
+      duration: 2000,
+      position: "top"
+    });
+
+    toast.present(toast);
+  }
+
 
 }

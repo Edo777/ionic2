@@ -33,19 +33,18 @@ export class OrdersList implements OnInit{
     edit(i){
         this.editIndex = i;
         this.isEdit = true;
-        this.createNewAddress(this.cars[i]);
+        this.createNewOrder(this.cars[i]);
     }
     completeAll(){
         this.ngZone.run(() => {
-             this.nav.push(OrderAddress, {'newOrder' : this.cars})
+             this.nav.push(OrderAddress, {"cars" : this.cars})
         })
-        console.log('hello')
+        
     }
-    createNewAddress(orderEdit?:any){
+    createNewOrder(orderEdit?:any){
        var modalAddress = orderEdit? this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit}) : this.modalCtrl.create(OrdersRegister);
        modalAddress.onWillDismiss((data) => {
-           if(data){
-                      
+           if(data){   
                 if(this.isEdit){
                     this.cars.splice(this.editIndex, 1 , data);
                 }else{
@@ -59,7 +58,7 @@ export class OrdersList implements OnInit{
     }
         deleteConfirm(i, item) {
             let alert = this.alertCtrl.create({
-                title: 'Ջնջել',
+                title: 'Wobi Wash',
                 message: 'Դուք ցանկանում եք ջնջել?',
                 buttons: [
                 {

@@ -1,5 +1,7 @@
 <ion-content>
-    <button (click)="closeRegisterPage()" ion-button float-right>Close</button>
+    <button (click)="closeRegisterPage()" ion-button float-right only-icon>
+        <ion-icon md="md-close" ios="md-close"></ion-icon>
+    </button>
     <button ion-button (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ընտրել հին մեքենաներից" | translate}}</button>
     <ion-grid>
         <!-- BRANDS -->
