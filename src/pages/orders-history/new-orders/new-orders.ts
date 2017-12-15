@@ -15,8 +15,8 @@ export class NewOrders{
     ){
 
     }
-     some(item){
-         console.log('close')
+     some(item, i){
+         this.data.splice(i, 1);
          item.close()
 
      }

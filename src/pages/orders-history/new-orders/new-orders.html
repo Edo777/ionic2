@@ -1,6 +1,6 @@
 <ion-content>
     <ion-list>
-        <ion-item-sliding *ngFor="let item of data" #item>
+        <ion-item-sliding *ngFor="let item of data; let i = index" #item>
             <ion-item class="view" mode="md">
                 <div class="number">
                     № 454812
@@ -30,14 +30,14 @@
             </ion-item>
             <ion-item-options side="left">
 
-                <button class="close-button" color="secondary" (click)="some(item)" ion-button icon-only>
+                <button class="close-button" color="secondary" (click)="some(item, i)" ion-button icon-only>
                         <ion-icon name="add"></ion-icon>
                 </button>
 
             </ion-item-options>
             <ion-item-options side="right">
 
-                <button class="close-button" color="danger" (click)="some(item)" ion-button icon-only>
+                <button class="close-button" color="danger" (click)="some(item, i)" ion-button icon-only>
                         <ion-icon name="close"></ion-icon>
                 </button>
 

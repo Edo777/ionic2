@@ -44,7 +44,7 @@ export class MapGoogle implements OnInit{
     }
     newAddress:any = {
         address:"",
-        lng:0,
+        long:0,
         lat:0        
     };
     map:any;
@@ -62,11 +62,11 @@ export class MapGoogle implements OnInit{
         //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
         if(!this.isNew){
             this.newAddress = this.address;
-            this.setNewMarker(this.newAddress.lat, this.newAddress.lng)
+            this.setNewMarker(this.newAddress.lat, this.newAddress.long)
             return
         }
         this.geolocation.getCurrentPosition().then((position) => {   
-                    this.newAddress.lng = position.coords.longitude;
+                    this.newAddress.long = position.coords.longitude;
                     this.newAddress.lat = position.coords.latitude;
                     this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
                     .then((result: NativeGeocoderReverseResult) => {
@@ -94,9 +94,9 @@ export class MapGoogle implements OnInit{
         if(this.address){
             this.ngZone.run(() => {
                 this.newAddress = this.address;
-                if(this.address.lat != 0 && this.address.lng != 0){
+                if(this.address.lat != 0 && this.address.long != 0){
                     
-                        this.setNewMarker(this.address.lat, this.address.lng);
+                        this.setNewMarker(this.address.lat, this.address.long);
                          this.emitForAddressChange()
                     }
 
@@ -137,13 +137,13 @@ export class MapGoogle implements OnInit{
     
 
 
-    getMyPosition(lat:number = 40.788546, lng:number = 43.840966){
+    getMyPosition(lat:number = 40.788546, long:number = 43.840966){
         this.marker.setPosition({
             lat:lat,
-            lng:lng
+            lng:long
         });
-        this.mapAnimate(lat, lng);
-        this.nativeGeocoder.reverseGeocode(lat,lng)
+        this.mapAnimate(lat, long);
+        this.nativeGeocoder.reverseGeocode(lat,long)
             .then((result: NativeGeocoderReverseResult) => {
                 let locality = result.locality || '';
                 let subLocality = result.subLocality || '';
@@ -152,7 +152,7 @@ export class MapGoogle implements OnInit{
                     console.log(result)
                     this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
                     this.newAddress.lat = lat;
-                    this.newAddress.lng = lng;
+                    this.newAddress.lng = long;
                     this.emitForAddressChange()
                 })
                 
@@ -161,18 +161,18 @@ export class MapGoogle implements OnInit{
         
         }
         /////////////////////////////
-        private setNewMarker(lat, lng){
+        private setNewMarker(lat, long){
                 if(!this.marker) return;
                 this.marker.setPosition({
                     lat:lat,
-                    lng:lng
+                    lng:long
                 });
-                this.mapAnimate(lat, lng)
+                this.mapAnimate(lat, long)
         }
 
-        private mapAnimate(lat, lng){
+        private mapAnimate(lat, long){
             window.setTimeout(() => {
-                this.map.panTo(new google.maps.LatLng(lat, lng));
+                this.map.panTo(new google.maps.LatLng(lat, long));
             }, 100);
         }
         //////////////////////////

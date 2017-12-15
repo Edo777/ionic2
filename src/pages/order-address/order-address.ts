@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, NavParams, AlertController, App, Platform } from "ionic-angular";
+import { NavController, LoadingController, NavParams, AlertController, App, Platform, ToastController } from "ionic-angular";
 import { CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
@@ -58,7 +58,8 @@ export class OrderAddress{
         private mobiWash:MobiWash,
         private alertCtrl:AlertController,
         private serv:TranslateService,
-        private api:ApiService
+        private api:ApiService,
+        private toastCtrl:ToastController
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
@@ -85,24 +86,32 @@ export class OrderAddress{
         this.address = event;
     }
     completeOrder(){
+        console.log(this.address)
+        /*
         this.simple["address"] = this.address;
         this.simple["date"] = this.myDate;
         this.simple["promo_code"] = this.promo_code;
         this.simple["customer_phone"] = "7777";
         this.simple["cars"] = this.cars;
+        */
         this.simple["customer_id"] = this.api.getId()
 
         console.log(this.simple)
-        this.api.sendOrder(this.simple).subscribe((data)=>{
-            console.log("data ",data)
-            if(data["status"] == "success"){
-                console.log(this.simple);
-                
-                this.nav.setRoot(CompleteOrder)
-            }else{
+        this.api.sendOrder(this.simple).subscribe(
+            (data)=>{
+                console.log(data)
+                if(data["status"] == "success"){
+                    console.log(this.simple);
+                    
+                    this.nav.setRoot(CompleteOrder)
+                }else{
 
-            }
-        })
+                }
+        },
+        (error)=>{
+            this.showToast(error);
+        }
+    )
         /*
         for(let i of this.newOrder){
             this.mobiWash.addCar({brand:i.brand, model:i.model, number:i.number});
@@ -110,6 +119,16 @@ export class OrderAddress{
         this.mobiWash.addAddress(this.address)
         
         */
+    }
+
+    showToast(err) {
+        let toast = this.toastCtrl.create({
+        message: `${err}`,
+        duration: 2000,
+        position: "top"
+        });
+
+        toast.present(toast);
     }
     //////////////////////
     historyAddresses:any;
