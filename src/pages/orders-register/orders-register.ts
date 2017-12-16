@@ -1,10 +1,11 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, NgZone } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams } from "ionic-angular";
+import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams, LoadingController } from "ionic-angular";
 import { Keyboard } from "@ionic-native/keyboard";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress, CompleteOrder } from "../barrel"
+import { TranslateService } from "../../translate/translate.service";
 
 
 
@@ -45,9 +46,12 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         private alertCtrl:AlertController,
         private params:NavParams,
         private ngZone:NgZone,
+        private serv:TranslateService,
+        private loadingCtrl:LoadingController
         
     ){
         this.initializeCars();
+        
     }
     ngAfterViewInit(){
         this.keyboard.onKeyboardShow().subscribe(
@@ -62,6 +66,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         )
     }
     ngOnInit(){
+
         this.historyCars = this.mobiWash.getCars();
         this.isHasDataWhenModalOpen()
     }
@@ -78,11 +83,12 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     //get cars from service
     initializeCars() {
-        this.cars = this.ordersCtrl.getResults()
-        
+        this.cars = this.ordersCtrl.getResults()  
      }
     ionViewWillEnter(){
+       
         this.cars = this.ordersCtrl.getResults()
+       
     }
      getBrands(ev: any){
         this.initializeCars();

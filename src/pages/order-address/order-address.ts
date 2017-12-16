@@ -87,39 +87,52 @@ export class OrderAddress{
     }
     completeOrder(){
         
-        console.log(this.address)
-        this.simple["customer_id"] = 71 //this.api.getId()
+        this.simple["customer_id"] = this.api.getId()
         this.simple["customer_phone"] = "7777";
         this.simple["promo_code"] = this.promo_code;
         this.simple["date"] = "2017-11-28 16:00:00";
         this.simple["address"] = this.address;
         this.simple["cars"] = this.cars;
         
+        
 
-        console.log(this.simple)
+        this.mobiWash.addAddress(this.simple.address);
+        this.mobiWash.addCar(this.simple.cars);
+
+
+        /*
+        let loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: this.serv.translateImportant("Պատվերն ուղարկվում է․․․", 'The order is sent ...')
+          });
+          loading.present();
+
+        
         this.api.sendOrder(this.simple).subscribe(
             (data)=>{
                 console.log(data)
                 if(data["status"] == "success"){
-                    console.log(this.simple);
                     
+                    // LocalStorage setters 
+                    
+                    console.log(this.simple);
+                    loading.dismiss()
                     this.nav.setRoot(CompleteOrder)
                 }else{
-
+                    loading.dismiss()
                 }
         },
         (error)=>{
             this.showToast(error);
+            loading.dismiss()
             console.log(this.simple)
         }
-    )
-        /*
-        for(let i of this.newOrder){
-            this.mobiWash.addCar({brand:i.brand, model:i.model, number:i.number});
-        }
-        this.mobiWash.addAddress(this.address)
+        )*/
         
-        */
+        
+        
+        
+       
     }
 
     showToast(err) {

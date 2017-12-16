@@ -34,25 +34,11 @@ export class MobiWash{
         }
     }
 /////////////////////////////////
-    addUser(username:string, tel:string){
-        
-        let data = this.localService.get("data") || [];
-        let isUser = data.filter((i) => i.customer_phone === tel);
-        if(isUser.length){
-            this.getActiveUserId(tel, data);
-            return;
+    addUser(){
+        if(!this.localService.get("addresses")){
+            this.localService.set("addresses", []);
+            this.localService.set("cars", []);
         }
-        let user:User = {
-            id:data.length,
-            name: username,
-            customer_phone: tel,
-            car:[],
-            address :[],
-            order:[]
-        }
-        this.customer_id = user.id;
-        data.push(user);
-        this.localService.set('data', data);
     }
     
 /////////////////////////////////
@@ -66,17 +52,24 @@ export class MobiWash{
     }
     
 /////////////////////////////////
-
+    
     addCar(carInfo:any){
-        let data = this.localService.get("data") || [];
-        let isNewCar = data[this.customer_id].car.findIndex((i) => {
-            return (i.brand === carInfo.brand) && (i.model === carInfo.model) && (i.number === carInfo.number);
-        });
-        if(isNewCar >= 0){
-            return;
+        let cars = this.localService.get("cars") || [];
+        
+        for(let i = 0; i < carInfo.length; i++){
+            let newCar = true;
+            let currentCar= carInfo[i];
+            for(let j = 0; j < cars.length; j++){
+                if((currentCar.make_id == cars[j].make_id) && (currentCar.model_id == cars[j].model_id) && (currentCar.car_number == cars[j].car_number)){
+                    newCar = false;
+                }
+            }
+            if(newCar){
+                cars.push(currentCar)
+            }
         }
-        data[this.customer_id].car.push(carInfo);
-        this.localService.set('data', data);
+
+        this.localService.set("cars", cars);
     }
 
 ////////////////////////////////////
@@ -112,16 +105,21 @@ editAddress(oldIndex, newAddress){
 }
     
 /////////////////////////////////
-    addAddress(address:any){
-        let data = this.localService.get("data") || [];
-        let isNewAddress = data[this.customer_id].address.findIndex((i) => {
-            return (i.address === address.address)
-        });
-        if(isNewAddress >= 0){
-            return;
+    addAddress(a:any){
+        let addresses = this.localService.get("addresses");
+        if (addresses.length == 0){
+            addresses.push(a);
+            this.localService.set('addresses', addresses);
+        }else{
+            let isNewAddress = addresses.findIndex((i) => {
+                return ((i.address === a.address) && (i.long == a.long) && (i.lat == a.lat))
+            });
+            if(isNewAddress >= 0){
+                return;
+            }
+            addresses.push(a)
+            this.localService.set('addresses', addresses);
         }
-        data[this.customer_id].address.push(address);
-        this.localService.set('data', data);
     }
 /////////////////////////////////
     getAddresses(){

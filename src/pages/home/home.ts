@@ -93,6 +93,7 @@ export class HomePage {
         console.log(data)
         if(data["status"]=="ok" || data["status"] == "success"){
           console.log(data)
+          this.mobiWash.addUser();
           loading.dismiss();
           this.mobiWash.setActiveUser(data["data"].id)
           this.api.setId(data["data"].id);
@@ -106,10 +107,10 @@ export class HomePage {
       (error)=>{
         this.showToast(error);
     })
-    /*
-    this.mobiWash.addUser(this.name, this.phoneNumber);
     
-    */
+    
+    
+    
     //this.navCtrl.setRoot(OrdersHistory);
   }
 

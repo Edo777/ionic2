@@ -3,14 +3,22 @@ import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map'
 import { ApiService } from "./api.service";
 import { NewOrder } from "../pages/interfaces/interfaces";
+import { LoadingController } from "ionic-angular";
+import { TranslateService } from "../translate/translate.service";
 
 
 @Injectable()
 export class CarsService {
   
   cars:any
-  constructor(private api:ApiService) {
+  hasResult:boolean = false;
+  constructor(private api:ApiService, private loadingCtrl:LoadingController, private serv:TranslateService) {
+    let loading = this.loadingCtrl.create({
+      content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+    });
+    loading.present();
     this.api.getAllcars().subscribe(data=>{
+      loading.dismiss()
       this.cars = data;
       console.log(this.cars)
     })
