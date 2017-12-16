@@ -32,7 +32,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:"", type:""};
+    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:0, type:""};
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -128,7 +128,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.isCompleteModel = false;
             this.rows.hide3 = true;
         }else if(id === 3){
-            this.CAR.car_number = this.carNumber;
+            this.CAR["car_number"] = this.carNumber;
             this.rows.hide4 = true
         }
     }
@@ -142,19 +142,19 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     ///////////////////////////////
     private carTypeControl(){
-        this.CAR.make_id = this.brandName;
-        this.CAR.model_id = this.modelName;
-        this.CAR.service = this.service;
-        this.CAR.type = "new";
+        this.CAR["make_id"] = this.brandName;
+        this.CAR["model_id"] = this.modelName;
+        this.CAR["service"] = Number(this.service);
+        this.CAR["type"] = "new";
         for(let brand of this.cars){
             if(brand.name.toLowerCase() == this.brandName.toLowerCase()){
                 console.log("yes brand")
                 for(let model of brand.models){
                     if(model.name.toLowerCase() == this.modelName.toLowerCase()){
                         console.log("yes model")
-                        this.CAR.make_id = brand.id;
-                        this.CAR.model_id = model.id;
-                        delete this.CAR.type
+                        this.CAR["make_id"] = Number(brand.id);
+                        this.CAR["model_id"] = Number(model.id);
+                        delete this.CAR["type"];
                         break;
                     }
                 };

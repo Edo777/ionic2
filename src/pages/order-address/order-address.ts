@@ -13,7 +13,7 @@ import { ApiService } from "../../services/api.service";
 
 export class OrderAddress{
     simple:any = {
-            customer_id:"62",
+            customer_id:"71",
             customer_phone:"1145747",
             promo_code:123456,
             date:"2017-11-28 16:00:00",
@@ -86,15 +86,15 @@ export class OrderAddress{
         this.address = event;
     }
     completeOrder(){
+        
         console.log(this.address)
-        /*
-        this.simple["address"] = this.address;
-        this.simple["date"] = this.myDate;
-        this.simple["promo_code"] = this.promo_code;
+        this.simple["customer_id"] = 71 //this.api.getId()
         this.simple["customer_phone"] = "7777";
+        this.simple["promo_code"] = this.promo_code;
+        this.simple["date"] = "2017-11-28 16:00:00";
+        this.simple["address"] = this.address;
         this.simple["cars"] = this.cars;
-        */
-        this.simple["customer_id"] = this.api.getId()
+        
 
         console.log(this.simple)
         this.api.sendOrder(this.simple).subscribe(
@@ -110,6 +110,7 @@ export class OrderAddress{
         },
         (error)=>{
             this.showToast(error);
+            console.log(this.simple)
         }
     )
         /*

@@ -38,8 +38,7 @@ export class OrdersList implements OnInit{
     completeAll(){
         this.ngZone.run(() => {
              this.nav.push(OrderAddress, {"cars" : this.cars})
-        })
-        
+        })  
     }
     createNewOrder(orderEdit?:any){
        var modalAddress = orderEdit? this.modalCtrl.create(OrdersRegister, {"orderEdit":orderEdit}) : this.modalCtrl.create(OrdersRegister);

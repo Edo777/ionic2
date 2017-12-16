@@ -19,10 +19,10 @@ export interface CarOrder{
 }
 
 export interface NewOrder{
-    make_id:string,
-    model_id:string,
-    car_number:string,
-    service:string,
+    make_id:any,
+    model_id:any,
+    car_number:any,
+    service:any,
     type?:string
 }
 
