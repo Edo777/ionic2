@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  'orders-register itemitem-md checkbox-md': {
+    'marginRight': [{ 'unit': 'px', 'value': 10 }]
+  },
   'orders-register ion-content scroll-content': {
     'paddingBottom': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'string', 'value': '!important' }]
   },

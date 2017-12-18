@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { SearchCars } from "../interfaces/interfaces";
-import {ModalController} from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { AddCars } from "../barrel";
 
 
@@ -22,24 +22,20 @@ export class HistoryPage implements OnInit{
     dataJson:any[];
     addNewCar:any = {};
     isAddNewCar:boolean = false;
-    more:boolean[];
     constructor(
         private modalCtrl:ModalController,
         private navParams: NavParams, 
         private mobiWash:MobiWash,
-        private ordersCtrl:CarsService
+        private carsCtrl:CarsService
     ){}      
     ngOnInit(){
         this.pageName = this.navParams.get('pageName');   
         this.cars = this.mobiWash.getCars();
-        this.more = new Array(this.cars.length);
         this.initializeCars();
     }
     initializeCars() {
-        this.ordersCtrl.getResults()
-        .subscribe(data=>{
-            this.dataJson = data;
-        });
+         this.dataJson = this.carsCtrl.getResults();
+       
      }
     removeCar(i){
         this.mobiWash.removeCar(i);

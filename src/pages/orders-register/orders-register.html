@@ -2,63 +2,65 @@
     <button (click)="closeRegisterPage()" ion-button float-right only-icon>
         <ion-icon md="md-close" ios="md-close"></ion-icon>
     </button>
-    <button ion-button (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ընտրել հին մեքենաներից" | translate}}</button>
+    <button ion-button color="grey" (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ընտրել հին մեքենաներից" | translate}}</button>
+
     <ion-grid>
         <!-- BRANDS -->
-        <ion-row class="cars-info">
-            <ion-col col-12>
+        <form [formGroup]="todo">
+            <ion-row class="cars-info">
+                <ion-col col-12>
 
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Մեքենա' | translate}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" [value]="brandName" [(ngModel)]="brandName" (input)="getBrands($event)">
-                    </ion-input>
+                    <ion-item mode="md" no-padding>
+                        <ion-label color="black" floating>{{'Մեքենա' | translate}}</ion-label>
+                        <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" formControlName="make_id" [value]="brandName" [(ngModel)]="brandName" (input)="getBrands($event)">
+                        </ion-input>
 
-                </ion-item>
-                <ion-scroll scrollY="true" *ngIf="isCompleteBrand">
-                    <ion-grid>
-                        <ion-row *ngFor="let brand of brands" (tap)="checkBrandButton(brand, brand.name)">
-                            <ion-col class="car-row" col-12>
-                                {{ brand.name }}
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-scroll>
+                    </ion-item>
+                    <ion-scroll scrollY="true" *ngIf="isCompleteBrand">
+                        <ion-grid>
+                            <ion-row *ngFor="let brand of brands" (tap)="checkBrandButton(brand, brand.name)">
+                                <ion-col class="car-row" col-12>
+                                    {{ brand.name }}
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-scroll>
 
-            </ion-col>
-        </ion-row>
+                </ion-col>
+            </ion-row>
 
-        <!-- car model_id -->
-        <ion-row class="cars-info" *ngIf="rows.hide2" #mod>
-            <ion-col col-12>
+            <!-- car model_id -->
+            <ion-row class="cars-info" *ngIf="rows.hide2" #mod>
+                <ion-col col-12>
 
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Մոդել' | translate}}</ion-label>
-                    <ion-input (ionBlur)="completeBlur(2)" (ionFocus)="completeFocus($event, 2)" [value]="modelName" [(ngModel)]="modelName" (input)="getModels($event)"></ion-input>
-                </ion-item>
-                <ion-scroll scrollY="true" *ngIf="isCompleteModel">
-                    <ion-grid>
-                        <ion-row *ngFor="let model of localModels" (tap)="checkModelButton(model)">
-                            <ion-col class="car-row" col-12>
-                                {{ model.name }}
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-scroll>
+                    <ion-item mode="md" no-padding>
+                        <ion-label color="black" floating>{{'Մոդել' | translate}}</ion-label>
+                        <ion-input (ionBlur)="completeBlur(2)" formControlName="model_id" (ionFocus)="completeFocus($event, 2)" [value]="modelName" [(ngModel)]="modelName" (input)="getModels($event)"></ion-input>
+                    </ion-item>
+                    <ion-scroll scrollY="true" *ngIf="isCompleteModel">
+                        <ion-grid>
+                            <ion-row *ngFor="let model of localModels" (tap)="checkModelButton(model)">
+                                <ion-col class="car-row" col-12>
+                                    {{ model.name }}
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-scroll>
 
-            </ion-col>
-        </ion-row>
-        <!-- car_number car -->
-        <ion-row class="cars-info" *ngIf="rows.hide3">
-            <ion-col col-12>
+                </ion-col>
+            </ion-row>
+            <!-- car_number car -->
+            <ion-row class="cars-info" *ngIf="rows.hide3">
+                <ion-col col-12>
 
-                <ion-item mode="md" no-padding>
-                    <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
-                    <ion-input maxlength="10" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="carNumber" [(ngModel)]="carNumber"></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
+                    <ion-item mode="md" no-padding>
+                        <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
+                        <ion-input maxlength="10" formControlName="car_number" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="carNumber" [(ngModel)]="carNumber"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-
+        </form>
 
         <!-- Type pinking -->
 
@@ -82,16 +84,19 @@
                     <ion-label>Լվացում 3</ion-label>
                     <ion-radio mode="ios" value="3"></ion-radio>
                 </ion-item>
-                <ion-item no-lines text-left>{{service}}</ion-item>
+                <ion-item no-lines text-left>
+                    {{service}}
+                </ion-item>
+                <ion-item no-lines>
+                    <ion-label>
+                        Քիմ մաքրում
+                    </ion-label>
+                    <ion-checkbox></ion-checkbox>
+                </ion-item>
             </ion-list>
         </ion-row>
-
-        <ion-row>
-
-        </ion-row>
     </ion-grid>
-
 </ion-content>
-<ion-footer *ngIf="service != ''">
-    <button full large ion-button *ngIf="service != ''" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+<ion-footer>
+    <button full large ion-button [disabled]="((!todo.valid) || (service == null))" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
 </ion-footer>

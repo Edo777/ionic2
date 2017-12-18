@@ -13,15 +13,17 @@ export class CarsService {
   cars:any
   hasResult:boolean = false;
   constructor(private api:ApiService, private loadingCtrl:LoadingController, private serv:TranslateService) {
-    let loading = this.loadingCtrl.create({
+    setTimeout(() => {
+      let loading = this.loadingCtrl.create({
       content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
-    });
-    loading.present();
-    this.api.getAllcars().subscribe(data=>{
-      loading.dismiss()
-      this.cars = data;
-      console.log(this.cars)
-    })
+      });
+      loading.present();
+      this.api.getAllcars().subscribe(data=>{
+        loading.dismiss()
+        this.cars = data;
+        console.log(this.cars)
+      })
+    }, 100)
   }
 
 

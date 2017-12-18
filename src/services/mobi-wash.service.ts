@@ -92,9 +92,8 @@ export class MobiWash{
 ///////////////////////////////////
 
     getCars(){
-        let data = this.localService.get("data");
-        return [];
-        //return data[this.customer_id].car;        
+        let cars = this.localService.get("cars");
+        return cars;
     }
 ///////////////////////////////////
 

@@ -2,7 +2,7 @@
     <ion-navbar>
 
     </ion-navbar>
-    <button ion-button full (tap)="createNewOrder()">{{"Ավելացնել նոր հայտ" | translate}}</button>
+    <button ion-button full color="grey" (tap)="createNewOrder()">{{"Ավելացնել նոր հայտ" | translate}}</button>
 </ion-header>
 <ion-content>
     <ion-list no-margin mode="md">
@@ -79,5 +79,5 @@
 
 </ion-content>
 <ion-footer>
-    <button ion-button text-center full (tap)="completeAll()" [disabled]="cars?.length == 0">{{"Հաստատել բոլորը" | translate}}</button>
+    <button ion-button text-center full (tap)="completeAll()" color="grey" [disabled]="cars?.length == 0">{{"Հաստատել բոլորը" | translate}}</button>
 </ion-footer>

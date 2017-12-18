@@ -95,12 +95,6 @@ export class OrderAddress{
         this.simple["cars"] = this.cars;
         
         
-
-        this.mobiWash.addAddress(this.simple.address);
-        this.mobiWash.addCar(this.simple.cars);
-
-
-        /*
         let loading = this.loadingCtrl.create({
             spinner: 'crescent',
             content: this.serv.translateImportant("Պատվերն ուղարկվում է․․․", 'The order is sent ...')
@@ -112,9 +106,9 @@ export class OrderAddress{
             (data)=>{
                 console.log(data)
                 if(data["status"] == "success"){
-                    
                     // LocalStorage setters 
-                    
+                    this.mobiWash.addAddress(this.simple.address);
+                    this.mobiWash.addCar(this.simple.cars);
                     console.log(this.simple);
                     loading.dismiss()
                     this.nav.setRoot(CompleteOrder)
@@ -127,7 +121,7 @@ export class OrderAddress{
             loading.dismiss()
             console.log(this.simple)
         }
-        )*/
+        )
         
         
         

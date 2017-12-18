@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController, NavController, App, NavParams } from 'ionic-angular';
-import { OrdersRegister, AddNewAddress, OrdersList } from "../barrel";
+import { OrdersRegister, AddNewAddress, OrdersList, OldOrders } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
 import { MobiWash } from "../../services/barrel.service";
 
@@ -41,5 +41,8 @@ export class UserAccount {
     removeOrder(i){
         this.mobiWash.removeOrder(i)
       //  this.orders = this.mobiWash.getOrder()
+    }
+    oldOrders(){
+        this.nav.push(OldOrders)
     }
 }

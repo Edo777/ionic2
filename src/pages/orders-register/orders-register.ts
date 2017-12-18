@@ -1,11 +1,13 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, NgZone } from '@angular/core';
 import { CarOrder, NewOrder, Brand, Model } from '../interfaces/interfaces';
 import { CarsService } from "../../services/cars.service";
-import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams, LoadingController } from "ionic-angular";
+import { ViewController, Platform, Content, Nav, NavController, App, AlertController, NavParams, LoadingController, ToastController } from "ionic-angular";
 import { Keyboard } from "@ionic-native/keyboard";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress, CompleteOrder } from "../barrel"
 import { TranslateService } from "../../translate/translate.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 
 
 
@@ -19,9 +21,9 @@ import { TranslateService } from "../../translate/translate.service";
 export class OrdersRegister implements OnInit,AfterViewInit{
     //edit order
     private orderEdit:any;
-
+    
     private modelName; brandName; carNumber; service;
-
+    private todo: FormGroup
 
     historyCars:any;
     cars = [];
@@ -47,11 +49,17 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         private params:NavParams,
         private ngZone:NgZone,
         private serv:TranslateService,
-        private loadingCtrl:LoadingController
+        private loadingCtrl:LoadingController,
+        private formBuilder: FormBuilder,
+        private toastCtrl:ToastController
         
     ){
         this.initializeCars();
-        
+        this.todo = this.formBuilder.group({
+            make_id: ['', Validators.required],
+            model_id: ['',Validators.required],
+            car_number:['',Validators.required],
+        });
     }
     ngAfterViewInit(){
         this.keyboard.onKeyboardShow().subscribe(
@@ -66,7 +74,6 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         )
     }
     ngOnInit(){
-
         this.historyCars = this.mobiWash.getCars();
         this.isHasDataWhenModalOpen()
     }
@@ -114,10 +121,18 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     
     completeRegisterPage(){
-        this.carTypeControl();
+       /* 
         console.log(this.CAR)
-        this.viewCtrl.dismiss(this.CAR);  
+        */
+        this.CAR = this.todo.value;
+        this.carTypeControl();
+        this.viewCtrl.dismiss(this.CAR);
+        console.log(this.CAR); 
+        
     }
+
+    ///////////////////////////
+
     closeRegisterPage(){
         this.viewCtrl.dismiss()
     }
@@ -147,7 +162,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         }
     }
     ///////////////////////////////
+    
     private carTypeControl(){
+        
         this.CAR["make_id"] = this.brandName;
         this.CAR["model_id"] = this.modelName;
         this.CAR["service"] = Number(this.service);
@@ -168,7 +185,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             }         
         };
     }
-   
+
     isHasDataWhenModalOpen(){
         if(this.params.data["orderEdit"]){
             this.orderEdit = this.params.data["orderEdit"];
@@ -185,7 +202,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                let model = brand.models.find((element) => this.params.data["orderEdit"].model_id == element.id);
                this.brandName = brand.name;
                this.modelName = model.name;
+               
             }
+            console.log(this.service)
         }
     }
     /////////////////////////////
