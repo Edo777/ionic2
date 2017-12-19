@@ -1,12 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Local } from "./barrel.service";
 import { User } from "../pages/interfaces/interfaces";
+import { CarsService } from "./cars.service";
 
 @Injectable()
 
 export class MobiWash{
     private customer_id:number;
-    constructor(private localService:Local){}
+    private allCars;
+    constructor(private localService:Local){
+       
+    }
 /////////////////////////////////
     //inicializacia customer_id
     public setActiveUser(id){
@@ -55,9 +59,10 @@ export class MobiWash{
     
     addCar(carInfo:any){
         let cars = this.localService.get("cars") || [];
-        
-        for(let i = 0; i < carInfo.length; i++){
-            let newCar = true;
+        let newCar = true;
+        if(Array.isArray(carInfo)){
+            for(let i = 0; i < carInfo.length; i++){
+            
             let currentCar= carInfo[i];
             for(let j = 0; j < cars.length; j++){
                 if((currentCar.make_id == cars[j].make_id) && (currentCar.model_id == cars[j].model_id) && (currentCar.car_number == cars[j].car_number)){
@@ -67,32 +72,42 @@ export class MobiWash{
             if(newCar){
                 cars.push(currentCar)
             }
+          }
+        }else{
+            for(let j = 0; j < cars.length; j++){
+                if((carInfo.make_id == cars[j].make_id) && (carInfo.model_id == cars[j].model_id) && (carInfo.car_number == cars[j].car_number)){
+                    newCar = false;
+                }
+            }
+            if(newCar){
+                cars.push(carInfo)
+            }
         }
-
         this.localService.set("cars", cars);
     }
 
 ////////////////////////////////////
 
     editCar(oldIndex, newCar){
-        let data = this.localService.get("data") || [];
-        data[this.customer_id].car.splice(oldIndex, 1, newCar);
-        this.localService.set('data', data);
+        let cars = this.localService.get("cars") || [];
+        cars.splice(oldIndex, 1, newCar);
+        this.localService.set('cars', cars);
     }
 
 ///////////////////////////////////
 
     removeCar(i:number){
-        let data = this.localService.get("data") || [];
+        let cars = this.localService.get("cars") || [];
         
-        data[this.customer_id].car.splice(i, 1);
-        this.localService.set('data', data);
+        cars.splice(i, 1);
+        this.localService.set('cars', cars);
     }
     
 ///////////////////////////////////
 
     getCars(){
         let cars = this.localService.get("cars");
+        
         return cars;
     }
 ///////////////////////////////////

@@ -1,6 +1,6 @@
 <absolute-header [pageName]="pageName"></absolute-header>
 
-<ion-tabs tabsHideOnSubPages top mode="ios">
+<ion-tabs #myTabs tabsHideOnSubPages top mode="ios">
     <ion-tab [root]="active" [tabTitle]="'Նոր պատվերներ' | translate"></ion-tab>
     <ion-tab [root]="unactive" [tabTitle]="'Պատմություն' | translate"></ion-tab>
 </ion-tabs>

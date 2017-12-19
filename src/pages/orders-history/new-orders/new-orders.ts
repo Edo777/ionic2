@@ -34,10 +34,15 @@ export class NewOrders{
                     loading.dismiss()
                 })
     }
+
+        copy(item){
+            console.log(item);
+        }
+
+
      some(item, i){
          this.data.splice(i, 1);
          item.close()
-
      }
       
 }
