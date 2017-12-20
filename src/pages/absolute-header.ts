@@ -30,6 +30,7 @@ import { Component, Input } from '@angular/core';
             margin: 0 auto;
             font-weight:700;
         }
+        
     `]
 })
 

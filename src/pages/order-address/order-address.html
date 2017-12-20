@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content no-scroll>
-    <button ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ընտրել հին հասցեներից" | translate}}</button>
+    <button color="grey" ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ընտրել հին հասցեներից" | translate}}</button>
 
     <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
 

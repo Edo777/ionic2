@@ -1,4 +1,9 @@
 page-home {
+    ion-header {
+        .item-md {
+            background: linear-gradient(to right, rgba(173, 189, 132, 1) 0%, rgba(206, 215, 184, 1) 38%, rgba(245, 245, 245, 1) 82%, rgba(245, 245, 245, 1) 97%);
+        }
+    }
     .scroll-content {
         display: flex;
         align-items: center;

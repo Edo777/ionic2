@@ -19,7 +19,6 @@ export class HistoryPage implements OnInit{
 
     pageName:string;
     cars:any[] = [];
-    dataJson:any[];
     addNewCar:any = {};
     isAddNewCar:boolean = false;
     constructor(
@@ -32,9 +31,7 @@ export class HistoryPage implements OnInit{
         this.pageName = this.navParams.get('pageName');   
         this.cars = this.mobiWash.getCars();
     }
-    initializeCars() {
-         this.dataJson = this.carsCtrl.getResults();
-     }
+    
     removeCar(i){
         this.mobiWash.removeCar(i);
         this.cars = this.mobiWash.getCars()
@@ -48,7 +45,6 @@ export class HistoryPage implements OnInit{
 
 
     createNewCars(car?:any, index?:number){
-        this.initializeCars();
         var modal = this.modalCtrl.create(AddCars, {"car" :car});
         modal.onWillDismiss((data) =>{
             console.log(data)

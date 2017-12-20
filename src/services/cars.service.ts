@@ -9,21 +9,21 @@ import { TranslateService } from "../translate/translate.service";
 
 @Injectable()
 export class CarsService {
-  
-  cars:any
+  public ok:boolean = false;
+  private cars:any
   hasResult:boolean = false;
   constructor(private api:ApiService, private loadingCtrl:LoadingController, private serv:TranslateService) {
-    setTimeout(() => {
-      let loading = this.loadingCtrl.create({
-      content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
-      });
-      loading.present();
-      this.api.getAllcars().subscribe(data=>{
-        loading.dismiss()
-        this.cars = data;
-        console.log(this.cars)
-      })
-    }, 100)
+      this.api.getAllcars().subscribe(
+        (data)=>{
+            this.cars = data;
+            this.ok = true;
+            console.log(this.cars)
+        },
+        (error) => {
+            this.ok = false;
+        }
+    )
+  
   }
 
 

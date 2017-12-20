@@ -108,7 +108,8 @@ export class OrderAddress{
                 if(data["status"] == "success"){
                     // LocalStorage setters 
                     this.mobiWash.addAddress(this.simple.address);
-                    this.mobiWash.addCar(this.simple.cars);
+
+                    this.mobiWash.addCar(this.addCarsFromLocalstorage(this.simple.cars));
                     console.log(this.simple);
                     loading.dismiss()
                     this.nav.setRoot(CompleteOrder)
@@ -127,6 +128,15 @@ export class OrderAddress{
         
         
        
+    }
+
+    private addCarsFromLocalstorage(arr){
+        let carsFromLocal = []
+        for(let i = 0; i < arr.length; i++){
+            delete arr[i].service
+            carsFromLocal.push(arr[i])
+        }
+        return carsFromLocal;
     }
 
     showToast(err) {

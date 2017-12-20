@@ -23,7 +23,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     private orderEdit:any;
     
     private modelName; brandName; carNumber; service;
-    private todo: FormGroup
+    private todo: FormGroup;
 
     historyCars:any;
     cars = [];
@@ -35,7 +35,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service:0, type:""};
+    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service: 0, type:""};
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -121,13 +121,11 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     
     completeRegisterPage(){
-       /* 
-        console.log(this.CAR)
-        */
+        console.log(this.todo)
         this.CAR = this.todo.value;
+        
         this.carTypeControl();
         this.viewCtrl.dismiss(this.CAR);
-        console.log(this.CAR); 
         
     }
 
@@ -171,10 +169,10 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         this.CAR["type"] = "new";
         for(let brand of this.cars){
             if(brand.name.toLowerCase() == this.brandName.toLowerCase()){
-                console.log("yes brand")
+               
                 for(let model of brand.models){
                     if(model.name.toLowerCase() == this.modelName.toLowerCase()){
-                        console.log("yes model")
+                        
                         this.CAR["make_id"] = Number(brand.id);
                         this.CAR["model_id"] = Number(model.id);
                         delete this.CAR["type"];

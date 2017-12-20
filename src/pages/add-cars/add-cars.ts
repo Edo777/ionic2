@@ -105,7 +105,7 @@ export class AddCars{
                 }
             }
             console.log(this.addNewCar)
-            this.viewCtrl.dismiss([this.addNewCar, this.isEdit]);
+            this.viewCtrl.dismiss([this.addNewCar, this.isEdit, ]);
         
         
     }

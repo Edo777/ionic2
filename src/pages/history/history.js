@@ -7,10 +7,6 @@ export default StyleSheet.create({
   'history-page ion-item-sliding': {
     'marginBottom': [{ 'unit': 'px', 'value': 10 }]
   },
-  'history-page ion-item-sliding item': {
-    'background': '#889676',
-    'height': [{ 'unit': 'px', 'value': 100 }]
-  },
   'history-page ion-scroll scroll-content': {
     'height': [{ 'unit': 'vh', 'value': 30 }]
   },

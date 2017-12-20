@@ -91,6 +91,8 @@ export class MenuComponent{
               text: a.exit,
               handler: () => {
                 this.navCtrl.setRoot(HomePage);
+                localStorage.removeItem("phone_number")
+                localStorage.removeItem("id")
               }
             },
             {

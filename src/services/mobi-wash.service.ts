@@ -2,14 +2,19 @@ import { Injectable } from "@angular/core";
 import { Local } from "./barrel.service";
 import { User } from "../pages/interfaces/interfaces";
 import { CarsService } from "./cars.service";
+import { ApiService } from "./api.service";
 
 @Injectable()
 
 export class MobiWash{
     private customer_id:number;
-    private allCars;
-    constructor(private localService:Local){
-       
+    private allCars = [];
+    constructor(private localService:Local, private api:ApiService){
+       this.api.getAllcars().subscribe(
+           (data) => {
+               this.allCars = data;
+           }
+       )
     }
 /////////////////////////////////
     //inicializacia customer_id
@@ -45,6 +50,11 @@ export class MobiWash{
         }
     }
     
+    setPhoneAndId(phone_number, id){
+        this.api.setId(id);
+        this.localService.set("phone_number", phone_number);
+        this.localService.set("id", id);
+    }
 /////////////////////////////////
 
     removeUser(){
@@ -59,24 +69,27 @@ export class MobiWash{
     
     addCar(carInfo:any){
         let cars = this.localService.get("cars") || [];
-        let newCar = true;
+        
         if(Array.isArray(carInfo)){
             for(let i = 0; i < carInfo.length; i++){
-            
+            let newCurrentCar = true;
             let currentCar= carInfo[i];
-            for(let j = 0; j < cars.length; j++){
-                if((currentCar.make_id == cars[j].make_id) && (currentCar.model_id == cars[j].model_id) && (currentCar.car_number == cars[j].car_number)){
-                    newCar = false;
+                for(let j = 0; j < cars.length; j++){
+                    if((currentCar.make_id == cars[j].make_id) && (currentCar.model_id == cars[j].model_id) && (currentCar.car_number == cars[j].car_number)){
+                        newCurrentCar = false;
+                        break;
+                    }
                 }
-            }
-            if(newCar){
-                cars.push(currentCar)
-            }
+                if(newCurrentCar){
+                    cars.push(currentCar)
+                }
           }
         }else{
+            let newCar = true;
             for(let j = 0; j < cars.length; j++){
                 if((carInfo.make_id == cars[j].make_id) && (carInfo.model_id == cars[j].model_id) && (carInfo.car_number == cars[j].car_number)){
                     newCar = false;
+                    break;
                 }
             }
             if(newCar){
@@ -107,7 +120,27 @@ export class MobiWash{
 
     getCars(){
         let cars = this.localService.get("cars");
-        
+        /*
+        for(let i = 0; i < cars.length; i++){
+            if(!cars[i].type){
+                console.log((this.allCars).length)
+                for(let j = 0; j < this.allCars.length; j++){
+                    if((cars[i].make_id) == this.allCars[j].id){
+                        let models = this.allCars[j].models;
+                        for(let k = 0; k < models.length; k++){
+                            if(models[k].id == cars[i].model_id){
+                                cars[i]["models"] = models;
+                                cars[i].model_id = models[k].name;
+                                cars[i].make_id = this.allCars[j].name;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        console.log(cars)
+        */
         return cars;
     }
 ///////////////////////////////////
@@ -164,4 +197,5 @@ editAddress(oldIndex, newAddress){
         data[this.customer_id].order.splice(i,1);
         this.localService.set('data',data)
     }
+
 }

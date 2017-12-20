@@ -22,9 +22,18 @@
 }
 
 .toast-md .toast-message {
-    background-color: rgb(136, 150, 118);
+    background-color: #adbd84;
     color: white;
     font-size: 1.7rem;
     min-height: 56px;
     max-height: 56px;
+}
+
+.toolbar-background-md {
+    background: linear-gradient(to right, rgba(173, 189, 132, 1) 0%, rgba(206, 215, 184, 1) 38%, rgba(245, 245, 245, 1) 82%, rgba(245, 245, 245, 1) 97%);
+}
+
+ion-item-sliding .item {
+    background-color: #adbd84;
+    height: 100px;
 }

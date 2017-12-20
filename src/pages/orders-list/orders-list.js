@@ -7,10 +7,6 @@ export default StyleSheet.create({
   'orders-list ion-item-sliding': {
     'marginBottom': [{ 'unit': 'px', 'value': 10 }]
   },
-  'orders-list ion-item-sliding item': {
-    'backgroundColor': '#889676',
-    'height': [{ 'unit': 'px', 'value': 100 }]
-  },
   'orders-list ion-scroll scroll-content': {
     'height': [{ 'unit': 'vh', 'value': 30 }]
   },

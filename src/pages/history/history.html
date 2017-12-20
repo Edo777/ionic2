@@ -13,7 +13,7 @@
                             <ion-icon color="mycolor" md="ios-car-outline" ios="ios-car-outline"></ion-icon>
                         </ion-col>
                         <ion-col col-11>
-                            {{"Մեքենա" | translate}} - {{car.make_id}}
+                            {{"Մեքենա" | translate}} - {{car | formatter:"make_id"}}
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -21,7 +21,7 @@
 
                         </ion-col>
                         <ion-col col-11>
-                            {{"Մոդել" | translate}} - {{car.model_id}}
+                            {{"Մոդել" | translate}} - {{car | formatter:"model_id"}}
                         </ion-col>
                     </ion-row>
                     <ion-row>
