@@ -5,6 +5,9 @@ export default StyleSheet.create({
     'background': 'grey',
     'alignItems': 'center'
   },
+  'new-orders scroll-content': {
+    'paddingBottom': [{ 'unit': 'px', 'value': 56 }]
+  },
   'new-orders view': {
     // .confirm {
             font-size: 1rem;

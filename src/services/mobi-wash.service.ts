@@ -53,7 +53,7 @@ export class MobiWash{
     setPhoneAndId(phone_number, id){
         this.api.setId(id);
         this.localService.set("phone_number", phone_number);
-        this.localService.set("id", id);
+        this.localService.set("id", Number(id));
     }
 /////////////////////////////////
 

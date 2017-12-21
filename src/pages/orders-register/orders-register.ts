@@ -111,7 +111,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
      }
      getModels(ev: any){
         let val = ev.target.value;
-        if (val && val.trim() != '' && this.models.length) {
+        if (val && val.trim() != '' && this.models) {
             this.localModels = this.models.filter((item:any) => {
                 return (item.name.toLowerCase().startsWith(val.toLowerCase()));
             })
@@ -185,24 +185,31 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
 
     isHasDataWhenModalOpen(){
-        if(this.params.data["orderEdit"]){
-            this.orderEdit = this.params.data["orderEdit"];
+        let orderEdit = this.params.data["orderEdit"];
+        if(orderEdit){
+            
+            this.orderEdit = orderEdit;
             this.rows.hide2 = true;
             this.rows.hide3 = true;
             this.rows.hide4 = true;
             this.carNumber = this.orderEdit.car_number;
             this.service = this.orderEdit.service;
-            if(this.params.data["orderEdit"].type){
+            if(orderEdit.type){
+                
+                let brand = this.cars.find((element) => orderEdit.make_id.toLowerCase() == element.name.toLowerCase());
+                if(brand){
+                    this.models = brand.models;
+                    console.log("this.models ", this.models)
+                }
                 this.brandName = this.orderEdit.make_id;
                 this.modelName = this.orderEdit.model_id;
             }else{
-               let brand = this.cars.find((element) => this.params.data["orderEdit"].make_id == element.id);
-               let model = brand.models.find((element) => this.params.data["orderEdit"].model_id == element.id);
+               let brand = this.cars.find((element) => orderEdit.make_id == element.id);
+               let model = brand.models.find((element) => orderEdit.model_id == element.id);
                this.brandName = brand.name;
                this.modelName = model.name;
-               
+               this.models = brand.models;
             }
-            console.log(this.service)
         }
     }
     /////////////////////////////

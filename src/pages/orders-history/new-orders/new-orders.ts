@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../../services/api.service";
-import { ToastController, LoadingController } from "ionic-angular";
+import { ToastController, LoadingController, InfiniteScroll } from "ionic-angular";
 import { TranslateService } from "../../../translate/translate.service";
 
 
@@ -11,7 +11,8 @@ import { TranslateService } from "../../../translate/translate.service";
 
 export class NewOrders{
 
-    data = []
+    data = [];
+    data2 = [];
     isComnplete:boolean = true;;
     constructor(
         private api:ApiService,
@@ -26,14 +27,37 @@ export class NewOrders{
             });
             loading.present();
         })
+        
+                 
         this.api.getOrders("active").subscribe(
                 (data)=>{
-                    this.data= data;
+                    console.log(data)
+                    this.data = data;
+                    for(let i = 0; i < 6; i++){
+                         this.data2.push(this.data[i])
+                    }
                     loading.dismiss()
                 },(error)=>{
                     loading.dismiss()
-                })
-    }
+                })   
+                          
+         }
+         
+         doInfinite(infiniteScroll: InfiniteScroll) {
+             let k = this.data2.length;
+                this.api.getOrders("active").subscribe((data) => {
+                    
+                    for ( let i = k; i < k+6; i++) {
+                        this.data2.push( this.data[i] );
+                    }
+
+                    infiniteScroll.complete();
+
+                if (this.data2.length > 90) {
+                    infiniteScroll.enable(false);
+                }
+            });
+        }
 
         copy(item){
             console.log(item);
@@ -44,5 +68,6 @@ export class NewOrders{
          this.data.splice(i, 1);
          item.close()
      }
+    
       
 }

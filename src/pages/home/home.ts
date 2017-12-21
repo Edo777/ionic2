@@ -40,7 +40,9 @@ export class HomePage {
      this.activeLngText = this.activeLng.text;
      this.activeFlag = this.activeLng.flag;
      if(localStorage.getItem("phone_number")){
-        this.navCtrl.setRoot(MenuComponent);
+        this.api.setId(localStorage.getItem("id"))
+        console.log(this.api.getId())
+        this.navCtrl.setRoot(MenuComponent); 
      }
   }
   ngDoCheck(){
@@ -83,10 +85,10 @@ export class HomePage {
         
         console.log(data)
         if(this.carsService.ok && (data["status"]=="ok" || data["status"] == "success")){
-          console.log(data)
+          //mobiwash service
           this.mobiWash.addUser();
           this.mobiWash.setPhoneAndId(this.phoneNumber, data["data"].id)
-          this.mobiWash.setActiveUser(data["data"].id)
+          //api service
           this.api.setId(data["data"].id);
           loading.dismiss();
           this.navCtrl.setRoot(MenuComponent);

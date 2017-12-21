@@ -32,13 +32,10 @@ export class AddCars{
         ngOnInit(){
        
         this.cars = this.mobiWash.getCars();
-        if(this.params.data["car"]){
-            this.isEdit = true;
-            this.brandName = this.params.data["car"].make_id;
-            this.modelName = this.params.data["car"].model_id;
-            this.carNumber = this.params.data["car"].car_number;
-        }
+        //get data -> 
         this.initializeCars();
+        this.isHasDataWhenModalOpen()
+        
     }
     ngAfterViewInit() {
         //this.cars = this.mobiWash.getCars();
@@ -62,7 +59,7 @@ export class AddCars{
     search:SearchCars = {
         getModels:(ev: any) => {
             let val = ev.target.value;
-            if (val && val.trim() != '' && this.models.length) {
+            if (val && val.trim() != '' && this.models) {
                 this.localModels = this.models.filter((item:any) => {
                     return (item.name.toLowerCase().startsWith(val.toLowerCase()));
                 })
@@ -109,6 +106,32 @@ export class AddCars{
         
         
     }
+
+    isHasDataWhenModalOpen(){
+        if(this.params.data["car"]){
+            this.isEdit = true;
+            let car = this.params.data["car"];
+            this.carNumber = this.params.data["car"].car_number;
+            if(car.type){
+                let brand = this.dataJson.find((element) => car.make_id.toLowerCase() == element.name.toLowerCase());
+                if(brand){
+                    this.models = brand.models;
+                }
+                this.brandName = car.make_id;
+                this.modelName = car.model_id;
+            }else{
+                let brand = this.dataJson.find((element) => car.make_id == element.id);
+                
+                let model = brand.models.find((element) => car.model_id == element.id);
+
+                this.models = brand.models;
+                this.brandName = brand.name; 
+                this.modelName = model.name;
+            }
+            
+        }
+    }
+
     close(){
         this.viewCtrl.dismiss();
     }
