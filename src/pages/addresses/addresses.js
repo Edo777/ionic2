@@ -7,10 +7,6 @@ export default StyleSheet.create({
   'addresses ion-item-sliding': {
     'marginBottom': [{ 'unit': 'px', 'value': 10 }]
   },
-  'addresses ion-item-sliding item': {
-    'background': 'lightseagreen',
-    'height': [{ 'unit': 'px', 'value': 100 }]
-  },
   'addresses ion-scroll scroll-content': {
     'height': [{ 'unit': 'vh', 'value': 30 }]
   },

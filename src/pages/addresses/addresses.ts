@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ModalController, ViewController, LoadingController } from "ionic-angular";
+import { NavParams, ModalController, ViewController, LoadingController, AlertController } from "ionic-angular";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress } from "../barrel";
 
@@ -16,6 +16,7 @@ export class Addresses {
         private mobiwash:MobiWash,
         private modalCtrl:ModalController,
         private viewCtrl:ViewController,
+        private alertCtrl:AlertController
         
     ){
         this.pageName = this.navParams.get('pageName');
@@ -31,6 +32,28 @@ export class Addresses {
         this.mobiwash.removeAddress(i);
         this.addresses = this.mobiwash.getAddresses()
     }
+    deleteConfirm(i, item) {
+            let alert = this.alertCtrl.create({
+                title: 'Wobi Wash',
+                message: 'Դուք ցանկանում եք ջնջել?',
+                buttons: [
+                {
+                    text: 'Մերժել',
+                    role: 'Cancel',
+                    handler: () => {
+                        item.close()
+                    }
+                },
+                {
+                    text: 'Հաստատել',
+                    handler: () => {
+                        this.removeAddress(i);
+                    }
+                }
+                ]
+            });
+            alert.present();
+            }
     createNewAddress(address?:any, index?:number){
        var modalAddress;
        if(address){

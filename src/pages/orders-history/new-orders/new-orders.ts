@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../../services/api.service";
-import { ToastController, LoadingController, InfiniteScroll } from "ionic-angular";
+import { ToastController, LoadingController, InfiniteScroll, Platform, NavController, App } from "ionic-angular";
 import { TranslateService } from "../../../translate/translate.service";
+import { OrdersRegister, OrdersList } from "../../barrel";
 
 
 @Component({
@@ -13,13 +14,19 @@ export class NewOrders{
 
     data = [];
     data2 = [];
+    viewHeight:number;
     isComnplete:boolean = true;;
     constructor(
         private api:ApiService,
         private toastCtrl:ToastController,
         private serv:TranslateService,
-        private loadingCtrl:LoadingController
+        private loadingCtrl:LoadingController,
+        private platform: Platform,
+        private navCtrl:NavController,
+        private app:App
+
     ){
+        this.viewHeight = platform.height();
         let loading;
         setTimeout(() => {
             loading = this.loadingCtrl.create({
@@ -33,9 +40,19 @@ export class NewOrders{
                 (data)=>{
                     console.log(data)
                     this.data = data;
-                    for(let i = 0; i < 6; i++){
+                    
+                    this.viewHeight = Math.floor(this.viewHeight/100)
+                    console.log(this.viewHeight)
+                    if(this.viewHeight > this.data.length){
+                       for(let i = 0; i < this.data.length; i++){
+                            this.data2.push(this.data[i])
+                        }
+                    }else{
+                        for(let i = 0; i < this.viewHeight; i++){
                          this.data2.push(this.data[i])
+                        }
                     }
+                    
                     loading.dismiss()
                 },(error)=>{
                     loading.dismiss()
@@ -44,23 +61,26 @@ export class NewOrders{
          }
          
          doInfinite(infiniteScroll: InfiniteScroll) {
-             let k = this.data2.length;
+             setTimeout(() => {
+                 let currentLength = this.data2.length;
+                 let loadingLength = currentLength + this.viewHeight;
+                 if(loadingLength > this.data.length){
+                    loadingLength = this.data.length;
+                 }
                 this.api.getOrders("active").subscribe((data) => {
                     
-                    for ( let i = k; i < k+6; i++) {
+                    for ( let i = currentLength; i < loadingLength; i++) {
                         this.data2.push( this.data[i] );
                     }
 
                     infiniteScroll.complete();
-
-                if (this.data2.length > 90) {
-                    infiniteScroll.enable(false);
-                }
-            });
+                 });
+             }, 2000)
         }
 
         copy(item){
-            console.log(item);
+            console.log(item.cars);
+            //this.app.getRootNav().setRoot(OrdersList,{"cars" : item.cars})
         }
 
 

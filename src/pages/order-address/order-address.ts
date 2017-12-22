@@ -66,7 +66,7 @@ export class OrderAddress{
         
         this.cars = this.navParams.get("cars");
         console.log(this.cars)
-        //this.historyAddresses = this.mobiWash.getAddresses();
+        this.historyAddresses = this.mobiWash.getAddresses();
         
     }
 

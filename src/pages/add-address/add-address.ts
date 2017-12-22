@@ -29,9 +29,7 @@ export class AddNewAddress{
             
         }
     }
-    ngOnInit(){
-        
-        
+    ngOnInit(){        
         this.presentLoadingDefault()
     }
     

@@ -1,6 +1,36 @@
 <ion-content>
-    <h1>Ձեր պատվերն ընդունված է</h1>
-    <button ion-button (click)="goToStart()">{{"Վերադառնալ սկիզբ" | translate}}</button>
-    <button ion-button (click)="goToOrdersList()">{{"Նոր պատվեր"}}</button>
-    <button ion-button (click)="goToOrdersHistory()">{{"Իմ պատվերները"}}</button>
+    <h1 text-center>Ձեր պատվերն ընդունված է</h1>
+
+    <div class="logo">
+
+    </div>
+
+
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-3>
+
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button (click)="goToStart()">{{"Վերադառնալ սկիզբ" | translate}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3>
+
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button (click)="goToOrdersList()">{{"Նոր պատվեր"}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3>
+
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button (click)="goToOrdersHistory()">{{"Իմ պատվերները"}}</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

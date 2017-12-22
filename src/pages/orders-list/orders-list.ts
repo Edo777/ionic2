@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from "@angular/core";
-import { NavController, ModalController, AlertController } from "ionic-angular";
+import { NavController, ModalController, AlertController, NavParams } from "ionic-angular";
 import { CarsService } from "../../services/cars.service";
 import { OrdersRegister,  OrderAddress } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
@@ -20,12 +20,16 @@ export class OrdersList implements OnInit{
         private mobiWash:MobiWash,
         private ngZone:NgZone,
         private carService:CarsService,
-        private alertCtrl:AlertController
+        private alertCtrl:AlertController,
+        private params:NavParams
     ){
 
     }
     ngOnInit(){
         this.editIndex = this.cars.length - 1;
+        if(this.params.data["cars"]){
+            this.cars = this.params.data["cars"];
+        }
     }
     remove(i){
         this.cars.splice(i, 1);

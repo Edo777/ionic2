@@ -113,6 +113,7 @@ export class MobiWash{
         let cars = this.localService.get("cars") || [];
         
         cars.splice(i, 1);
+        
         this.localService.set('cars', cars);
     }
     
@@ -146,40 +147,38 @@ export class MobiWash{
 ///////////////////////////////////
 
 editAddress(oldIndex, newAddress){
-    let data = this.localService.get("data") || [];
-    data[this.customer_id].address.splice(oldIndex, 1, newAddress);
-    this.localService.set('data', data);
+    let addresses = this.localService.get("addresses") || [];
+    addresses.splice(oldIndex, 1, newAddress);
+    this.localService.set("addresses", addresses);
 }
     
 /////////////////////////////////
-    addAddress(a:any){
-        let addresses = this.localService.get("addresses");
-        if (addresses.length == 0){
-            addresses.push(a);
-            this.localService.set('addresses', addresses);
-        }else{
-            let isNewAddress = addresses.findIndex((i) => {
-                return ((i.address === a.address) && (i.long == a.long) && (i.lat == a.lat))
-            });
-            if(isNewAddress >= 0){
-                return;
-            }
-            addresses.push(a)
-            this.localService.set('addresses', addresses);
+addAddress(a:any){
+    let addresses = this.localService.get("addresses");
+    if (addresses.length == 0){
+        addresses.push(a);
+        this.localService.set('addresses', addresses);
+    }else{
+        let isNewAddress = addresses.findIndex((i) => {
+            return ((i.address === a.address) && (i.long == a.long) && (i.lat == a.lat))
+        });
+        if(isNewAddress >= 0){
+            return;
         }
+        addresses.push(a)
+        this.localService.set('addresses', addresses);
     }
+}
 /////////////////////////////////
     getAddresses(){
-        let data = this.localService.get("data");
-        return []
-        //return data[this.customer_id].address || [];
+        let addresses = this.localService.get("addresses") || [];
+        return addresses
     }
 /////////////////////////////////
     removeAddress(i:number){
-        let data = this.localService.get("data") || [];
-        
-        data[this.customer_id].address.splice(i, 1);
-        this.localService.set('data', data);
+        let addresses = this.localService.get("addresses") || [];
+        addresses.splice(i, 1);
+        this.localService.set('addresses', addresses);
     }
 ////////////////////////////////////
     addOrder(ord:any){

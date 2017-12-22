@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from 'ionic-angular';
-import { MenuComponent, OrdersHistory } from "../barrel";
+import { MenuComponent, OrdersHistory, CompleteOrder } from "../barrel";
 import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
 import { ApiService } from "../../services/api.service";
@@ -43,6 +43,7 @@ export class HomePage {
         this.api.setId(localStorage.getItem("id"))
         console.log(this.api.getId())
         this.navCtrl.setRoot(MenuComponent); 
+        //this.navCtrl.push(CompleteOrder)
      }
   }
   ngDoCheck(){

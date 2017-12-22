@@ -52,19 +52,25 @@ export class MapGoogle implements OnInit{
     @ViewChild('map') mapElement:ElementRef;
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
-    @Input() hide:boolean = true;
-    @Input() isNew:boolean = true;
+    @Input() isNew:boolean;
 
 
 
     ngOnInit(){
          this.loadMap();
-        //let locationOptions = {timeout: 10000, enableHighAccuracy: true};
-        if(!this.isNew){
-            this.newAddress = this.address;
-            this.setNewMarker(this.newAddress.lat, this.newAddress.long)
-            return
+        
+        if(this.isNew == false){
+            console.log(this.address)
+            this.ngZone.run(() => {
+                this.newAddress = this.address;
+                
+                this.setNewMarker(this.address.lat, this.address.long)
+                this.emitForAddressChange()
+            
+            })
+             return
         }
+        console.log("ancav")
         this.geolocation.getCurrentPosition().then((position) => {   
                     this.newAddress.long = position.coords.longitude;
                     this.newAddress.lat = position.coords.latitude;
@@ -104,7 +110,7 @@ export class MapGoogle implements OnInit{
            
         }
         
-}
+    }
 
     loadMap(){
         let latLng = new google.maps.LatLng(40.788546, 43.840966);
@@ -137,7 +143,7 @@ export class MapGoogle implements OnInit{
     
 
 
-    getMyPosition(lat:number = 40.788546, long:number = 43.840966){
+    getMyPosition(lat, long){
         this.marker.setPosition({
             lat:lat,
             lng:long
@@ -152,7 +158,7 @@ export class MapGoogle implements OnInit{
                     console.log(result)
                     this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
                     this.newAddress.lat = lat;
-                    this.newAddress.lng = long;
+                    this.newAddress.long = long;
                     this.emitForAddressChange()
                 })
                 

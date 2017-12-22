@@ -215,29 +215,54 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     /////////////////////////////
     //alert
     ////////////////////////////
-    
+  
     presentPrompt() {
         let inp = this.historyCars;
         let alert = this.alertCtrl.create();
         for(let i = 0; i < inp.length; i++){
-            alert.addInput({
-                type:'radio',
-                value:inp[i],
-                label:inp[i].make_id+ ' ' + inp[i].model_id + ' ' + inp[i].car_number,
-            })
+            if(inp[i].type == "new"){
+                    alert.addInput({
+                    type:'radio',
+                    value:inp[i],
+                    label:inp[i].make_id + ' ' + inp[i].model_id + ' ' + inp[i].car_number,
+                })
+            }else{
+                 let brand = this.cars.find((element) => inp[i].make_id == element.id);
+                 let model = brand.models.find((element) => inp[i].model_id == element.id)
+                 
+                 alert.addInput({
+                    type:'radio',
+                    value:inp[i],
+                    label:brand.name + ' ' + model.name + ' ' + inp[i].car_number,
+                 })
+             }
         }
         alert.addButton({
             text: 'Ok',
             handler:(data) => {
+                //////////////////////////
+                console.log(data)
                 if(data){
+                    let brand = this.cars.find((element)=>element.id == data.make_id);
+                    if(brand){
+                        this.models = brand.models;
+                    }
+                    this.carNumber = data.car_number;
                     this.rows.hide2 = true;
                     this.rows.hide3 = true;
                     this.rows.hide4 = true;
-                    this.CAR.make_id = data.make_id;
-                    this.CAR.model_id = data.model_id;
-                    this.CAR.car_number = data.car_number;
-                    
-                }
+                    if(data.type == "new"){
+                        this.brandName = data.make_id;
+                        this.modelName = data.model_id;
+                    }else{
+                        let brand = this.cars.find((element)=>element.id==data.make_id)
+                        console.log(brand)
+                        let model = brand.models.find((element)=>element.id==data.model_id)
+                        this.models = brand.models;
+                        this.brandName = brand.name;
+                        this.modelName = model.name;
+                    }            
+                }              
             }
         })
         alert.present();

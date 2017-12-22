@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { SearchCars } from "../interfaces/interfaces";
-import { ModalController } from 'ionic-angular';
+import { ModalController, AlertController } from 'ionic-angular';
 import { AddCars } from "../barrel";
 
 
@@ -25,13 +25,38 @@ export class HistoryPage implements OnInit{
         private modalCtrl:ModalController,
         private navParams: NavParams, 
         private mobiWash:MobiWash,
-        private carsCtrl:CarsService
+        private carsCtrl:CarsService,
+        private alertCtrl:AlertController
     ){}      
     ngOnInit(){
         this.pageName = this.navParams.get('pageName');   
         this.cars = this.mobiWash.getCars();
     }
     
+    //alert delete
+        deleteConfirm(i, item) {
+            let alert = this.alertCtrl.create({
+                title: 'Wobi Wash',
+                message: 'Դուք ցանկանում եք ջնջել?',
+                buttons: [
+                {
+                    text: 'Մերժել',
+                    role: 'Cancel',
+                    handler: () => {
+                        item.close()
+                    }
+                },
+                {
+                    text: 'Հաստատել',
+                    handler: () => {
+                        this.removeCar(i);
+                    }
+                }
+                ]
+            });
+            alert.present();
+            }
+
     removeCar(i){
         this.mobiWash.removeCar(i);
         this.cars = this.mobiWash.getCars()

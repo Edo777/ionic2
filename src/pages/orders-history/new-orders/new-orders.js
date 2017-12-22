@@ -8,6 +8,14 @@ export default StyleSheet.create({
   'new-orders scroll-content': {
     'paddingBottom': [{ 'unit': 'px', 'value': 56 }]
   },
+  'new-orders scroll-content infinite-loading': {
+    'background': 'linear-gradient(to right, #adbd84 0%, #ced7b8 38%, whitesmoke 82%, whitesmoke 97%)',
+    'paddingBottom': [{ 'unit': 'px', 'value': 5 }],
+    'margin': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 0 }]
+  },
+  'new-orders scroll-content infinite-loading infinite-loading-text': {
+    'fontWeight': 'bold'
+  },
   'new-orders view': {
     // .confirm {
             font-size: 1rem;

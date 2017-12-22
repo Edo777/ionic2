@@ -1,7 +1,7 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
 
-    <button detail-none text-center ion-item no-padding block color="primary" (click)="createNewAddress()">
+    <button detail-none text-center ion-item no-padding block color="grey" (click)="createNewAddress()">
         {{"Ավելացնել նոր հասցե" | translate}}
     </button>
     <ion-list no-margin mode="md">
@@ -11,7 +11,7 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col col-2 text-center>
-                            <ion-icon md="md-globe" ios="md-globe" color="primary"></ion-icon>
+                            <ion-icon md="md-globe" ios="md-globe" color="grey"></ion-icon>
                         </ion-col>
                         <ion-col col-10>
                             {{"Հասցե"}}
@@ -26,7 +26,7 @@
                 <ion-icon item-right color="danger" md="md-arrow-dropright" ios="md-arrow-dropright"></ion-icon>
             </ion-item>
             <ion-item-options side="right">
-                <button mode="ios" class="close-button" color="danger" (click)="removeAddress(i)" ion-button icon-only>
+                <button mode="ios" class="close-button" color="danger" (click)="deleteConfirm(i, item)" ion-button icon-only>
                     <ion-grid>
                         <ion-row>
                                 <ion-col col-12 text-center>
