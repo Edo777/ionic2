@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from "@angular/core";
-import { NavController, ModalController, AlertController, NavParams } from "ionic-angular";
+import { NavController, ModalController, AlertController, NavParams, App } from "ionic-angular";
 import { CarsService } from "../../services/cars.service";
 import { OrdersRegister,  OrderAddress } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
@@ -21,15 +21,23 @@ export class OrdersList implements OnInit{
         private ngZone:NgZone,
         private carService:CarsService,
         private alertCtrl:AlertController,
-        private params:NavParams
+        private params:NavParams,
     ){
-
+        
     }
     ngOnInit(){
         this.editIndex = this.cars.length - 1;
-        if(this.params.data["cars"]){
+        this.whenHasData();
+    }
+    whenHasData(){
+        this.ngZone.run(() => {
+            if(this.params.data["cars"]){
             this.cars = this.params.data["cars"];
+            console.log("verjnakan", this.cars);
         }
+        
+        })
+        
     }
     remove(i){
         this.cars.splice(i, 1);
@@ -83,6 +91,9 @@ export class OrdersList implements OnInit{
             }
     ngOnDestroy(){
         console.log("delete orders-list")
+    }
+    print(i){
+        console.log(i)
     }
 }
  

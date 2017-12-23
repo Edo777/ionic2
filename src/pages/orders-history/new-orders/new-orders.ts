@@ -79,8 +79,20 @@ export class NewOrders{
         }
 
         copy(item){
+            /*
             console.log(item.cars);
-            //this.app.getRootNav().setRoot(OrdersList,{"cars" : item.cars})
+            for(let i = 0; i < item.cars.length; i++){
+                let currentCar = {
+                    make_id:item.cars[i].car_make,
+                    model_id:item.cars[i].car_model,
+                    car_number:item.cars[i].car_number,
+                    service:item.cars[i].service_id,
+                    type:'new'
+                }
+                item.cars[i] = currentCar;
+            }
+            (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : item.cars})
+            */
         }
 
 
