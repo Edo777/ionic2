@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../../services/api.service";
-import { ToastController, LoadingController, InfiniteScroll, Platform, NavController, App } from "ionic-angular";
+import { ToastController, LoadingController, InfiniteScroll, Platform, NavController, App, ModalController } from "ionic-angular";
 import { TranslateService } from "../../../translate/translate.service";
 import { OrdersRegister, OrdersList } from "../../barrel";
+import { OrderInfo } from '../barrel-orders';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class NewOrders{
         private loadingCtrl:LoadingController,
         private platform: Platform,
         private navCtrl:NavController,
-        private app:App
+        private app:App,
+        private modal:ModalController
 
     ){
         this.viewHeight = platform.height();
@@ -80,27 +82,32 @@ export class NewOrders{
 
         copy(item){
             
-            console.log(item.cars);
+           
             
             for(let i = 0; i < item.cars.length; i++){
+                
                 let currentCar = {
                     make_id:item.cars[i].car_make,
                     model_id:item.cars[i].car_model,
                     car_number:item.cars[i].car_number,
                     service:item.cars[i].service_id,
-                    type:'new'
+                    type:item.cars[i].type
                 }
                 item.cars[i] = currentCar;
+               
             }
             
             (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : item.cars})
-            
         }
 
 
      some(item, i){
          this.data.splice(i, 1);
          item.close()
+     }
+     more(info){
+         var modal = this.modal.create(OrderInfo, {"info" : info});
+         modal.present()
      }
     
       

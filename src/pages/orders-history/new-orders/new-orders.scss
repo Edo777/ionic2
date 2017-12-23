@@ -5,14 +5,21 @@ new-orders {
     }
     .scroll-content {
         padding-bottom: 56px;
-        .infinite-loading {
-            background: linear-gradient(to right, #adbd84 0%, #ced7b8 38%, whitesmoke 82%, whitesmoke 97%);
-            padding-bottom: 5px;
-            margin: 0;
-            .infinite-loading-text {
-                font-weight: bold;
+        ion-infinite-scroll-content{
+            min-height: 60px;
+            position: relative;
+            .infinite-loading {
+                background: linear-gradient(to right, #adbd84 0%, #ced7b8 38%, whitesmoke 82%, whitesmoke 97%);
+                padding-bottom: 5px;
+                margin: 0;
+                position: absolute;
+                bottom: 0;
+                .infinite-loading-text {
+                    font-weight: bold;
+                }
             }
         }
+        
     }
     .view {
         .grid {}

@@ -1,0 +1,79 @@
+<ion-content >
+    <button ion-button  icon-only float-right (tap)="close()">
+        <ion-icon name="close"></ion-icon>
+    </button>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <span head-text>{{"Պատվիրված մեքենաները `"}}</span>
+                <ion-grid>
+                    <ion-row *ngFor="let car of info.cars">
+                        <ion-col text-center>
+                            {{car.car_make}} {{car.car_model}}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <span head-text>{{"Երբ է պատվիրվել `"}} </span>    
+                <ion-grid>
+                        <ion-row>
+                            <ion-col text-center>
+                                {{info.order_time}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <span head-text>{{"Հասցե ՝"}}</span>
+                <ion-grid>
+                        <ion-row>
+                            <ion-col text-center>
+                                {{info.address}}
+                            </ion-col>
+                        </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+        <ion-row >
+            <ion-col>
+                <span head-text>{{"Գինը ՝"}}</span>
+                <ion-grid>
+                        <ion-row>
+                            <ion-col text-center>
+                                {{info.price}}
+                            </ion-col>
+                        </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                    <span head-text>{{"Կարգավիճակը `"}}</span>
+                    <ion-grid>
+                            <ion-row>
+                                <ion-col text-center>
+                                    {{info.order_status}}...
+                                </ion-col>
+                            </ion-row>
+                    </ion-grid>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+                <ion-col>
+                        <span head-text>{{"Հեռախոսահամար `"}}</span>
+                        <ion-grid>
+                                <ion-row>
+                                    <ion-col text-center>
+                                        {{info.phone}}
+                                    </ion-col>
+                                </ion-row>
+                        </ion-grid>
+                </ion-col>
+            </ion-row>
+    </ion-grid>
+</ion-content>

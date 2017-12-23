@@ -27,7 +27,9 @@ import {
     NewOrders,
     OldOrders,
     Settings,
-    PhoneCall
+    PhoneCall,
+    OrderInfo,
+    
   } from '../pages/barrel';
 
 //pipes
@@ -73,7 +75,8 @@ import { ApiService } from "../services/api.service";
     Settings,
     Translate,
     PhoneCall,
-    CarFormatter
+    CarFormatter,
+    OrderInfo
   ],
   imports: [
     BrowserModule,
@@ -116,7 +119,8 @@ import { ApiService } from "../services/api.service";
     NewOrders,
     OldOrders,
     Settings,
-    PhoneCall
+    PhoneCall,
+    OrderInfo
   ],
   providers: [
     Geolocation,
