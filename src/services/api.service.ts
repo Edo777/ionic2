@@ -36,4 +36,7 @@ export class ApiService{
     getOrders(status){
         return this.http.post("http://mobiwash.am/webservice/get_orders",{customer_id:this.costumer_id,order_status:status}).map(res=>res.json())
     }
+    getCustomerDetails(id){
+        return this.http.post("http://www.mobiwash.am/webservice/get_customer_details", {customer_id:id}).map(res=>res.json())
+    }
 }

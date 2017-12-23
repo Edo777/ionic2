@@ -79,8 +79,9 @@ export class NewOrders{
         }
 
         copy(item){
-            /*
+            
             console.log(item.cars);
+            
             for(let i = 0; i < item.cars.length; i++){
                 let currentCar = {
                     make_id:item.cars[i].car_make,
@@ -91,8 +92,9 @@ export class NewOrders{
                 }
                 item.cars[i] = currentCar;
             }
+            
             (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : item.cars})
-            */
+            
         }
 
 

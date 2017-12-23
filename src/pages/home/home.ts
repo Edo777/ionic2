@@ -42,7 +42,10 @@ export class HomePage {
      if(localStorage.getItem("phone_number")){
         this.api.setId(localStorage.getItem("id"))
         console.log(this.api.getId())
-        this.navCtrl.setRoot(MenuComponent); 
+        this.navCtrl.setRoot(MenuComponent);
+        this.api.getCustomerDetails(71).subscribe((data) =>{
+          console.log("dataaaaaaaaaa", data)
+        }) 
         //this.navCtrl.push(CompleteOrder)
      }
   }
