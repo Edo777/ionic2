@@ -22,7 +22,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //edit order
     private orderEdit:any;
     
-    private modelName; brandName; carNumber; service;
+    private modelName; brandName; carNumber; service; qim;
     private todo: FormGroup;
 
     historyCars:any;
@@ -35,7 +35,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //serach area closer
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
-    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service: 0, type:""};
+    CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service: "", type:""};
 
      @ViewChild( Content ) content: Content;
     constructor(
@@ -160,12 +160,17 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         }
     }
     ///////////////////////////////
-    
+    pr(){
+        console.log("q", this.qim)
+    }
     private carTypeControl(){
         
         this.CAR["make_id"] = this.brandName;
         this.CAR["model_id"] = this.modelName;
-        this.CAR["service"] = Number(this.service);
+        this.CAR["service"] = this.service;
+        if(this.qim){
+            this.CAR["service"] += ",1"
+        }
         this.CAR["type"] = "new";
         for(let brand of this.cars){
             if(brand.name.toLowerCase() == this.brandName.toLowerCase()){
@@ -173,8 +178,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                 for(let model of brand.models){
                     if(model.name.toLowerCase() == this.modelName.toLowerCase()){
                         
-                        this.CAR["make_id"] = Number(brand.id);
-                        this.CAR["model_id"] = Number(model.id);
+                        this.CAR["make_id"] = brand.id;
+                        this.CAR["model_id"] = model.id;
                         delete this.CAR["type"];
                         break;
                     }

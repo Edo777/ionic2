@@ -9,6 +9,7 @@ import { ApiService } from "./api.service";
 export class MobiWash{
     private customer_id:number;
     private allCars = [];
+    customerDetails:any;
     constructor(private localService:Local, private api:ApiService){
        this.api.getAllcars().subscribe(
            (data) => {
@@ -22,6 +23,8 @@ export class MobiWash{
         this.customer_id = id;
 
     }
+    //active
+    
     private getActiveUserId(tel:any, data:any){
         let index;
         if(data.length != 0){

@@ -2,22 +2,31 @@
 <ion-content top>
     <ion-item>
         <ion-label color="primary" floating>{{"Անուն" | translate}}</ion-label>
-        <ion-input></ion-input>
+        <ion-input [value]="name" [(ngModel)]="name"></ion-input>
     </ion-item>
+
     <ion-item>
-        <ion-label color="primary" floating>{{"Հեռախոսահամար" | translate}}</ion-label>
-        <ion-input></ion-input>
+        <ion-label color="primary" floating>
+            {{"Էլ․ հասցե" | translate}}
+        </ion-label>
+        <ion-input [disabled]="false" [value]="email" [(ngModel)]="email"></ion-input>
     </ion-item>
+
     <ion-item>
-        <ion-label color="primary" floating>{{"Էլ․ հասցե" | translate}}</ion-label>
-        <ion-input></ion-input>
+        <ion-label color="primary" floating>
+            {{"Հեռախոսահամար" | translate}}
+        </ion-label>
+        <ion-input [disabled]="true" [value]="phone"></ion-input>
     </ion-item>
-    <button ion-button float-right>{{'Հաստատել' | translate}}</button>
+
+    <button ion-button float-right (click)="change()">
+        {{'Հաստատել' | translate}}
+    </button>
 
 
     <ion-grid>
-        <ion-row>
-            {{'Ձեր պրոմ կոդն է' | translate }} {{'215312485'}}
+        <ion-row *ngIf="prom_code">
+            {{'Ձեր պրոմ կոդն է' | translate }} {{prom_code}}
         </ion-row>
         <phone-call></phone-call>
     </ion-grid>

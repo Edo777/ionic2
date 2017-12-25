@@ -79,7 +79,7 @@ export class HomePage {
 
   createAccount(){
     //this.navCtrl.setRoot(MenuComponent);
-    let loading = this.loadingCtrl.create({
+      let loading = this.loadingCtrl.create({
             content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
         });
       loading.present();

@@ -82,7 +82,7 @@ export class NewOrders{
 
         copy(item){
             
-           
+           console.log(item)
             
             for(let i = 0; i < item.cars.length; i++){
                 
@@ -98,6 +98,7 @@ export class NewOrders{
             }
             
             (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : item.cars})
+            
         }
 
 

@@ -18,7 +18,7 @@
             <ion-label floating>{{"Մուտքագրեք ձեր հեռախոսահամարը" | translate}}</ion-label>
             <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
-        
+
         <ion-item mode="md" no-padding>
             <ion-label floating>{{"Էլ․ հասցե" | translate}}</ion-label>
             <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
@@ -28,6 +28,6 @@
             <ion-label floating>{{"Հրավերքի կոդ" | translate}}</ion-label>
             <ion-input type="text" text-center [(ngModel)]="refCode" mode="md"></ion-input>
         </ion-item>
-        <button margin-top ion-button mode="ios" full [disabled]="!isComplete" (click)="createAccount()">{{"Ստեղծել էջ" | translate}}</button>
+        <button margin-top ion-button mode="ios" full [disabled]="!isComplete" (click)="createAccount()">{{"Մուտք" | translate}}</button>
     </ion-list>
 </ion-content>

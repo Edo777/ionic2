@@ -32,9 +32,9 @@ export class OrdersList implements OnInit{
     whenHasData(){
         this.ngZone.run(() => {
             if(this.params.data["cars"]){
-            this.cars = this.params.data["cars"];
-            console.log("verjnakan", this.cars);
-        }
+                this.cars = this.params.data["cars"];
+                console.log("verjnakan", this.cars);
+            }
         
         })
         

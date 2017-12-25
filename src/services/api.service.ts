@@ -4,16 +4,16 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiService{
-    private costumer_id:any
+    private customer_id:any
     constructor(private http:Http){
         this.http.get("",{})
     }
 
     setId(id){
-        this.costumer_id = id;
+        this.customer_id = id;
     }
     getId():string{
-        return this.costumer_id
+        return this.customer_id
     }
     registration(name,phone,email,referal_code,device_token):Observable<any>{
         let urlSearchParams = new URLSearchParams();
@@ -34,9 +34,12 @@ export class ApiService{
          return this.http.post("http://mobiwash.am/webservice/add_orders",order).map(res=>res.json())
     }
     getOrders(status){
-        return this.http.post("http://mobiwash.am/webservice/get_orders",{customer_id:this.costumer_id,order_status:status}).map(res=>res.json())
+        return this.http.post("http://mobiwash.am/webservice/get_orders",{customer_id:this.customer_id,order_status:status}).map(res=>res.json())
     }
-    getCustomerDetails(id){
-        return this.http.post("http://www.mobiwash.am/webservice/get_customer_details", {customer_id:id}).map(res=>res.json())
+    getCustomerDetails(id?){
+        return this.http.post("http://www.mobiwash.am/webservice/get_customer_details", {customer_id: this.customer_id}).map(res=>res.json())
+    }
+    updateCustomerName(n, mail){
+        return this.http.post("http://mobiwash.am/webservice/edit_user_details",{customer_id: this.customer_id, "name":`${n}`, email:mail}).map(res=>res.json())
     }
 }

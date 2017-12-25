@@ -91,8 +91,11 @@
                     <ion-label>
                         Քիմ մաքրում
                     </ion-label>
-                    <ion-checkbox></ion-checkbox>
+                    <ion-checkbox [(ngModel)]="qim"></ion-checkbox>
+
+
                 </ion-item>
+                <button ion-button (click)="pr()">text</button>
             </ion-list>
         </ion-row>
     </ion-grid>
