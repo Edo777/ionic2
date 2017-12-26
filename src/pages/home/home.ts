@@ -41,6 +41,7 @@ export class HomePage {
      this.activeFlag = this.activeLng.flag;
      if(localStorage.getItem("phone_number")){
         this.api.setId(localStorage.getItem("id"))
+        this.api.setPhoneNumber(localStorage.getItem("phone_number"));
         console.log(this.api.getId())
         this.navCtrl.setRoot(MenuComponent);
         this.api.getCustomerDetails(71).subscribe((data) =>{
@@ -94,6 +95,7 @@ export class HomePage {
           this.mobiWash.setPhoneAndId(this.phoneNumber, data["data"].id)
           //api service
           this.api.setId(data["data"].id);
+          this.api.setPhoneNumber(this.phoneNumber);
           loading.dismiss();
           this.navCtrl.setRoot(MenuComponent);
         }else {

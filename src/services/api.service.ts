@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiService{
     private customer_id:any
+    private phone_number:any; 
     constructor(private http:Http){
         this.http.get("",{})
     }
@@ -14,6 +15,12 @@ export class ApiService{
     }
     getId():string{
         return this.customer_id
+    }
+    setPhoneNumber(phone_number){
+        this.phone_number = phone_number;
+    }
+    getPhoneNumber(){
+        return this.phone_number;
     }
     registration(name,phone,email,referal_code,device_token):Observable<any>{
         let urlSearchParams = new URLSearchParams();

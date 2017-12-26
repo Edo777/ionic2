@@ -29,7 +29,7 @@ export class MenuComponent{
         { pageName:'Իմ մեքենաները', component: HistoryPage},
         { pageName:'Իմ հասցեները', component: Addresses},
         { pageName:'Իմ պատվերները', component: OrdersHistory},
-        { pageName:'Կարգավորումներ', component: Settings},
+        { pageName:'Անձնական տվյալներ', component: Settings},
         { pageName:'Մեր մասին', component: AboutUs},          
     ]
     constructor(

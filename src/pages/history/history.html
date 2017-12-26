@@ -2,7 +2,7 @@
 <ion-content top>
     <button detail-none text-center (click)="createNewCars()" ion-item no-padding block color="grey">
 
-        {{"Ավելացնել նոր մեքենա" | translate}}
+        {{"Ավելացնել ավտոմեքենա" | translate}}
     </button>
     <ion-list no-margin mode="md">
         <ion-item-sliding #item *ngFor="let car of cars; let i = index">
@@ -14,7 +14,7 @@
                             <ion-icon color="mycolor" md="ios-car-outline" ios="ios-car-outline"></ion-icon>
                         </ion-col>
                         <ion-col col-11>
-                            {{"Մեքենա" | translate}} - {{car | formatter:"make_id"}}
+                            {{"Մակնիշ" | translate}} - {{car | formatter:"make_id"}}
                         </ion-col>
                     </ion-row>
                     <ion-row>

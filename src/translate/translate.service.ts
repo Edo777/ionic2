@@ -9,7 +9,9 @@ export class TranslateService{
         text:"Անգլերեն",
         flag:'assets/imgs/english.png'
     }
-    constructor(){}
+    constructor(){
+        
+    }
     public getActiveLng(){
         return this._activeLng;
     }

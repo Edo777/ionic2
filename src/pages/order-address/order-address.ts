@@ -88,12 +88,12 @@ export class OrderAddress{
     completeOrder(){
         
         this.simple["customer_id"] = this.api.getId()
-        this.simple["customer_phone"] = "7777";
+        this.simple["customer_phone"] = this.api.getPhoneNumber()
         this.simple["promo_code"] = this.promo_code;
-        this.simple["date"] = "2017-11-28 16:00:00";
+        this.simple["date"] = this.myDate;
         this.simple["address"] = this.address;
         this.simple["cars"] = this.cars;
-        
+        console.log(this.simple);
         
         let loading = this.loadingCtrl.create({
             spinner: 'crescent',
@@ -101,6 +101,7 @@ export class OrderAddress{
           });
           loading.present();
 
+        
         
         this.api.sendOrder(this.simple).subscribe(
             (data)=>{
@@ -123,7 +124,7 @@ export class OrderAddress{
             console.log(this.simple)
         }
         )
-        
+    
         
         
         

@@ -21,30 +21,12 @@ export class MobiWash{
     //inicializacia customer_id
     public setActiveUser(id){
         this.customer_id = id;
-
     }
     //active
     
-    private getActiveUserId(tel:any, data:any){
-        let index;
-        if(data.length != 0){
-            index = data.findIndex((i) => tel == i.customer_phone);
-            if(index >= 0){
-                this.customer_id = data[index].id;
-                 console.log('item = ', this.customer_id)
-            }else{
-                this.customer_id = data[length-1].id;
-                 console.log('item length -1 = ', this.customer_id)
-            }
-        }
-    }
 /////////////////////////////////
-    //for id
-    private idControl(data){
-        for(let i = 0; i < data.length; i++){
-            data[i].id = i;
-        }
-    }
+
+   
 /////////////////////////////////
     addUser(){
         if(!this.localService.get("addresses")){
@@ -55,18 +37,10 @@ export class MobiWash{
     
     setPhoneAndId(phone_number, id){
         this.api.setId(id);
-        this.localService.set("phone_number", phone_number);
+        this.localService.set("phone_number", Number(phone_number));
         this.localService.set("id", Number(id));
     }
 /////////////////////////////////
-
-    removeUser(){
-        let data:string[] = this.localService.get("data");
-        data.splice(this.customer_id,1);
-        this.idControl(data);
-        this.localService.set('data', data);
-        console.log('item = ', this.customer_id);
-    }
     
 /////////////////////////////////
     
@@ -124,27 +98,6 @@ export class MobiWash{
 
     getCars(){
         let cars = this.localService.get("cars");
-        /*
-        for(let i = 0; i < cars.length; i++){
-            if(!cars[i].type){
-                console.log((this.allCars).length)
-                for(let j = 0; j < this.allCars.length; j++){
-                    if((cars[i].make_id) == this.allCars[j].id){
-                        let models = this.allCars[j].models;
-                        for(let k = 0; k < models.length; k++){
-                            if(models[k].id == cars[i].model_id){
-                                cars[i]["models"] = models;
-                                cars[i].model_id = models[k].name;
-                                cars[i].make_id = this.allCars[j].name;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        console.log(cars)
-        */
         return cars;
     }
 ///////////////////////////////////
@@ -184,20 +137,4 @@ addAddress(a:any){
         this.localService.set('addresses', addresses);
     }
 ////////////////////////////////////
-    addOrder(ord:any){
-        let data = this.localService.get("data") || [];
-        data[this.customer_id].order.push(ord);
-        this.localService.set('data', data);
-    }
-    getOrder(){
-        let data=this.localService.get('data');
-        return [];
-       // return data[this.customer_id].order
-    }
-    removeOrder(i:number){
-        let data=this.localService.get('data');
-        data[this.customer_id].order.splice(i,1);
-        this.localService.set('data',data)
-    }
-
 }

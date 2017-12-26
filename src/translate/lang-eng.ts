@@ -3,48 +3,83 @@
 export const LANG_EN_NAME = "en"; 
 
 export const LANG_EN_TRANS = {
-    "Ցանկ" : "Menu",
+    "Անուն" : "Name",//active
+    "Հեռախոսահամար": "Phone Number",//active
+    "Էլ․ Հասցե" : "Email" ,//active
+    "Հրավիրողի ID": "Ref ID", //active
+    "Մուտք" : "Enter",//active
+    "Գրանցել Պատվեր" : "Create an order",//active
+    "Իմ հին պատվերները" : "Orders history",// active ?
+
+   
+    "Մակնիշ" : "Make",//active
+    "Մոդել": "Model",//active
+    "Համարանիշ" : "License plate numbers",//active
+    "Հայերեն" : "Հայերեն",//active
+    "Ջնջել" : "Delete",//active
+    "Անգլերեն" : "English",
+    "Փոփոխել" : "Edit",//active
+    "Ավելացնել ավտոմեքենա":"Add a car",//active
+    "Ավելացնել հասցե": "Add an address",//active
+    "Ծառայության տեսակը":"Service type",//active
+    "Ավելացնել իմ մեքենաներից" : "Add from favorites",//active
+    "Ավելացնել" : "Add",//active
+    "Հնարավորինս շուտ" : "As soon as possible", //active
+    "Հասցե" : "Address",//active
+    "Ամսաթիվ" : "Date",//active
+    "Պրոմո Կոդ" : "Promo code",//active
+    "Ավելացնել իմ հասցեներից" : "Add from favorites",//active
+    "Հաստատել պատվերը" : "Confirm order",//active
+    "Ձեր պատվերն ընդունված է, շուտով կստանաք ծանուցում մանրամասներով" : "Your order has been sent, soon you will be notified with it's details",//active
+   
+    //menu
+    "Մենյու" : "Menu",//active
+    "Պատվերի գրանցում": "Create an order",//active
+    "Իմ հասցեները" : "Favorite addresses",//active
+    "Անձնական տվյալներ" : 'Profile',//active
+    "Իմ մեքենաները" : "Favorite cars",//active
+    "Իմ պատվերները" : "My orders",//active
+    "Մեր մասին" : "About us",//active
     "Դուրս գալ" : "Exit",
+
+
+
+
+    "Ցանկ" : "Menu",
+    
     "Կարգավորումներ" :"Settings", 
-    "Մեր մասին" : "About Us" ,
+    
     "Մուտքագրեք ձեր անունը" : "Enter your name",
     "Մուտքագրեք ձեր հեռախոսահամարը" : "Enter your tel. number",
-    "Էլ․ հասցե" : "Email" ,
-    "Մուտք" : "Enter",
-    "Պատվերի գրանցում" : "Register order",
-    "Իմ մեքենաները" : "My cars",
-    "Իմ հասցեները" : "My addresses",
-    "Իմ պատվերները" : "My orders",
-    "Հեռախոսահամար" : "Tel. number",
-    "Անուն" : "Name",
+    
+    
     "Հաստատել" : "Confirm",
-    "Անգլերեն" :"English",
+    
     "Նոր պատվերներ" : "New orders",
     "Պատմություն" : "History",
-    "Ավելացնել ավտոմեքենա" : "Add a car",
-    "Գրանցել Պատվեր" : "Create an order",
+   
+    
     "Ավելացնել նոր հայտ" : "Add new order",
     "Հաստատել բոլորը" : "Confirm all",
     "Ուղարկել հայտը" : "Send order",
-    "Ամսաթիվ" : "Date",
+    
     "Պրոմո կոդ" : "Promcode", 
     "Վերադառնալ սկիզբ" : "Back to home",
-    "Համարանիշ" : "Car number",
+   
     "Մեքենա" : "Car",
-    "Մոդել" : "Model",
-    "Ավելացնել" : "Add",
+    
+    
     "Ավելացնել նոր հասցե" : "Add new address",
-    "Հասցե" : "Address",
+    
     "Ընտրել հին մեքենաներից" : "Select from old cars",
     "Ընտրել հին հասցեներից" :  "Select from old addresses",
     "Ընտրեք մեքենան" : "Select car",
     "Լվացման տեսակը" : "Pinking type",
-    "Ջնջել" : "Delete",
+    
     "Հրավերքի կոդ" : "Ref code",
     "Ձեր պրոմ կոդն է" : "Your Promcode is",
     "Մանրամասն" : "More",
     "Չեղարկել":"Cancel",
-    "Հայերեն" : "Հայերեն",
-    "Փոփոխել":"Edit"
+    
 };
 

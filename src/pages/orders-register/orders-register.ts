@@ -169,7 +169,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         this.CAR["model_id"] = this.modelName;
         this.CAR["service"] = this.service;
         if(this.qim){
-            this.CAR["service"] += ",1"
+            this.CAR["service"] += ",4"
         }
         this.CAR["type"] = "new";
         for(let brand of this.cars){
@@ -198,8 +198,11 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.rows.hide3 = true;
             this.rows.hide4 = true;
             this.carNumber = this.orderEdit.car_number;
-            this.service = this.orderEdit.service;
-            if(orderEdit.type){
+            this.service = parseInt(this.orderEdit.service);
+            if(this.orderEdit.service.length > 1){
+                this.qim = true;
+            }
+            if(orderEdit.type == "new"){
                 
                 let brand = this.cars.find((element) => orderEdit.make_id.toLowerCase() == element.name.toLowerCase());
                 if(brand){
@@ -209,11 +212,15 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                 this.brandName = this.orderEdit.make_id;
                 this.modelName = this.orderEdit.model_id;
             }else{
+            
                let brand = this.cars.find((element) => orderEdit.make_id == element.id);
                let model = brand.models.find((element) => orderEdit.model_id == element.id);
+               console.log("brand ",brand.models)
                this.brandName = brand.name;
                this.modelName = model.name;
+               
                this.models = brand.models;
+               
             }
         }
     }

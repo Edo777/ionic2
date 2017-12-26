@@ -10,22 +10,22 @@
     <ion-list mode="md" text-center>
 
         <ion-item mode="md" no-padding>
-            <ion-label floating> {{"Մուտքագրեք ձեր անունը" | translate}}</ion-label>
+            <ion-label floating> {{"Անուն" | translate}}</ion-label>
             <ion-input [(ngModel)]="name" text-center mode="md"></ion-input>
         </ion-item>
 
         <ion-item mode="md" no-padding>
-            <ion-label floating>{{"Մուտքագրեք ձեր հեռախոսահամարը" | translate}}</ion-label>
+            <ion-label floating>{{"Հեռախոսահամար" | translate}}</ion-label>
             <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
         </ion-item>
 
         <ion-item mode="md" no-padding>
-            <ion-label floating>{{"Էլ․ հասցե" | translate}}</ion-label>
+            <ion-label floating>{{"Էլ․ Հասցե" | translate}}</ion-label>
             <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
         </ion-item>
 
         <ion-item mode="md" no-padding>
-            <ion-label floating>{{"Հրավերքի կոդ" | translate}}</ion-label>
+            <ion-label floating>{{"Հրավիրողի ID" | translate}}</ion-label>
             <ion-input type="text" text-center [(ngModel)]="refCode" mode="md"></ion-input>
         </ion-item>
         <button margin-top ion-button mode="ios" full [disabled]="!isComplete" (click)="createAccount()">{{"Մուտք" | translate}}</button>

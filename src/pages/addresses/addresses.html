@@ -2,7 +2,7 @@
 <ion-content top>
 
     <button detail-none text-center ion-item no-padding block color="grey" (click)="createNewAddress()">
-        {{"Ավելացնել նոր հասցե" | translate}}
+        {{"Ավելացնել հասցե" | translate}}
     </button>
     <ion-list no-margin mode="md">
         <ion-item-sliding #item *ngFor="let address of addresses; let i = index">
@@ -14,7 +14,7 @@
                             <ion-icon md="md-globe" ios="md-globe" color="grey"></ion-icon>
                         </ion-col>
                         <ion-col col-10>
-                            {{"Հասցե"}}
+                            {{"Հասցե" | translate}}
                         </ion-col>
                     </ion-row>
                     <ion-row>

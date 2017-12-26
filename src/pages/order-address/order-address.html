@@ -4,13 +4,13 @@
     </ion-navbar>
 </ion-header>
 <ion-content no-scroll>
-    <button color="grey" ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ընտրել հին հասցեներից" | translate}}</button>
+    <button color="grey" ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ավելացնել իմ հասցեներից" | translate}}</button>
 
     <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
 
 
     <ion-item no-lines>
-        <ion-label>{{'Հնարավորինս շուտ'}}</ion-label>
+        <ion-label>{{'Հնարավորինս շուտ' | translate}}</ion-label>
         <ion-checkbox [(ngModel)]="fast"></ion-checkbox>
     </ion-item>
     <ion-item *ngIf="!fast">
@@ -19,11 +19,11 @@
     </ion-item>
 
     <ion-item>
-        <ion-label floating>{{"Պրոմո կոդ" | translate}}</ion-label>
+        <ion-label floating>{{"Պրոմո Կոդ" | translate}}</ion-label>
         <ion-input [(ngModel)]="promo_code" type="text"></ion-input>
     </ion-item>
 
 </ion-content>
 <ion-footer>
-    <button ion-button full (click)="completeOrder()" [disabled]="!address?.address || (!fast && !myDate)" color="grey">{{"Հաստատել" | translate}}</button>
+    <button ion-button full (click)="completeOrder()" [disabled]="!address?.address || (!fast && !myDate)" color="grey">{{"Հաստատել պատվերը" | translate}}</button>
 </ion-footer>

@@ -27,8 +27,10 @@ export class NewOrders{
         private app:App,
         private modal:ModalController
 
-    ){
-        this.viewHeight = platform.height();
+    ){}
+    ionViewWillEnter(){
+        this.viewHeight = this.platform.height(); 
+        this.data2 = []
         let loading;
         setTimeout(() => {
             loading = this.loadingCtrl.create({
@@ -40,11 +42,11 @@ export class NewOrders{
                  
         this.api.getOrders("active").subscribe(
                 (data)=>{
-                    console.log(data)
+                    console.log("data", data)
                     this.data = data;
                     
                     this.viewHeight = Math.floor(this.viewHeight/100)
-                    console.log(this.viewHeight)
+                    console.log("height", this.viewHeight)
                     if(this.viewHeight > this.data.length){
                        for(let i = 0; i < this.data.length; i++){
                             this.data2.push(this.data[i])
@@ -58,12 +60,12 @@ export class NewOrders{
                     loading.dismiss()
                 },(error)=>{
                     loading.dismiss()
-                })   
-                          
-         }
+                }) 
+    }
          
          doInfinite(infiniteScroll: InfiniteScroll) {
-             setTimeout(() => {
+             if(this.data.length != this.data2.length){
+                setTimeout(() => {
                  let currentLength = this.data2.length;
                  let loadingLength = currentLength + this.viewHeight;
                  if(loadingLength > this.data.length){
@@ -78,27 +80,32 @@ export class NewOrders{
                     infiniteScroll.complete();
                  });
              }, 2000)
+             }else{
+                 infiniteScroll.complete();
+             }
+             
         }
 
         copy(item){
             
-           console.log(item)
-            
+           console.log("item = ", item)
+            let cars = [];
             for(let i = 0; i < item.cars.length; i++){
-                
+               
                 let currentCar = {
                     make_id:item.cars[i].car_make,
                     model_id:item.cars[i].car_model,
                     car_number:item.cars[i].car_number,
                     service:item.cars[i].service_id,
-                    type:item.cars[i].type
+                    type:"new"
                 }
-                item.cars[i] = currentCar;
-               
+                if(!item.cars[i].type){
+                    delete currentCar.type
+                }
+                cars.push(currentCar);
             }
             
-            (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : item.cars})
-            
+           (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : cars}) 
         }
 
 

@@ -14,11 +14,11 @@ export class CarFormatter implements PipeTransform{
         switch(type){
             case "make_id":
                 let maker = this.carsService.getCarName(data.make_id)
-                result = data.type ? data.make_id : maker
+                result = data.type == "new" ? data.make_id : maker
             break;
              case "model_id":
                 let model = this.carsService.getCarModel(data.make_id, data.model_id)
-                result = data.type ? data.model_id : model
+                result = data.type == "new" ? data.model_id : model
             break;
         }
         return result

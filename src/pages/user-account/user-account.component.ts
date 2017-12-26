@@ -27,7 +27,7 @@ export class UserAccount {
        
     }
    ngOnInit(){
-      // this.getOrder()
+     
    }
  
    
@@ -35,13 +35,6 @@ export class UserAccount {
        this.nav.push(OrdersList);
     }
 
-    getOrder(){
-       //  this.orders=this.mobiWash.getOrder()
-    }
-    removeOrder(i){
-        this.mobiWash.removeOrder(i)
-      //  this.orders = this.mobiWash.getOrder()
-    }
     oldOrders(){
         this.nav.push(OrdersHistory, {"archive": "1"})
     }
