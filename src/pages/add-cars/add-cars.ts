@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { SearchCars } from "../interfaces/interfaces";
-import { ViewController, NavParams } from "ionic-angular";
+import { ViewController, NavParams, Keyboard } from "ionic-angular";
 
 @Component({
     selector:'add-cars',
@@ -27,7 +27,8 @@ export class AddCars{
         private viewCtrl:ViewController,
         private mobiWash:MobiWash,
         private ordersCtrl:CarsService,
-        private params:NavParams
+        private params:NavParams,
+        private keyBoard:Keyboard
     ){}      
         ngOnInit(){
        
@@ -35,8 +36,23 @@ export class AddCars{
         //get data -> 
         this.initializeCars();
         this.isHasDataWhenModalOpen()
-        
+        this.keyboardEnterButton()
     }
+
+
+    keyboardEnterButton(){
+     var elems = document.getElementsByTagName('ion-input');
+     for(let i = 0; i < elems.length; i++){
+          elems[i].addEventListener('keypress', (event:any) =>{
+            if(event.key == "Enter"){
+                console.log(event)
+              this.keyBoard.close()
+            }
+        })
+     }
+      
+   }
+
     ngAfterViewInit() {
         //this.cars = this.mobiWash.getCars();
     }

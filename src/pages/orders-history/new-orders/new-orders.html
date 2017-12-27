@@ -9,13 +9,13 @@
                     <span>{{item.order_price}}</span>
                 </div>
                 <div *ngIf="(item.order_status == 'Pending')" class="status">
-                    <span>pending...</span>
+                    <span>{{item.order_status}}</span>
                 </div>
-                <div *ngIf="false" class="status">
-                    <span>waiting...</span>
+                <div *ngIf="(item.order_status == 'Reject')" class="status">
+                    <span>{{item.order_status}}</span>
                 </div>
-                <div *ngIf="false" class="status">
-                    <span>completed...</span>
+                <div *ngIf="(item.order_status == 'Confirm')" class="status">
+                    <span>{{item.order_status}}</span>
                 </div>
 
 
@@ -23,8 +23,8 @@
                 <ion-grid class="buttons">
                     <ion-row no-margin>
                         <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"Մանրամասն" | translate}}</button></ion-col>
-                        <ion-col col-4><button mode="ios" small normal class="cancel" color="danger" ion-button>{{"Չեղարկել" | translate }}</button></ion-col>
-                        <ion-col col-4><button mode="ios" small normal class="confirm" color="secondary" ion-button>{{"Հաստատել" | translate}}</button></ion-col>
+                        <ion-col col-4><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="updateOrder(item, 'Reject')">{{"Չեղարկել" | translate }}</button></ion-col>
+                        <ion-col col-4><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirm')" ion-button>{{"Հաստատել" | translate}}</button></ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>

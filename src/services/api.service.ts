@@ -40,6 +40,9 @@ export class ApiService{
     sendOrder(order){
          return this.http.post("http://mobiwash.am/webservice/add_orders",order).map(res=>res.json())
     }
+    updateOrder(order, status){
+        return this.http.post("http://mobiwash.am/webservice/update_order_status",{"order_id" : order.id, "order_status":status}).map(res=>res.json());
+    }
     getOrders(status){
         return this.http.post("http://mobiwash.am/webservice/get_orders",{customer_id:this.customer_id,order_status:status}).map(res=>res.json())
     }

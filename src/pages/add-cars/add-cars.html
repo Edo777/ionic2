@@ -8,7 +8,7 @@
         <ion-row class="cars-info">
             <ion-col col-12>
                 <ion-item mode="md">
-                    <ion-label color="black" floating>{{"Մեքենա" | translate}}</ion-label>
+                    <ion-label color="black" floating>{{"Մակնիշ" | translate}}</ion-label>
                     <ion-input (input)="search.getBrands($event)" [value]="brandName" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="brandName"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">

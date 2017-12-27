@@ -7,6 +7,7 @@ import { NavParams, ViewController } from "ionic-angular";
 })
 export class OrderInfo{
     private info:any;
+    private cars = []
     constructor(
         private params:NavParams,
         private viewCtrl:ViewController
@@ -25,7 +26,7 @@ export class OrderInfo{
             if(!this.info.cars[i].type){
                 delete currentCar.type
             }
-            this.info.cars[i] = currentCar;
+            this.cars.push(currentCar);
         }
         console.log(this.info);
     }

@@ -20,6 +20,8 @@ export class CarFormatter implements PipeTransform{
                 let model = this.carsService.getCarModel(data.make_id, data.model_id)
                 result = data.type == "new" ? data.model_id : model
             break;
+            default : result = "empty";
+                
         }
         return result
     }

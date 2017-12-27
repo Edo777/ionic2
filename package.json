@@ -28,6 +28,7 @@
     "@ionic-native/keyboard": "^4.4.2",
     "@ionic-native/location-accuracy": "^4.4.2",
     "@ionic-native/native-geocoder": "^4.4.2",
+    "@ionic-native/native-keyboard": "^4.5.2",
     "@ionic-native/splash-screen": "4.3.2",
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "2.0.1",
@@ -43,6 +44,7 @@
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
     "cordova-plugin-hotspot": "^1.2.9",
     "cordova-plugin-ionic-webview": "^1.1.16",
+    "cordova-plugin-native-keyboard": "^1.4.11",
     "cordova-plugin-nativegeocoder": "^2.0.4",
     "cordova-plugin-request-location-accuracy": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.1.0",
@@ -82,7 +84,10 @@
       "cordova-plugin-hotspot": {},
       "cordova-plugin-camera": {},
       "mx.ferreyra.callnumber": {},
-      "call-number": {}
+      "call-number": {},
+      "cordova-plugin-native-keyboard": {
+        "LICENSE": "TRIAL"
+      }
     },
     "platforms": [
       "android",

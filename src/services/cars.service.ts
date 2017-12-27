@@ -10,7 +10,7 @@ import { TranslateService } from "../translate/translate.service";
 @Injectable()
 export class CarsService {
   public ok:boolean = false;
-  private cars:any
+  private cars:any = []
   hasResult:boolean = false;
   constructor(private api:ApiService, private loadingCtrl:LoadingController, private serv:TranslateService) {
       this.api.getAllcars().subscribe(

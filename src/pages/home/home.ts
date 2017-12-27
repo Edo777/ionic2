@@ -5,11 +5,12 @@ import { MobiWash } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
 import { ApiService } from "../../services/api.service";
 import { CarsService } from "../../services/cars.service";
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
     
@@ -31,9 +32,11 @@ export class HomePage {
     private api:ApiService,
     private toastCtrl:ToastController,
     private loadingCtrl:LoadingController,
-    private carsService:CarsService
+    private carsService:CarsService,
+    private keyBoard:Keyboard
   ) {
     this.activeLng = this.serv.getActiveLng();
+    
   }
   ngOnInit(){
      this.localActiveLng = this.activeLng.lng;
@@ -49,7 +52,21 @@ export class HomePage {
         }) 
         //this.navCtrl.push(CompleteOrder)
      }
+      this.keyboardEnterButton()
   }
+
+   keyboardEnterButton(){
+     var elems = document.getElementsByTagName('ion-input');
+     for(let i = 0; i < elems.length; i++){
+          elems[i].addEventListener('keypress', (event:any) =>{
+            if(event.key == "Enter"){
+              this.keyBoard.close()
+            }
+        })
+     }
+      
+   }
+
   ngDoCheck(){
     if(this.name != '' && this.phoneNumber != ''){
       this.isComplete = true;
@@ -80,6 +97,7 @@ export class HomePage {
 
   createAccount(){
     //this.navCtrl.setRoot(MenuComponent);
+
       let loading = this.loadingCtrl.create({
             content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
         });
@@ -107,6 +125,7 @@ export class HomePage {
       (error)=>{
         this.showToast(error);
     })
+    
     
     
     

@@ -28,21 +28,22 @@ export class NewOrders{
         private modal:ModalController
 
     ){}
+    //life cicle ionic
     ionViewWillEnter(){
         this.viewHeight = this.platform.height(); 
         this.data2 = []
         let loading;
-        setTimeout(() => {
-            loading = this.loadingCtrl.create({
-                content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
-            });
-            loading.present();
-        })
+        
+        loading = this.loadingCtrl.create({
+            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+        });
+        loading.present();
+     
         
                  
         this.api.getOrders("active").subscribe(
                 (data)=>{
-                    console.log("data", data)
+                    
                     this.data = data;
                     
                     this.viewHeight = Math.floor(this.viewHeight/100)
@@ -57,10 +58,15 @@ export class NewOrders{
                         }
                     }
                     
-                    loading.dismiss()
+                    
                 },(error)=>{
                     loading.dismiss()
-                }) 
+                },
+                () => {
+                    loading.dismiss()
+                }
+            
+            ) 
     }
          
          doInfinite(infiniteScroll: InfiniteScroll) {
@@ -108,6 +114,32 @@ export class NewOrders{
            (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : cars}) 
         }
 
+    updateOrder(item, status){
+      let loading = this.loadingCtrl.create({
+                content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            });
+            loading.present();
+        this.api.updateOrder(item, status).subscribe(
+            (data) => {
+                let viewLength = this.data2.length;
+                this.api.getOrders("active").subscribe(
+                    (data) => {
+                        this.data2 = []
+                        this.data = data;
+                        for(let i = 0; i < viewLength; i++){
+                            this.data2.push(this.data[i]);
+                        }
+                    },
+                    (error) =>{
+                        loading.dismiss()
+                    },
+                    () => {
+                        loading.dismiss()
+                    }
+                )
+            }
+        )
+    }
 
      some(item, i){
          this.data.splice(i, 1);

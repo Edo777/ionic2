@@ -51,7 +51,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         private serv:TranslateService,
         private loadingCtrl:LoadingController,
         private formBuilder: FormBuilder,
-        private toastCtrl:ToastController
+        private toastCtrl:ToastController,
+        private keyBoard:Keyboard
         
     ){
         this.initializeCars();
@@ -61,6 +62,19 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             car_number:['',Validators.required],
         });
     }
+
+    keyboardEnterButton(){
+     var elems = document.getElementsByTagName('ion-input');
+     for(let i = 0; i < elems.length; i++){
+          elems[i].addEventListener('keypress', (event:any) =>{
+            if(event.key == "Enter"){
+              this.keyBoard.close()
+            }
+        })
+     }
+      
+   }
+
     ngAfterViewInit(){
         this.keyboard.onKeyboardShow().subscribe(
             (event)=>{ 
@@ -75,7 +89,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     }
     ngOnInit(){
         this.historyCars = this.mobiWash.getCars();
-        this.isHasDataWhenModalOpen()
+        this.isHasDataWhenModalOpen();
+        this.keyboardEnterButton();
     }
     /////////////////////////
     
@@ -92,8 +107,10 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     initializeCars() {
         this.cars = this.ordersCtrl.getResults()  
      }
+    ngAfterContentChecked(){
+        this.keyboardEnterButton();
+    }
     ionViewWillEnter(){
-       
         this.cars = this.ordersCtrl.getResults()
        
     }
@@ -199,7 +216,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.rows.hide4 = true;
             this.carNumber = this.orderEdit.car_number;
             this.service = parseInt(this.orderEdit.service);
-            if(this.orderEdit.service.length > 1){
+            if(this.orderEdit.service.length == 3){
                 this.qim = true;
             }
             if(orderEdit.type == "new"){
@@ -240,6 +257,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                 })
             }else{
                  let brand = this.cars.find((element) => inp[i].make_id == element.id);
+                 if(!brand){
+                     return
+                 }
                  let model = brand.models.find((element) => inp[i].model_id == element.id)
                  
                  alert.addInput({

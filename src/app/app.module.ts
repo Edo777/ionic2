@@ -49,6 +49,7 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
 import { TranslateService } from "../translate/translate.service";
 import { ApiService } from "../services/api.service";
+import { Keyboard } from "@ionic-native/keyboard";
 
 
 @NgModule({
@@ -133,6 +134,7 @@ import { ApiService } from "../services/api.service";
     SplashScreen,
     TranslateService,
     ApiService,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

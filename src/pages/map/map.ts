@@ -15,6 +15,7 @@ import { ViewController, NavController } from "ionic-angular";
 import { NativeGeocoder, NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
 import { Geolocation } from '@ionic-native/geolocation';
 import { OrdersPage } from "../barrel";
+import { Keyboard } from "@ionic-native/keyboard";
 
 declare var google;
 
@@ -38,7 +39,8 @@ export class MapGoogle implements OnInit{
         public geolocation: Geolocation, 
         private nativeGeocoder: NativeGeocoder,
         private nav:NavController,
-        private ngZone:NgZone
+        private ngZone:NgZone,
+        private keyBoard:Keyboard
     ){
            
     }
@@ -93,9 +95,24 @@ export class MapGoogle implements OnInit{
             }).catch((err) => {
                 console.log(err)
             })
-
+            //keyboard close
+            this.keyboardEnterButton();
         
     }
+
+
+    keyboardEnterButton(){
+     var elems = document.getElementsByTagName('ion-input');
+     for(let i = 0; i < elems.length; i++){
+          elems[i].addEventListener('keypress', (event:any) =>{
+            if(event.key == "Enter"){
+              this.keyBoard.close()
+            }
+        })
+     }
+      
+   }
+
     ngOnChanges(){
         if(this.address){
             this.ngZone.run(() => {

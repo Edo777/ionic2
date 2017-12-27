@@ -3,6 +3,7 @@ import { NavParams, LoadingController, ToastController } from "ionic-angular";
 import { MobiWash } from "../../services/barrel.service";
 import { ApiService } from "../../services/api.service";
 import { TranslateService } from "../../translate/translate.service";
+import { Keyboard } from "@ionic-native/keyboard";
 
 @Component({
     selector:'settings',
@@ -16,7 +17,14 @@ export class Settings{
     email:any;
     name:any;
     prom_code:any;
-    constructor(private navParams: NavParams, private api:ApiService, private loadingCtrl:LoadingController, private translate:TranslateService, private toastCtrl:ToastController){
+    constructor(
+            private navParams: NavParams,
+            private api:ApiService, 
+            private loadingCtrl:LoadingController, 
+            private translate:TranslateService, 
+            private toastCtrl:ToastController,
+            private keyBoard:Keyboard
+        ){
         this.pageName = this.navParams.get('pageName');
         setTimeout(() => {
             let loading = this.loadingCtrl.create({
@@ -47,10 +55,20 @@ export class Settings{
         
     }
     ngOnInit(){
-        
+            this.keyboardEnterButton()
             
     }
-
+    keyboardEnterButton(){
+     var elems = document.getElementsByTagName('ion-input');
+     for(let i = 0; i < elems.length; i++){
+          elems[i].addEventListener('keypress', (event:any) =>{
+            if(event.key == "Enter"){
+              this.keyBoard.close()
+            }
+        })
+     }
+      
+   }
     change(){
         let loading = this.loadingCtrl.create({
             content: this.translate.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
