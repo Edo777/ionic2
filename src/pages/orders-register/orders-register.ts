@@ -22,7 +22,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     //edit order
     private orderEdit:any;
     
-    private modelName; brandName; carNumber; service; qim;
+    private modelName; brandName; carNumber; service; qim; nano;
+    private prices;
     private todo: FormGroup;
 
     historyCars:any;
@@ -36,7 +37,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     isCompleteModel:boolean = false;
     rows:any = {hide1:true, hide2:false, hide3:false, hide4:false, hide5:false};
     CAR:NewOrder = {make_id:'', model_id:'', car_number:'',  service: "", type:""};
-
+    selectedPrice = [0,0,0]
      @ViewChild( Content ) content: Content;
     constructor(
         private ordersCtrl:CarsService, 
@@ -91,6 +92,13 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         this.historyCars = this.mobiWash.getCars();
         this.isHasDataWhenModalOpen();
         this.keyboardEnterButton();
+        this.prices = [
+            [1999, 2999, 3999],
+            [1499, 1999, 2999],
+            [999, 1499, 1999],
+            [6999,7999,8999], 
+            [1499, 1499,1499]
+        ]
     }
     /////////////////////////
     
@@ -180,6 +188,25 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     pr(){
         console.log("q", this.qim)
     }
+    calcPrice(){
+        
+        if(this.service){
+            setTimeout( () => {
+                this.content.scrollToBottom();
+            }, 100)
+            for(let i=0;i<3;i++){
+                this.selectedPrice[i]=this.prices[this.service-1][i]+0
+
+                if(this.qim){
+                    this.selectedPrice[i] += this.prices[3][i]
+                }
+                if(this.nano){
+                    this.selectedPrice[i] += this.prices[4][i]
+                }
+            }
+        }
+            
+    }
     private carTypeControl(){
         
         this.CAR["make_id"] = this.brandName;
@@ -187,6 +214,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         this.CAR["service"] = this.service;
         if(this.qim){
             this.CAR["service"] += ",4"
+        }
+        if(this.nano){
+            this.CAR["service"] += ",5"
         }
         this.CAR["type"] = "new";
         for(let brand of this.cars){
@@ -217,6 +247,9 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.carNumber = this.orderEdit.car_number;
             this.service = parseInt(this.orderEdit.service);
             if(this.orderEdit.service.length == 3){
+                this.qim = true;
+            }else if(this.orderEdit.service.length == 5){
+                this.nano = true;
                 this.qim = true;
             }
             if(orderEdit.type == "new"){

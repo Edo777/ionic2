@@ -2,7 +2,7 @@
     <button (click)="closeRegisterPage()" ion-button float-right only-icon>
         <ion-icon md="md-close" ios="md-close"></ion-icon>
     </button>
-    <button ion-button color="grey" (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ավելացնել իմ մեքենաներից" | translate}}</button>
+    <button margin-left margin-top ion-button color="grey" (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ավելացնել իմ մեքենաներից" | translate}}</button>
 
     <ion-grid>
         <!-- BRANDS -->
@@ -65,35 +65,96 @@
         <!-- Type pinking -->
 
         <ion-row class="cars-info" *ngIf="rows.hide4">
-            <ion-list mode="ios" radio-group [(ngModel)]="service">
+            <ion-list mode="ios" radio-group [(ngModel)]="service" (ionChange)="calcPrice()">
                 <ion-list-header no-lines>
                     {{"Ծառայության տեսակը" | translate}}
                 </ion-list-header>
 
-                <ion-item mode="ios">
-                    <ion-label>Լվացում 1</ion-label>
-                    <ion-radio selected mode="ios" value="1"></ion-radio>
+                <ion-item mode="ios" text-wrap>
+                    <ion-label>{{"Համալիր մաքրում (արտաքին և ներքին մաքրում)" | translate}}</ion-label>
+                    <ion-radio mode="ios" value="1"></ion-radio>
                 </ion-item>
 
-                <ion-item mode="ios">
-                    <ion-label>Լվացում 2</ion-label>
+                <ion-item mode="ios" text-wrap>
+                    <ion-label>{{"Առանձին արտաքին մաքրում" | translate}}</ion-label>
                     <ion-radio mode="ios" value="2"></ion-radio>
                 </ion-item>
 
-                <ion-item mode="ios">
-                    <ion-label>Լվացում 3</ion-label>
+                <ion-item mode="ios" text-wrap>
+                    <ion-label>{{"Սրահի առանձին մաքրում" | translate}}</ion-label>
                     <ion-radio mode="ios" value="3"></ion-radio>
                 </ion-item>
-                <ion-item no-lines text-left>
-                    {{service}}
+                <!-- service price -->
+                <ion-grid margin-left class="service-types" *ngIf="service">
+                    <ion-row align-items-center>
+                        <ion-col col-2>
+                            <div class="car-1 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-2>
+                            <div class="car-11 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-4>
+                            <div class="price" text-center green>
+                                {{selectedPrice[0]}} {{"դր․" | translate}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row align-items-center>
+                        <ion-col col-2>
+                            <div class="car-2 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-2>
+                            <div class="car-22 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-4>
+                            <div class="price" text-center green>
+                                {{selectedPrice[1]}} {{"դր․" | translate}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row align-items-center>
+                        <ion-col col-2>
+                            <div class="car-3 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-2>
+                            <div class="car-33 only-style">
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-4>
+                            <div class="price" text-center green>
+                                {{selectedPrice[2]}} {{"դր․" | translate}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row margin-right>
+                        <ion-col col-12 green>
+                            {{"Պատվերները կարելի է համադրել․ Արդյունքում գները զեղչվում են" | translate}}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <!-- service price -->
+                <ion-item no-lines>
+                    <ion-label>
+                        {{"Սրահի չոր էքսպրես-քիմմաքրում" | translate}}
+                    </ion-label>
+                    <ion-checkbox (ionChange)="calcPrice()" [(ngModel)]="qim"></ion-checkbox>
                 </ion-item>
                 <ion-item no-lines>
                     <ion-label>
-                        Քիմ մաքրում
+                        {{"Շարժիչի չոր նանոլվացում" | translate}}
                     </ion-label>
-                    <ion-checkbox [(ngModel)]="qim"></ion-checkbox>
-
-
+                    <ion-checkbox (ionChange)="calcPrice()" [(ngModel)]="nano"></ion-checkbox>
                 </ion-item>
             </ion-list>
         </ion-row>

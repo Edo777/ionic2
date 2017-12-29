@@ -1,4 +1,8 @@
 orders-register {
+    .item-ios,
+    .item-md {
+        padding-right: 8px;
+    }
     .item.item-md .checkbox-md {
         margin-right: 10px;
     }
@@ -29,5 +33,38 @@ orders-register {
             background: grey;
             padding: 16px 50px 16px 5px;
         }
+        .service-types {
+            .only-style {
+                width: 100%;
+                height: 30px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+            .car-1 {
+                background-image: url(../assets/imgs/1.jpg);
+            }
+            .car-11 {
+                background-image: url(../assets/imgs/11.jpg);
+            }
+            .car-2 {
+                background-image: url(../assets/imgs/2.jpg);
+            }
+            .car-22 {
+                background-image: url(../assets/imgs/22.jpg);
+            }
+            .car-3 {
+                background-image: url(../assets/imgs/3.jpg);
+            }
+            .car-33 {
+                background-image: url(../assets/imgs/33.jpg);
+            }
+            .price {
+                font-weight: bold;
+            }
+        }
+    }
+    *[green] {
+        color: #adbd84;
     }
 }

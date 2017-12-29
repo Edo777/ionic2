@@ -17,6 +17,7 @@ export class OrderAddress{
             customer_phone:"1145747",
             promo_code:123456,
             date:"2017-11-28 16:00:00",
+            asap:0,
             address:{
                 lat:165465465465,
                 long:456865446.54,
@@ -45,7 +46,7 @@ export class OrderAddress{
             ]  
         };
 
-    fast:boolean;
+    fast:boolean = false;
     address: any;
     cars:any;
     myDate:string;
@@ -93,6 +94,7 @@ export class OrderAddress{
         this.simple["date"] = this.myDate;
         this.simple["address"] = this.address;
         this.simple["cars"] = this.cars;
+        this.simple["asap"] = Number(this.fast);
         console.log(this.simple);
         
         let loading = this.loadingCtrl.create({
