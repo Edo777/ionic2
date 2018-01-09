@@ -201,7 +201,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
                     this.selectedPrice[i] += this.prices[3][i]
                 }
                 if(this.nano){
-                    this.selectedPrice[i] += this.prices[4][i]
+                    this.selectedPrice[i] += (this.prices[4][i] - 499);
                 }
             }
         }
@@ -213,10 +213,10 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         this.CAR["model_id"] = this.modelName;
         this.CAR["service"] = this.service;
         if(this.qim){
-            this.CAR["service"] += ",4"
+            this.CAR["service"] += ",5"
         }
         if(this.nano){
-            this.CAR["service"] += ",5"
+            this.CAR["service"] += ",4"
         }
         this.CAR["type"] = "new";
         for(let brand of this.cars){
@@ -247,7 +247,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             this.carNumber = this.orderEdit.car_number;
             this.service = parseInt(this.orderEdit.service);
             if(this.orderEdit.service.length == 3){
-                this.qim = true;
+                this.nano = true;
             }else if(this.orderEdit.service.length == 5){
                 this.nano = true;
                 this.qim = true;

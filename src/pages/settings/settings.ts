@@ -37,7 +37,7 @@ export class Settings{
                 (data) => {
                     this.customerDetails = data[0];
                     this.phone = this.customerDetails.phone;
-                    this.email = this.customerDetails.email != "undefined"? this.customerDetails.email : "you haven't email";
+                    this.email = this.customerDetails.email != "undefined"? this.customerDetails.email : "";
                     this.name = this.customerDetails.name;
                     this.prom_code = this.customerDetails.promo_code;
                     loading.dismiss();

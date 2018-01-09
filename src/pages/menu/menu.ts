@@ -3,6 +3,7 @@ import { NavController, Nav, NavParams, AlertController } from 'ionic-angular';
 import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses, OrdersPage, OrdersHistory, Settings } from '../barrel'
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
+import { CallNumber } from "@ionic-native/call-number";
 
 interface Pages{
     pageName: string,
@@ -12,6 +13,7 @@ interface Pages{
 @Component({
     selector:'menu-page',
     templateUrl:'menu.html',
+    providers:[CallNumber]
 })
 
 export class MenuComponent{
@@ -30,14 +32,15 @@ export class MenuComponent{
         { pageName:'Իմ հասցեները', component: Addresses},
         { pageName:'Իմ պատվերները', component: OrdersHistory},
         { pageName:'Անձնական տվյալներ', component: Settings},
-        { pageName:'Մեր մասին', component: AboutUs},          
+        { pageName:'Մեր մասին', component: AboutUs},         
     ]
     constructor(
         public navCtrl:NavController, 
         public params:NavParams, 
         private mobiWash:MobiWash,
         private alertCtrl:AlertController,
-        private serv:TranslateService
+        private serv:TranslateService,
+        private callNumber: CallNumber
     ){
         
             this.activeLng = this.serv.getActiveLng();
@@ -57,6 +60,12 @@ export class MenuComponent{
     openPage(page:Pages){
         this.activePage = page.component;
         this.nav.setRoot(page.component, {pageName:page.pageName});
+    }
+    //call admin
+    callAdmin(){
+        this.callNumber.callNumber("+37455950905", true)
+            .then(() => console.log('Launched dialer!'))
+            .catch(() => console.log('Error launching dialer'));
     }
 
     //language

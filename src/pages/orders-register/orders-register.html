@@ -97,7 +97,7 @@
 
                             </div>
                         </ion-col>
-                        <ion-col col-4>
+                        <ion-col col-4 offset-2>
                             <div class="price" text-center green>
                                 {{selectedPrice[0]}} {{"դր․" | translate}}
                             </div>
@@ -114,19 +114,19 @@
 
                             </div>
                         </ion-col>
-                        <ion-col col-4>
+                        <ion-col col-4 offset-2>
                             <div class="price" text-center green>
                                 {{selectedPrice[1]}} {{"դր․" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
                     <ion-row align-items-center>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-3 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-33 only-style">
 
                             </div>
@@ -144,7 +144,7 @@
                     </ion-row>
                 </ion-grid>
                 <!-- service price -->
-                <ion-item no-lines>
+                <ion-item no-lines *ngIf="false">
                     <ion-label>
                         {{"Սրահի չոր էքսպրես-քիմմաքրում" | translate}}
                     </ion-label>

@@ -12,6 +12,10 @@
             <button [class.bg-btt]="bgChange(p)" menuClose no-padding ion-item detail-none *ngFor="let p of pages; let ind = index" (tap)="openPage(p)">
                 {{ p.pageName | translate }}
             </button>
+            <button no-padding ion-item detail-none (tap)="callAdmin()">
+                {{"Կապ ադմինի հետ" | translate}}
+                <ion-icon name="call" item-end color="primary" margin-right></ion-icon>
+            </button>
             <button no-padding ion-item detail-none (tap)="changeLng()">
                 {{ activeLngText | translate }}
                 <ion-avatar item-end>
