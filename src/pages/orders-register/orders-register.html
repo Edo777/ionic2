@@ -161,5 +161,5 @@
     </ion-grid>
 </ion-content>
 <ion-footer>
-    <button full large ion-button [disabled]="((!todo.valid) || (service == null))" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+    <button full large ion-button [disabled]="((!todo.valid) || (service == null) && !nano)" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
 </ion-footer>
