@@ -11,10 +11,10 @@
                 <span green-light head>{{"Ինչպե՞ս է աշխատում հավելվածը." | translate}}</span>
             </ion-col>
             <ion-col col-12>
-                1){{"Նշեք ավտոմեքենայի կամ ավտոմեքենաների գտնվելու վայրը, ձեր նախընտրած ժամը և ծառայության տեսակը: Անհրաժեշտության դեպքում մասնագետը կկապվի ձեզ հետ մանրամասները ճշտելու համար:" | translate}}
+                1){{"Նշեք ավտոմեքենայի կամ ավտոմեքենաների գտնվելու վայրը, ձեր նախընտրած ժամը և մաքրման տեսակը: Անհրաժեշտության դեպքում մասնագետը կկապվի ձեզ հետ մանրամասները ճշտելու համար:" | translate}}
             </ion-col>
             <ion-col col-12>
-                2){{"Մերմասնագետները արագ կմոտենան ձեր նշած վայրին և կկատարեն պատվերը:" | translate}}
+                2){{"Մեր մասնագետները արագ կմոտենան ձեր նշած վայրին և կկատարեն պատվերը:" | translate}}
             </ion-col>
             <ion-col col-12>
                 {{"Մի՛ զարմացեք և մի՛ կասկածեք: Արդեն բավական ժամանակ է այս տեխնոլոգիան օգտագործվում է արտերկրում, օր օրի ավելացնելով ծառայությունների տեսակը և աշխարհագրությունը: Այդ դեպքում ինչու՞ մենք պետք է աշխարհից հետ մնանք:" | translate}}
@@ -36,11 +36,11 @@
             <ion-col col-12>
                 3-{{"Սրահի առանձին մաքրում" | translate}}
             </ion-col>
-            <ion-col col-12>
+            <ion-col col-12 *ngIf="false">
                 4-{{"Սրահի չոր էքսպրես-քիմմաքրում" | translate}}
             </ion-col>
             <ion-col col-12>
-                5-{{"Շարժիչի չոր նանոլվացում" | translate}}
+                4-{{"Շարժիչի չոր նանոլվացում" | translate}}
             </ion-col>
             <ion-col col-12>
                 {{"Պատվերները կարելի է համադրել․ Արդյունքում գները զեղչվում են" | translate}}
@@ -99,6 +99,9 @@
             <ion-col col-12>
                 4) {{"Մեր ծառայությունները շուրջօրյա և շուրջշաբաթյա են:" | translate}}
             </ion-col>
+            <ion-col col-12 >
+                <span red>{{"23:00-08:00 ժամանակահատվածում ընկած և մեծ կորպորատիվ պատվերների համար խնդրում ենք դիմել նախապես։" | translate}}</span>
+            </ion-col>
             <ion-col col-12>
                 <span bold>{{"Օգվտե՛ք MobiWash-ի ծառայությոններից և տնտեսեք ձեր ժամանակն ու ֆինանսները, միաժամանակ կատարելով համեստ ներդրում Հայաստանի ջրային ռեսուրսների ու շրջակա միջավայրի պահպանման գործին:" | translate}}</span>
             </ion-col>
@@ -114,19 +117,19 @@
 
             </ion-col>
             <ion-col col-12>
-                - {{"Վեբ-կայքում՝" | translate}} <span green-light>www.mobiwash.am</span>
+                - {{"Վեբ-կայքում՝" | translate}} <span green-light><a href="www.mobiwash.am">www.mobiwash.am</a></span>
 
             </ion-col>
             <ion-col col-12>
-                - {{"Ֆեյսբուքյան էջում՝" | translate}} <span green-light>facebook.com/mobiwash.yerevan</span>
+                - {{"Ֆեյսբուքյան էջում՝" | translate}} <span green-light><a href="https:://www.facebook.com/mobiwash.yerevan">facebook.com/mobiwash.yerevan</a></span>
 
             </ion-col>
             <ion-col col-12>
-                - {{"Ինստագրամյան էջում՝" | translate}} <span green-light>@mobiwash.yerevan</span>
+                - {{"Ինստագրամյան էջում՝" | translate}} <span green-light><a href="https://www.instagram.com/@mobiwash.yerevan">@mobiwash.yerevan</a></span>
 
             </ion-col>
             <ion-col col-12>
-                - {{"Էլ․Հասցեյով՝" | translate}} <span green-light>order.mobiwash.am</span>
+                - {{"Էլ․Հասցեյով՝" | translate}} <span green-light><a href="order.mobiwash.am">order.mobiwash.am</a></span>
             </ion-col>
         </ion-row>
         <ion-row margin-top>
@@ -137,7 +140,7 @@
                 - {{"Զանգահարել" | translate}} <span green-light>(+374)99-960-609</span> {{"հեռախոսահամարին" | translate}}
             </ion-col>
             <ion-col col-12>
-                - {{"Ուղարկել նամակ՝" | translate }} <span green-light>director.mobiwash.am</span> {{"էլ.հասցեին" | translate}}
+                - {{"Ուղարկել նամակ՝" | translate }} <span green-light><a href="director.mobiwash.am">director.mobiwash.am</a></span> {{"էլ.հասցեին" | translate}}
             </ion-col>
         </ion-row>
     </ion-grid>

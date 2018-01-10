@@ -188,24 +188,27 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     pr(){
         console.log("q", this.qim)
     }
-    calcPrice(){
+   
+    radioDisable(id){
         
-        if(this.service){
+    }
+    calcPrice(){
             setTimeout( () => {
                 this.content.scrollToBottom();
             }, 100)
             for(let i=0;i<3;i++){
-                this.selectedPrice[i]=this.prices[this.service-1][i]+0
-
+                if(this.service){
+                    this.selectedPrice[i]=this.prices[this.service-1][i]+0
+                }
                 if(this.qim){
-                    this.selectedPrice[i] += this.prices[3][i]
+                    this.selectedPrice[i] += this.prices[3][i];
                 }
                 if(this.nano){
                     this.selectedPrice[i] += (this.prices[4][i] - 499);
+                }else{
+                    
                 }
-            }
-        }
-            
+            }          
     }
     private carTypeControl(){
         

@@ -25,8 +25,8 @@
 
 
     <ion-grid>
-        <ion-row *ngIf="prom_code">
-            {{'Ձեր պրոմ կոդն է' | translate }} {{prom_code}}
+        <ion-row margin-left>
+            {{ prom_code ? 'Ձեր Պրոմո կոդն է ' +  prom_code : "Դուք չունեք պրոմո կոդ"}}
         </ion-row>
     </ion-grid>
 

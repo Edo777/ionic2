@@ -70,22 +70,22 @@
                     {{"Ծառայության տեսակը" | translate}}
                 </ion-list-header>
 
-                <ion-item mode="ios" text-wrap>
+                <ion-item mode="ios" text-wrap >
                     <ion-label>{{"Համալիր մաքրում (արտաքին և ներքին մաքրում)" | translate}}</ion-label>
-                    <ion-radio mode="ios" value="1"></ion-radio>
+                    <ion-radio  mode="ios" (tap)="radioDisable(1)" value="1"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
                     <ion-label>{{"Առանձին արտաքին մաքրում" | translate}}</ion-label>
-                    <ion-radio mode="ios" value="2"></ion-radio>
+                    <ion-radio  mode="ios" (tap)="radioDisable(2)" value="2"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
                     <ion-label>{{"Սրահի առանձին մաքրում" | translate}}</ion-label>
-                    <ion-radio mode="ios" value="3"></ion-radio>
+                    <ion-radio  mode="ios" (tap)="radioDisable(3)" value="3"></ion-radio>
                 </ion-item>
                 <!-- service price -->
-                <ion-grid margin-left class="service-types" *ngIf="service">
+                <ion-grid margin-left class="service-types" >
                     <ion-row align-items-center>
                         <ion-col col-2>
                             <div class="car-1 only-style">
@@ -121,12 +121,12 @@
                         </ion-col>
                     </ion-row>
                     <ion-row align-items-center>
-                        <ion-col col-3>
+                        <ion-col col-3 max-width-24>
                             <div class="car-3 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-3>
+                        <ion-col col-3 no-padding-left max-width-26>
                             <div class="car-33 only-style">
 
                             </div>
