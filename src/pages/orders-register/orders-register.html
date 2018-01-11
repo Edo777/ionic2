@@ -72,17 +72,17 @@
 
                 <ion-item mode="ios" text-wrap >
                     <ion-label>{{"Համալիր մաքրում (արտաքին և ներքին մաքրում)" | translate}}</ion-label>
-                    <ion-radio  mode="ios" (tap)="radioDisable(1)" value="1"></ion-radio>
+                    <ion-radio #radio  mode="ios" (tap)="selectedRadioIndex(0)" value="1"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
                     <ion-label>{{"Առանձին արտաքին մաքրում" | translate}}</ion-label>
-                    <ion-radio  mode="ios" (tap)="radioDisable(2)" value="2"></ion-radio>
+                    <ion-radio #radio mode="ios" (tap)="selectedRadioIndex(1)" value="2"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
                     <ion-label>{{"Սրահի առանձին մաքրում" | translate}}</ion-label>
-                    <ion-radio  mode="ios" (tap)="radioDisable(3)" value="3"></ion-radio>
+                    <ion-radio #radio mode="ios" (tap)="selectedRadioIndex(2)" value="3"></ion-radio>
                 </ion-item>
                 <!-- service price -->
                 <ion-grid margin-left class="service-types" >
@@ -131,7 +131,7 @@
 
                             </div>
                         </ion-col>
-                        <ion-col col-4>
+                        <ion-col col-4 margin-left-1>
                             <div class="price" text-center green>
                                 {{selectedPrice[2]}} {{"դր․" | translate}}
                             </div>

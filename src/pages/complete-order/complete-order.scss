@@ -11,8 +11,10 @@ complete-order {
         height: 80vw;
         background-position: center;
         background-image: url("../assets/imgs/logo.png");
+        background-size: contain;
     }
     .button-md {
         width: 100%;
+        font-size: 3.5vw;
     }
 }

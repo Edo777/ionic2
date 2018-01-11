@@ -1,14 +1,17 @@
 menu-page {
+    .alert-md .alert-button-group, .alert-ios .alert-button-group{
+        margin-left:34px;
+    }
     ion-header {
         .logo {
             height: 56px;
             width: fit-content;
             position: absolute;
-            right: -13px;
-            top: -15px;
+            right: 8px;
+            top: -1px;
             img {
-                width: 120px;
-                height: 88px;
+                width: 77px;
+                height: 56px;
             }
         }
     }
