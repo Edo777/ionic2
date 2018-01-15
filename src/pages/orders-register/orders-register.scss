@@ -38,30 +38,34 @@ orders-register {
                 width: 100%;
                 height: 30px;
                 background-repeat: no-repeat;
-                background-position: center;
+                background-position: left;
                 background-size: contain;
             }
             .car-1 {
+                width: 100%;
+                max-height: 18px;
                 background-image: url(../assets/imgs/1.jpg);
             }
             .car-11 {
+                width: 100%;
+                max-height: 18px;
                 background-image: url(../assets/imgs/11.jpg);
             }
             .car-2 {
+                width: 86%;
+                max-height: 24px;
                 background-image: url(../assets/imgs/2.jpg);
             }
             .car-22 {
+                width: 86%;
                 background-image: url(../assets/imgs/22.jpg);
             }
             .car-3 {
-                height:28px;
-                background-position: left;
+               
                 background-image: url(../assets/imgs/3.jpg);
             }
             .car-33 {
-                margin-top: 6px;
-                height: 30px;
-                background-position: left;
+                
                 background-image: url(../assets/imgs/33.jpg);
             }
             .price {
@@ -75,13 +79,7 @@ orders-register {
     *[no-padding-left]{
         padding-left: 0; 
     }
-    *[margin-left-1]{
-        margin-left:1%;
-    }
-    *[max-width-24]{
-        max-width: 24%;
-    }
-    *[max-width-26]{
-        max-width: 26%;
+    *[margin-top-minus]{
+        margin-top: -5px;
     }
 }

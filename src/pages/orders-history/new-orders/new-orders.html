@@ -2,6 +2,8 @@
     <ion-list>
         <ion-item-sliding *ngFor="let item of data2; let i = index" #slideingItem margin-bottom>
             <ion-item no-lines class="view" mode="md">
+                <ion-icon item-left class="left-arrow" color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
+                <ion-icon item-right class="right-arrow" color="danger" md="md-arrow-dropright" ios="md-arrow-dropright"></ion-icon>
                 <div class="number">
                     <span> № {{item.id}}</span>
                 </div>
@@ -42,6 +44,7 @@
                 </button>
 
             </ion-item-options>
+            
         </ion-item-sliding>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">

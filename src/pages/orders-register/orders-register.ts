@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
     providers:[Keyboard]
 })
 
-export class OrdersRegister implements OnInit,AfterViewInit{
+export class OrdersRegister implements OnInit{
     //edit order
     private orderEdit:any;
     
@@ -77,22 +77,8 @@ export class OrdersRegister implements OnInit,AfterViewInit{
      }
       
    }
-
-    ngAfterViewInit(){
-        this.keyboard.onKeyboardShow().subscribe(
-            (event)=>{ 
-                if(this.content._scroll){
-                   
-                }
-            },
-            (err) => {
-                console.log(err);
-            }
-        )
-    }
     ngOnInit(){
         this.historyCars = this.mobiWash.getCars();
-        this.isHasDataWhenModalOpen();
         this.keyboardEnterButton();
         this.prices = [
             [1999, 2999, 3999],
@@ -101,6 +87,7 @@ export class OrdersRegister implements OnInit,AfterViewInit{
             [6999,7999,8999], 
             [1499, 1499,1499]
         ]
+        this.isHasDataWhenModalOpen();
     }
     /////////////////////////
     
@@ -187,70 +174,87 @@ export class OrdersRegister implements OnInit,AfterViewInit{
         }
     }
     ///////////////////////////////
-    pr(){
-        console.log("q", this.qim)
-    }
-   
+     
     private radioIndex = 5;
     private isChecked;
+    private arr = [];
     private selectedRadioIndex(index){
         if(index == this.radioIndex){
             this.isChecked = true;
             return;
         }
+        
+        this.arr[0] = `${index + 1}`;
         this.radioIndex = index;
         console.log(this.radioIndex, " --- ", index)
     }
     radioDisable(){
             this.radio._results[this.radioIndex].checked = false;
-            /*
+            this.arr[0] = "";
             for(let i = 0; i < 3; i++){
-                this.selectedPrice[i]-= this.prices[this.service-1][i];
+                this.selectedPrice[i] -= this.prices[this.radioIndex][i];
             }
-            this.service = "";
-            */
             this.radioIndex = 5;
+            this.isChecked = false;
     }
+  
     calcPrice(){
-           if(this.isChecked){
-                this.radioDisable()
-                this.isChecked = false;
-                this.service = "4";
-                return
-           }
             setTimeout( () => {
                 this.content.scrollToBottom();
             }, 100)
+
+            if(this.isChecked){
+                    this.radioDisable()
+                    return
+            }
             for(let i=0;i<3;i++){
-                if(this.service){
-                    this.selectedPrice[i]=this.prices[this.service-1][i]+0;
-                    if(this.nano){
-                        this.selectedPrice[i] += (this.prices[4][i] - 499);//akcia
-                    }
+                console.log("nano", this.nano)
+                if(this.arr[0] && this.nano){
+                    this.selectedPrice[i]=this.prices[this.arr[0] - 1][i]+0;
+                    this.selectedPrice[i] += (this.prices[4][i] - 499)
+                }else if(this.arr[0]){
+                    this.selectedPrice[i]=this.prices[this.arr[0] - 1][i]+0;
+                }else if(this.nano){
+                    this.selectedPrice[i]=this.prices[4][i]+0;
                 }
-                /*
-                if(this.qim){
-                    this.selectedPrice[i] += this.prices[3][i];
-                }
-                */
-                if(this.nano && !this.service){
-                    this.selectedPrice[i] += (this.prices[4][i]) + 0;
-                }else if(!this.nano && !this.service){
-                    this.selectedPrice[i]=0;
-                }
-                
             }          
     }
-    private arr = ["", ""];
+    calcPriceOthers(){
+        if(this.arr[0]){
+            for(let i = 0; i < 3; i++){
+                if(this.nano){
+                    this.arr[1] = "4";
+                    this.selectedPrice[i] += (this.prices[4][i] - 499);
+                }else if(this.nano != undefined){
+                    this.arr[1] = "";
+                    this.selectedPrice[i] -= (this.prices[4][i] - 499);
+                }
+            }
+        }else{
+            for(let i = 0; i < 3; i++){
+                if(this.nano){
+                    this.arr[1] = "4";
+                    this.selectedPrice[i] += (this.prices[4][i]);
+                }else if(this.nano != undefined){
+                    this.arr[1] = "";
+                    this.selectedPrice[i] -= (this.prices[4][i]);
+                }
+            }
+        }
+        
+    }
+
     private carTypeControl(){
         this.CAR["make_id"] = this.brandName;
         this.CAR["model_id"] = this.modelName;
         this.CAR["service"] = this.service;
-        if(this.service != "4"){
-            if(this.nano){
-                this.CAR["service"] += ",4"
-            }   
+        
+        if(!this.arr[0] || !this.arr[1]){
+            this.CAR.service = this.arr[0] ? `${this.arr[0]}` : `${this.arr[1]}`; 
+        }else{
+            this.CAR.service = this.arr.join(",")
         }
+
         this.CAR["type"] = "new";
         for(let brand of this.cars){
             if(brand.name.toLowerCase() == this.brandName.toLowerCase()){
@@ -272,18 +276,21 @@ export class OrdersRegister implements OnInit,AfterViewInit{
     isHasDataWhenModalOpen(){
         let orderEdit = this.params.data["orderEdit"];
         if(orderEdit){
-            
             this.orderEdit = orderEdit;
             this.rows.hide2 = true;
             this.rows.hide3 = true;
             this.rows.hide4 = true;
             this.carNumber = this.orderEdit.car_number;
-            this.service = parseInt(this.orderEdit.service);
-            if(this.orderEdit.service =="4"){
+            this.arr[0] = parseInt(this.orderEdit.service);
+            if(this.orderEdit.service == "4"){
                 this.nano = true;
+                this.calcPriceOthers()
+                this.arr[0] = "";
+                this.arr[1] = "4";
             }
             else if(this.orderEdit.service.length == 3){
                 this.nano = true;
+                this.arr[1] = "4";
             }
             if(orderEdit.type == "new"){
                 

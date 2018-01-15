@@ -65,7 +65,7 @@
         <!-- Type pinking -->
 
         <ion-row class="cars-info" *ngIf="rows.hide4">
-            <ion-list mode="ios" radio-group [(ngModel)]="service" (ionChange)="calcPrice()">
+            <ion-list mode="ios" radio-group [(ngModel)]="arr[0]" (ionChange)="calcPrice()">
                 <ion-list-header no-lines>
                     {{"Ծառայության տեսակը" | translate}}
                 </ion-list-header>
@@ -87,51 +87,51 @@
                 <!-- service price -->
                 <ion-grid margin-left class="service-types" >
                     <ion-row align-items-center>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-1 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-11 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-4 offset-2>
+                        <ion-col col-4>
                             <div class="price" text-center green>
                                 {{selectedPrice[0]}} {{"դր․" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
                     <ion-row align-items-center>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-2 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-2>
+                        <ion-col col-3>
                             <div class="car-22 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-4 offset-2>
+                        <ion-col col-4>
                             <div class="price" text-center green>
                                 {{selectedPrice[1]}} {{"դր․" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
                     <ion-row align-items-center>
-                        <ion-col col-3 max-width-24>
+                        <ion-col col-3 margin-top-minus>
                             <div class="car-3 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-3 no-padding-left max-width-26>
+                        <ion-col col-3>
                             <div class="car-33 only-style">
 
                             </div>
                         </ion-col>
-                        <ion-col col-4 margin-left-1>
+                        <ion-col col-4>
                             <div class="price" text-center green>
                                 {{selectedPrice[2]}} {{"դր․" | translate}}
                             </div>
@@ -148,18 +148,18 @@
                     <ion-label>
                         {{"Սրահի չոր էքսպրես-քիմմաքրում" | translate}}
                     </ion-label>
-                    <ion-checkbox (ionChange)="calcPrice()" [(ngModel)]="qim"></ion-checkbox>
+                    <ion-checkbox (ionChange)="calcPriceOthers()" [(ngModel)]="qim"></ion-checkbox>
                 </ion-item>
                 <ion-item no-lines>
                     <ion-label>
                         {{"Շարժիչի չոր նանոլվացում" | translate}}
                     </ion-label>
-                    <ion-checkbox (ionChange)="calcPrice()" [(ngModel)]="nano"></ion-checkbox>
+                    <ion-checkbox (ionChange)="calcPriceOthers()" [(ngModel)]="nano"></ion-checkbox>
                 </ion-item>
             </ion-list>
         </ion-row>
     </ion-grid>
 </ion-content>
 <ion-footer>
-    <button full large ion-button [disabled]="((!todo.valid) || (service == null) && !nano)" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+    <button full large ion-button [disabled]="((!todo.valid) || (!(arr[0]?.length > 0) && !(arr[1]?.length > 0)))" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
 </ion-footer>

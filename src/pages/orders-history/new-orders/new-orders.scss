@@ -22,6 +22,16 @@ new-orders {
         
     }
     .view {
+        .left-arrow{
+            position: absolute;
+            left: 3px;
+            top: 25%;
+        }
+        .right-arrow{
+            position: absolute;
+            right: 3px;
+            top: 25%;
+        }
         .grid {}
         .number {
             font-size: 1em;
@@ -45,11 +55,13 @@ new-orders {
             }
         }
         .status {
-            font-size: 1em;
+            top: 34%;
+            right: 16px;
+            font-size: 5vw;
             position: absolute;
             height: 31%;
-            top: 30%;
-            right: 0;
+           
+            
             width: 35vw;
             display: flex;
             align-items: center;
@@ -83,6 +95,7 @@ new-orders {
             left: 0;
             bottom: 0;
             height: 38%;
+            font-size: 5.5vw;
         }
     }
     .list-md ion-item-options .button {
