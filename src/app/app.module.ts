@@ -89,11 +89,11 @@ import { Keyboard } from "@ionic-native/keyboard";
       tabsPlacement: 'top', 
       platforms: {
           ios: {
-            backButtonText: 'Հետ',
+            backButtonText: '',
             iconMode: 'ios',
           },
           android:{
-            backButtonText: ' Հետ',
+            backButtonText: '',
           }
        }
 			})
