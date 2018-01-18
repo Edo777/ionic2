@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../../services/api.service";
-import { ToastController, LoadingController, InfiniteScroll, Platform, NavController, App, ModalController } from "ionic-angular";
+import { ToastController, LoadingController, AlertController, InfiniteScroll, Platform, NavController, App, ModalController } from "ionic-angular";
 import { TranslateService } from "../../../translate/translate.service";
 import { OrdersRegister, OrdersList } from "../../barrel";
 import { OrderInfo } from '../barrel-orders';
+
 
 
 @Component({
@@ -25,7 +26,8 @@ export class NewOrders{
         private platform: Platform,
         private navCtrl:NavController,
         private app:App,
-        private modal:ModalController
+        private modal:ModalController,
+        private alertCtrl:AlertController
 
     ){}
     //life cicle ionic
@@ -114,13 +116,38 @@ export class NewOrders{
            (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : cars}) 
         }
 
+    alertCancelled(item, status){
+        let alert = this.alertCtrl.create({
+            message: 'Ցանկանում եք մերժել?',
+            buttons: [
+            {
+                text: 'Մերժել',
+                role: 'Cancel',
+                handler: () => {
+                }
+            },
+            {
+                text: 'Հաստատել',
+                handler: () => {
+                    this.updateOrder(item, status);
+                }
+            }
+            ]
+        });
+        alert.present();
+    }
+
     updateOrder(item, status){
-      let loading = this.loadingCtrl.create({
-                content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
-            });
-            loading.present();
+        let loading = this.loadingCtrl.create({
+            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+        });
+        loading.present();
+      
         this.api.updateOrder(item, status).subscribe(
             (data) => {
+                if(status == 'deleted'){
+                    this.data2.pop();
+                }
                 let viewLength = this.data2.length;
                 this.api.getOrders("active").subscribe(
                     (data) => {
@@ -140,15 +167,30 @@ export class NewOrders{
             }
         )
     }
-
-     some(item, i){
-         this.data.splice(i, 1);
-         item.close()
-     }
      more(info){
          var modal = this.modal.create(OrderInfo, {"info" : info});
          modal.present()
      }
     
+     cancelled(status):boolean{
+        if((status == 'review') || (status == 'Beind processed')){
+            return true;
+        }else{
+            return false;
+        } 
+     }
+
+     confirmed(status){
+        return status == 'review';
+     }
+
+     price(status):boolean{
+        if(status != 'Pending'){
+            return true
+        }else{
+            return false;
+        }
+     }
+
       
 }

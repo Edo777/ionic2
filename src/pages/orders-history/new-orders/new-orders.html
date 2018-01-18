@@ -1,36 +1,49 @@
 <ion-content>
     <ion-list>
-        <ion-item-sliding *ngFor="let item of data2; let i = index" #slideingItem margin-bottom>
+        <div *ngFor="let item of data2">
+        <ion-item-sliding *ngIf="item?.order_status != 'deleted'"  #slideingItem margin-bottom>
             <ion-item no-lines class="view" mode="md">
                 <ion-icon item-left class="left-arrow" color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
                 <ion-icon item-right class="right-arrow" color="danger" md="md-arrow-dropright" ios="md-arrow-dropright"></ion-icon>
                 <div class="number">
-                    <span> № {{item.id}}</span>
+                    <span> № {{item?.id}}</span>
                 </div>
-                <div class="price">
-                    <span>{{item.order_price}}</span>
+                <div class="price" *ngIf="price(item?.order_status)">
+                    <span *ngIf="item?.order_price">{{item?.order_price}} {{"price" | translate}}</span>
                 </div>
-                <div *ngIf="(item.order_status == 'Pending')" class="status">
+                <div *ngIf="(item?.order_status == 'Pending')" class="status">
                     <span>{{item.order_status | translate}}</span>
                 </div>
-                <div *ngIf="(item.order_status == 'Reject')" class="status">
-                    <span>{{item.order_status}}</span>
+                <div *ngIf="(item?.order_status == 'review')" class="status">
+                    <span>{{item?.order_status}}</span>
                 </div>
-                <div *ngIf="(item.order_status == 'Confirm')" class="status">
-                    <span>{{item.order_status}}</span>
+                <div *ngIf="(item?.order_status == 'Beind processed')" class="status">
+                    <span>{{item?.order_status}}</span>
+                </div>
+                <div *ngIf="(item?.order_status == 'Confirmed')" class="status">
+                    <span>{{item?.order_status}}</span>
+                </div>
+                <div *ngIf="(item?.order_status == 'Cancelled')" class="status">
+                    <span>{{item?.order_status}}</span>
+                </div>
+                <div *ngIf="(item?.order_status == 'The washer has arrived ')" class="status">
+                    <span>{{item?.order_status}}</span>
+                </div>
+                <div *ngIf="(item?.order_status == 'complated')" class="status">
+                    <span>{{item?.order_status}}</span>
                 </div>
 
 
 
-                <ion-grid class="buttons">
+                <ion-grid  class="buttons">
                     <ion-row no-margin>
                         <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"Մանրամասն" | translate}}</button></ion-col>
-                        <ion-col col-4 *ngIf="item.order_status != 'Reject'"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="updateOrder(item, 'Reject')">{{"Չեղարկե՞լ" | translate }}</button></ion-col>
-                        <ion-col col-4 *ngIf="item.order_status == 'Review'"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirm')" ion-button>{{"Հաստատել" | translate}}</button></ion-col>
+                        <ion-col col-4 *ngIf="cancelled(item?.order_status)"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="alertCancelled(item, 'Cancelled')">{{"Չեղարկե՞լ" | translate }}</button></ion-col>
+                        <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed')" ion-button>{{"Հաստատել" | translate}}</button></ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>
-            <ion-item-options side="left">
+            <ion-item-options side="left" >
 
                 <button class="close-button" color="grey" (click)="copy(item)" ion-button icon-only>
                         <ion-icon md="md-copy" ios = "md-copy"></ion-icon>
@@ -39,13 +52,14 @@
             </ion-item-options>
             <ion-item-options side="right">
 
-                <button class="close-button" color="danger" (click)="some(slideingItem, i)" ion-button icon-only>
+                <button class="close-button" color="danger" (tap)="updateOrder(item, 'deleted')" ion-button icon-only>
                         <ion-icon name="close"></ion-icon>
                 </button>
 
             </ion-item-options>
             
         </ion-item-sliding>
+    </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
         <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="serv.translateImportant('Խնդրում եմ սպասել․․․', 'Please wait...')"></ion-infinite-scroll-content>

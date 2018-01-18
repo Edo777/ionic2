@@ -78,6 +78,7 @@ import { Keyboard } from "@ionic-native/keyboard";
     PhoneCall,
     CarFormatter,
     OrderInfo
+
   ],
   imports: [
     BrowserModule,

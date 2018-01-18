@@ -135,5 +135,5 @@ export const LANG_ARM_TRANS = {
     "Չեղարկե՞լ":"Չեղարկե՞լ",
     //exception from statuses
     "Pending" : "Սպասման մեջ է",
-    
+    "price" : "դրամ"
 };

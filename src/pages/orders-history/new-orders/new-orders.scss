@@ -1,4 +1,7 @@
 new-orders {
+    .alert-message{
+        text-align: center;
+    }
     ion-item-sliding.active-slide.active-options-right ion-item-options {
         background: grey;
         align-items: center;
@@ -55,14 +58,15 @@ new-orders {
             }
         }
         .status {
+            
+            width: fit-content;
             top: 34%;
-            right: 16px;
+            right: 26px;
             font-size: 5vw;
             position: absolute;
             height: 31%;
            
             
-            width: 35vw;
             display: flex;
             align-items: center;
             span {

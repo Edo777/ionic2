@@ -134,7 +134,7 @@ export const LANG_EN_TRANS = {
     "Մանրամասն" : "More",
     "Չեղարկե՞լ":"Cancel?",
     //exception from statuses
-    "Pending" : "Pending"
-    
+    "Pending" : "Pending",
+    "price" : "AMD"
 };
 
