@@ -8,7 +8,7 @@
         <ion-row class="cars-info">
             <ion-col col-12>
                 <ion-item mode="md">
-                    <ion-label color="black" floating>{{"Մակնիշ" | translate}}</ion-label>
+                    <ion-label color="black" floating>{{"make_id" | translate}}</ion-label>
                     <ion-input (input)="search.getBrands($event)" [value]="brandName" (ionBlur)="closeSearchBrands=false" (ionFocus)="closeSearchBrands=true" [(ngModel)]="brandName"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="closeSearchBrands && brands?.length">
@@ -26,7 +26,7 @@
         <ion-row class="cars-info">
             <ion-col col-12>
                 <ion-item mode="md">
-                    <ion-label color="black" floating>{{"Մոդել" | translate}}</ion-label>
+                    <ion-label color="black" floating>{{"model" | translate}}</ion-label>
                     <ion-input (input)="search.getModels($event)" [value]="modelName" (ionBlur)="closeSearchModels=false" (ionFocus)="closeSearchModels=true" [(ngModel)]="modelName"></ion-input>
                 </ion-item>
                 <ion-scroll scrollY="true" *ngIf="closeSearchModels && localModels?.length">
@@ -45,7 +45,7 @@
             <ion-col col-12>
 
                 <ion-item mode="md">
-                    <ion-label color="black" floating>{{"Համարանիշ" | translate}}</ion-label>
+                    <ion-label color="black" floating>{{"lic_plate_nums" | translate}}</ion-label>
                     <ion-input [(ngModel)]="carNumber"></ion-input>
                 </ion-item>
             </ion-col>
@@ -54,5 +54,5 @@
 
 </ion-content>
 <ion-footer>
-    <button color="grey" ion-button full (click)="addCar()">{{"Ավելացնել" | translate}}</button>
+    <button color="grey" ion-button full (click)="addCar()">{{"add" | translate}}</button>
 </ion-footer>

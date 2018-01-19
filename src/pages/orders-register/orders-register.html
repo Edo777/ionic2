@@ -2,7 +2,7 @@
     <button (click)="closeRegisterPage()" ion-button float-right only-icon>
         <ion-icon md="md-close" ios="md-close"></ion-icon>
     </button>
-    <button margin-left margin-top ion-button color="grey" (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"Ավելացնել իմ մեքենաներից" | translate}}</button>
+    <button margin-left margin-top ion-button color="grey" (tap)="presentPrompt()" *ngIf="historyCars?.length">{{"from_my_cars" | translate}}</button>
 
     <ion-grid>
         <!-- BRANDS -->
@@ -11,7 +11,7 @@
                 <ion-col col-12>
 
                     <ion-item mode="md" no-padding>
-                        <ion-label color="black" floating>{{'Մակնիշ' | translate}}</ion-label>
+                        <ion-label color="black" floating>{{'make_id' | translate}}</ion-label>
                         <ion-input (ionBlur)="completeBlur(1)" (ionFocus)="completeFocus($event, 1)" formControlName="make_id" [value]="brandName" [(ngModel)]="brandName" (input)="getBrands($event)">
                         </ion-input>
 
@@ -34,7 +34,7 @@
                 <ion-col col-12>
 
                     <ion-item mode="md" no-padding>
-                        <ion-label color="black" floating>{{'Մոդել' | translate}}</ion-label>
+                        <ion-label color="black" floating>{{'model' | translate}}</ion-label>
                         <ion-input (ionBlur)="completeBlur(2)" formControlName="model_id" (ionFocus)="completeFocus($event, 2)" [value]="modelName" [(ngModel)]="modelName" (input)="getModels($event)"></ion-input>
                     </ion-item>
                     <ion-scroll scrollY="true" *ngIf="isCompleteModel">
@@ -54,34 +54,34 @@
                 <ion-col col-12>
 
                     <ion-item mode="md" no-padding>
-                        <ion-label color="black" floating>{{'Համարանիշ' | translate}}</ion-label>
+                        <ion-label color="black" floating>{{"lic_plate_nums" | translate}}</ion-label>
                         <ion-input maxlength="10" formControlName="car_number" (ionBlur)="completeBlur(3)" (ionFocus)="completeFocus($event)" [value]="carNumber" [(ngModel)]="carNumber"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
 
         </form>
-
+        
         <!-- Type pinking -->
 
         <ion-row class="cars-info" *ngIf="rows.hide4">
             <ion-list mode="ios" radio-group [(ngModel)]="arr[0]" (ionChange)="calcPrice()">
                 <ion-list-header no-lines>
-                    {{"Ծառայության տեսակը" | translate}}
+                    {{"service_type" | translate}}
                 </ion-list-header>
 
                 <ion-item mode="ios" text-wrap >
-                    <ion-label>{{"Համալիր մաքրում (արտաքին և ներքին մաքրում)" | translate}}</ion-label>
+                    <ion-label>{{"wash_type_1" | translate}}</ion-label>
                     <ion-radio #radio  mode="ios" (tap)="selectedRadioIndex(0)" value="1"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
-                    <ion-label>{{"Առանձին արտաքին մաքրում" | translate}}</ion-label>
+                    <ion-label>{{"wash_type_2" | translate}}</ion-label>
                     <ion-radio #radio mode="ios" (tap)="selectedRadioIndex(1)" value="2"></ion-radio>
                 </ion-item>
 
                 <ion-item mode="ios" text-wrap>
-                    <ion-label>{{"Սրահի առանձին մաքրում" | translate}}</ion-label>
+                    <ion-label>{{"wash_type_3" | translate}}</ion-label>
                     <ion-radio #radio mode="ios" (tap)="selectedRadioIndex(2)" value="3"></ion-radio>
                 </ion-item>
                 <!-- service price -->
@@ -99,7 +99,7 @@
                         </ion-col>
                         <ion-col col-4>
                             <div class="price" text-center green>
-                                {{selectedPrice[0]}} {{"դր․" | translate}}
+                                {{selectedPrice[0]}} {{"price" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
@@ -116,7 +116,7 @@
                         </ion-col>
                         <ion-col col-4>
                             <div class="price" text-center green>
-                                {{selectedPrice[1]}} {{"դր․" | translate}}
+                                {{selectedPrice[1]}} {{"price" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
@@ -133,13 +133,13 @@
                         </ion-col>
                         <ion-col col-4>
                             <div class="price" text-center green>
-                                {{selectedPrice[2]}} {{"դր․" | translate}}
+                                {{selectedPrice[2]}} {{"price" | translate}}
                             </div>
                         </ion-col>
                     </ion-row>
                     <ion-row margin-right>
                         <ion-col col-12 green>
-                            {{"Պատվերները կարելի է համադրել․ Արդյունքում գները զեղչվում են" | translate}}
+                            {{"from_discount" | translate}}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -152,7 +152,7 @@
                 </ion-item>
                 <ion-item no-lines>
                     <ion-label>
-                        {{"Շարժիչի չոր նանոլվացում" | translate}}
+                        {{"nano_cleaning" | translate}}
                     </ion-label>
                     <ion-checkbox (ionChange)="calcPriceOthers()" [(ngModel)]="nano"></ion-checkbox>
                 </ion-item>
@@ -161,5 +161,5 @@
     </ion-grid>
 </ion-content>
 <ion-footer>
-    <button full large ion-button [disabled]="((!todo.valid) || (!(arr[0]?.length > 0) && !(arr[1]?.length > 0)))" (tap)="completeRegisterPage()">{{"Ավելացնել" | translate}}</button>
+    <button full large ion-button [disabled]="((!todo.valid) || (!(arr[0]?.length > 0) && !(arr[1]?.length > 0)))" (tap)="completeRegisterPage()">{{"add" | translate}}</button>
 </ion-footer>

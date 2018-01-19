@@ -15,7 +15,7 @@ import { MobiWash } from "../../services/barrel.service";
 export class UserAccount {   
     orders:NewOrder[] = [];
     datas:string[] = [];
-    pageName:string = 'Պատվերի գրանցում';
+    pageName:string = "create_order";
 
     constructor(
         public modalCtrl: ModalController,

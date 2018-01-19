@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
                     <ion-icon md="ios-menu" ios="ios-menu"></ion-icon>
                 </button>
             <h1 no-margin *ngIf="pageName?.length">
-                <span>{{pageName | translate}}</span>
+                <span>{{ pageName | translate}}</span>
             </h1>
         </ion-navbar>
     </ion-header>
@@ -35,8 +35,10 @@ import { Component, Input } from '@angular/core';
 })
 
 export class HeaderComponent{
-    @Input() pageName; 
+    @Input() pageName;
     
-    constructor(){}
+    constructor(){
+        console.log("pagename ", this.pageName)
+    }
 
 }

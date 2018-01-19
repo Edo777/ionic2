@@ -37,9 +37,9 @@
 
                 <ion-grid  class="buttons">
                     <ion-row no-margin>
-                        <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"Մանրամասն" | translate}}</button></ion-col>
-                        <ion-col col-4 *ngIf="cancelled(item?.order_status)"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="alertCancelled(item, 'Cancelled')">{{"Չեղարկե՞լ" | translate }}</button></ion-col>
-                        <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed')" ion-button>{{"Հաստատել" | translate}}</button></ion-col>
+                        <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"more" | translate}}</button></ion-col>
+                        <ion-col col-4 *ngIf="cancelled(item?.order_status)"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="alertCancelled(item, 'Cancelled')">{{"cancel" | translate }}</button></ion-col>
+                        <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed')" ion-button>{{"confirm" | translate}}</button></ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>
@@ -62,6 +62,6 @@
     </div>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="serv.translateImportant('Խնդրում եմ սպասել․․․', 'Please wait...')"></ion-infinite-scroll-content>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="serv.translateImportant('Խնդրում ենք սպասել․․․', 'Please wait...')"></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

@@ -40,7 +40,7 @@ export class AddNewAddress{
 
     presentLoadingDefault() {
         let loading = this.loadingCtrl.create({
-            content: this.translateService.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.translateService.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
 
         loading.present();

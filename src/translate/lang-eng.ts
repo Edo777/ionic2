@@ -3,55 +3,116 @@
 export const LANG_EN_NAME = "en"; 
 
 export const LANG_EN_TRANS = {
-    "Անուն" : "Name",//active
-    "Հեռախոսահամար": "Phone Number",//active
-    "Էլ․ Հասցե" : "Email" ,//active
-    "Հրավիրողի ID": "Ref ID", //active
-    "Մուտք" : "Enter",//active
-    "Գրանցել Պատվեր" : "Create an order",//active
-    "Իմ հին պատվերները" : "Orders history",// active ?
+    //Home page
+    "name" : "Name",
+    "phone_number": "Phone Number",
+    "email" : "Email" ,
+    "ref_id": "Ref ID", 
+    "enter" : "Enter",
 
-   
-    "Մակնիշ" : "Make",//active
-    "Մոդել": "Model",//active
-    "Համարանիշ" : "License plate numbers",//active
-    "Հայերեն" : "Հայերեն",//active
-    "Ջնջել" : "Delete",//active
-    "Անգլերեն" : "English",
-    "Փոփոխել" : "Edit",//active
-    "Ավելացնել ավտոմեքենա":"Add a car",//active
-    "Ավելացնել հասցե": "Add an address",//active
-    "Ծառայության տեսակը":"Service type",//active
-    "Ավելացնել իմ մեքենաներից" : "Add from favorites",//active
-    //service types
-    "Համալիր մաքրում (արտաքին և ներքին մաքրում)" : "Comprehensive cleaning (exterior and interior)",//
-    "Առանձին արտաքին մաքրում" : "Exterior cleaning only",//
-    "Սրահի առանձին մաքրում" : "Interior cleaning only",//
-    "Սրահի չոր էքսպրես-քիմմաքրում": "Interior express dry cleaning",//
-    "Շարժիչի չոր նանոլվացում":"Engine dry nanocleaning",//
-    "Պատվերները կարելի է համադրել․ Արդյունքում գները զեղչվում են" : "Orders can be combined and prices are discounted as a result.",
-    "դր․": "AMD",
-    "Ավելացնել" : "Add",//active
-    "Հնարավորինս շուտ" : "As soon as possible", //active
-    "Հասցե" : "Address",//active
-    "Ամսաթիվ" : "Date",//active
-    "Պրոմո Կոդ" : "Promo code",//active
-    "Ավելացնել իմ հասցեներից" : "Add from favorites",//active
-    "Հաստատել պատվերը" : "Confirm order",//active
-    "Ձեր պատվերն ընդունված է, շուտով կստանաք ծանուցում մանրամասներով" : "Your order has been sent, soon you will be notified with it's details",//active
-    
+    //user account
+    "create_order" : "Create an order",
+    "my_old_orders" : "Orders history",
+
+    //orders list
+    "add_car":"Add a car",
+    "confirm_all" : "Confirm all",
+    "make_id" : "Make",
+    "model" : "Model",
+    "lic_plate_nums" : "License plate numbers",
+    "delete" : "Delete",
+    "edit" : "Edit",
+
+    //orders register
+    "from_my_cars" : "from_my_cars",
+    "service_type":"Service type",
+    "wash_type_1" : "Comprehensive cleaning (exterior and interior)",
+    "wash_type_2" : "Exterior cleaning only",
+    "wash_type_3" : "Interior cleaning only",
+    "price": "AMD",
+    "from_discount" : "Orders can be combined and prices are discounted as a result.",
+    "nano_cleaning":"Engine dry nanocleaning",
+    "add" : "Add",
+
+    //order address
+    "from_my_addresses" : "Add from favorites",
+    "comment" : "Comment",
+    "possible" : "As soon as possible", 
+    "date" : "Date",
+    "prom_code" : "Promo code",
+    "confirm_order" : "Confirm order",
+        //map
+        "address" : "Address",
+
+    //complete order
+    "order_excepted" : "Your order has been sent, soon you will be notified with it's details",
+    "go_home" : "Back to home",
+    "new_order" : "New order",
+    "my_orders" : "My orders",
+    "connect_admin": "Connect to Admin",
+
     //menu
-    "Մենյու" : "Menu",//active
-    "Պատվերի գրանցում": "Create an order",//active
-    "Իմ հասցեները" : "Favorite addresses",//active
-    "Անձնական տվյալներ" : 'Profile',//active
-    "Իմ մեքենաները" : "Favorite cars",//active
-    "Իմ պատվերները" : "My orders",//active
-    "Մեր մասին" : "About us",//active
-    "Դուրս գալ" : "Exit",
+    "exit" : "Exit",
+    "menu" : "Menu",
+    "personal_inf" : 'Profile',
+    "favorite_addresses" : "Favorite addresses",
+    "about_us" : "About us",
+    "favorite_cars" : "Favorite cars",
+
+    //history
+        //.....
+    
+
+    //my addresses
+    "confirm" : "Confirm",
+
+
+     //my orders
+     "active_orders" : "New orders",
+     "archive_orders" : "History",
+     "more" : "More",
+     "Pending" : "Pending",
+     "cancel":"Cancel?",
+
+
+
+
+
+
+
+    //..........................
+
+
+
+
+
+
+
+
+
+
+    "Հայերեն" : "Հայերեն",
+    
+    "Անգլերեն" : "English",
+    "Ավելացնել հասցե": "Add an address",
+    
+    "Ավելացնել իմ մեքենաներից" : "Add from favorites",
+    //service types
+    
+    
+    
+    "Սրահի չոր էքսպրես-քիմմաքրում": "Interior express dry cleaning",
+    
+    
+    
+
+    
+    
+ 
+    
 
     //connect admin
-    "Կապ ադմինի հետ": "Connect to Admin",
+
 
      //about us
      "-ը շարժական չոր ավտոլվացման համար ստեղծված առաջին բջջային հավելվածն է, որը Երևանում ծառայություններ է առաջարակում շուկայականից ցածր գներով:" : "is the first mobile application meant for dry carwash offering its services in Yerevan at low prices.",
@@ -108,16 +169,15 @@ export const LANG_EN_TRANS = {
     
     "Հաստատել" : "Confirm",
     
-    "Նոր պատվերներ" : "New orders",
-    "Պատմություն" : "History",
+    
+    
    
     
     
-    "Հաստատել բոլորը" : "Confirm all",
+ 
     "Ուղարկել հայտը" : "Send order",
     
    
-    "Վերադառնալ սկիզբ" : "Back to home",
    
 
     
@@ -131,10 +191,13 @@ export const LANG_EN_TRANS = {
     
     "Հրավերքի կոդ" : "Ref code",
     "Ձեր պրոմ կոդն է" : "Your Promcode is",
-    "Մանրամասն" : "More",
-    "Չեղարկե՞լ":"Cancel?",
+    
+    
     //exception from statuses
-    "Pending" : "Pending",
-    "price" : "AMD"
+    
+
+
+
+
 };
 

@@ -343,7 +343,7 @@ export class OrdersRegister implements OnInit{
              }
         }
         alert.addButton({
-            text: 'Ok',
+            text: this.serv.translateImportant("լավ", "ok"),
             handler:(data) => {
                 //////////////////////////
                 console.log(data)

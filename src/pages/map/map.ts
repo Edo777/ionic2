@@ -8,6 +8,7 @@ import {
  MarkerOptions,
  Marker,
  LatLng,
+ 
  ILatLng,
 
 } from '@ionic-native/google-maps';
@@ -73,34 +74,36 @@ export class MapGoogle implements OnInit{
              return
         }
         console.log("ancav")
-        this.geolocation.getCurrentPosition().then((position) => {   
-                    this.newAddress.long = position.coords.longitude;
-                    this.newAddress.lat = position.coords.latitude;
-                    this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
-                    .then((result: NativeGeocoderReverseResult) => {
-                        let locality = result.locality || '';
-                        let subLocality = result.subLocality || '';
-                        let thoroughfare = result.thoroughfare || '';
-                        
-                        this.ngZone.run(() => {
-                            this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
-                            this.setNewMarker(position.coords.latitude, position.coords.longitude);            
-                            this.emitForAddressChange()
-                        })
-                        
-                    })
-                    .catch((error: any) => console.log(error));
-                    this.emitForAddressChange()
-                
-            }).catch((err) => {
-                console.log(err)
-            })
+        this.getCurrentPosition();
             //keyboard close
-            this.keyboardEnterButton();
+        this.keyboardEnterButton();
         
     }
 
-
+    getCurrentPosition(){
+        this.geolocation.getCurrentPosition().then((position) => {   
+            this.newAddress.long = position.coords.longitude;
+            this.newAddress.lat = position.coords.latitude;
+            this.nativeGeocoder.reverseGeocode(position.coords.latitude,position.coords.longitude)
+            .then((result: NativeGeocoderReverseResult) => {
+                let locality = result.locality || '';
+                let subLocality = result.subLocality || '';
+                let thoroughfare = result.thoroughfare || '';
+                
+                this.ngZone.run(() => {
+                    this.newAddress.address = locality + ' '+ subLocality + ' ' + thoroughfare;
+                    this.setNewMarker(position.coords.latitude, position.coords.longitude);            
+                    this.emitForAddressChange()
+                })
+                
+            })
+            .catch((error: any) => console.log(error));
+            this.emitForAddressChange()
+        
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
     keyboardEnterButton(){
      var elems = document.getElementsByTagName('ion-input');
      for(let i = 0; i < elems.length; i++){
@@ -134,11 +137,18 @@ export class MapGoogle implements OnInit{
         let mapOptions = {
             center: latLng,
             zoom: 15,
+            streetViewControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         }
     
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var centerControlDiv = document.createElement('div');
+        /////////////////////////
+        var centerControl = new this.CenterControl(centerControlDiv,this);
 
+        this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+        console.log(google.maps.ControlPosition)
+        ////////////////////////////
         this.getLatLng();
         this.marker = new google.maps.Marker({
                     map: this.map,
@@ -198,6 +208,39 @@ export class MapGoogle implements OnInit{
                 this.map.panTo(new google.maps.LatLng(lat, long));
             }, 100);
         }
+        ////////////////////
+
+        CenterControl(centerControlDiv, thisComponent:any){
+           // Set CSS for the control border.
+                var controlUI = document.createElement('div');
+                controlUI.style.backgroundColor = '#fff';
+                controlUI.style.backgroundImage="url('assets/imgs/location.png')";
+                controlUI.style.backgroundSize = "cover";
+                controlUI.style.border = '2px solid #fff';
+                controlUI.style.borderRadius = '3px';
+                controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+                controlUI.style.marginBottom = '0px';
+                controlUI.style.width = "28px";
+                controlUI.style.height = "28px"
+                controlUI.style.marginRight = '10px';
+                centerControlDiv.appendChild(controlUI);
+
+                // Set CSS for the control interior.
+                var controlText = document.createElement('div');
+                controlText.style.color = 'rgb(25,25,25)';
+                controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+                controlText.style.lineHeight = '38px';
+                controlText.style.paddingLeft = '5px';
+                controlText.style.paddingRight = '5px';
+                controlUI.appendChild(controlText);
+
+                // Setup the click event listeners: simply set the map to Chicago.
+                controlUI.addEventListener('click', () => {
+                    thisComponent.getCurrentPosition();
+                });
+
+        }
+
         //////////////////////////
         emitForAddressChange(){
             this.close.emit(this.newAddress);
@@ -208,4 +251,5 @@ export class MapGoogle implements OnInit{
         ngOnDestroy(){
             console.log('deleted');
         }
+
 }

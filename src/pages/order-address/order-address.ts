@@ -164,7 +164,7 @@ export class OrderAddress{
             })
         }
         alert.addButton({
-            text: 'Ok',
+            text: this.serv.translateImportant("լավ", "ok"),
             handler:(data) => {
                 if(data){
                     this.address = data;

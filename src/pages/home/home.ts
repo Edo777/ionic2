@@ -47,6 +47,7 @@ export class HomePage {
         this.api.setPhoneNumber(localStorage.getItem("phone_number"));
         console.log(this.api.getId())
         this.navCtrl.setRoot(MenuComponent);
+        
         this.api.getCustomerDetails(71).subscribe((data) =>{
           console.log("dataaaaaaaaaa", data)
         }) 
@@ -99,7 +100,7 @@ export class HomePage {
     //this.navCtrl.setRoot(MenuComponent);
 
       let loading = this.loadingCtrl.create({
-            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
       loading.present();
       this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe( 

@@ -1,26 +1,26 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
     <ion-item>
-        <ion-label color="primary" floating>{{"Անուն" | translate}}</ion-label>
+        <ion-label color="primary" floating>{{"name" | translate}}</ion-label>
         <ion-input [value]="name" [(ngModel)]="name"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label color="primary" floating>
-            {{"Էլ․ Հասցե" | translate}}
+            {{"email" | translate}}
         </ion-label>
         <ion-input [disabled]="false" [value]="email" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label color="primary" floating>
-            {{"Հեռախոսահամար" | translate}}
+            {{"lic_plate_nums" | translate}}
         </ion-label>
         <ion-input [disabled]="true" [value]="phone"></ion-input>
     </ion-item>
 
     <button ion-button float-right (click)="change()">
-        {{'Հաստատել' | translate}}
+        {{"confirm" | translate}}
     </button>
 
 

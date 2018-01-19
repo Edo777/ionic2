@@ -7,4 +7,11 @@ order-address {
     .scroll-content {
         padding-bottom: 0 !important;
     }
+    .comments{
+        margin:0 5px;
+        .text-area-comments{
+            border-top:1px solid #dedede;
+        }
+    }
+    
 }

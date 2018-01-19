@@ -37,7 +37,7 @@ export class NewOrders{
         let loading;
         
         loading = this.loadingCtrl.create({
-            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
         loading.present();
      
@@ -118,16 +118,16 @@ export class NewOrders{
 
     alertCancelled(item, status){
         let alert = this.alertCtrl.create({
-            message: 'Ցանկանում եք մերժել?',
+            message: 'Ցանկանում եք մերժել',
             buttons: [
             {
-                text: 'Մերժել',
+                text: this.serv.translateImportant('Մերժել', "Cancel"),
                 role: 'Cancel',
                 handler: () => {
                 }
             },
             {
-                text: 'Հաստատել',
+                text: this.serv.translateImportant('Հաստատել', "Confirm"),
                 handler: () => {
                     this.updateOrder(item, status);
                 }
@@ -137,15 +137,15 @@ export class NewOrders{
         alert.present();
     }
 
-    updateOrder(item, status){
+    updateOrder(item, status:string){
         let loading = this.loadingCtrl.create({
-            content: this.serv.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
         loading.present();
       
         this.api.updateOrder(item, status).subscribe(
             (data) => {
-                if(status == 'deleted'){
+                if(status.toLowerCase() == 'deleted' && this.data2.length == 1){
                     this.data2.pop();
                 }
                 let viewLength = this.data2.length;
@@ -173,19 +173,19 @@ export class NewOrders{
      }
     
      cancelled(status):boolean{
-        if((status == 'review') || (status == 'Beind processed')){
+        if((status.toLowerCase() == 'review') || (status.toLowerCase() == 'beind processed') || (status.toLowerCase() == 'pending')){
             return true;
         }else{
             return false;
         } 
      }
 
-     confirmed(status){
-        return status == 'review';
+     confirmed(status:string){
+        return status.toLowerCase() == 'review';
      }
 
-     price(status):boolean{
-        if(status != 'Pending'){
+     price(status:string):boolean{
+        if(status.toLowerCase() != 'pending'){
             return true
         }else{
             return false;

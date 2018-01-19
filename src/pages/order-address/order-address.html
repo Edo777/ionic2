@@ -4,26 +4,38 @@
     </ion-navbar>
 </ion-header>
 <ion-content no-scroll>
-    <button color="grey" ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"Ավելացնել իմ հասցեներից" | translate}}</button>
+    <button color="grey" ion-button full (tap)="presentPrompt()" *ngIf="historyAddresses?.length">{{"from_my_addresses" | translate}}</button>
 
     <map [address]="address" #map id="map" (close)="setNewAddress($event)"></map>
 
+    
+      
+    <ion-list class="comments">
+            <ion-item class="text-area-comments">
+                    <ion-label floating>{{ "comment" | translate}}</ion-label>
+                    <ion-textarea></ion-textarea>
+            </ion-item>
+    </ion-list>
+      
+            
+        
+   
 
     <ion-item no-lines>
-        <ion-label>{{'Հնարավորինս շուտ' | translate}}</ion-label>
+        <ion-label>{{"possible" | translate}}</ion-label>
         <ion-checkbox [(ngModel)]="fast"></ion-checkbox>
     </ion-item>
     <ion-item *ngIf="!fast">
-        <ion-label floating>{{"Ամսաթիվ" | translate}}</ion-label>
+        <ion-label floating>{{"date" | translate}}</ion-label>
         <ion-datetime displayFormat="MMM DD, YYYY HH:mm" monthNames="janeiro, fevereiro, mar\u00e7o, ..." min="2016" monthShortNames="Հնվ, Փտր, Մրտ, Ապրլ, Մայ, Հունիս, Հուլիս, Օգոստոսմ, Սեպտեմբեր, Հոկտեմբեր, Նոյեմբեր, Դեկտեմբեր" [(ngModel)]="myDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
-        <ion-label floating>{{"Պրոմո Կոդ" | translate}}</ion-label>
+        <ion-label floating>{{"prom_code" | translate}}</ion-label>
         <ion-input [(ngModel)]="promo_code" type="text"></ion-input>
     </ion-item>
 
 </ion-content>
 <ion-footer>
-    <button ion-button full (click)="completeOrder()" [disabled]="!address?.address || (!fast && !myDate)" color="grey">{{"Հաստատել պատվերը" | translate}}</button>
+    <button ion-button full (click)="completeOrder()" [disabled]="!address?.address || (!fast && !myDate)" color="grey">{{"confirm_all" | translate}}</button>
 </ion-footer>

@@ -2,7 +2,7 @@
     <ion-navbar>
 
     </ion-navbar>
-    <button ion-button full color="grey" (tap)="createNewOrder()">{{"Ավելացնել ավտոմեքենա" | translate}}</button>
+    <button ion-button full color="grey" (tap)="createNewOrder()">{{"add_car" | translate}}</button>
 </ion-header>
 <ion-content>
     <ion-list no-margin mode="md">
@@ -15,7 +15,7 @@
                             <ion-icon color="mycolor" md="ios-car-outline" ios="ios-car-outline"></ion-icon>
                         </ion-col>
                         <ion-col col-11>
-                            {{"Մակնիշ" | translate}} - {{ car | formatter:"make_id"}}
+                            {{"make_id" | translate}} - {{ car | formatter:"make_id"}}
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -23,7 +23,7 @@
 
                         </ion-col>
                         <ion-col col-11>
-                            {{"Մոդել" | translate}} - {{car | formatter:"model_id"}}
+                            {{"model" | translate}} - {{car | formatter:"model_id"}}
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -31,7 +31,7 @@
 
                         </ion-col>
                         <ion-col col-11>
-                            {{"Համարանիշ" | translate}} - {{car.car_number}}
+                            {{"lic_plate_nums" | translate}} - {{car.car_number}}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -43,7 +43,7 @@
                     <ion-grid>
                         <ion-row>
                                 <ion-col col-12 text-center>
-                                    {{"Ջնջել" | translate}}
+                                    {{"delete" | translate}}
                                 </ion-col>  
                         </ion-row>
                         <ion-row>
@@ -59,7 +59,7 @@
                     <ion-grid>
                         <ion-row>
                                 <ion-col col-12 text-center>
-                                    {{"Փոփոխել" | translate}}
+                                    {{"edit" | translate}}
                                 </ion-col>  
                         </ion-row>
                         <ion-row>
@@ -79,5 +79,5 @@
 
 </ion-content>
 <ion-footer>
-    <button ion-button text-center full (tap)="completeAll()" color="grey" [disabled]="cars?.length == 0">{{"Հաստատել բոլորը" | translate}}</button>
+    <button ion-button text-center full (tap)="completeAll()" color="grey" [disabled]="cars?.length == 0">{{"confirm_all" | translate}}</button>
 </ion-footer>

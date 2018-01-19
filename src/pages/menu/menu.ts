@@ -26,13 +26,14 @@ export class MenuComponent{
     activeLngText:string;
     activeFlag:string;
     id:number;
+    
     pages:Pages[] = [
-        { pageName:'Պատվերի գրանցում', component: OrdersPage},
-        { pageName:'Իմ մեքենաները', component: HistoryPage},
-        { pageName:'Իմ հասցեները', component: Addresses},
-        { pageName:'Իմ պատվերները', component: OrdersHistory},
-        { pageName:'Անձնական տվյալներ', component: Settings},
-        { pageName:'Մեր մասին', component: AboutUs},         
+        { pageName:"create_order", component: OrdersPage},
+        { pageName:"favorite_cars", component: HistoryPage},
+        { pageName:"favorite_addresses", component: Addresses},
+        { pageName:"my_orders", component: OrdersHistory},
+        { pageName:"personal_inf", component: Settings},
+        { pageName:"about_us", component: AboutUs},         
     ]
     constructor(
         public navCtrl:NavController, 
