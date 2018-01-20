@@ -28,7 +28,7 @@ export class Settings{
         this.pageName = this.navParams.get('pageName');
         setTimeout(() => {
             let loading = this.loadingCtrl.create({
-            content: this.translate.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.translate.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
         loading.present();
         
@@ -71,7 +71,7 @@ export class Settings{
    }
     change(){
         let loading = this.loadingCtrl.create({
-            content: this.translate.translateImportant("Խնդրում եմ սպասել․․․", 'Please wait...')
+            content: this.translate.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         })
         loading.present()
         this.api.updateCustomerName(this.name, this.email).subscribe(

@@ -77,12 +77,12 @@ export class HomePage {
   }
   
   changeLng(){
+        this.activeLngText = this.serv.translateImportant("Հայերեն", "English");
         if(this.localActiveLng == "en"){
-            this.activeLngText = "Անգլերեն"
             this.localActiveLng = "arm"
             this.activeFlag = 'assets/imgs/english.png'
         }else{
-            this.activeLngText = "Հայերեն"
+
             this.localActiveLng = "en";
             this.activeFlag = 'assets/imgs/drosh.jpg';
         }
