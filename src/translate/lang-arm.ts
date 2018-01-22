@@ -58,6 +58,7 @@ export const LANG_ARM_TRANS = {
     "favorite_addresses" : "Իմ հասցեները",
     "about_us" : "Մեր մասին",
     "favorite_cars" : "Իմ մեքենաները",
+    "services_and_prices" : "Ծառայություններ և գնացուցակ",
 
     //history
         //....
@@ -71,6 +72,7 @@ export const LANG_ARM_TRANS = {
     "more" : "Մանրամասն",
     "Pending" : "Սպասման մեջ է",
     "cancel":"Չեղարկե՞լ",
+    "Cancelled" : "Չեղարկված",
 
     //about us
     "about_us_1" : "-ը շարժական չոր ավտոլվացման համար ստեղծված առաջին բջջային հավելվածն է, որը Երևանում ծառայություններ է առաջարակում շուկայականից ցածր գներով:",

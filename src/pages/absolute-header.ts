@@ -24,11 +24,14 @@ import { Component, Input } from '@angular/core';
             align-items: center;
             width: 100%;
             height: 100%;
-            font-size: 5vw;
+            font-size:0.9em;
         }
         span {
             margin: 0 auto;
             font-weight:700;
+            width: 60%;
+            text-align: center;
+            
         }
         
     `]

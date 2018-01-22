@@ -17,4 +17,5 @@ export * from './orders-history/orders-history';
 export * from './orders-history/barrel-orders';
 export * from './settings/settings';
 export * from './phone-call';
+export * from './services-and-prices/services-and-prices';
 

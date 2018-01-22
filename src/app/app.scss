@@ -15,8 +15,16 @@
 *[top] {
     top: 56px;
 }
+.alert-md{
+    .alert-message{
+        text-align: center;
+    }
+}
 .alert-md .alert-button-group, .alert-ios .alert-button-group{
     //margin-right: 17px;
+    .alert-message{
+        text-align: center;
+    }
     justify-content: center;
 }
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{

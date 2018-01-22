@@ -1,6 +1,6 @@
 <ion-content>
     <ion-list>
-        <div *ngFor="let item of data2">
+        <div *ngFor="let item of data2; let i = index">
         <ion-item-sliding *ngIf="item?.order_status != 'deleted'"  #slideingItem margin-bottom>
             <ion-item no-lines class="view" mode="md">
                 <ion-icon item-left class="left-arrow" color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
@@ -24,7 +24,7 @@
                     <span>{{item?.order_status}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'Cancelled')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{item?.order_status | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'The washer has arrived ')" class="status">
                     <span>{{item?.order_status}}</span>
@@ -39,7 +39,7 @@
                     <ion-row no-margin>
                         <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"more" | translate}}</button></ion-col>
                         <ion-col col-4 *ngIf="cancelled(item?.order_status)"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="alertCancelled(item, 'Cancelled')">{{"cancel" | translate }}</button></ion-col>
-                        <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed')" ion-button>{{"confirm" | translate}}</button></ion-col>
+                        <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed', i)" ion-button>{{"confirm" | translate}}</button></ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>

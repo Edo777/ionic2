@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, ModalController, ViewController, LoadingController, AlertController } from "ionic-angular";
 import { MobiWash } from "../../services/barrel.service";
 import { AddNewAddress } from "../barrel";
+import { TranslateService } from '../../translate/translate.service';
 
 @Component({
     selector:'addresses',
@@ -16,7 +17,8 @@ export class Addresses {
         private mobiwash:MobiWash,
         private modalCtrl:ModalController,
         private viewCtrl:ViewController,
-        private alertCtrl:AlertController
+        private alertCtrl:AlertController,
+        private serv:TranslateService
         
     ){
         this.pageName = this.navParams.get('pageName');
@@ -34,18 +36,17 @@ export class Addresses {
     }
     deleteConfirm(i, item) {
             let alert = this.alertCtrl.create({
-                title: 'Wobi Wash',
-                message: 'Դուք ցանկանում եք ջնջել?',
+                message: this.serv.translateImportant("Դուք վստա՞հ եք", "Are you sure?"),
                 buttons: [
                 {
-                    text: 'Մերժել',
+                    text: this.serv.translateImportant("Ոչ", "No"),
                     role: 'Cancel',
                     handler: () => {
                         item.close()
                     }
                 },
                 {
-                    text: 'Հաստատել',
+                    text: this.serv.translateImportant("Այո", "Yes"),
                     handler: () => {
                         this.removeAddress(i);
                     }

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController, Nav, NavParams, AlertController } from 'ionic-angular';
-import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses, OrdersPage, OrdersHistory, Settings } from '../barrel'
+import { UserAccount, HomePage, HistoryPage, AboutUs, Addresses, OrdersPage, OrdersHistory, Settings, ServicesAndPrices } from '../barrel'
 import { MobiWash, CarsService } from "../../services/barrel.service";
 import { TranslateService } from "../../translate/translate.service";
 import { CallNumber } from "@ionic-native/call-number";
@@ -33,7 +33,8 @@ export class MenuComponent{
         { pageName:"favorite_addresses", component: Addresses},
         { pageName:"my_orders", component: OrdersHistory},
         { pageName:"personal_inf", component: Settings},
-        { pageName:"about_us", component: AboutUs},         
+        { pageName:"about_us", component: AboutUs},   
+        { pageName:"services_and_prices", component: ServicesAndPrices},      
     ]
     constructor(
         public navCtrl:NavController, 
@@ -88,14 +89,17 @@ export class MenuComponent{
     }
     outUser() {
         let a:any = {};
-        a.exit = this.serv.translateImportant("Դուրս գալ", "Exit");
-        a.cancel = this.serv.translateImportant("Մնալ", "Cancel");
-        a.question = this.serv.translateImportant("Ընտրեք ի՞նչ եք ցանկանում", "What you need?")
+        a.exit = this.serv.translateImportant("Այո", "Yes");
+        a.cancel = this.serv.translateImportant("Ոչ", "No");
+        a.question = this.serv.translateImportant("Դուք վստա՞հ եք", "Are you sure?")
         let confirm = this.alertCtrl.create({
           enableBackdropDismiss:false,
-          title: 'MobiWash',
           message: a.question,
           buttons: [
+            {
+                text: a.cancel,
+                handler: () => {}
+              },
             {
               text: a.exit,
               handler: () => {
@@ -103,11 +107,8 @@ export class MenuComponent{
                 localStorage.removeItem("phone_number")
                 localStorage.removeItem("id")
               }
-            },
-            {
-                text: a.cancel,
-                handler: () => {}
-              }
+            }
+            
           ]
         });
         confirm.present();

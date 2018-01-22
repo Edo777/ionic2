@@ -4,6 +4,7 @@ import { CarsService } from "../../services/cars.service";
 import { OrdersRegister,  OrderAddress } from "../barrel";
 import { NewOrder } from "../interfaces/interfaces";
 import { MobiWash } from "../../services/barrel.service";
+import { TranslateService } from "../../translate/translate.service";
 
 @Component({
     selector:'orders-list',
@@ -22,6 +23,7 @@ export class OrdersList implements OnInit{
         private carService:CarsService,
         private alertCtrl:AlertController,
         private params:NavParams,
+        private serv:TranslateService
     ){
         
     }
@@ -69,18 +71,17 @@ export class OrdersList implements OnInit{
     }
         deleteConfirm(i, item) {
             let alert = this.alertCtrl.create({
-                title: 'Wobi Wash',
-                message: 'Դուք ցանկանում եք ջնջել?',
+                message: this.serv.translateImportant('Դուք վստա՞հ եք', "Are you sure?"),
                 buttons: [
                 {
-                    text: 'Մերժել',
+                    text: this.serv.translateImportant('Ոչ', "No"),
                     role: 'Cancel',
                     handler: () => {
                         item.close()
                     }
                 },
                 {
-                    text: 'Հաստատել',
+                    text: this.serv.translateImportant('Այո', "Yes"),
                     handler: () => {
                         this.remove(i);
                     }

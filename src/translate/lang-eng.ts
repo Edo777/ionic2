@@ -24,7 +24,7 @@ export const LANG_EN_TRANS = {
     "edit" : "Edit",
 
     //orders register
-    "from_my_cars" : "from_my_cars",
+    "from_my_cars" : "Add from favorites",
     "service_type":"Service type",
     "wash_type_1" : "Comprehensive cleaning (exterior and interior)",
     "wash_type_2" : "Exterior cleaning only",
@@ -58,6 +58,7 @@ export const LANG_EN_TRANS = {
     "favorite_addresses" : "Favorite addresses",
     "about_us" : "About us",
     "favorite_cars" : "Favorite cars",
+    "services_and_prices" : "Services and prices",
 
     //history
         //.....
@@ -73,6 +74,7 @@ export const LANG_EN_TRANS = {
      "more" : "More",
      "Pending" : "Pending",
      "cancel":"Cancel?",
+     "Cancelled" : "Cancelled",
 
     //about us
 
@@ -116,25 +118,6 @@ export const LANG_EN_TRANS = {
     "about_us_38" : "Write e-Mail:",
     "about_us_39" : "",
 
-    //..........................
-
-
-
-
-
-
-
-
-
-
-    //"Հայերեն" : "Հայերեն",
-    
-    //"Անգլերեն" : "English",
-    
-    
-
-
-
-
+    //.........................
 };
 

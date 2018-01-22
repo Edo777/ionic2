@@ -1,0 +1,45 @@
+<absolute-header [pageName]='pageName'></absolute-header>
+<ion-content top>
+    <ion-grid>
+        <ion-row text-center align-items-center *ngFor = "let urls of carUrls">
+            <ion-col col-4></ion-col>
+            <ion-col border-left  margin-bottom *ngFor = "let url of urls" >
+                <ion-img [ngClass]="{'small' : small(url), 'middle' : middle(url), 'big' : big(url)}" [src]="url"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row align-items-center border-top margin-bottom *ngFor="let info of washInfo" border-bottom text-left>
+            <ion-col col-4 no-padding border-right>
+                {{info[0] | translate}} 
+            </ion-col>
+            <ion-col  no-padding text-center>
+                {{info[1]}} {{"price" | translate}}
+            </ion-col>
+            <ion-col  border-left no-padding text-center>
+                {{info[2]}} {{"price" | translate}}
+            </ion-col>
+            <ion-col border-left no-padding text-center>
+                {{info[3]}} {{"price" | translate}}
+            </ion-col>
+        </ion-row>
+        <ion-row margin-bottom>
+            <ion-col green-light>
+                {{"from_discount" | translate}}
+            </ion-col>
+        </ion-row>
+        <ion-row align-items-center border-top-bottom  *ngFor="let price of priceInfo" margin-bottom>
+            <ion-col col-4 border-right>
+                {{price[0] | translate}} + {{'nano_cleaning' | translate}}
+            </ion-col>
+            <ion-col  no-padding text-center>
+                {{price[1]}} {{"price" | translate}}
+            </ion-col>
+            <ion-col border-left no-padding text-center>
+                {{price[2]}} {{"price" | translate}}
+            </ion-col>
+            <ion-col border-left no-padding text-center>
+                {{price[3]}} {{"price" | translate}}
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -29,6 +29,7 @@ import {
     Settings,
     PhoneCall,
     OrderInfo,
+    ServicesAndPrices
     
   } from '../pages/barrel';
 
@@ -77,8 +78,8 @@ import { Keyboard } from "@ionic-native/keyboard";
     Translate,
     PhoneCall,
     CarFormatter,
-    OrderInfo
-
+    OrderInfo,
+    ServicesAndPrices
   ],
   imports: [
     BrowserModule,
@@ -122,7 +123,8 @@ import { Keyboard } from "@ionic-native/keyboard";
     OldOrders,
     Settings,
     PhoneCall,
-    OrderInfo
+    OrderInfo,
+    ServicesAndPrices
   ],
   providers: [
     Geolocation,

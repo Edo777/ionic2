@@ -4,6 +4,7 @@ import { MobiWash, CarsService } from "../../services/barrel.service";
 import { SearchCars } from "../interfaces/interfaces";
 import { ModalController, AlertController } from 'ionic-angular';
 import { AddCars } from "../barrel";
+import { TranslateService } from '../../translate/translate.service';
 
 
 
@@ -26,7 +27,8 @@ export class HistoryPage implements OnInit{
         private navParams: NavParams, 
         private mobiWash:MobiWash,
         private carsCtrl:CarsService,
-        private alertCtrl:AlertController
+        private alertCtrl:AlertController,
+        private serv:TranslateService
     ){}      
     ngOnInit(){
         this.pageName = this.navParams.get('pageName');   
@@ -36,18 +38,17 @@ export class HistoryPage implements OnInit{
     //alert delete
         deleteConfirm(i, item) {
             let alert = this.alertCtrl.create({
-                title: 'Wobi Wash',
-                message: 'Դուք ցանկանում եք ջնջել?',
+                message: this.serv.translateImportant("Դուք վստա՞հ եք", "Are you sure?"),
                 buttons: [
                 {
-                    text: 'Մերժել',
+                    text: this.serv.translateImportant("Ոչ", "No"),
                     role: 'Cancel',
                     handler: () => {
                         item.close()
                     }
                 },
                 {
-                    text: 'Հաստատել',
+                    text: this.serv.translateImportant("Այո", "Yes"),
                     handler: () => {
                         this.removeCar(i);
                     }

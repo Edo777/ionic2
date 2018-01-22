@@ -113,21 +113,21 @@ export class NewOrders{
                 cars.push(currentCar);
             }
             
-           (this.app.getActiveNav().parent).parent.push(OrdersList,{"cars" : cars}) 
+           (this.app.getActiveNav().parent).parent.push( OrdersList, {"cars" : cars} ) 
         }
 
     alertCancelled(item, status){
         let alert = this.alertCtrl.create({
-            message: 'Ցանկանում եք մերժել',
+            message: this.serv.translateImportant("Դուք վստա՞հ եք", "Are you sure?"),
             buttons: [
             {
-                text: this.serv.translateImportant('Մերժել', "Cancel"),
+                text: this.serv.translateImportant('Ոչ', "No"),
                 role: 'Cancel',
                 handler: () => {
                 }
             },
             {
-                text: this.serv.translateImportant('Հաստատել', "Confirm"),
+                text: this.serv.translateImportant('Այո', "Yes"),
                 handler: () => {
                     this.updateOrder(item, status);
                 }
@@ -137,7 +137,7 @@ export class NewOrders{
         alert.present();
     }
 
-    updateOrder(item, status:string){
+    updateOrder(item, status:string, i?){
         let loading = this.loadingCtrl.create({
             content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
@@ -145,8 +145,10 @@ export class NewOrders{
       
         this.api.updateOrder(item, status).subscribe(
             (data) => {
-                if(status.toLowerCase() == 'deleted' && this.data2.length == 1){
-                    this.data2.pop();
+                if(status){
+                    if(status.toLowerCase() == 'deleted'){
+                        this.data2.splice(i, 1);
+                     }
                 }
                 let viewLength = this.data2.length;
                 this.api.getOrders("active").subscribe(
@@ -173,22 +175,28 @@ export class NewOrders{
      }
     
      cancelled(status):boolean{
-        if((status.toLowerCase() == 'review') || (status.toLowerCase() == 'beind processed') || (status.toLowerCase() == 'pending')){
-            return true;
-        }else{
-            return false;
-        } 
+        if(status){
+            if((status.toLowerCase() == 'review') || (status.toLowerCase() == 'beind processed') || (status.toLowerCase() == 'pending')){
+                return true;
+            }else{
+                return false;
+            } 
+        }
      }
 
      confirmed(status:string){
-        return status.toLowerCase() == 'review';
+        if(status){
+            return status.toLowerCase() == 'review';
+        }
      }
 
      price(status:string):boolean{
-        if(status.toLowerCase() != 'pending'){
-            return true
-        }else{
-            return false;
+        if(status){
+            if(status.toLowerCase() != 'pending'){
+                return true
+            }else{
+                return false;
+            }
         }
      }
 
