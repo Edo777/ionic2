@@ -26,7 +26,7 @@
 
     <ion-grid>
         <ion-row margin-left>
-            {{ prom_code ? 'Ձեր Պրոմո կոդն է ' +  prom_code : "Դուք չունեք պրոմո կոդ"}}
+            {{ prom_code ? ('user_id' | translate)  + ' : ' +  prom_code : ("user_id_no"| translate)}}
         </ion-row>
     </ion-grid>
 

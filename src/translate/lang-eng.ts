@@ -66,6 +66,7 @@ export const LANG_EN_TRANS = {
 
     //my addresses
     "confirm" : "Confirm",
+    "add_address" : "Add an address",//gedeoni list bdi erta
 
 
      //my orders
@@ -75,6 +76,10 @@ export const LANG_EN_TRANS = {
      "Pending" : "Pending",
      "cancel":"Cancel?",
      "Cancelled" : "Cancelled",
+
+     //settings
+     "user_id_no" : "You have no ID", //gedeoni list bdi erta
+     "user_id" : "ID", //gedeoni list bdi erta
 
     //about us
 
