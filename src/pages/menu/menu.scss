@@ -2,19 +2,6 @@ menu-page {
     .alert-md .alert-button-group, .alert-ios .alert-button-group{
         margin-left:34px;
     }
-    ion-header {
-        .logo {
-            height: 56px;
-            width: fit-content;
-            position: absolute;
-            right: 8px;
-            top: -1px;
-            img {
-                width: 77px;
-                height: 56px;
-            }
-        }
-    }
     button {
         .item-inner {
             padding-left: 16px;
@@ -23,7 +10,7 @@ menu-page {
     .bg-btt {
         background-color: #bfd6a1
     }
-    .myClass{
+    /*.myClass{
         font-size: 0.9em;
-    }
+    }*/
 }

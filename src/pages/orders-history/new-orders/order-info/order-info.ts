@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NavParams, ViewController } from "ionic-angular";
+import { TranslateService } from "../../../../translate/translate.service";
 
 @Component({
     selector:"order-info",
@@ -10,7 +11,8 @@ export class OrderInfo{
     private cars = []
     constructor(
         private params:NavParams,
-        private viewCtrl:ViewController
+        private viewCtrl:ViewController,
+        private serv:TranslateService,
     ){}
 
     ngOnInit(){

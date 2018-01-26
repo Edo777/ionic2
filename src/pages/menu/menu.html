@@ -2,15 +2,12 @@
     <ion-header mode="md">
         <ion-toolbar mode="md">
             <ion-title>{{ "menu" | translate}}</ion-title>
-            <div class="logo">
-                <img src="assets/imgs/logo.png" alt="">
-            </div>
         </ion-toolbar>
     </ion-header>
     <ion-content>
         <ion-list mode="ios">
             <button [class.bg-btt]="bgChange(p)" menuClose no-padding ion-item detail-none *ngFor="let p of pages; let ind = index" (tap)="openPage(p)">
-                 <span [ngClass]="{'myClass':p.pageName == 'services_and_prices' && localActiveLng == 'arm'}">{{ p.pageName | translate }}</span>       
+                 <span>{{ p.pageName | translate }}</span>       
             </button>
             <button no-padding ion-item detail-none (tap)="callAdmin()">
                 {{"connect_admin" | translate}}

@@ -5,14 +5,14 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <span head-text>{{"Պատվիրված մեքենաները `"}}</span>
+                <span head-text>{{"cars"| translate}}`</span>
                 <ion-grid>
                     <ion-row *ngFor="let car of cars; let i = index ">
-                        <ion-col col-3>
+                        <ion-col col-1>
 
                         </ion-col>
                         <ion-col text-left>
-                            {{i+1}}) {{car | formatter : "make_id"}} {{car | formatter : "model_id"}}
+                            {{i+1}}) {{car | formatter : "make_id"}} {{car | formatter : "model_id"}} {{car.car_number}}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -20,19 +20,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <span head-text>{{"Երբ է պատվիրվել `"}} </span>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col text-center>
-                            {{info.order_time}}
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <span head-text>{{"Հասցե ՝"}}</span>
+                <span head-text>{{"address"|translate}}`</span>
                 <ion-grid>
                     <ion-row>
                         <ion-col text-center>
@@ -43,12 +31,12 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <span head-text>{{"Գինը ՝"}}</span>
+            <ion-col *ngIf="info?.order_price">
+                <span head-text>{{"price_info" | translate}}</span>
                 <ion-grid>
                     <ion-row>
                         <ion-col text-center>
-                            {{info.price ? info.price : 'Ընթացքի մեջ է'}}
+                            {{info.order_price }}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -56,11 +44,28 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <span head-text>{{"Կարգավիճակը `"}}</span>
+                <span head-text>{{"status" | translate}}`</span>
                 <ion-grid>
                     <ion-row>
                         <ion-col text-center>
-                            {{info.order_status}}...
+                                <div *ngIf="(info?.order_status == 'Pending')" class="status">
+                                        <span>{{"pending" | translate}}</span>
+                                    </div>
+                                    <div *ngIf="(info?.order_status == 'Beind processed')" class="status">
+                                        <span>{{"beind_processed" | translate}}</span>
+                                    </div>
+                                    <div *ngIf="(info?.order_status == 'Confirmed')" class="status">
+                                        <span>{{"confirmed" | translate}}</span>
+                                    </div>
+                                    <div *ngIf="(info?.order_status == 'Cancelled')" class="status">
+                                        <span>{{"cancelled" | translate}}</span>
+                                    </div>
+                                    <div *ngIf="(info?.order_status == 'The washer has arrived ')" class="status">
+                                        <span>{{"washer_arrived" | translate}}</span>
+                                    </div>
+                                    <div *ngIf="(info?.order_status == 'complated')" class="status">
+                                        <span>{{"complete_order" | translate}}</span>
+                                    </div>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -68,7 +73,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <span head-text>{{"Հեռախոսահամար `"}}</span>
+                <span head-text>{{"phone_number" | translate}}`</span>
                 <ion-grid>
                     <ion-row>
                         <ion-col text-center>

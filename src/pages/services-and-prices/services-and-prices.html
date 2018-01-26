@@ -1,6 +1,11 @@
 <absolute-header [pageName]='pageName'></absolute-header>
 <ion-content top>
     <ion-grid>
+            <ion-row margin-bottom>
+                    <ion-col green-light>
+                        {{"from_discount" | translate}}
+                    </ion-col>
+                </ion-row>
         <ion-row text-center align-items-center *ngFor = "let urls of carUrls">
             <ion-col col-4></ion-col>
             <ion-col border-left  margin-bottom *ngFor = "let url of urls" >
@@ -19,11 +24,6 @@
             </ion-col>
             <ion-col border-left no-padding text-center>
                 {{info[3]}} {{"price" | translate}}
-            </ion-col>
-        </ion-row>
-        <ion-row margin-bottom>
-            <ion-col green-light>
-                {{"from_discount" | translate}}
             </ion-col>
         </ion-row>
         <ion-row align-items-center border-top-bottom  *ngFor="let price of priceInfo" margin-bottom>

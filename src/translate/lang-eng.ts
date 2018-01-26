@@ -49,7 +49,7 @@ export const LANG_EN_TRANS = {
     "go_home" : "Back to home",
     "new_order" : "New order",
     "my_orders" : "My orders",
-    "connect_admin": "Connect to Admin",
+    "connect_admin": "Call admin",
 
     //menu
     "exit" : "Exit",
@@ -73,9 +73,18 @@ export const LANG_EN_TRANS = {
      "active_orders" : "New orders",
      "archive_orders" : "History",
      "more" : "More",
-     "Pending" : "Pending",
-     "cancel":"Cancel?",
-     "Cancelled" : "Cancelled",
+     "pending" : "Pending",
+     "cancel":"Cancel",
+     "cancelled" : "Cancelled",
+     "confirmed" : "Confirmed" ,
+     "washer_arrived" : "The washer has arrived",
+     "beind_processed" : "Being processed",
+     "complete_order" : "Your order is complete",
+    
+     //order info - more
+     "status" : "Status",
+     "price_info" : "Price (AMD)",
+     "cars" :"cars",
 
      //settings
      "user_id_no" : "You have no ID", //gedeoni list bdi erta
@@ -107,7 +116,7 @@ export const LANG_EN_TRANS = {
     "about_us_22" : "we will wash Your vehicle when You deal with Your daily cares, remain at Your workplace or have fun. You will save both:the time you need to go to the car wash point and wait, as well as gasoline used for reaching it",
     "about_us_23" : "we enable You to make one order for number of cars.",
     "about_us_24" : "our services are available 7/24.",
-    "about_us_25" : "Please contact us early for big corporate orders and orders during the period between 11pm and 8am.",
+    "about_us_25" : "Please contact us early for big corporate orders and orders during the period between 9pm and 9am.",
     "about_us_26" : "Take use of MobiWash services and save your time and money, making Your own modest but important contribution in preserving Armenian water resources and environment.",
     "about_us_27" : "We are also available",
     "about_us_28" :"Via phone number:",

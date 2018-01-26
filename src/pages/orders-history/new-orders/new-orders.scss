@@ -52,7 +52,7 @@ new-orders {
             align-items: center;
             position: absolute;
             right: 0;
-            top: 0;
+            top: 3px;
             span {
                 margin: 0 auto;
             }
@@ -98,8 +98,9 @@ new-orders {
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 38%;
-            font-size: 5.5vw;
+            max-height: 35px;
+            min-height: 35px;
+            
         }
     }
     .list-md ion-item-options .button {
@@ -113,6 +114,7 @@ new-orders {
 
 *[normal] {
     width: 100%;
+    margin: 0;
     font-size: 0.7em;
     max-height: 26px;
     min-height: 26px;

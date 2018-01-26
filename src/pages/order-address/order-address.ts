@@ -99,7 +99,7 @@ export class OrderAddress{
         
         let loading = this.loadingCtrl.create({
             spinner: 'crescent',
-            content: this.serv.translateImportant("Պատվերն ուղարկվում է․․․", 'The order is sent ...')
+            content: this.serv.translateImportant("Պատվերն ուղարկվում է․․․", 'The order is sent...')
           });
           loading.present();
 
@@ -110,10 +110,10 @@ export class OrderAddress{
                 console.log(data)
                 if(data["status"] == "success"){
                     // LocalStorage setters 
-                    this.mobiWash.addAddress(this.simple.address);
+                    //this.mobiWash.addAddress(this.simple.address);
 
-                    this.mobiWash.addCar(this.addCarsFromLocalstorage(this.simple.cars));
-                    console.log(this.simple);
+                    //this.mobiWash.addCar(this.addCarsFromLocalstorage(this.simple.cars));
+                    //console.log(this.simple);
                     loading.dismiss()
                     this.nav.setRoot(CompleteOrder)
                 }else{

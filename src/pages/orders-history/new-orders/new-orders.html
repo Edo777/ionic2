@@ -12,25 +12,22 @@
                     <span *ngIf="item?.order_price">{{item?.order_price}} {{"price" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'Pending')" class="status">
-                    <span>{{item.order_status | translate}}</span>
-                </div>
-                <div *ngIf="(item?.order_status == 'review')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{"pending" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'Beind processed')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{"beind_processed" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'Confirmed')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{"confirmed" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'Cancelled')" class="status">
-                    <span>{{item?.order_status | translate}}</span>
+                    <span>{{"cancelled" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'The washer has arrived ')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{"washer_arrived" | translate}}</span>
                 </div>
                 <div *ngIf="(item?.order_status == 'complated')" class="status">
-                    <span>{{item?.order_status}}</span>
+                    <span>{{"complete_order" | translate}}</span>
                 </div>
 
 
@@ -38,6 +35,7 @@
                 <ion-grid  class="buttons">
                     <ion-row no-margin>
                         <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"more" | translate}}</button></ion-col>
+                        <ion-col col-4 *ngIf="!confirmed(item?.order_status)"></ion-col>
                         <ion-col col-4 *ngIf="cancelled(item?.order_status)"><button mode="ios" small normal class="cancel" color="danger" ion-button (tap)="alertCancelled(item, 'Cancelled')">{{"cancel" | translate }}</button></ion-col>
                         <ion-col col-4 *ngIf="confirmed(item?.order_status)"><button mode="ios" small normal class="confirm" color="secondary" (tap)="updateOrder(item, 'Confirmed', i)" ion-button>{{"confirm" | translate}}</button></ion-col>
                     </ion-row>
