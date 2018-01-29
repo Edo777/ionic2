@@ -82,7 +82,6 @@ export class HomePage {
             this.localActiveLng = "arm"
             this.activeFlag = 'assets/imgs/english.png'
         }else{
-
             this.localActiveLng = "en";
             this.activeFlag = 'assets/imgs/drosh.jpg';
         }

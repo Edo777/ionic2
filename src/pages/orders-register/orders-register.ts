@@ -175,7 +175,7 @@ export class OrdersRegister implements OnInit{
     }
     ///////////////////////////////
      
-    private radioIndex = 5;
+    private radioIndex;
     private isChecked;
     private arr = [];
     private selectedRadioIndex(index){
@@ -221,6 +221,7 @@ export class OrdersRegister implements OnInit{
     }
     calcPriceOthers(){
         if(this.arr[0]){
+            
             for(let i = 0; i < 3; i++){
                 if(this.nano){
                     this.arr[1] = "4";
@@ -282,15 +283,18 @@ export class OrdersRegister implements OnInit{
             this.rows.hide4 = true;
             this.carNumber = this.orderEdit.car_number;
             this.arr[0] = parseInt(this.orderEdit.service);
-            if(this.orderEdit.service == "4"){
+            console.log("Mer uzacy ", this.arr[0])
+            if(this.arr[0] == "4"){
                 this.nano = true;
                 this.calcPriceOthers()
                 this.arr[0] = "";
                 this.arr[1] = "4";
+                this.radioIndex = 5;
             }
             else if(this.orderEdit.service.length == 3){
                 this.nano = true;
                 this.arr[1] = "4";
+                this.radioIndex = this.arr[0]-1;
             }
             if(orderEdit.type == "new"){
                 
