@@ -16,6 +16,7 @@ export class OrderAddress{
             customer_id:"71",
             customer_phone:"1145747",
             promo_code:123456,
+            comments:'',
             date:"2017-11-28 16:00:00",
             asap:0,
             address:{
@@ -48,6 +49,7 @@ export class OrderAddress{
 
     fast:boolean = false;
     address: any;
+    comment:string;
     cars:any;
     myDate:string;
     promo_code:number;
@@ -95,6 +97,7 @@ export class OrderAddress{
         this.simple["address"] = this.address;
         this.simple["cars"] = this.cars;
         this.simple["asap"] = Number(this.fast);
+        this.simple.comments = this.comment;
         console.log(this.simple);
         
         let loading = this.loadingCtrl.create({

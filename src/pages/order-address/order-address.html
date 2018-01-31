@@ -13,7 +13,7 @@
     <ion-list class="comments">
             <ion-item class="text-area-comments">
                     <ion-label floating>{{ "comment" | translate}}</ion-label>
-                    <ion-textarea></ion-textarea>
+                    <ion-textarea [(ngModel)]="comment"></ion-textarea>
             </ion-item>
     </ion-list>
       

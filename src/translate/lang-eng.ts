@@ -45,7 +45,7 @@ export const LANG_EN_TRANS = {
         "address" : "Address",
 
     //complete order
-    "order_excepted" : "Your order has been sent, soon you will be notified with it's details",
+    "order_excepted" : "Your order has been sent, soon you will recieve an sms about price and order confirmation.",
     "go_home" : "Back to home",
     "new_order" : "New order",
     "my_orders" : "My orders",
@@ -66,7 +66,7 @@ export const LANG_EN_TRANS = {
 
     //my addresses
     "confirm" : "Confirm",
-    "add_address" : "Add an address",//gedeoni list bdi erta
+    "add_address" : "Add an address",
 
 
      //my orders
@@ -87,8 +87,8 @@ export const LANG_EN_TRANS = {
      "cars" :"cars",
 
      //settings
-     "user_id_no" : "You have no ID", //gedeoni list bdi erta
-     "user_id" : "ID", //gedeoni list bdi erta
+     "user_id_no" : "You have no ID", 
+     "user_id" : "ID", 
 
     //about us
 

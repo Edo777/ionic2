@@ -45,7 +45,7 @@ export const LANG_ARM_TRANS = {
         "address" : "Հասցե",
 
     //complete order
-    "order_excepted" : "Ձեր պատվերն ընդունված է, շուտով կստանաք ծանուցում մանրամասներով",
+    "order_excepted" : "Ձեր պատվերն ուղարկված է, շուտով կստանաք sms հաղորդագրություն` գնի և պատվերի հաստատման վերաբերյալ:",
     "go_home" : "Վերադառնալ սկիզբ",
     "new_order" : "Նոր պատվեր",
     "my_orders" : "Իմ պատվերները",
@@ -65,8 +65,8 @@ export const LANG_ARM_TRANS = {
     
     //my addresses
     "confirm" : "Հաստատել",
-    "add_address" : "Ավելացնել հասցե", //gedeoni list bdi erta
-
+    "add_address" : "Ավելացնել հասցե", 
+    
     //my orders
     "active_orders" : "Նոր պատվերներ",
     "archive_orders" : "Պատմություն",
@@ -84,8 +84,8 @@ export const LANG_ARM_TRANS = {
     "cars" :"Մեքենաներ",
 
     //settings
-    "user_id_no":'Դուք չունեք ID', //gedeoni list bdi erta
-    "user_id" : "ID", //gedeoni list bdi erta
+    "user_id_no":'Դուք չունեք ID', 
+    "user_id" : "ID", 
 
     //about us
     "about_us_1" : "-ը շարժական չոր ավտոլվացման համար ստեղծված առաջին բջջային հավելվածն է, որը Երևանում ծառայություններ է առաջարակում շուկայականից ցածր գներով:",
@@ -129,12 +129,6 @@ export const LANG_ARM_TRANS = {
     "about_us_39" : "էլ.հասցեին",
 
 
-//...............................................................
 
-    
-    //"Հայերեն" : "Հայերեն",
-    //"Անգլերեն" : "English",
-
-    
 
 };
