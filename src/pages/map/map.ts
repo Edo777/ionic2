@@ -133,7 +133,7 @@ export class MapGoogle implements OnInit{
     }
 
     loadMap(){
-        let latLng = new google.maps.LatLng(40.788546, 43.840966);
+        let latLng = new google.maps.LatLng(40.177200, 44.503490);
         let mapOptions = {
             center: latLng,
             zoom: 15,

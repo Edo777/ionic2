@@ -122,7 +122,12 @@ export class AddCars{
         
         
     }
-
+    isComplete(){
+        if(this.brandName && this.modelName && this.carNumber){
+            return false;
+        }
+        return true;
+    }
     isHasDataWhenModalOpen(){
         if(this.params.data["car"]){
             this.isEdit = true;

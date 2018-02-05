@@ -54,5 +54,5 @@
 
 </ion-content>
 <ion-footer>
-    <button color="grey" ion-button full (click)="addCar()">{{"add" | translate}}</button>
+    <button color="grey" ion-button full (click)="addCar()" [disabled]="isComplete()">{{"add" | translate}}</button>
 </ion-footer>
