@@ -114,16 +114,25 @@ export class HomePage {
           //api service
           this.api.setId(data["data"].id);
           this.api.setPhoneNumber(this.phoneNumber);
-          loading.dismiss();
-          this.navCtrl.setRoot(MenuComponent);
+          setTimeout(() => {
+            loading.dismiss();
+            this.navCtrl.setRoot(MenuComponent);
+          }, 1000)
+          
         }else {
-          loading.dismiss();
-          let message = "you haven'n internet connection";
+          setTimeout(() => {
+            loading.dismiss();
+          }, 1000)
+          let message = this.serv.translateImportant("Բացակայում է ինտերնետ կապը","No internet connection")
           this.showToast(message);
         }
     },
       (error)=>{
-        this.showToast(error);
+        let message = this.serv.translateImportant("Բացակայում է ինտերնետ կապը","No internet connection")
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000)
+        this.showToast(message);
     })
     
     

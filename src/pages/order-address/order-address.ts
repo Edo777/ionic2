@@ -102,7 +102,7 @@ export class OrderAddress{
         
         let loading = this.loadingCtrl.create({
             spinner: 'crescent',
-            content: this.serv.translateImportant("Պատվերն ուղարկվում է․․․", 'The order is sent...')
+            content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
           });
           loading.present();
 
@@ -124,8 +124,12 @@ export class OrderAddress{
                 }
         },
         (error)=>{
-            this.showToast(error);
-            loading.dismiss()
+            let message = this.serv.translateImportant("Բացակայում է ինտերնետ կապը","No internet connection")
+            
+            setTimeout(() => {
+                loading.dismiss();
+             }, 1000)
+            this.showToast(message);
             console.log(this.simple)
         }
         )
