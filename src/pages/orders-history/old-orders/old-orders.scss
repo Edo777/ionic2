@@ -1,0 +1,121 @@
+old-orders{
+    .alert-message{
+        text-align: center;
+    }
+    ion-item-sliding.active-slide.active-options-right ion-item-options {
+        background: grey;
+        align-items: center;
+    }
+    .scroll-content {
+        padding-bottom: 56px;
+        ion-infinite-scroll-content{
+            min-height: 60px;
+            position: relative;
+            .infinite-loading {
+                background: linear-gradient(to right, #adbd84 0%, #ced7b8 38%, whitesmoke 82%, whitesmoke 97%);
+                padding-bottom: 5px;
+                margin: 0;
+                position: absolute;
+                bottom: 0;
+                .infinite-loading-text {
+                    font-weight: bold;
+                }
+            }
+        }
+        
+    }
+    .view {
+        .left-arrow{
+            position: absolute;
+            left: 3px;
+            top: 25%;
+        }
+        .right-arrow{
+            position: absolute;
+            right: 3px;
+            top: 25%;
+        }
+        .grid {}
+        .number {
+            font-size: 1em;
+            width: fit-content;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .price {
+            font-size: 1em;
+            float: right;
+            width: 35%;
+            display: flex;
+            height: 30%;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            top: 3px;
+            span {
+                margin: 0 auto;
+            }
+        }
+        .status {
+            
+            width: fit-content;
+            top: 34%;
+            right: 26px;
+            font-size: 5vw;
+            position: absolute;
+            height: 31%;
+           
+            
+            display: flex;
+            align-items: center;
+            span {
+                font-size: 0.8em;
+                margin: 0 auto
+            }
+        }
+        /*.confirm {
+            font-size: 1rem;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            width: 34vw;
+        }
+        .more {
+            font-size: 1rem;
+            position: absolute;
+            left: 0;
+            height: 35%;
+            width: 34vw;
+            bottom: 0;
+        }*/
+        .label-md {
+            height: 100px;
+        }
+        .buttons {
+            padding: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            max-height: 35px;
+            min-height: 35px;
+            
+        }
+    }
+    .list-md ion-item-options .button {
+        width: 100px;
+        height: 100%;
+        span {
+            width: 100px;
+        }
+    }
+}
+
+*[normal] {
+    width: 100%;
+    margin: 0;
+    font-size: 0.7em;
+    max-height: 26px;
+    min-height: 26px;
+}

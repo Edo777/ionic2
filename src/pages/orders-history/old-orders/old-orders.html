@@ -1,4 +1,37 @@
 <absolute-header *ngIf="isHeader"></absolute-header>
-<ion-content top>
-    
+<ion-content>
+    <ion-list>
+        <div *ngFor="let item of data; let i = index">
+        <ion-item-sliding  #slideingItem margin-bottom>
+            <ion-item no-lines class="view" mode="md">
+                <ion-icon item-left class="left-arrow" color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
+                <ion-icon item-right class="right-arrow" color="danger" md="md-arrow-dropright" ios="md-arrow-dropright"></ion-icon>
+                <div class="number">
+                    <span> № {{item?.id}}</span>
+                </div>
+
+                <ion-grid  class="buttons">
+                    <ion-row no-margin>
+                        <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"more" | translate}}</button></ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item-options side="left" >
+
+                <button class="close-button" color="grey" (click)="copy(item)" ion-button icon-only>
+                        <ion-icon md="md-copy" ios = "md-copy"></ion-icon>
+                </button>
+
+            </ion-item-options>
+            <ion-item-options side="right">
+
+                <button class="close-button" color="danger" (tap)="updateOrder(item, 'deleted', i)" ion-button icon-only>
+                        <ion-icon name="close"></ion-icon>
+                </button>
+
+            </ion-item-options>
+            
+        </ion-item-sliding>
+    </div>
+    </ion-list>
 </ion-content>

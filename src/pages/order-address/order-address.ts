@@ -54,6 +54,7 @@ export class OrderAddress{
     myDate:string;
     promo_code:number;
     mapAddClassHide:boolean = false;
+    monthNameLocal:any;
     constructor(
         private nav:NavController,
         public loadingCtrl: LoadingController,
@@ -66,7 +67,7 @@ export class OrderAddress{
     ){}
     ngOnInit(){
         this.presentLoadingDefault();
-        
+        this.monthNameLocal = this.serv.translateImportant(['Հունվար', 'Փետրվար', 'Մարտ', 'Ապրիլ', 'Մայիս', 'Հունիս', 'Հուլիս', 'Օգոստոս', 'Սեպտեմբեր', 'Հոկտեմբեր', 'Նոյեմբեր', 'Դեկտեմբեր'], ['January', 'February', 'March', 'April	', 'May', 'June', 'July', 'August', 'September', 'October	', 'November', 'December'])
         this.cars = this.navParams.get("cars");
         console.log(this.cars)
         this.historyAddresses = this.mobiWash.getAddresses();
