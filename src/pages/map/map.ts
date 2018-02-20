@@ -63,18 +63,26 @@ export class MapGoogle implements OnInit{
          this.loadMap();
         
         if(this.isNew == false){
-            console.log(this.address)
+            console.log("this.address", this.address)
             this.ngZone.run(() => {
-                this.newAddress = this.address;
-                
-                this.setNewMarker(this.address.lat, this.address.long)
-                this.emitForAddressChange()
-            
+                if(this.address){
+                    this.newAddress = this.address;
+                    this.setNewMarker(this.address.lat, this.address.long);
+                    this.emitForAddressChange()
+                } else{
+                    this.setNewMarker(40.177200, 44.503490);
+                    this.emitForAddressChange()
+                }
+                          
             })
-             return
+
+        }else{
+            this.setNewMarker(40.177200, 44.503490);
+            this.getCurrentPosition();
+            this.emitForAddressChange()
         }
         console.log("ancav")
-        this.getCurrentPosition();
+        
             //keyboard close
         this.keyboardEnterButton();
         
