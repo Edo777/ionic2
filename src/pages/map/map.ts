@@ -33,18 +33,18 @@ declare var google;
             background-color: #fff;
             border-radius: 2px;
             border: 1px solid transparent;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 32px #adbd84;
+            color: #adbd84;
             box-sizing: border-box;
-            font-family: Roboto;
             font-size: 15px;
             font-weight: 300;
             height: 29px;
-            margin-left: 17px;
+            margin-left: 1px;
             margin-top: 10px;
             outline: none;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
-            width: 400px;
+            width: 41vw;
           }
     `],
     providers:[Geolocation,GoogleMaps]
@@ -78,13 +78,13 @@ export class MapGoogle implements OnInit{
 
     ngOnInit(){
          this.loadMap();
+         
         if(this.isNew == false){
             console.log("this.address", this.address)
             this.ngZone.run(() => {
                 if(this.address){
                     this.newAddress = this.address;
                     this.setNewMarker(this.address.lat, this.address.long);
-                    this.getSearch(this)
                     this.emitForAddressChange()
                 } else{
                     this.setNewMarker(40.177200, 44.503490);
@@ -95,7 +95,6 @@ export class MapGoogle implements OnInit{
 
         }else{
             this.setNewMarker(40.177200, 44.503490);
-            this.getSearch(this)
             this.getCurrentPosition();
             this.emitForAddressChange()
         }
@@ -158,6 +157,7 @@ export class MapGoogle implements OnInit{
     }
 
     loadMap(){
+        
         let latLng = new google.maps.LatLng(40.177200, 44.503490);
         let mapOptions = {
             center: latLng,
@@ -167,6 +167,7 @@ export class MapGoogle implements OnInit{
         }
     
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.getSearch(this)
         var centerControlDiv = document.createElement('div');
         /////////////////////////
         var centerControl = new this.CenterControl(centerControlDiv,this);
