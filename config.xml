@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.annaniks.mobiwash" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.annaniks.mobiwash" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MobiWash</name>
     <description>MobiWash is the first app meant for dry carwash service in Yerevan, Armenia.</description>
     <author email="hi@ionicframework" href="http://mobiwash.am/">Annaniks LLC</author>
@@ -108,7 +108,8 @@
         <variable name="LICENSE" value="TRIAL" />
     </plugin>
     <allow-navigation href="http://192.168.0.104:8100" />
+    <allow-navigation href="http://192.168.0.107:8100" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
-    <allow-navigation href="http://192.168.0.107:8100" />
+    <allow-navigation href="http://192.168.0.129:8100" />
 </widget>

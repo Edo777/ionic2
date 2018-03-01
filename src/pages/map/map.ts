@@ -29,6 +29,23 @@ declare var google;
             height: 200px;
             width: 100%;
         }
+        .controls {
+            background-color: #fff;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            height: 29px;
+            margin-left: 17px;
+            margin-top: 10px;
+            outline: none;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+          }
     `],
     providers:[Geolocation,GoogleMaps]
 })
@@ -56,18 +73,18 @@ export class MapGoogle implements OnInit{
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
     @Input() isNew:boolean;
-
+    @ViewChild("infowindowContent") infowindowContent:ElementRef;
 
 
     ngOnInit(){
          this.loadMap();
-        
         if(this.isNew == false){
             console.log("this.address", this.address)
             this.ngZone.run(() => {
                 if(this.address){
                     this.newAddress = this.address;
                     this.setNewMarker(this.address.lat, this.address.long);
+                    this.getSearch(this)
                     this.emitForAddressChange()
                 } else{
                     this.setNewMarker(40.177200, 44.503490);
@@ -78,14 +95,14 @@ export class MapGoogle implements OnInit{
 
         }else{
             this.setNewMarker(40.177200, 44.503490);
+            this.getSearch(this)
             this.getCurrentPosition();
             this.emitForAddressChange()
         }
-        console.log("ancav")
+        
         
             //keyboard close
         this.keyboardEnterButton();
-        
     }
 
     getCurrentPosition(){
@@ -259,5 +276,43 @@ export class MapGoogle implements OnInit{
         ngOnDestroy(){
             console.log('deleted');
         }
+        /////////
+        //FOR  SEARCH PLACES
+        getSearch(_this){
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', this.map);
+
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            _this.map.fitBounds(place.geometry.viewport);
+          } else {
+            this.map.setCenter(place.geometry.location);
+            this.map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+        
+          _this.setNewMarker(place.geometry.location.lat(), place.geometry.location.lng())
+          _this.marker.setVisible(true);
+
+          _this.newAddress.address = place.name + ' ' + place.formatted_address;
+          _this.newAddress.long = place.geometry.location.lng();
+          _this.newAddress.lat = place.geometry.location.lat();
+          //infowindowContent.children['place-id'].textContent = place.place_id;
+          infowindow.open(this.map, this.marker);
+        });
+      }
 
 }
