@@ -26,7 +26,7 @@ declare var google;
     styles:
     [`
         #map {
-            height: 200px;
+            height: 250px;
             width: 100%;
         }
         .controls {
@@ -44,7 +44,8 @@ declare var google;
             outline: none;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
-            width: 41vw;
+            width: 99%;
+            z-index: 999999999
           }
     `],
     providers:[Geolocation,GoogleMaps]
@@ -163,10 +164,16 @@ export class MapGoogle implements OnInit{
             center: latLng,
             zoom: 15,
             streetViewControl: false,
+            zoomControl:false,
+            scaleControl:false,
+            mapTypeControl:false,
+            
+            fullscreenControl:false,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         }
     
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        //set the search area
         this.getSearch(this)
         var centerControlDiv = document.createElement('div');
         /////////////////////////
