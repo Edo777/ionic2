@@ -1,4 +1,7 @@
 <ion-content>
+    <button (click)="close()" ion-button float-right only-icon>
+            <ion-icon md="md-close" ios="md-close"></ion-icon>
+    </button>
     <map id="map" #map [address]="addressForEdit" (close)="setNewAddress($event)" [isNew]="!isEdit"></map>
     <button ion-button (tap)="closeRegister()">{{"confirm" | translate}}</button>
 </ion-content>

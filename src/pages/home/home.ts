@@ -54,6 +54,7 @@ export class HomePage {
         //this.navCtrl.push(CompleteOrder)
      }
       this.keyboardEnterButton()
+
   }
 
    keyboardEnterButton(){
@@ -69,7 +70,7 @@ export class HomePage {
    }
 
   ngDoCheck(){
-    if(this.name != '' && this.phoneNumber != ''){
+    if(this.name != '' && this.phoneNumber.length === 8){
       this.isComplete = true;
     }else{
        this.isComplete = false;
@@ -102,6 +103,7 @@ export class HomePage {
             content: this.serv.translateImportant("Խնդրում ենք սպասել․․․", 'Please wait...')
         });
       loading.present();
+      this.phoneNumber = '+374' + this.phoneNumber;
       this.api.registration(this.name,this.phoneNumber,this.email,this.refCode,"qwertyuoiuytred5343468757").subscribe( 
       
       (data)=>{
@@ -142,6 +144,8 @@ export class HomePage {
     //this.navCtrl.setRoot(OrdersHistory);
     
   }
+  phoneNumberControl:boolean = false;
+ 
 
   showToast(err) {
     let toast = this.toastCtrl.create({

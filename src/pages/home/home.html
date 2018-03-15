@@ -11,22 +11,23 @@
 
         <ion-item mode="md" no-padding>
             <ion-label floating> {{"name" | translate}}</ion-label>
-            <ion-input [(ngModel)]="name" text-center mode="md"></ion-input>
+            <ion-input text-center [(ngModel)]="name"  mode="md"></ion-input>
         </ion-item>
 
-        <ion-item mode="md" no-padding>
+        <ion-item mode="md" no-padding >
+            <div ion-icon item-start>+ ( 374 )</div>
             <ion-label floating>{{"phone_number" | translate}}</ion-label>
-            <ion-input type="number" [(ngModel)]="phoneNumber" text-center mode="md"></ion-input>
+            <ion-input type="number"  [(ngModel)]="phoneNumber"  mode="md"></ion-input>
         </ion-item>
 
         <ion-item mode="md" no-padding>
             <ion-label floating>{{"email" | translate}}</ion-label>
-            <ion-input type="text" text-center [(ngModel)]="email" mode="md"></ion-input>
+            <ion-input text-center type="email" [(ngModel)]="email" mode="md"></ion-input>
         </ion-item>
 
         <ion-item mode="md" no-padding>
             <ion-label floating>{{"ref_id" | translate}}</ion-label>
-            <ion-input type="text" text-center [(ngModel)]="refCode" mode="md"></ion-input>
+            <ion-input text-center type="text"  [(ngModel)]="refCode" mode="md"></ion-input>
         </ion-item>
         <button margin-top ion-button mode="ios" full [disabled]="!isComplete" (click)="createAccount()">{{"enter" | translate}}</button>
     </ion-list>

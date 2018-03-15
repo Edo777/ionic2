@@ -17,6 +17,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult } from "@ionic-native/nativ
 import { Geolocation } from '@ionic-native/geolocation';
 import { OrdersPage } from "../barrel";
 import { Keyboard } from "@ionic-native/keyboard";
+import { TranslateService } from '../../translate/translate.service';
 
 declare var google;
 
@@ -59,7 +60,8 @@ export class MapGoogle implements OnInit{
         private nativeGeocoder: NativeGeocoder,
         private nav:NavController,
         private ngZone:NgZone,
-        private keyBoard:Keyboard
+        private keyBoard:Keyboard,
+        private serv:TranslateService
     ){
            
     }
@@ -70,6 +72,7 @@ export class MapGoogle implements OnInit{
     };
     map:any;
     marker:any;
+    placeholderText:string;
     @ViewChild('map') mapElement:ElementRef;
     @Output() close = new EventEmitter<any>()
     @Input() address:any;
@@ -79,7 +82,7 @@ export class MapGoogle implements OnInit{
 
     ngOnInit(){
          this.loadMap();
-         
+         this.placeholderText = this.serv.translateImportant("Փնտրել․․․", "Search...");
         if(this.isNew == false){
             console.log("this.address", this.address)
             this.ngZone.run(() => {

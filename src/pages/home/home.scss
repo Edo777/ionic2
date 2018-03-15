@@ -12,6 +12,9 @@ page-home {
             margin: 0 auto;
             min-width: 80%;
             max-width: 80%;
+            .item-md [item-start]{
+                margin-top:38px;
+            }
         }
     }
     .color-red {

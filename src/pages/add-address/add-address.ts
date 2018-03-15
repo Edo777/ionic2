@@ -32,7 +32,9 @@ export class AddNewAddress{
     ngOnInit(){        
         this.presentLoadingDefault()
     }
-    
+    close(){
+        this.viewCtrl.dismiss();
+    }
     closeRegister(){
        // console.log(this.newAddress)
         this.viewCtrl.dismiss([this.newAddress, this.isEdit]);
