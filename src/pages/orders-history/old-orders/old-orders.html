@@ -9,7 +9,9 @@
                 <div class="number">
                     <span> № {{item?.id}}</span>
                 </div>
-
+                <div class="status">
+                        <span>{{"complete_order" | translate}}</span>
+                    </div>
                 <ion-grid  class="buttons">
                     <ion-row no-margin>
                         <ion-col col-4><button mode="ios" small normal class="more" ion-button color="grey" (tap)="more(item)">{{"more" | translate}}</button></ion-col>

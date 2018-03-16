@@ -74,12 +74,13 @@ export const LANG_EN_TRANS = {
      "archive_orders" : "History",
      "more" : "More",
      "pending" : "Pending",
+     "review" : "Waiting for confirmation",
      "cancel":"Cancel",
      "cancelled" : "Cancelled",
-     "confirmed" : "Confirmed" ,
-     "washer_arrived" : "The washer has arrived",
-     "beind_processed" : "Being processed",
-     "complete_order" : "Your order is complete",
+     "confirmed" : "Confirmed, the crew has departed" ,
+     "washer_arrived" : "The crew has arrived",
+     "beind_processed" : "Cleaning in process",
+     "complete_order" : "Successfully completed",
     
      //order info - more
      "status" : "Status",

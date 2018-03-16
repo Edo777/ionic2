@@ -176,7 +176,7 @@ export class NewOrders{
     
      cancelled(status):boolean{
         if(status){
-            if((status.toLowerCase() == 'review') || (status.toLowerCase() == 'beind processed') || (status.toLowerCase() == 'pending')){
+            if((status.toLowerCase() == 'review') || (status.toLowerCase() == 'pending')){
                 return true;
             }else{
                 return false;

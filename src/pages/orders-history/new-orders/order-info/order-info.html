@@ -51,6 +51,9 @@
                                 <div *ngIf="(info?.order_status == 'Pending')" class="status">
                                         <span>{{"pending" | translate}}</span>
                                     </div>
+                                    <div *ngIf="(info?.order_status == 'review')" class="status">
+                                        <span>{{"review" | translate}}</span>
+                                    </div>
                                     <div *ngIf="(info?.order_status == 'Beind processed')" class="status">
                                         <span>{{"beind_processed" | translate}}</span>
                                     </div>

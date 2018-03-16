@@ -71,13 +71,14 @@ export const LANG_ARM_TRANS = {
     "active_orders" : "Նոր պատվերներ",
     "archive_orders" : "Պատմություն",
     "more" : "Մանրամասն",
-    "pending" : "Սպասման մեջ է",
+    "pending" : "Սպասման մեջ է",//
+    "review" : "Սպասում ենք հաստատման",
     "cancel":"Չեղարկել",
-    "cancelled" : "Չեղարկված",
-    "confirmed" : "Հաստատված",
-    "washer_arrived" : "Մասնագետը տեղում է",
-    "beind_processed" : "Մշակվում է",
-    "complete_order" : "Պատվերն ավարտված է",
+    "cancelled" : "Չեղարկված է",//
+    "confirmed" : "Հաստատված է և տված է ընթացք",//
+    "washer_arrived" : "Մեր աշխատակիցները ժամանեցին",//
+    "beind_processed" : "Կատարման մեջ է",//
+    "complete_order" : "Հաջողությամբ ավարտված է",//
     //order info - more
     "status" : "Վիճակը",
     "price_info" : "Գինը (դր․)",
