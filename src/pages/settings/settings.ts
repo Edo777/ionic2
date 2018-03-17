@@ -39,7 +39,7 @@ export class Settings{
                     this.phone = this.customerDetails.phone;
                     this.email = this.customerDetails.email != "undefined"? this.customerDetails.email : "";
                     this.name = this.customerDetails.name;
-                    this.prom_code = this.customerDetails.promo_code;
+                    this.prom_code = this.customerDetails.id;//promo_code
                     loading.dismiss();
                     console.log("sasdad", data)
                 },

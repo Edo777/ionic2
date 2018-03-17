@@ -12,7 +12,7 @@ export const LANG_EN_TRANS = {
 
     //user account
     "create_order" : "Create an order",
-    "my_old_orders" : "Orders history",
+    "my_old_orders" : "Order history",
 
     //orders list
     "add_car":"Add a car",
@@ -89,7 +89,7 @@ export const LANG_EN_TRANS = {
 
      //settings
      "user_id_no" : "You have no ID", 
-     "user_id" : "ID", 
+     "user_id" : "Your ID :", 
 
     //about us
 

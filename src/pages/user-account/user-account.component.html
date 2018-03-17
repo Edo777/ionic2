@@ -1,9 +1,8 @@
 <absolute-header [pageName]="pageName"></absolute-header>
 <ion-content top>
-    <div class="logo">
+    <div class="logo" [ngStyle]="{'background-image': 'url(' + logoPath + ')'}">
 
     </div>
     <button ion-button full (click)="createNewOrder()">{{"create_order" | translate}}</button>
     <button ion-button full (click)="oldOrders()">{{"my_old_orders" | translate}}</button>
-    
 </ion-content>
