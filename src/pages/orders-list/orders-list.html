@@ -6,7 +6,7 @@
 </ion-header>
 <ion-content>
     <ion-list no-margin mode="md">
-        <ion-item-sliding #item *ngFor="let car of cars; let i = index" (click)="print(car)">
+        <ion-item-sliding #item *ngFor="let car of cars; let i = index" tappable (click)="print(car)">
             <ion-item mode="md" class="view" no-lines>
                 <ion-icon item-left color="secondary" md="md-arrow-dropleft" ios="md-arrow-dropleft"></ion-icon>
                 <ion-grid>

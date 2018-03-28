@@ -7,7 +7,7 @@ export const LANG_EN_TRANS = {
     "name" : "Name",
     "phone_number": "Phone Number",
     "email" : "Email" ,
-    "ref_id": "Ref ID", 
+    "ref_id": "Inviter's ID", 
     "enter" : "Enter",
 
     //user account
