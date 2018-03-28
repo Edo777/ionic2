@@ -111,6 +111,9 @@
     <allow-navigation href="http://192.168.0.104:8100" />
     <allow-navigation href="http://192.168.0.107:8100" />
     <allow-navigation href="http://192.168.0.129:8100" />
-    <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.2.1">
+        <variable name="PLAY_SERVICES_VERSION" value="12.0.0" />
+    </plugin>
+    <engine name="android" spec="~7.0.0" />
 </widget>

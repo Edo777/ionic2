@@ -1,5 +1,3 @@
-import { NativeGeocoderReverseResult } from "@ionic-native/native-geocoder";
-
 export interface User {
     id : number,
     name : string,
@@ -15,7 +13,7 @@ export interface CarOrder{
     numbers:number,
     address:string,
     sedan:string,
-    bool:boolean, 
+    bool:boolean,
 }
 
 export interface NewOrder{

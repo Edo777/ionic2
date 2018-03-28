@@ -33,7 +33,8 @@
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "2.0.1",
     "call-number": "^1.0.1",
-    "cordova-android": "6.3.0",
+    "cordova-android": "7.0.0",
+    "cordova-android-play-services-gradle-release": "^1.2.1",
     "cordova-ios": "4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.0",
     "cordova-plugin-camera": "^3.0.0",
@@ -87,11 +88,14 @@
       "call-number": {},
       "cordova-plugin-native-keyboard": {
         "LICENSE": "TRIAL"
+      },
+      "cordova-android-play-services-gradle-release": {
+        "PLAY_SERVICES_VERSION": "12.0.0"
       }
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Local } from "./barrel.service";
-import { User } from "../pages/interfaces/interfaces";
-import { CarsService } from "./cars.service";
 import { ApiService } from "./api.service";
 
 @Injectable()
@@ -23,10 +21,10 @@ export class MobiWash{
         this.customer_id = id;
     }
     //active
-    
+
 /////////////////////////////////
 
-   
+
 /////////////////////////////////
     addUser(){
         if(!this.localService.get("addresses")){
@@ -34,19 +32,19 @@ export class MobiWash{
             this.localService.set("cars", []);
         }
     }
-    
+
     setPhoneAndId(phone_number, id){
         this.api.setId(id);
         this.localService.set("phone_number", Number(phone_number));
         this.localService.set("id", Number(id));
     }
 /////////////////////////////////
-    
+
 /////////////////////////////////
-    
+
     addCar(carInfo:any){
         let cars = this.localService.get("cars") || [];
-        
+
         if(Array.isArray(carInfo)){
             for(let i = 0; i < carInfo.length; i++){
             let newCurrentCar = true;
@@ -88,12 +86,12 @@ export class MobiWash{
 
     removeCar(i:number){
         let cars = this.localService.get("cars") || [];
-        
+
         cars.splice(i, 1);
-        
+
         this.localService.set('cars', cars);
     }
-    
+
 ///////////////////////////////////
 
     getCars(){
@@ -107,7 +105,7 @@ editAddress(oldIndex, newAddress){
     addresses.splice(oldIndex, 1, newAddress);
     this.localService.set("addresses", addresses);
 }
-    
+
 /////////////////////////////////
 addAddress(a:any){
     let addresses = this.localService.get("addresses");

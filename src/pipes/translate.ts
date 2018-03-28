@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CarsService } from "../services/barrel.service";
 import { TranslateService } from "../translate/translate.service";
 
 

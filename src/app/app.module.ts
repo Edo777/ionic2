@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 
 //components
 import { MyApp } from './app.component';
-import { 
+import {
     HomePage ,
-    UserAccount, 
-    MenuComponent, 
-    HistoryPage, 
-    HeaderComponent, 
-    AboutUs, 
+    UserAccount,
+    MenuComponent,
+    HistoryPage,
+    HeaderComponent,
+    AboutUs,
     OrdersRegister,
     AddCars,
     Addresses,
@@ -30,7 +30,7 @@ import {
     PhoneCall,
     OrderInfo,
     ServicesAndPrices
-    
+
   } from '../pages/barrel';
 
 //pipes
@@ -40,7 +40,7 @@ import { CarFormatter } from "../pipes/car-formatter";
 
 //modules
 
-import { HttpModule, Http } from "@angular/http";
+import { HttpModule } from "@angular/http";
 
 //services
 import { CarsService, Local, MobiWash } from "../services/barrel.service";
@@ -88,7 +88,7 @@ import { Keyboard } from "@ionic-native/keyboard";
     HttpModule,
     IonicModule.forRoot(MyApp,{
       mode: 'md',
-      tabsPlacement: 'top', 
+      tabsPlacement: 'top',
       platforms: {
           ios: {
             backButtonText: '',

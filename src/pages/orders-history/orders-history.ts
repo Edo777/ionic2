@@ -14,15 +14,11 @@ export class OrdersHistory{
      @ViewChild('myTabs') tabRef: Tabs;
     constructor(private navParams: NavParams){
         this.pageName = this.navParams.get('pageName');
-        console.log("hello")
     }
     ionViewWillEnter(){
         console.log(this.navParams.data)
         if(this.navParams.get("archive")){
             this.tabRef.select(1);
         }
-    }
-    ngOnInit(){
-        console.log(this.tabRef)
     }
 }

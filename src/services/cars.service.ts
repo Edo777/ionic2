@@ -1,8 +1,6 @@
-import { Http } from '@angular/http';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map'
 import { ApiService } from "./api.service";
-import { NewOrder } from "../pages/interfaces/interfaces";
 import { LoadingController } from "ionic-angular";
 import { TranslateService } from "../translate/translate.service";
 
@@ -23,7 +21,7 @@ export class CarsService {
             this.ok = false;
         }
     )
-  
+
   }
 
 
